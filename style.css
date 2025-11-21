@@ -28,6 +28,10 @@
     position: relative;
     margin-bottom: 150px;  /* Add gap between scene3 and scene4 */
   }
+
+  .scene4 {
+    margin-bottom: -15vh;  /* Reduce gap between scene4 and scene5 */
+  }
   
   .title {
     font-size: 3rem;
@@ -467,6 +471,15 @@ body.bg-active {
   font-weight: 400;
   font-size: 13px;
   line-height: 1.4;
+}
+
+/* Reduce height and gap for scenes 5-8 */
+.scene5,
+.scene6,
+.scene7,
+.scene8,
+.scene9 {
+  height: 80vh;
 }
 
 /* Scene 5 - Red circle left, Image right */
