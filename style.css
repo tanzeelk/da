@@ -8,7 +8,7 @@
   
   body {
     font-family: Arial, sans-serif;
-    background: #dbdada;
+    background: #e5e6e7;
     color: white;
     overflow-x: hidden;
   }
@@ -21,6 +21,7 @@
     align-items: center;
     padding: 40px;
     position: relative;
+    margin-bottom: 80px;
   }
 
   .scene3 {
@@ -30,7 +31,9 @@
   }
 
   .scene4 {
-    margin-bottom: -15vh;  /* Reduce gap between scene4 and scene5 */
+    margin-bottom: 80px;  /* Add space between scene4 and scene5 */
+    padding-top: 150px;  /* Add space at top */
+    margin-top: 100px;  /* Add top margin for spacing */
   }
   
   .title {
@@ -152,7 +155,7 @@
   }
 
 .top-bar {
-  position: absolute;
+  position: fixed;
   top: 40px; /* adjust to place above the circle */
   left: 50%;
   transform: translateX(-50%);
@@ -161,10 +164,11 @@
   align-items: center;
   gap: 20px;
   opacity: 0; /* hidden initially */
+  z-index: 100;
 }
 
 .logo {
-  width: 75px; /* adjust logo size */
+  width: 65px; /* adjust logo size */
 }
 
 .menu-btn {
@@ -172,14 +176,14 @@
   flex-direction: column;
   justify-content: space-between;
   width: 45px;
-  height: 22px;
+  height: 20px;
 }
 
 .menu-btn span {
   display: block;
   height: 3px;
   width: 100%;
-  background: white;
+  background: #9d9fa2;
   border-radius: 2px;
 }
 
@@ -190,8 +194,8 @@
 /* Hero text in center */
 .hero-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 60%;
+  left: 55%;
   transform: translate(-50%, -50%);
   color: white;
   font-size: 70px;
@@ -206,12 +210,43 @@
 .hero-text span {
   display: block;
   white-space: nowrap;
-  color: white;
+  color: #2d5d86;
   font-size: 70px;
-  padding-left: 250px;
+  padding-left: 170px;
+  padding-right: 75px;
   opacity: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
+  margin-top: -30px;
+}
+
+/* Hero text in center - 2 */
+.hero-text-scene2 {
+  position: absolute;
+  top: 60%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 70px;
+  text-align: left;
+  opacity: 0;
+  z-index: 4;
+  color: #e31e27;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.hero-text-scene2 span {
+  display: block;
+  white-space: nowrap;
+  color: #2d5d86;
+  font-size: 70px;
+  padding-left: 280px;
+  /* padding-right: 75px; */
+  opacity: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin-top: -20px;
 }
 
 /* Background image for body */
@@ -276,7 +311,7 @@ body.bg-active {
 .journey-text {
   position: fixed;
   top: 50%;
-  left: 50%;
+  left: 55%;
   transform: translate(-50%, -50%);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -332,11 +367,11 @@ body.bg-active {
 /* Scene 3 - Red circle and DA-3 image */
 .scene3-circle-container {
   position: absolute;
-  top: 10;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
-  height: 200px;
+  width: 320px;
+  height: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -344,11 +379,13 @@ body.bg-active {
 }
 
 .scene3-red-circle {
-  width: 180px;
-  height: 180px;
+  width: 320px;
+  height: 320px;
   border-radius: 50%;
-  background: rgba(227, 30, 39, 0.7);
+   background-image: url('./assets/circle.png');
+  background-size: cover;
   position: absolute;
+  top: 15px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -356,8 +393,8 @@ body.bg-active {
 }
 
 .scene3-image {
-  width: 200px;
-  height: 200px;
+  width: 350px;
+  height: 350px;
   border-radius: 50%;
   background-image: url('./assets/image03.png');
   background-size: cover;
@@ -373,33 +410,121 @@ body.bg-active {
 
 .scene3-group-text {
   position: absolute;
-  left: -400px;
+  left: -425px;
   top: 50%;
   transform: translateY(-50%);
   color: #e31e27;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 42px;
+  font-size: 65px;
   opacity: 0;
   z-index: 20;
   pointer-events: none;
   transition: transform 0.7s;
+  white-space: nowrap;
 }
 
 .scene3-ventures-text {
   position: absolute;
-  right: 30px;
-  top: 70%;
-  transform: translateY(40px);
-  color: #fff;
+  top: 57%;
+  right: -35%;
+  /* left: 100px; */
+  color: #2d5d86;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 42px;
+  font-size: 65px;
   opacity: 0;
   z-index: 20;
   pointer-events: none;
-  transition: transform 0.7s, opacity 0.7s;
+  transition: transform 0.7s;
   white-space: nowrap;
+}
+
+.scene3-red-circle-text {
+  position: absolute;
+  bottom: 100px;
+  right: -132%;
+  width: 240px;
+  text-align: center;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0;
+  z-index: 25;
+  pointer-events: none;
+}
+
+/* Grey Circles Section */
+.grey-circles-section {
+  height: 500px;
+  background: #e5e6e7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-bottom: 80px;
+  margin-bottom: 300px;
+  overflow: visible;
+}
+
+.bg-circles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.bg-circle.grey {
+  background-color: #a8a8a8;
+}
+
+.bg-circle.circle-asset {
+  background-image: url('./assets/circle.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.grey-circles-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  z-index: 10;
+  position: relative;
+}
+
+.grey-circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-image: url('./assets/CircleGrey.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+}
+
+.circle-logo {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+.grey-circle:first-child .circle-logo {
+  width: 170px;
 }
 
 /* Scene 4 - Two small circles animating apart */
@@ -408,8 +533,8 @@ body.bg-active {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -418,8 +543,8 @@ body.bg-active {
 }
 
 .scene4-image-circle {
-  width: 490px;
-  height: 490px;
+  width: 595px;
+  height: 595px;
   border-radius: 50%;
   background-image: url('./assets/image04.png');
   background-size: cover;
@@ -432,8 +557,8 @@ body.bg-active {
 }
 
 .scene4-red-circle {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
   background-image: url('./assets/circle.png');
   background-size: cover;
@@ -442,10 +567,37 @@ body.bg-active {
   left: 50%;
   transform: translate(-50%, calc(-50% - 45px));
   z-index: 10;
-  opacity: 0.8;
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.scene4-grey-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url('./assets/CircleGrey.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  left: calc(50% + 150px);
+  top: calc(50% - 250px);
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene4-grey-logo {
+  width: 120px;
+  /* height: 100px; */
+  object-fit: contain;
+  opacity: 1;
+  position: relative;
+  top: -25px;
 }
 
 .scene4-red-text {
@@ -473,6 +625,67 @@ body.bg-active {
   line-height: 1.4;
 }
 
+.scene4-new-text {
+  position: absolute;
+  left: calc(50% - 550px);
+  top: calc(50% - 550px);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 65px;
+  line-height: 1.1;
+  opacity: 0;
+  z-index: 11;
+  pointer-events: none;
+}
+
+.scene4-new-line {
+  margin-bottom: 5px;
+}
+
+.text-red {
+  color: #e31e27;
+}
+
+.text-blue {
+  color: #2d5d86;
+}
+
+.scene4-tagline {
+  position: absolute;
+  left: -50%;
+  top: -70%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.2;
+  z-index: 12;
+  opacity: 0;
+}
+
+.scene4-tagline-red {
+  color: #e31e27;
+  display: block;
+}
+
+.scene4-tagline-blue {
+  color: #2d5d86;
+  display: block;
+}
+
+.scene4-falling-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-image: url('./assets/circle.png');
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  right: -60%;
+  top: -500px;
+  z-index: 20;
+  opacity: 1;
+}
+
 /* Reduce height and gap for scenes 5-8 */
 .scene5,
 .scene6,
@@ -498,8 +711,8 @@ body.bg-active {
 }
 
 .scene5-red-circle {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
   background-image: url('./assets/circle.png');
   background-size: cover;
@@ -508,15 +721,42 @@ body.bg-active {
   left: 50%;
   transform: translate(-50%, calc(-50% - 40px));
   z-index: 10;
-  opacity: 0.8;
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.scene5-grey-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url('./assets/CircleGrey.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  left: calc(50% - 150px);
+  top: calc(50% - 250px);
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene5-grey-logo {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  opacity: 1;
+  position: relative;
+  top: -35px;
+}
+
 .scene5-image-circle {
-  width: 490px;
-  height: 490px;
+  width: 595px;
+  height: 595px;
   border-radius: 50%;
   background-image: url('./assets/image05.png');
   background-size: cover;
@@ -571,8 +811,8 @@ body.bg-active {
 }
 
 .scene6-image-circle {
-  width: 490px;
-  height: 490px;
+  width: 595px;
+  height: 595px;
   border-radius: 50%;
   background-image: url('./assets/image06.png');
   background-size: cover;
@@ -585,8 +825,8 @@ body.bg-active {
 }
 
 .scene6-red-circle {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
   background-image: url('./assets/circle.png');
   background-size: cover;
@@ -595,10 +835,37 @@ body.bg-active {
   left: 50%;
   transform: translate(-50%, calc(-50% - 40px));
   z-index: 10;
-  opacity: 0.8;
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.scene6-grey-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url('./assets/CircleGrey.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  left: calc(50% + 150px);
+  top: calc(50% - 250px);
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene6-grey-logo {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  opacity: 1;
+  position: relative;
+  top: -35px;
 }
 
 .scene6-text {
@@ -644,8 +911,8 @@ body.bg-active {
 }
 
 .scene7-red-circle {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
   background-image: url('./assets/circle.png');
   background-size: cover;
@@ -654,15 +921,42 @@ body.bg-active {
   left: 50%;
   transform: translate(-50%, calc(-50% - 40px));
   z-index: 10;
-  opacity: 0.8;
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.scene7-grey-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url('./assets/CircleGrey.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  left: calc(50% - 150px);
+  top: calc(50% - 250px);
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene7-grey-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  opacity: 1;
+  position: relative;
+  top: -25px;
+}
+
 .scene7-image-circle {
-  width: 490px;
-  height: 490px;
+  width: 595px;
+  height: 595px;
   border-radius: 50%;
   background-image: url('./assets/image07.png');
   background-size: cover;
@@ -717,8 +1011,8 @@ body.bg-active {
 }
 
 .scene8-image-circle {
-  width: 490px;
-  height: 490px;
+  width: 595px;
+  height: 595px;
   border-radius: 50%;
   background-image: url('./assets/image08.png');
   background-size: cover;
@@ -731,8 +1025,8 @@ body.bg-active {
 }
 
 .scene8-red-circle {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
   background-image: url('./assets/circle.png');
   background-size: cover;
@@ -741,10 +1035,37 @@ body.bg-active {
   left: 50%;
   transform: translate(-50%, calc(-50% - 40px));
   z-index: 10;
-  opacity: 0.8;
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.scene8-grey-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url('./assets/CircleGrey.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  left: calc(50% + 150px);
+  top: calc(50% - 250px);
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene8-grey-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  opacity: 1;
+  position: relative;
+  top: -25px;
 }
 
 .scene8-text {
@@ -786,4 +1107,189 @@ body.bg-active {
 /* Scene 8 image */
 .scene8 .scene4-image-circle {
   background-image: url('./assets/image08.png');
+}
+
+/* Footer Section */
+.footer {
+  background-color: #e5e6e7;
+  padding: 0px 40px 40px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  padding-left: 40px;
+  padding-right: 40px;
+  justify-content: center;
+}
+
+.footer-columns-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+}
+
+.footer-titles-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  width: 100%;
+}
+
+.footer-content-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  width: 100%;
+}
+
+.footer-column {
+  flex: 0 0 auto;
+  min-width: 180px;
+}
+
+.footer-content-row .footer-column {
+  width: 180px;
+}
+
+.footer-logo {
+  flex: 0 0 auto;
+  width: 150px;
+  margin-right: 20px;
+}
+
+.footer-logo-img {
+  width: 120px;
+  height: auto;
+}
+
+.footer-title {
+  color: #e31e27;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.footer-full-line {
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+  display: block;
+}
+
+.footer-content {
+  margin-top: 0;
+}
+
+.footer-contact p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #636466;
+  margin-bottom: 2px;
+}
+
+.contact-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.contact-icon {
+  font-size: 18px;
+  line-height: 1.8;
+  flex-shrink: 0;
+}
+
+.contact-icon-img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-text {
+  flex: 1;
+}
+
+.footer-contact .footer-spacing {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: #636466;
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #e31e27;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  width: 150%;
+  max-width: 600px;
+}
+
+.newsletter-input {
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #888;
+  background-color: transparent;
+  color: #636466;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  outline: none;
+}
+
+.newsletter-input::placeholder {
+  color: #636466;
+}
+
+.newsletter-input:focus {
+  border-bottom-color: #888;
+}
+
+.newsletter-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.checkbox-input {
+  margin-top: 4px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.newsletter-checkbox label {
+  font-size: 12px;
+  color: #636466;
+  line-height: 1.5;
+  cursor: pointer;
 }
