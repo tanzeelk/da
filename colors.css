@@ -1,0 +1,32 @@
+/* Color Constants Module */
+:root {
+  /* Primary Colors */
+  --color-red-primary: #E63946;
+  --color-blue-primary: #1D3557;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  
+  /* Grey Shades */
+  --color-grey-light: #F8F9FA;
+  --color-grey-medium: #6C757D;
+  --color-grey-dark: #343A40;
+  --color-grey-footer: #808080;
+  
+  /* Background Colors */
+  --bg-dark: #1a1a1a;
+  --bg-light: #f5f5f5;
+  
+  /* Text Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #808080;
+  --text-dark: #000000;
+  
+  /* Navigation Colors */
+  --nav-link-default: #808080;
+  --nav-link-active: #E63946;
+  --nav-link-hover: #E63946;
+  
+  /* Border Colors */
+  --border-light: #E0E0E0;
+  --border-dark: #333333;
+}

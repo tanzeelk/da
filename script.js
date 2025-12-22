@@ -1,13 +1,34 @@
 const heroText = document.querySelector(".hero-text");
 const body = document.body;
 const circleBack = document.querySelector(".circle-back");
-// Add a background inside the center circle
-const circleBackBg = document.createElement("div");
-circleBackBg.classList.add("circle-back-bg");
-circleBack.appendChild(circleBackBg);
 
 // Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
+
+// Fixed Navigation Bar - Show from Scene 4 onwards till the end
+const fixedNav = document.getElementById('fixedNav');
+
+
+ScrollTrigger.create({
+  trigger: ".scene4",
+  start: "center center",
+  endTrigger: "body",
+  end: "bottom bottom",
+  onEnter: () => fixedNav.classList.add('visible'),
+  onLeaveBack: () => fixedNav.classList.remove('visible'),
+  markers: false
+});
+
+// Smooth scroll for footer links
+document.querySelectorAll('a[href="#footer"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('footer').scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
+});
 
 // Hero title animation
 gsap.from(".title", {
@@ -61,7 +82,7 @@ let tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene1",
     start: "top top",
-    end: "+=3500",   // longer scroll to allow rotation + expansion
+    end: "+=2400",  // longer scroll to allow rotation + expansion
     scrub: true,
     pin: true,
     markers: false
@@ -79,64 +100,70 @@ let t2 = gsap.timeline({
   }
 });
 
-let t3 = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".scene3",
-    start: "center bottom",   // start when scene3 top hits viewport bottom
-    end: "+=600",
-    scrub: true,
-    pin: false,
-    markers: false
-  }
-});
-
-// Scene 4 Timeline - Two circles animating apart horizontally
-let t4 = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".scene4",
-    start: "top bottom",   // start when scene4 enters viewport
-    end: "+=800",
-    scrub: true,
-    pin: false,
-    markers: false
-  }
-});
-
-const finalText = document.querySelector(".final-text");
 const topBar = document.querySelector(".top-bar");
 
-const textContent = finalText.textContent.trim();
-finalText.innerHTML = ""; 
 
-textContent.split("").forEach(char => {
-  const span = document.createElement("span");
-  span.textContent = char;
-  span.style.opacity = 0;
-  finalText.appendChild(span);
+const finalText = document.querySelector(".final-text");
+const lines = finalText.textContent.trim().split("\n"); // split by new line
+finalText.innerHTML = "";
+
+// Wrap lines
+lines.forEach((lineText, i) => {
+  const line = document.createElement("div");
+  line.classList.add("line");
+  if (i % 2 === 1) line.classList.add("indent"); // indent 2nd & 4th line
+
+  const words = lineText.trim().split(" ");
+  words.forEach(word => {
+    const span = document.createElement("span");
+    span.textContent = word + " ";
+    span.style.opacity = 0; // Start hidden
+    line.appendChild(span);
+  });
+
+  finalText.appendChild(line);
 });
 
 const spans = finalText.querySelectorAll("span");
 const logo = document.querySelector(".logo");
-
-// Create two clones of the back circle
+gsap.set(spans, { opacity: 0 });
+gsap.set(finalText, { opacity: 1 });
+// Create clones of the back circle BEFORE adding the background
 const circleLeft = circleBack.cloneNode(true);
 const circleRight = circleBack.cloneNode(true);
-const bigCircle = circleBack.cloneNode(true);
+const circleCenter = circleBack.cloneNode(true);
 
+// Now add the background image only to the original circleBack
+const circleBackBg = document.createElement("div");
+circleBackBg.classList.add("circle-back-bg");
+circleBack.appendChild(circleBackBg);
 
 circleLeft.classList.add("circle-left");
 circleRight.classList.add("circle-right");
-bigCircle.classList.add("big-circle");
+circleCenter.classList.add("circle-center");
 
+// Set initial opacity to 0 so they appear with animation
 circleLeft.style.opacity = 0;
 circleRight.style.opacity = 0;
-bigCircle.style.opacity = 0;
+circleCenter.style.opacity = 0;
 
 // Append clones to the scene
 const circle = document.querySelector(".circle");
 circle.appendChild(circleLeft);
 circle.appendChild(circleRight);
-circle.appendChild(bigCircle);
+circle.appendChild(circleCenter);
+
+// Scene 4 Timeline - Red circle and image rise up, then image slides left
+let t4 = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".scene4",
+    start: "top 50%",
+    end: "+=1200",
+    scrub: 1,
+    pin: true,
+    markers: false
+  }
+});
 
 
 tl.to(".circle-back", {
@@ -153,38 +180,49 @@ tl.to(".circle-back", {
   }, ">");
 
   tl.to(".circle-back", {
-    scale: 12,
-    ease: "none",
-    onUpdate: function () {
-      const scale = gsap.getProperty(".circle-back", "scale");
-      const textEl = document.querySelector(".scroll-text");
-      
-      if ((scale >= 1 && scale < 9) && !window._textChanged) {
-        textEl.innerText = "Scroll continue";
-      }
+  scale: 4,
+  ease: "none",
+  onUpdate: function () {
+    const scale = gsap.getProperty(".circle-back", "scale");
+    const textEl = document.querySelector(".scroll-text");
 
-      if ((scale > 9 && scale < 10)) {
-        textEl.innerText = "Get started";
-      }
-      
-      if (scale > 10 && !window._textFaded) {
-        gsap.to(textEl, {
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.out"
-        });
-
-        window._textFaded = true;
-      }
+    if ((scale >= 1 && scale < 9) && !window._textChanged) {
+      textEl.innerText = "Scroll continue";
     }
-  });
-
-tl.to(".final-text", { opacity: 1 }, "-=0.5");
-tl.to(spans, {
-  opacity: 1,
-  stagger: { each: 0.02, ease: "none" }
+  }
 });
 
+// medium → large
+tl.to(".circle-back", {
+  scale: 12,
+  ease: "none",
+  onUpdate: function () {
+    const scale = gsap.getProperty(".circle-back", "scale");
+    const textEl = document.querySelector(".scroll-text");
+
+    if ((scale > 9 && scale < 10)) {
+      textEl.innerText = "Get started";
+    }
+
+    if (scale > 10 && !window._textFaded) {
+      gsap.to(textEl, {
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out"
+      });
+
+      window._textFaded = true;
+    }
+  }
+});
+
+
+tl.to(spans, {
+  opacity: 1,
+  stagger: 0.18,
+  duration: 0.3,
+  ease: "power2.out"
+}, ">");
 // Fade out the typewriter text once all letters are visible
 tl.to(finalText, { opacity: 0, duration: 0.5 });
 
@@ -201,66 +239,69 @@ tl.to(topBar, {
 }, "<");
 
 // Start circles, text animations all together
-// Circles fade in and start moving
+// Step 1: All circles and image fade in together
 tl.to([circleLeft, circleRight], {
-  opacity: 0.9,
-  duration: 1
+  opacity: 1,
+  duration: 0.1
 }, ">");
 
-// Move left circle off-screen (starts same time as circles fade in)
+tl.to(circleCenter, {
+  opacity: 0.5,
+  duration: 0.1
+}, "<");
+
+tl.to(circleBackBg, {
+  opacity: 1,   
+  duration: 0.1,
+  ease: "power2.out"
+}, "<");
+
+// Step 2: Left and right circles move out while text animations happen
 tl.to(circleLeft, {
   x: "-150vw", 
-  rotation: -360, 
-  duration: 2, 
+  duration: 2.6, 
   ease: "power2.inOut" 
-}, "<");
+}, ">");
 
-// Move right circle off-screen (same timing as left)
 tl.to(circleRight, {
   x: "150vw", 
-  rotation: 360, 
-  duration: 2, 
+  duration: 2.6, 
   ease: "power2.inOut" 
 }, "<");
-
-// Fade in center circle background (same timing - reveals the bg photo)
-tl.to(circleBackBg, { opacity: 1, duration: 1.5 }, "<");
 
 // First line of hero text (red) - slides up from bottom at same time as circles move
 tl.fromTo(heroText, 
-  { opacity: 0, y: 200 }, // starts far down
-  { opacity: 1, y: -40, duration: 1, ease: "power2.out" }, "<");
+  { opacity: 0, y: 200 },
+  { opacity: 1, y: -40, duration: 1, ease: "power2.inOut" }, "<");
 
-// Second line of hero text (white) - starts from much lower, ends much lower
-
+// Second line of hero text (blue) - starts from much lower, ends much lower
 tl.fromTo(
   heroText.querySelector("span"),
-  { opacity: 0.5, y: 250 }, // starts far down
-  { opacity: 1, y: 10, duration: 1, ease: "power2.out" },
-  "-=1.5" 
+  { opacity: 0.5, y: 230 },
+  { opacity: 1, y: 10, duration: 2, ease: "power2.inOut" },
+  "<"
 );
 
-// BigCircle appears after text animations complete - fades in and moves down
-tl.fromTo(bigCircle, 
-  { opacity: 0, y: -50 }, // starts above, invisible
-  { opacity: 0.9, y: 500, duration: 1.5, ease: "power2.out" },
-  "-=1.5" 
-);
-
-// Journey text appears at same time as bigCircle - comes up from bottom
+// Journey text appears with hero text
 const journeyText = document.querySelector(".journey-text");
 tl.fromTo(journeyText,
-  { opacity: 0, y: 400 }, // starts below, invisible
-  { opacity: 1, y: 190, duration: 1.5, ease: "power2.out" },
-  "<" // same time as bigCircle
+  { opacity: 0, y: 300 },
+  { opacity: 1, y: 190, duration: 2, ease: "power2.inOut" },
+  "<"
 );
 
-// Lock bigCircle in place after animation completes
-tl.to(bigCircle, {
-  duration: 0.1,
+// Step 3: After text animations stop, circleCenter moves down and grows
+tl.to(circleCenter, 
+  { y: 750, opacity: 1, scale: 15, duration: 1.2, ease: "power2.out" },
+  "+=0.5"
+);
+
+// Lock circleCenter in place after animation completes
+tl.to(circleCenter, {
+  duration: 1,
   onComplete: function() {
     // Remove from ScrollTrigger timeline so it doesn't move with scroll
-    gsap.set(bigCircle, { position: "fixed", top: "50%", left: "50%" });
+    gsap.set(circleCenter, { position: "fixed", top: "53%", left: "48%"});
   }
 });
 
@@ -282,112 +323,177 @@ t2.fromTo(heroTextScene2,
   { opacity: 1, y: -40, duration: 1.5, ease: "power2.out" },
    "<-1.5");
 
+   // Everything starts scrolling up earlier
+t2.to(circleBackScene2Top, { 
+  y: "90vh", 
+  duration: 2.2, 
+  ease: "power2.inOut",
+}, "<");
+
 // Second line of hero text (white span) in scene2 - slides up after first
 t2.fromTo(
   heroTextScene2.querySelector("span"),
   { opacity: 0, y: 200 }, // starts far down
   { opacity: 1, y: 10, duration: 1.5, ease: "power2.out" },
-  "-=0.03"
+  "<1" // starts slightly after first line
 );
-// Everything starts scrolling up earlier
-t2.to(circleBackScene2Top, { 
-  y: "40vh", 
-  duration: 2, 
-  ease: "power2.inOut" 
-}, "-=0.5");
+
 
 
 
 // Founding text appears after heroText2
 t2.fromTo(foundingText,
   { opacity: 0, y: 300 },
-  { opacity: 1, y: 250, duration: 1.5, ease: "power2.out" },
-  "+=0.3"
+  { opacity: 1, y: 190, duration: 1, ease: "power2.out" },
 );
 
 // Growth text appears slightly after founding text
 t2.fromTo(growthText,
   { opacity: 0, y: 300 },
-  { opacity: 1, y: 210, duration: 1.5, ease: "power2.out" },
-  "-=0.5"
+  { opacity: 1, y: 170, duration: 1.5, ease: "power2.out" },
+  "<0.5"
 );
 
-// Scene3 elements animation in scene2
+
 const scene3Image = document.querySelector(".scene3-image");
 const scene3RedCircle = document.querySelector(".scene3-red-circle");
-
-
-
-// Step 1: Fade in both image and circle together
-t3.fromTo(
-  scene3Image,
-  { opacity: 0, width: "350px", height: "350px", borderRadius: "50%" },
-  { opacity: 1, ease: "power2.out", duration: 1 }
-);
-
-t3.fromTo(
-  scene3RedCircle,
-  { opacity: 0, width: "320px", height: "320px" },
-  { opacity: 0.9, ease: "power2.out", duration: 2 },
-  0 // <-- start at same time as image
-);
-
-// Step 2: Expand image into wide rounded rectangle
-t3.to(
-  scene3Image,
-  {
-    width: "100vw",
-    height: "350px",
-    borderRadius: "60px",
-    duration: 2.5,
-    ease: "power2.out"
-  }
-);
-
-
-
-// Step 4: Slide the red circle to the right
- t3.to(scene3RedCircle,
-  { left: "calc(50vw - 100px)", duration: 2, ease: "power2.out" },
-  "<"
-);
-
-// Step 3: Transition to square corners
-t3.to(
-  scene3Image,
-  {
-    borderRadius: "0px",
-    duration:1,
-    ease: "power2.out"
-  },
-  "-=0.1"
-);
-
-
 const scene3GroupText = document.querySelector(".scene3-group-text");
 const scene3VenturesText = document.querySelector(".scene3-ventures-text");
 const scene3RedCircleText = document.querySelector(".scene3-red-circle-text");
 
-// Fade in 'Our Group' halfway through image expansion
-t3.to(scene3GroupText, {
-  opacity: 1,
-  duration: 0.5,
+// Background circles
+const bgCircles = document.querySelectorAll(".bg-circle");
+
+// ScrollTrigger timeline
+let t3 = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".scene3",
+    // start: "top bottom",    // starts when scene is just entering viewport
+    // end: "bottom 40%",   // longer scroll distance = smoother animations
+    // scrub: 4,            // smooth interpolation tied to scroll
+    start: "top 80%",
+    end: "bottom 80%",
+    scrub: 1.5,
+    markers: false
+  }
+});
+
+// -----------------------
+// Step 1: Fade in image + circle together
+t3.fromTo(
+  scene3Image,
+  { opacity: 0, width: "330px", height: "330px", borderRadius: "50%" },
+  { opacity: 1, ease: "power2.out" }
+);
+
+t3.fromTo(
+  scene3RedCircle,
+  { opacity: 0, width: "300px", height: "300px" },
+  { opacity: 0.9, ease: "power2.out" },
+  0
+);
+
+
+
+let expandTL = gsap.timeline();
+
+expandTL.to(scene3Image, {
+  width: "100vw",
+  height: "330px",
+  borderRadius: "200px",
+  ease: "none",    // no easing so scroll fully controls pace
+  duration: 1
+});
+
+expandTL.to(scene3RedCircle, {
+  left: "calc(50vw - 100px)",
+  ease: "none",   // important! scroll-controlled
+  duration: 1
+}, 0.1); // starts at the same time as the image expansion
+
+
+
+t3.add(expandTL, ">0.5");
+
+// -----------------------
+// Step 4: Gradually transition border-radius to rectangle
+t3.to(scene3Image, {
+  borderRadius: "0px",
   ease: "power2.out"
-}, "-=1.2");
+}, "<+=1"); // starts slightly after expansion begins
+
+// -----------------------
+// Step 5: Fade + slide up 'Our Group' and 'Our Ventures' texts
+t3.fromTo(scene3GroupText,
+  { opacity: 0, y: 250 },
+  { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+);
 
 t3.fromTo(scene3VenturesText,
-  { opacity: 0, y: 40 },
-  { opacity: 1, y: -60, duration: 0.5, ease: "power2.out" },
-  "-=0.8"
+  { opacity: 0, y: 250 },
+  { opacity: 1, y: -40, duration: 0.9, ease: "power3.out" },
 );
 
-// Fade in red circle text at same time as ventures text - slides up from bottom
 t3.fromTo(scene3RedCircleText,
-  { opacity: 0, y: 100 },
-  { opacity: 1, y: 0, duration: 2, ease: "power2.out" },
-  "-=0.5"
+  { opacity: 0, y: 200 },
+  { opacity: 1, y: -10, duration: 1, ease: "power2.inOut" },
+  "<"
 );
 
+// Animate the 4 main grey circles from grey-circles-section
+const greyCircles = document.querySelectorAll(".grey-circle");
+// Timeline for background circles floating up
+let floatTL = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".scene3",
+    start: "top 20%",    // start earlier when scene3 enters viewport
+    end: "bottom 20%",   // end later for longer animation duration
+    scrub: 2,       
+    markers: false
+  }
+});
+
+bgCircles.forEach((circle, i) => {
+  // 60% chance to float up and disappear, 40% chance to float up and stop
+  const floatAway = Math.random() < 0.5;
+
+  floatTL.fromTo(circle,
+    { y: 0, opacity: 1 },  // start visible at their natural position
+    { 
+      y: floatAway ? -400 : -100,  // float up high and disappear OR float up a bit and stop
+      opacity: floatAway ? 0 : 1, // fade out if floating away, stay visible if stopping
+      ease: "power1.out"
+    },
+    i * 0.05 // slight stagger for more dynamic effect
+  );
+});
+
+// Separate timeline for grey circles with different timing
+let greyCirclesTL = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".scene3",
+    start: "top 40%",    // start later so animation happens when you reach scene3
+    end: "bottom 30%",   // end when scene3 leaves viewport
+    scrub: 1.5,       
+    markers: false
+  }
+});
+
+// Animate grey circles sliding in with random speeds
+greyCircles.forEach((circle, index) => {
+  // const randomSpeed = 1.5 + Math.random() * 1.5; // Random duration between 1.5-3 seconds
+  const randomSpeed = 0.8 + Math.random() * 0.6;
+  greyCirclesTL.fromTo(circle,
+    { y: 300, opacity: 0 }, // Start from below
+    { 
+      y: -100, // End at original position
+      opacity: 1,
+      duration: randomSpeed,
+      ease: "power2.out" 
+    },
+    0  // Start at the beginning of the timeline
+  );
+});
 
 
 const scene4ImageCircle = document.querySelector(".scene4-image-circle");
@@ -395,54 +501,90 @@ const scene4RedCircle = document.querySelector(".scene4-red-circle");
 const scene4GreyCircle = document.querySelector(".scene4-grey-circle");
 // Falling circle from scene3 to scene4
 const scene4FallingCircle = document.querySelector('.scene4-falling-circle');
+const scene4SmallRedCircle = document.querySelector('.scene4-small-red-circle');
+const scene4SmallRedCircleRight = document.querySelector('.scene4-small-red-circle-right');
 const scene4Tagline = document.querySelector('.scene4-tagline');
 const scene4NewText = document.querySelector('.scene4-new-text');
+const scene4Group1 = document.querySelector('.scene4-group-1');
+const scene4Group2 = document.querySelector('.scene4-group-2');
 
 const scene4RedText = document.querySelector('.scene4-red-text');
-// t4.fromTo(scene4FallingCircle,
-//   { opacity: 1, top: "-500px" },
-//   { top: "1px", opacity: 1, duration: 1, ease: "power2.out" },
-//   0
-// );
-// Animate new text fading in with circles
-t4.to(scene4NewText,
-  { opacity: 1, duration: 0.2, ease: "power2.out" },
-  0
-);
 
-// Animate image circle moving left
-t4.to(scene4ImageCircle,
-  { x: -150, duration: 0.2, ease: "power2.out" },
-  0
-);
-
-// Animate red circle moving right
-t4.to(scene4RedCircle,
-  { x: 150, duration: 0.2, ease: "power2.out" },
-  0
-)
+// Set initial positions: red circle and image start below viewport
+gsap.set([scene4RedCircle, scene4ImageCircle], { y: 500 });
+gsap.set(scene4RedCircle, { y: 200 });
+gsap.set(scene4SmallRedCircle, { y: -500 });
+gsap.set(scene4SmallRedCircleRight, { x: 0 });
 
 
+// Step 1: Red circle and image rise up together (0-0.4)
+t4.to( scene4ImageCircle, {
+  y: -50,
+  duration: 0.4,
+  ease: "power2.out"
+}, 0);
+t4.to(scene4RedCircle, {
+  y: -350,
+  duration: 0.4,
+  ease: "power2.out"
+}, "<");
 
-t4.to(scene4RedText, {
+// Small red circle drops from top (0-0.3)
+t4.fromTo(scene4SmallRedCircle, {
+  opacity: 0,
+  y: -500
+}, {
   opacity: 1,
-  y:20,
+  y: -250,
   duration: 0.3,
   ease: "power2.out"
-}, 0.1);
+}, 0);
 
-// Fade in grey circle after red circle stops moving
-t4.to(scene4GreyCircle, {
+// Small red circle slides from right to left (0-0.3)
+
+t4.fromTo(scene4SmallRedCircleRight, {
+  opacity: 0,
+  x: -500
+}, {
   opacity: 1,
-  y: -300,
-  duration: 0.1,
+  x: -250,
+  duration: 0.3,
   ease: "power2.out"
-}, 0.1);
+}, 0);
+
+
+// Step 2: Text groups animate in while circles rise (0-0.5)
+t4.fromTo(scene4Group1,
+  { opacity: 0, y: 200 },
+  { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
+  0.1
+);
+
+t4.fromTo(scene4Group2,
+  { opacity: 0, y: 200 },
+  { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
+  0.2
+);
+
+// Step 3: After red circle stops, image slides left (0.4-0.7)
+t4.to(scene4ImageCircle, {
+  x: -300,
+  duration: 0.3,
+  ease: "power2.out"
+}, 0.4);
+
+// Step 4: Red circle text appears when red circle stops (0.4-0.7)
+t4.to(scene4RedText, {
+  opacity: 1,
+  y: 0,
+  duration: 0.3,
+  ease: "power2.out"
+}, 0.4);
 
 t4.to(scene4Tagline, {
   opacity: 1,
   y: 50,
-  duration: 0.1,
+  duration: 0.5,
   ease: "power2.out"
 }, 0);
 
@@ -453,10 +595,10 @@ t4.to(scene4Tagline, {
 let t5 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene5",
-    start: "top bottom",
-    end: "+=400",
-    scrub: true,
-    pin: false,
+    start: "top 50%",
+    end: "+=1200",
+    scrub: 1,
+    pin: true,
     markers: false
   }
 });
@@ -466,18 +608,43 @@ const scene5RedCircle = document.querySelector(".scene5-red-circle");
 const scene5GreyCircle = document.querySelector(".scene5-grey-circle");
 const scene5Text = document.querySelector(".scene5-text");
 
-t5.to(scene5RedCircle, { x: -150, duration: 1.25, ease: "power2.out" }, 0);
-t5.to(scene5ImageCircle, { x: 150, duration: 1.25, ease: "power2.out" }, 0);
-t5.to(scene5Text, { opacity: 1, y: -60, duration: 0.6, ease: "power2.out" }, 0.25);
-t5.to(scene5GreyCircle, { opacity: 1, y: -300, duration: 0.3, ease: "power2.out" }, 0.25);
+// Set initial positions: red circle and image start below viewport
+gsap.set([scene5RedCircle, scene5ImageCircle], { y: 500 });
+
+t5.to( scene5ImageCircle, {
+  y: 50,
+  duration: 0.4,
+  ease: "power2.out"
+}, 0);
+t5.to(scene5RedCircle, {
+  y: -250,
+  duration: 0.4,
+  ease: "power2.out"
+}, "<");
+// Step 1: Red circle and image rise up together
+
+// Step 2: Text animates in while circles rise
+t5.to(scene5Text, {
+  opacity: 1,
+  y: -60,
+  duration: 0.3,
+  ease: "power2.out"
+}, 0.1);
+
+// Step 3: After circles stop, image moves right (red circle stays in place)
+t5.to(scene5ImageCircle, {
+  x: 300,
+  duration: 0.3,
+  ease: "power2.out"
+}, 0.4);
 
 // Scene 6 Timeline - Image left, Red circle right
 let t6 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene6",
     start: "top bottom",
-    end: "+=400",
-    scrub: true,
+    end: "+=800",
+    scrub: 1.5,
     pin: false,
     markers: false
   }
@@ -498,8 +665,8 @@ let t7 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene7",
     start: "top bottom",
-    end: "+=400",
-    scrub: true,
+    end: "+=800",
+    scrub: 1.5,
     pin: false,
     markers: false
   }
@@ -520,8 +687,8 @@ let t8 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene8",
     start: "top bottom",
-    end: "+=400",
-    scrub: true,
+    end: "+=800",
+    scrub: 1.5,
     pin: false,
     markers: false
   }

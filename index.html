@@ -1,322 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DA</title>
-  <link rel="stylesheet" href="style.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DA</title>
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-</head>
-<body>
-
-  <section class="panel scene1">
-    <div class="circle">
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <section class="panel scene1">
+      <div class="circle">
         <div class="circle-back"></div>
         <div class="circle-front"></div>
-    </div>
-    
-    <div class="final-text">
-      "The ignorant work for their own profit, the wise work for the welfare of the world."
-    </div>
-
-    <!-- Logo + menu -->
-    <div class="top-bar">
-      <img src="./assets/logo.png" alt="DA-Logo" class="logo">
-      <div class="menu-btn">
-        <span></span>
-        <span></span>
-        <span></span>
+        <div class="circle-center"></div>
       </div>
-    </div>
 
-    <!-- Hero text after extra circles leave -->
-    <div class="hero-text">Empowering lives, <span>building the future.</span></div>
-
-    <!-- Red transparent circle that moves down -->
-    <div class="red-circle-overlay"></div>
-
-    <!-- Journey text that appears with bigCircle -->
-    <div class="journey-text">
-      Our journey started with the belief that real growth happens when people thrive.<br>
-      Our work is rooted in care and driven by purpose.<br>
-      Every venture we lead, every industry we enter,<br>
-      is an opportunity to create lasting change.
-    </div>
-
-    <div class="scroll-text">Scroll for explore</div>
-  </section>
-
-  <section class="panel scene2">
-    <div class="circle">
-      <div class="circle-back top"></div>
-      <div class="circle-back back"></div>
-    </div>
-    <div class="hero-text-scene2">The legacy. <span>The wisdom.</span></div>
-
-    <!-- Scrolling text in scene2 -->
-    <div class="scene2-scroll-text">
-      <div class="founding-text">Founded in 1938 <br> by Hanuman Prasad Agarwal.</div>
-      <div class="growth-text">DA Group grew from cotton manufacturing into a dynamic conglomerate spanning infrastructure, education, childcare, and philanthropy, shaping futures and enriching communities.</div>
-    </div>
-  </section>
-  <section class="panel scene3">
-    <div class="scene3-circle-container">
-  <div class="scene3-red-circle"></div>
-  <div class="scene3-image"></div>
-  <div class="scene3-group-text">Our group.</div>
-  <div class="scene3-ventures-text">Our ventures.</div>
-  <div class="scene3-red-circle-text">Building a legacy of<br>excellence through ventures<br>that drive impact and growth<br>in vital industries.</div>
-  </div>
-  </section>
-
-  <section class="panel grey-circles-section">
-    <!-- Background decorative circles -->
-    <div class="bg-circles">
-      <div class="bg-circle grey" style="width: 20px; height: 20px; top: 1%; right: 50%;"></div>
-      <div class="bg-circle circle-asset" style="width: 50px; height: 50px; top: 5%; left: 8%;"></div>
-      <div class="bg-circle grey" style="width: 55px; height: 55px; top: 8%; left: 28%;"></div>
-      <div class="bg-circle circle-asset" style="width: 23px; height: 23px; top: 35%; right: 40%;"></div>
-      <div class="bg-circle grey" style="width: 65px; height: 65px; bottom: 10%; left: 5%;"></div>
-      <div class="bg-circle circle-asset" style="width: 32px; height: 32px; bottom: 15%; left: 35%;"></div>
-      <div class="bg-circle grey" style="width: 12px; height: 12px; bottom: 10%; right: 20%;"></div>
-      <div class="bg-circle circle-asset" style="width: 45px; height: 45px; bottom: 2%; right: 10%;"></div>
-      <div class="bg-circle grey" style="width: 48px; height: 48px; top: 45%; left: 1%;"></div>
-      <div class="bg-circle circle-asset" style="width: 12px; height: 12px; top: 20%; left: 35%;"></div>
-      <div class="bg-circle grey" style="width: 40px; height: 40px; bottom: 25%; right: 5%;"></div>
-      <div class="bg-circle circle-asset" style="width: 38px; height: 38px; top: 8%; left: 45%;"></div>
-      <div class="bg-circle grey" style="width: 22px; height: 22px; top: 8%; right: 15%;"></div>
-      <div class="bg-circle circle-asset" style="width: 50px; height: 50px; top: 8%; right: 30%;"></div>
-    </div>
-    <div class="grey-circles-container">
-      <div class="grey-circle">
-        <img src="./assets/DURGESH_IMPEX-logo.png" alt="Logo 1" class="circle-logo">
+      <div class="final-text">
+        <div class="line">A journey of possibilities.</div>
+        <div class="line">A culture of innovation.</div>
+        <div class="line">All within an infinite</div>
+        <div class="line">world of imagination.</div>
       </div>
-      <div class="grey-circle">
-        <img src="./assets/DAINFRA-logo.png" alt="Logo 2" class="circle-logo">
-      </div>
-      <div class="grey-circle">
-        <img src="./assets/SHREESHAKTIMAIN-logo.png" alt="Logo 3" class="circle-logo">
-      </div>
-      <div class="grey-circle">
-        <img src="./assets/DCCI-logo.png" alt="Logo 4" class="circle-logo">
-      </div>
-    </div>
-  </section>
-  <section class="panel scene4">
-    <div class="scene4-circles-container">
-      <div class="scene4-new-text">
-        <div class="scene4-new-line"><span class="text-red">Woven from</span></div>
-        <div class="scene4-new-line"><span class="text-red">the soil,</span></div>
-        <div class="scene4-new-line"><span class="text-blue">rising to</span></div>
-        <div class="scene4-new-line"><span class="text-blue">the world.</span></div>
-      </div>
-      <div class="scene4-image-circle"></div>
-      <div class="scene4-red-circle">
-        <div class="scene4-red-text">
-          <h2 class="scene4-red-heading">Durgesh Impex Pvt Ltd</h2>
-          <p class="scene4-red-desc">Pioneering innovation in cotton production,<br>
-DIPL has transformed from a humble trader<<br>
-into a global leader, delivering premium cotton,<br>
-cottonseed, and oil through advanced,<br>
-fully integrated textile operations in<br>
-Maharashtra and Gujarat.</p>
+
+      <!-- Logo + menu -->
+      <div class="top-bar">
+        <img src="./assets/logo.png" alt="DA-Logo" class="logo" />
+        <div class="menu-btn">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
-      <div class="scene4-grey-circle">
-        <img src="./assets/DURGESH_IMPEX-logo.png" alt="DA Logo" class="scene4-grey-logo">
-      </div>
-      <!-- <div class="scene4-falling-circle"></div> -->
-    </div>
-  </section>
 
-  <!-- Scene 5: Red circle on left, image on right -->
-  <section class="panel scene5">
-    <div class="scene5-circles-container">
-      <div class="scene5-red-circle">
-        <div class="scene5-text">
-          <h2 class="scene5-heading">DURGESH INFRASTRUCTURE PVT LTD</h2>
-          <p class="scene5-desc">Redefining urban living with innovative design,<br>
-luxury spaces and developments across<br>
-Ahmedabad and Mumbai's evolving skylines,<br>
-Durgesh Infrastructure Pvt. Ltd. is rapidly<br>
-gaining recognition in the real estate sector.</p>
+      <!-- Hero text after extra circles leave -->
+      <div class="hero-text">
+        Empowering lives, <span>building the future.</span>
+      </div>
+
+      <!-- Red transparent circle that moves down -->
+      <div class="red-circle-overlay"></div>
+
+      <!-- Journey text that appears with bigCircle -->
+      <div class="journey-text">
+        Our journey started with the belief that real growth<br />
+        happens when people thrive.Our work is rooted <br />
+         in care and driven by purpose. Every venture we lead,<br />
+        every industry we enter, 
+        is an opportunity to create <br />lasting change.
+      </div>
+
+      <div class="scroll-text">Scroll for explore</div>
+    </section>
+
+    <section class="panel scene2">
+      <div class="circle">
+        <div class="circle-back top"></div>
+        <div class="circle-back back"></div>
+      </div>
+      <div class="hero-text-scene2">The legacy. <span>The wisdom.</span></div>
+
+      <!-- Scrolling text in scene2 -->
+      <div class="scene2-scroll-text">
+        <div class="founding-text">
+          Founded in 1938 <br />
+          by Hanuman Prasad Agarwal.
+        </div>
+        <div class="growth-text">
+          DA Group grew from cotton manufacturing into a <br />dynamic conglomerate
+          spanning infrastructure, <br /> education, childcare, and philanthropy, <br />
+          shaping futures and enriching communities.
         </div>
       </div>
-      <div class="scene5-grey-circle">
-        <img src="./assets/DAINFRA-logo.png" alt="DA Logo" class="scene5-grey-logo">
-      </div>
-      <div class="scene5-image-circle"></div>
-    </div>
-  </section>
-
-  <!-- Scene 6: Image on left, red circle on right -->
-  <section class="panel scene6">
-    <div class="scene6-circles-container">
-      <div class="scene6-image-circle"></div>
-      <div class="scene6-red-circle">
-        <div class="scene6-text">
-          <h2 class="scene6-heading">Shree Shakti Convention Centre</h2>
-          <p class="scene6-desc">A premier venue of timeless elegance<br>
-and modern luxury, Shree Shakti Convention<br>
-Centre offers state-of-the-art spaces,<br>
-bespoke service, and flawless execution for<br>
-unforgettable weddings, events,<br>
-and landmark celebrations.</p>
+    </section>
+    <section class="panel scene3">
+      <div class="scene3-circle-container">
+        <div class="scene3-red-circle"></div>
+        <div class="scene3-image"></div>
+        <div class="scene3-group-text">Our group.</div>
+        <div class="scene3-ventures-text">Our ventures.</div>
+        <div class="scene3-red-circle-text">
+          Building a legacy of<br />excellence through ventures<br />that drive
+          impact and growth<br />in vital industries.
         </div>
       </div>
-      <div class="scene6-grey-circle">
-        <img src="./assets/SHREESHAKTIMAIN-logo.png" alt="DA Logo" class="scene6-grey-logo">
+    </section>
+
+    <section class="panel grey-circles-section">
+      <!-- Background decorative circles -->
+      <div class="bg-circles">
+        <div
+          class="bg-circle grey"
+          style="width: 20px; height: 20px; top: 1%; right: 50%"
+        ></div>
+        <div
+          class="bg-circle circle-asset"
+          style="width: 50px; height: 50px; top: 5%; left: 8%"
+        ></div>
+        <div
+          class="bg-circle grey"
+          style="width: 55px; height: 55px; top: 8%; left: 28%"
+        ></div>
+        <div
+          class="bg-circle circle-asset"
+          style="width: 23px; height: 23px; top: 35%; right: 40%"
+        ></div>
+        <div
+          class="bg-circle grey"
+          style="width: 65px; height: 65px; bottom: 10%; left: 5%"
+        ></div>
+        <div
+          class="bg-circle circle-asset"
+          style="width: 32px; height: 32px; bottom: 15%; left: 35%"
+        ></div>
+        <div
+          class="bg-circle grey"
+          style="width: 12px; height: 12px; bottom: 10%; right: 20%"
+        ></div>
+        <div
+          class="bg-circle circle-asset"
+          style="width: 45px; height: 45px; bottom: 2%; right: 10%"
+        ></div>
+        <div
+          class="bg-circle grey"
+          style="width: 48px; height: 48px; top: 45%; left: 1%"
+        ></div>
+        <div
+          class="bg-circle circle-asset"
+          style="width: 12px; height: 12px; top: 20%; left: 35%"
+        ></div>
+        <div
+          class="bg-circle grey"
+          style="width: 40px; height: 40px; bottom: 25%; right: 5%"
+        ></div>
+        <div
+          class="bg-circle circle-asset"
+          style="width: 38px; height: 38px; top: 8%; left: 45%"
+        ></div>
+        <div
+          class="bg-circle grey"
+          style="width: 22px; height: 22px; top: 8%; right: 15%"
+        ></div>
+        <div
+          class="bg-circle circle-asset"
+          style="width: 50px; height: 50px; top: 8%; right: 30%"
+        ></div>
       </div>
-
-    </div>
-  </section>
-
-  <!-- Scene 7: Red circle on left, image on right -->
-  <section class="panel scene7">
-    <div class="scene7-circles-container">
-      <div class="scene7-red-circle">
-        <div class="scene7-text">
-          <h2 class="scene7-heading">Toy Joy Tales</h2>
-          <p class="scene7-desc">A magical world for children where<br>
-stories come alive and toys ignite imagination.<br>
-Here, curiosity is encouraged and playtime turns<br>
-into unforgettable adventures filled with joy,<br>
-discovery and laughter.</p>
+      <div class="grey-circles-container">
+        <div class="grey-circle">
+          <img
+            src="./assets/DURGESH_IMPEX-logo.png"
+            alt="Logo 1"
+            class="circle-logo"
+          />
+        </div>
+        <div class="grey-circle">
+          <img
+            src="./assets/DAINFRA-logo.png"
+            alt="Logo 2"
+            class="circle-logo"
+          />
+        </div>
+        <div class="grey-circle">
+          <img
+            src="./assets/SHREESHAKTIMAIN-logo.png"
+            alt="Logo 3"
+            class="circle-logo"
+          />
+        </div>
+        <div class="grey-circle">
+          <img src="./assets/DCCI-logo.png" alt="Logo 4" class="circle-logo" />
         </div>
       </div>
-      <div class="scene7-grey-circle">
-        <img src="./assets/DCCI-logo.png" alt="DA Logo" class="scene7-grey-logo">
-      </div>
-      <div class="scene7-image-circle"></div>
-    </div>
-  </section>
-
-  <!-- Scene 8: Image on left, red circle on right -->
-  <section class="panel scene8">
-    <div class="scene8-circles-container">
-      <div class="scene8-image-circle"></div>
-      <div class="scene8-red-circle">
-        <div class="scene8-text">
-          <h2 class="scene8-heading">Shree Shakti Seva Kendra</h2>
-          <p class="scene8-desc">Championing every woman's fundamental 
-right to dignity and autonomy through Maarg, 
-our humanitarian initiative, works towards 
-empowering women with education, healthcare, 
-and support, forging lasting change and 
-brighter futures through compassion 
-and collaboration.</p>
-        </div>
-      </div>
-      <div class="scene8-grey-circle">
-        <img src="./assets/SHREESHAKTIMAIN-logo.png" alt="DA Logo" class="scene8-grey-logo">
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer class="footer">
-    <div class="footer-container">
-      <!-- Logo -->
-      <div class="footer-column footer-logo">
-        <img src="./assets/logo.png" alt="DA Logo" class="footer-logo-img">
-      </div>
-
-      <div class="footer-columns-wrapper">
-        <div class="footer-titles-row">
-          <!-- Contact Column -->
-          <div class="footer-column">
-            <h3 class="footer-title">CONTACT</h3>
+    </section>
+    <section class="panel scene4">
+      <div class="scene4-circles-container">
+        <div class="scene4-new-text">
+          <div class="scene4-text-group scene4-group-1">
+            <div class="scene4-new-line">
+               <div class="text-red">Woven from <br>the soil,</div>
+            </div>
           </div>
-
-          <!-- Quick Links Column -->
-          <div class="footer-column">
-            <h3 class="footer-title">QUICK LINKS</h3>
-          </div>
-
-          <!-- Group Companies Column -->
-          <div class="footer-column">
-            <h3 class="footer-title">GROUP COMPANIES</h3>
-          </div>
-
-          <!-- Newsletter Column -->
-          <div class="footer-column">
-            <h3 class="footer-title">NEWSLETTER</h3>
+          <div class="scene4-text-group scene4-group-2">
+              <div class="text-blue">rising to <br>
+              the world.</div>
+            </div>
           </div>
         </div>
+        <div class="scene4-image-circle"></div>
+        <div class="scene4-red-circle">
+          <div class="scene4-red-text">
+            <h2 class="scene4-red-heading">DURGESH <br /> IMPEX PVT LTD</h2>
+            <p class="scene4-red-desc">
+              Pioneering innovation in cotton production,<br />
+              DIPL has transformed from a humble trader<br />
+              into a global leader, delivering premium cotton,<br />
+              cottonseed, and oil through advanced,<br />
+              fully integrated textile operations in<br />
+              Maharashtra and Gujarat.
+            </p>
+          </div>
+        </div>
+        <div class="scene4-grey-circle">
+          <img
+            src="./assets/DURGESH_IMPEX-logo.png"
+            alt="DA Logo"
+            class="scene4-grey-logo"
+          />
+        </div>
+        <div class="scene4-small-red-circle"></div>
+      </div>
+    </section>
 
-        <img src="./assets/line-white.png" alt="" class="footer-full-line">
+    <!-- Scene 5: Red circle on left, image on right -->
+    <section class="panel scene5">
+      <div class="scene5-circles-container">
+        <div class="scene5-red-circle">
+          <div class="scene5-text">
+            <h2 class="scene5-heading">DURGESH INFRASTRUCTURE PVT LTD</h2>
+            <p class="scene5-desc">
+              Redefining urban living with innovative design,<br />
+              luxury spaces and developments across<br />
+              Ahmedabad and Mumbai's evolving skylines,<br />
+              Durgesh Infrastructure Pvt. Ltd. is rapidly<br />
+              gaining recognition in the real estate sector.
+            </p>
+          </div>
+        </div>
+        <div class="scene5-grey-circle">
+          <img
+            src="./assets/DAINFRA-logo.png"
+            alt="DA Logo"
+            class="scene5-grey-logo"
+          />
+        </div>
+        <div class="scene5-image-circle"></div>
+      </div>
+    </section>
 
-        <div class="footer-content-row">
-          <!-- Contact Column -->
-          <div class="footer-column">
-            <div class="footer-contact">
-              <div class="contact-group">
-                <img src="./assets/location.png" alt="Location" class="contact-icon-img">
-                <div class="contact-text">
-                  <p>Ambica House</p>
-                  <p>B1, 3rd Floor, Safal Profitaire</p>
-                  <p>Corporate Road</p>
-                  <p>Opp. AUDA Garden</p>
-                  <p>Prahaladnagar</p>
-                  <p>Ahmedabad – 380015</p>
-                </div>
-              </div>
-              <div class="contact-group footer-spacing">
-                <img src="./assets/email.png" alt="Email" class="contact-icon-img">
-                <p>contact@dagroupindia.com</p>
-              </div>
-              <div class="contact-group">
-                <img src="./assets/cell.png" alt="Phone" class="contact-icon-img">
-                <p>079 40072419</p>
-              </div>
+    <!-- Scene 6: Image on left, red circle on right -->
+    <section class="panel scene6">
+      <div class="scene6-circles-container">
+        <div class="scene6-image-circle"></div>
+        <div class="scene6-red-circle">
+          <div class="scene6-text">
+            <h2 class="scene6-heading">Shree Shakti Convention Centre</h2>
+            <p class="scene6-desc">
+              A premier venue of timeless elegance<br />
+              and modern luxury, Shree Shakti Convention<br />
+              Centre offers state-of-the-art spaces,<br />
+              bespoke service, and flawless execution for<br />
+              unforgettable weddings, events,<br />
+              and landmark celebrations.
+            </p>
+          </div>
+        </div>
+        <div class="scene6-grey-circle">
+          <img
+            src="./assets/SHREESHAKTIMAIN-logo.png"
+            alt="DA Logo"
+            class="scene6-grey-logo"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 7: Red circle on left, image on right -->
+    <section class="panel scene7">
+      <div class="scene7-circles-container">
+        <div class="scene7-red-circle">
+          <div class="scene7-text">
+            <h2 class="scene7-heading">Toy Joy Tales</h2>
+            <p class="scene7-desc">
+              A magical world for children where<br />
+              stories come alive and toys ignite imagination.<br />
+              Here, curiosity is encouraged and playtime turns<br />
+              into unforgettable adventures filled with joy,<br />
+              discovery and laughter.
+            </p>
+          </div>
+        </div>
+        <div class="scene7-grey-circle">
+          <img
+            src="./assets/DCCI-logo.png"
+            alt="DA Logo"
+            class="scene7-grey-logo"
+          />
+        </div>
+        <div class="scene7-image-circle"></div>
+      </div>
+    </section>
+
+    <!-- Scene 8: Image on left, red circle on right -->
+    <section class="panel scene8">
+      <div class="scene8-circles-container">
+        <div class="scene8-image-circle"></div>
+        <div class="scene8-red-circle">
+          <div class="scene8-text">
+            <h2 class="scene8-heading">Shree Shakti Seva Kendra</h2>
+            <p class="scene8-desc">
+              Championing every woman's fundamental right to dignity and
+              autonomy through Maarg, our humanitarian initiative, works towards
+              empowering women with education, healthcare, and support, forging
+              lasting change and brighter futures through compassion and
+              collaboration.
+            </p>
+          </div>
+        </div>
+        <div class="scene8-grey-circle">
+          <img
+            src="./assets/SHREESHAKTIMAIN-logo.png"
+            alt="DA Logo"
+            class="scene8-grey-logo"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Logo -->
+        <div class="footer-column footer-logo">
+          <img src="./assets/logo.png" alt="DA Logo" class="footer-logo-img" />
+        </div>
+
+        <div class="footer-columns-wrapper">
+          <div class="footer-titles-row">
+            <!-- Contact Column -->
+            <div class="footer-column">
+              <h3 class="footer-title">CONTACT</h3>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div class="footer-column">
+              <h3 class="footer-title">QUICK LINKS</h3>
+            </div>
+
+            <!-- Group Companies Column -->
+            <div class="footer-column">
+              <h3 class="footer-title">GROUP COMPANIES</h3>
+            </div>
+
+            <!-- Newsletter Column -->
+            <div class="footer-column">
+              <h3 class="footer-title">NEWSLETTER</h3>
             </div>
           </div>
 
-          <!-- Quick Links Column -->
-          <div class="footer-column">
-            <ul class="footer-links">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Industry Updates</a></li>
-              <li><a href="#">DA Updates</a></li>
-              <li><a href="#">Gallery</a></li>
-            </ul>
-          </div>
+          <img src="./assets/line-white.png" alt="" class="footer-full-line" />
 
-          <!-- Group Companies Column -->
-          <div class="footer-column">
-            <ul class="footer-links">
-              <li><a href="#">DURGESH IMPEX PVT LTD</a></li>
-              <li><a href="#">DURGESH INFRASTRUCTURE PVT LTD</a></li>
-              <li><a href="#">SHREE SHAKTI CONVENTION CENTRE</a></li>
-              <li><a href="#">SHREE SHAKTI INTEGRATED LOGISTICS PARK</a></li>
-              <li><a href="#">SHREE SHAKTI SEVA KENDRA</a></li>
-              <li><a href="#">NARI SASHAKTIKARAN KENDRA</a></li>
-              <li><a href="#">SHREE SHAKTI SCHOOL OF INNOVATION</a></li>
-              <li><a href="#">CHHATRALAYA</a></li>
-              <li><a href="#">DURGESH CHILD CARE INITIATIVE PVT. LTD.</a></li>
-              <li><a href="#">TOY JOY TALES</a></li>
-              <li><a href="#">LITTLE WINGS</a></li>
-            </ul>
-          </div>
-
-          <!-- Newsletter Column -->
-          <div class="footer-column">
-            <form class="newsletter-form">
-              <input type="email" placeholder="Email address" class="newsletter-input">
-              <div class="newsletter-checkbox">
-                <input type="checkbox" id="terms" class="checkbox-input">
-                <label for="terms">I agree to all your terms and policies</label>
+          <div class="footer-content-row">
+            <!-- Contact Column -->
+            <div class="footer-column">
+              <div class="footer-contact">
+                <div class="contact-group">
+                  <img
+                    src="./assets/location.png"
+                    alt="Location"
+                    class="contact-icon-img"
+                  />
+                  <div class="contact-text">
+                    <p>Ambica House</p>
+                    <p>B1, 3rd Floor, Safal Profitaire</p>
+                    <p>Corporate Road</p>
+                    <p>Opp. AUDA Garden</p>
+                    <p>Prahaladnagar</p>
+                    <p>Ahmedabad – 380015</p>
+                  </div>
+                </div>
+                <div class="contact-group footer-spacing">
+                  <img
+                    src="./assets/email.png"
+                    alt="Email"
+                    class="contact-icon-img"
+                  />
+                  <p>contact@dagroupindia.com</p>
+                </div>
+                <div class="contact-group">
+                  <img
+                    src="./assets/cell.png"
+                    alt="Phone"
+                    class="contact-icon-img"
+                  />
+                  <p>079 40072419</p>
+                </div>
               </div>
-            </form>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div class="footer-column">
+              <ul class="footer-links">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Industry Updates</a></li>
+                <li><a href="#">DA Updates</a></li>
+                <li><a href="#">Gallery</a></li>
+              </ul>
+            </div>
+
+            <!-- Group Companies Column -->
+            <div class="footer-column">
+              <ul class="footer-links">
+                <li><a href="#">DURGESH IMPEX PVT LTD</a></li>
+                <li><a href="#">DURGESH INFRASTRUCTURE PVT LTD</a></li>
+                <li><a href="#">SHREE SHAKTI CONVENTION CENTRE</a></li>
+                <li><a href="#">SHREE SHAKTI INTEGRATED LOGISTICS PARK</a></li>
+                <li><a href="#">SHREE SHAKTI SEVA KENDRA</a></li>
+                <li><a href="#">NARI SASHAKTIKARAN KENDRA</a></li>
+                <li><a href="#">SHREE SHAKTI SCHOOL OF INNOVATION</a></li>
+                <li><a href="#">CHHATRALAYA</a></li>
+                <li><a href="#">DURGESH CHILD CARE INITIATIVE PVT. LTD.</a></li>
+                <li><a href="#">TOY JOY TALES</a></li>
+                <li><a href="#">LITTLE WINGS</a></li>
+              </ul>
+            </div>
+
+            <!-- Newsletter Column -->
+            <div class="footer-column">
+              <form class="newsletter-form">
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  class="newsletter-input"
+                />
+                <div class="newsletter-checkbox">
+                  <input type="checkbox" id="terms" class="checkbox-input" />
+                  <label for="terms"
+                    >I agree to all your terms and policies</label
+                  >
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
