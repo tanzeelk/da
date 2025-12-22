@@ -4,10 +4,10 @@
     box-sizing: border-box;
   }
   
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
   
   body {
-    font-family: Arial, sans-serif;
+    font-family: Montserrat, sans-serif;
     background: #e5e6e7;
     color: white;
     overflow-x: hidden;
@@ -24,15 +24,22 @@
     margin-bottom: 80px;
   }
 
+
+  
   .scene3 {
     height: 300px;  /* Minimal height for scene3 to avoid gap */
     position: relative;
     margin-bottom: 150px;  /* Add gap between scene3 and scene4 */
+    margin-top: 400px;  /* Add space above scene3 */
+  }
+
+  .scene2 {
+    margin-top: 400px;  /* Add space above scene2 */
   }
 
   .scene4 {
     margin-bottom: 80px;  /* Add space between scene4 and scene5 */
-    padding-top: 150px;  /* Add space at top */
+    padding-top: 0px;  /* Add space at top */
     margin-top: 100px;  /* Add top margin for spacing */
   }
   
@@ -104,7 +111,7 @@
     top: 0;
     left: 0;
     transform-style: preserve-3d;
-    z-index: 2;
+    z-index: 7;
     transform: rotateY(90deg);
     transform-style: preserve-3d;
   }
@@ -122,7 +129,21 @@
     z-index: 3;
   }
 
-  .final-text {
+  .nav-bar {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-12px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.top-bar.open .nav-bar {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+
+  /* .final-text {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -130,7 +151,7 @@
     transform: translate(-50%, -50%);
     color: white;
     line-height: 1.25;
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
     opacity: 0;
     white-space: pre-wrap;
@@ -142,7 +163,54 @@
   .final-text span {
     opacity: 0;
   }
-  
+   */
+
+   .final-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  max-width: 300px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center; /* center the text block horizontally */
+  color: white;
+  font-size: 22px;
+  line-height: 1.25;
+  text-align: left; /* keep left alignment for readability */
+  white-space: pre-wrap;
+  z-index: 10;
+}
+
+.final-text .line {
+  /* display: flex;            word-by-word animation needs flex for inline spans */
+  /* justify-content: center; horizontally center words in line */
+  /* margin: 2px 0; */
+  /* white-space: nowrap; */
+   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%; /* ensure lines take full width for consistent alignment */
+}
+.final-text .line.indent {
+  padding-left: 30px; /* indent for 2nd and 4th lines */
+}
+.final-text .line span {
+  display: inline-block;
+}
+/* Alternate indentation */
+/* .final-text .line:nth-child(even) {
+  justify-content: flex-end;  
+}
+
+.final-text .line span {
+  opacity: 0; 
+  display: inline-block;
+  margin: 0 3px;           
+} */
   /* Typewriter animation styling */
   .typewriter span {
     border-right: 2px solid white;
@@ -164,7 +232,14 @@
   align-items: center;
   gap: 20px;
   opacity: 0; /* hidden initially */
-  z-index: 100;
+  z-index: 1001;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.top-bar.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .logo {
@@ -177,6 +252,13 @@
   justify-content: space-between;
   width: 45px;
   height: 20px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.3s ease;
+}
+
+.menu-btn:hover {
+  transform: scale(1.1);
 }
 
 .menu-btn span {
@@ -188,8 +270,9 @@
 }
 
 
-.circle-left { z-index: 3; }
-.circle-right { z-index: 1;}
+.circle-left { z-index: 4; }
+.circle-right { z-index: 5; }
+.circle-center { z-index: 8; opacity: 0.5; }
 
 /* Hero text in center */
 .hero-text {
@@ -201,10 +284,11 @@
   font-size: 70px;
   text-align: left;
   opacity: 0;
-  z-index: 4;
-  color: #e31e27;
+  z-index: 10;
+  color: #e21e36;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
+  letter-spacing: -0.05em;
 }
 
 .hero-text span {
@@ -218,6 +302,8 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   margin-top: -30px;
+    z-index: 10;
+
 }
 
 /* Hero text in center - 2 */
@@ -230,10 +316,12 @@
   font-size: 70px;
   text-align: left;
   opacity: 0;
-  z-index: 4;
-  color: #e31e27;
+  z-index: 6;
+  color: #e21e36;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
+    letter-spacing: -0.05em;
+
 }
 
 .hero-text-scene2 span {
@@ -247,6 +335,8 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   margin-top: -20px;
+    letter-spacing: -0.05em;
+
 }
 
 /* Background image for body */
@@ -268,6 +358,7 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   opacity: 0;
+  z-index: 7;
 }
 
 .circle-back-scene2-bg {
@@ -293,19 +384,6 @@ body.bg-active {
   z-index: 2;
 }
 
-/* Big circle - red transparent circle */
-.big-circle {
-  width: 60px;
-  height: 60px;
-  background: rgba(167, 29, 34, 0.9);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: 6;
-  pointer-events: none;
-}
 
 /* Journey text styling */
 .journey-text {
@@ -314,16 +392,17 @@ body.bg-active {
   left: 55%;
   transform: translate(-50%, -50%);
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 13px;
   line-height: 1.2;
   text-align: left;
   color: white;
   opacity: 0;
-  z-index: 7;
+  z-index: 10;
   pointer-events: none;
   max-width: 600px;
   padding: 0 100px;
+  letter-spacing: -0.05em;
 }
 
 /* Scene2 scrolling text */
@@ -340,19 +419,19 @@ body.bg-active {
 .founding-text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 23px;
   color: white;
   opacity: 0;
   margin-bottom: 40px;
-  line-height: 1.4;
-  padding: 0 100px;
+  line-height: 1;
+  padding-left: 180px;
   text-align: left;
   max-width: 600px;
 }
 
 .growth-text {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 13px;
   line-height: 1.2;
   text-align: left;
@@ -361,7 +440,8 @@ body.bg-active {
   z-index: 7;
   pointer-events: none;
   max-width: 600px;
-  padding: 0 100px;
+  padding-left: 180px;
+  letter-spacing: -0.05em;
 }
 
 /* Scene 3 - Red circle and DA-3 image */
@@ -410,34 +490,38 @@ body.bg-active {
 
 .scene3-group-text {
   position: absolute;
-  left: -425px;
+  left: -350px;
   top: 50%;
   transform: translateY(-50%);
-  color: #e31e27;
+  color: #e21e36;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 65px;
+  font-size: 60px;
   opacity: 0;
   z-index: 20;
   pointer-events: none;
   transition: transform 0.7s;
   white-space: nowrap;
+  letter-spacing: -0.05em;
+
+  
 }
 
 .scene3-ventures-text {
   position: absolute;
-  top: 57%;
-  right: -35%;
-  /* left: 100px; */
+  top: 51%;
+  /* right: -20%; */
   color: #2d5d86;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 65px;
+  font-size: 60px;
   opacity: 0;
   z-index: 20;
   pointer-events: none;
   transition: transform 0.7s;
   white-space: nowrap;
+  letter-spacing: -0.05em;
+
 }
 
 .scene3-red-circle-text {
@@ -448,12 +532,13 @@ body.bg-active {
   text-align: center;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 15px;
   line-height: 1.5;
   opacity: 0;
   z-index: 25;
   pointer-events: none;
+  letter-spacing: -0.05em;
 }
 
 /* Grey Circles Section */
@@ -466,6 +551,7 @@ body.bg-active {
   position: relative;
   padding-bottom: 80px;
   margin-bottom: 300px;
+  margin-top: -50px;
   overflow: visible;
 }
 
@@ -530,7 +616,7 @@ body.bg-active {
 /* Scene 4 - Two small circles animating apart */
 .scene4-circles-container {
   position: absolute;
-  top: 45%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
@@ -550,7 +636,7 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: 50%;
+  left: calc(50% + 150px);
   transform: translate(-50%, -50%);
   z-index: 5;
   opacity: 1;
@@ -564,10 +650,10 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: 50%;
-  transform: translate(-50%, calc(-50% - 45px));
+  left: calc(50% + 150px);
+  transform: translate(-50%, -40%);
   z-index: 10;
-  opacity: 0.9;
+  opacity: 0.8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -582,17 +668,17 @@ body.bg-active {
   background-position: center;
   position: absolute;
   left: calc(50% + 150px);
-  top: calc(50% - 250px);
+  top: calc(50% - 635px);
   transform: translate(-50%, -50%);
-  z-index: 9;
-  opacity: 0;
+  z-index: 8;
+  opacity: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .scene4-grey-logo {
-  width: 120px;
+  width: 140px;
   /* height: 100px; */
   object-fit: contain;
   opacity: 1;
@@ -612,38 +698,42 @@ body.bg-active {
 
 .scene4-red-heading {
   font-size: 1.6rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #fff;
   margin-bottom: 12px;
-  letter-spacing: 1px;
+  letter-spacing: 0.05;
 }
 
 .scene4-red-desc {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 14px;
   line-height: 1.4;
 }
 
 .scene4-new-text {
   position: absolute;
-  left: calc(50% - 550px);
-  top: calc(50% - 550px);
+  left: calc(50% - 530px);
+  top: calc(50% - 535px);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 65px;
+  font-size: 60px;
   line-height: 1.1;
-  opacity: 0;
+  letter-spacing: -0.05em;
   z-index: 11;
   pointer-events: none;
 }
 
+.scene4-text-group {
+  opacity: 0;
+}
+
 .scene4-new-line {
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 
 .text-red {
-  color: #e31e27;
+  color: #e21e36;
 }
 
 .text-blue {
@@ -663,7 +753,7 @@ body.bg-active {
 }
 
 .scene4-tagline-red {
-  color: #e31e27;
+  color: #e21e36;
   display: block;
 }
 
@@ -682,6 +772,34 @@ body.bg-active {
   position: fixed;
   right: -60%;
   top: -500px;
+  z-index: 20;
+  opacity: 1;
+}
+
+.scene4-small-red-circle {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-image: url('./assets/circle.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  right: 5%;
+  top: -75px;
+  z-index: 20;
+  opacity: 1;
+}
+
+.scene4-small-red-circle-right {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-image: url('./assets/circle.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  right: 5%;
+  bottom: 15%;
   z-index: 20;
   opacity: 1;
 }
@@ -718,7 +836,7 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: 50%;
+  left: 38%;
   transform: translate(-50%, calc(-50% - 40px));
   z-index: 10;
   opacity: 0.9;
@@ -736,10 +854,10 @@ body.bg-active {
   background-position: center;
   position: absolute;
   left: calc(50% - 150px);
-  top: calc(50% - 250px);
+  top: calc(50% - 500px);
   transform: translate(-50%, -50%);
   z-index: 9;
-  opacity: 0;
+  opacity: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -762,7 +880,7 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: 50%;
+  left: 38%;
   transform: translate(-50%, -50%);
   z-index: 5;
   opacity: 1;
@@ -779,7 +897,7 @@ body.bg-active {
 }
 
 .scene5-heading {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #fff;
   margin-bottom: 10px;
@@ -1169,7 +1287,7 @@ body.bg-active {
 }
 
 .footer-title {
-  color: #e31e27;
+  color: #e21e36;
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -1241,7 +1359,7 @@ body.bg-active {
 }
 
 .footer-links a:hover {
-  color: #e31e27;
+  color: #e21e36;
 }
 
 .newsletter-form {

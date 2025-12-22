@@ -25,11 +25,11 @@
 
 .nav-logo {
   text-align: center;
-  padding: 8px 0 1px;
+  padding: 5px 0 0px;
 }
 
 .nav-logo-img {
-  height: 50px;
+  height: 40px;
   width: auto;
 }
 
@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 0;
+  padding: 8px 0;
   gap: 30px;
 }
 
@@ -49,11 +49,11 @@
 
 .search-input {
   width: 200px;
-  padding: 8px 35px;
+  padding: 6px 35px;
   background-color: #e5e6e7;
   border: 1px solid var(--color-grey-medium);
   border-radius: 25px;
-  font-size: 14px;
+  font-size: 13px;
   font-family: 'Montserrat', sans-serif;
   outline: none;
   transition: border-color 0.3s ease;
@@ -106,7 +106,7 @@
 .nav-link {
   color: var(--nav-link-default);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
   transition: color 0.3s ease;
