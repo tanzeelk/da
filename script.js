@@ -541,10 +541,9 @@ t4.fromTo(scene4SmallRedCircle, {
 }, 0);
 
 // Small red circle slides from right to left (0-0.3)
-
 t4.fromTo(scene4SmallRedCircleRight, {
   opacity: 0,
-  x: -500
+  x: 500
 }, {
   opacity: 1,
   x: -250,
@@ -588,6 +587,14 @@ t4.to(scene4Tagline, {
   ease: "power2.out"
 }, 0);
 
+// Fade in DI_Red logo on small red circle from right (towards end)
+const scene4SmallRedCircleLogo = document.querySelector('.scene4-small-red-circle-logo');
+t4.to(scene4SmallRedCircleLogo, {
+  opacity: 1,
+  duration: 0.5,
+  ease: "power2.out"
+}, 0.55);
+
 
 
 
@@ -607,10 +614,16 @@ const scene5ImageCircle = document.querySelector(".scene5-image-circle");
 const scene5RedCircle = document.querySelector(".scene5-red-circle");
 const scene5GreyCircle = document.querySelector(".scene5-grey-circle");
 const scene5Text = document.querySelector(".scene5-text");
+const scene5NewText = document.querySelector('.scene5-new-text');
+const scene5Group1 = document.querySelector('.scene5-group-1');
+const scene5Group2 = document.querySelector('.scene5-group-2');
+const scene5SmallRedCircle = document.querySelector('.scene5-small-red-circle');
+
+ gsap.set(scene5SmallRedCircle, { y: -500 });
 
 // Set initial positions: red circle and image start below viewport
-gsap.set([scene5RedCircle, scene5ImageCircle], { y: 500 });
-
+gsap.set(scene5ImageCircle, { y: 500 });
+gsap.set(scene5RedCircle, { y: 215 });
 t5.to( scene5ImageCircle, {
   y: 50,
   duration: 0.4,
@@ -621,9 +634,41 @@ t5.to(scene5RedCircle, {
   duration: 0.4,
   ease: "power2.out"
 }, "<");
-// Step 1: Red circle and image rise up together
 
-// Step 2: Text animates in while circles rise
+// Small red circle drops from top left (0-0.3)
+t5.fromTo(scene5SmallRedCircle, {
+  opacity: 0,
+  y: -500,
+  x: -300
+}, {
+  opacity: 1,
+  y: -250,
+  x: -300,
+  duration: 0.3,
+  ease: "power2.out"
+}, 0);
+
+
+// Step 4: After circles stop, image moves right (red circle stays in place)
+// Step 3: Text groups animate in while circles rise
+t5.fromTo(scene5Group1,
+  { opacity: 0, y: 400 },
+  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  0.2
+);
+
+t5.fromTo(scene5Group2,
+  { opacity: 0, y: 400 },
+  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  0.4
+);
+
+t5.to(scene5ImageCircle, {
+  x: 300,
+  duration: 0.5,
+  ease: "power2.out"
+}, 0.4);
+
 t5.to(scene5Text, {
   opacity: 1,
   y: -60,
@@ -631,12 +676,7 @@ t5.to(scene5Text, {
   ease: "power2.out"
 }, 0.1);
 
-// Step 3: After circles stop, image moves right (red circle stays in place)
-t5.to(scene5ImageCircle, {
-  x: 300,
-  duration: 0.3,
-  ease: "power2.out"
-}, 0.4);
+
 
 // Scene 6 Timeline - Image left, Red circle right
 let t6 = gsap.timeline({

@@ -697,11 +697,11 @@ body.bg-active {
 }
 
 .scene4-red-heading {
-  font-size: 1.6rem;
-  font-weight: 800;
+  font-size: 1rem;
+  font-weight: 700;
   color: #fff;
-  margin-bottom: 12px;
-  letter-spacing: 0.05;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 .scene4-red-desc {
@@ -738,6 +738,28 @@ body.bg-active {
 
 .text-blue {
   color: #2d5d86;
+}
+
+.scene5-new-text {
+  position: absolute;
+  right: calc(50% - 520px);
+  top: calc(50% - 535px);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  z-index: 11;
+  pointer-events: none;
+  text-align: right;
+}
+
+.scene5-text-group {
+  opacity: 0;
+}
+
+.scene5-new-line {
+  margin-bottom: 0;
 }
 
 .scene4-tagline {
@@ -798,10 +820,20 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  right: 5%;
-  bottom: 15%;
+  right: -25px;
+  top: 20%;
   z-index: 20;
   opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene4-small-red-circle-logo {
+   width: 75px;
+  height: 75px;
+  object-fit: contain;
+  opacity: 0;
 }
 
 /* Reduce height and gap for scenes 5-8 */
@@ -853,7 +885,7 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% - 150px);
+  left: 38%;
   top: calc(50% - 500px);
   transform: translate(-50%, -50%);
   z-index: 9;
@@ -911,6 +943,21 @@ body.bg-active {
   line-height: 1.4;
   color: #fff;
 }
+
+.scene5-small-red-circle {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-image: url('./assets/circle.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  left: 5%;
+  top: -75px;
+  z-index: 20;
+  opacity: 1;
+}
+
 
 /* Scene 6 - Image left, Red circle right */
 .scene6-circles-container {
