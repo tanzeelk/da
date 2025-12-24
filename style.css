@@ -858,6 +858,7 @@ body.bg-active {
   align-items: center;
   gap: 0;
   z-index: 15;
+  pointer-events: none;
 }
 
 .scene5-red-circle {
@@ -901,7 +902,7 @@ body.bg-active {
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -35px;
+  top: -25px;
 }
 
 .scene5-image-circle {
@@ -928,20 +929,175 @@ body.bg-active {
   pointer-events: none;
 }
 
+.scene5-subcompany-bg {
+  position: absolute;
+  bottom: 73px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: auto;
+  opacity: 0;
+  z-index: 5;
+  object-fit: contain;
+}
+
+.scene5-subcompany-logos {
+  position: absolute;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 6;
+  opacity: 0;
+}
+
+.scene5-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.scene5-logo-separator {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.scene5-right-arrows {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  z-index: 6;
+  opacity: 0;
+}
+
+.scene5-convention-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  z-index: 6;
+  opacity: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.scene5-red-circle.show-convention .scene5-convention-content {
+  pointer-events: auto;
+}
+
+.scene5-red-circle.show-convention .scene5-convention-arrows,
+.scene5-red-circle.show-convention .scene5-convention-arrows button {
+  pointer-events: auto;
+}
+
+.scene5-ssilp-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  z-index: 6;
+  opacity: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.scene5-red-circle.show-ssilp .scene5-ssilp-content {
+  pointer-events: auto;
+}
+
+.scene5-red-circle.show-ssilp .scene5-ssilp-arrows,
+.scene5-red-circle.show-ssilp .scene5-ssilp-arrows button {
+  pointer-events: auto;
+}
+
+.scene5-convention-text {
+  width: 350px;
+}
+
+.scene5-convention-arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.scene5-ssilp-arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.scene5-arrow-back img {
+  transform: scaleX(-1);
+}
+
+.scene5-arrow-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.scene5-arrow-btn.scene5-arrow-left {
+  margin-right: 30px;
+}
+
+.scene5-arrow-btn:hover {
+  transform: scale(1.1);
+}
+
+.scene5-arrow-btn img {
+  height: 8px;
+  width: auto;
+  object-fit: contain;
+}
+
 .scene5-heading {
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
   margin-bottom: 10px;
-  letter-spacing: 1px;
+  letter-spacing: -0.05em;
+  white-space: normal;
+  word-wrap: break-word;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .scene5-desc {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   line-height: 1.4;
   color: #fff;
+  white-space: normal;
+  word-wrap: break-word;
+  letter-spacing: -0.05em;
 }
 
 .scene5-small-red-circle {
@@ -951,13 +1107,153 @@ body.bg-active {
   background-image: url('./assets/circle.png');
   background-size: cover;
   background-position: center;
-  position: absolute;
-  left: 5%;
-  top: -75px;
-  z-index: 20;
+}
+
+.scene5-grey-outline-circle {
+  position: fixed;
+  top: -100px;
+  left: 80%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #9c9fa1;
+  background: transparent;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.scene5-top-left-circle {
+  position: fixed;
+  top: 220px;
+  /* right: -300px; */
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-image: url('./assets/circle.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+  transition: border-radius 0.3s ease;
+}
+
+/* Arrow state classes for Scene 5/6 content swap */
+.scene5-red-circle.show-convention .scene5-subcompany-bg,
+.scene5-red-circle.show-convention .scene5-subcompany-logos,
+.scene5-red-circle.show-convention .scene5-right-arrows {
+  display: none !important;
+}
+
+.scene5-red-circle.show-convention .scene5-convention-arrows {
+  display: flex !important;
+  pointer-events: auto;
+}
+
+.scene5-red-circle.show-convention .scene5-arrow-forward {
+  display: none !important;
+}
+
+.scene5-red-circle.show-ssilp .scene5-subcompany-bg,
+.scene5-red-circle.show-ssilp .scene5-subcompany-logos,
+.scene5-red-circle.show-ssilp .scene5-right-arrows {
+  display: none !important;
+}
+
+.scene5-red-circle.show-ssilp .scene5-ssilp-arrows {
+  display: flex !important;
+  pointer-events: auto;
+}
+
+.scene5-red-circle.show-ssilp .scene5-ssilp-arrows .scene5-arrow-forward {
+  display: none !important;
+}
+
+.scene5-red-circle.show-convention .scene5-text {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scene5-red-circle.show-ssilp .scene5-text {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scene5-red-circle.show-convention .scene5-heading,
+.scene5-red-circle.show-convention .scene5-desc {
   opacity: 1;
 }
 
+.scene5-red-circle.show-ssilp .scene5-heading,
+.scene5-red-circle.show-ssilp .scene5-desc {
+  opacity: 1;
+}
+
+.scene5-grey-circle.show-convention .scene5-grey-logo {
+  display: none;
+  opacity: 0;
+}
+
+.scene5-grey-circle.show-ssilp .scene5-grey-logo {
+  display: none;
+  opacity: 0;
+}
+
+.scene5-grey-circle.show-convention::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: url('./assets/Shreeshakti_Convention.png') no-repeat center;
+  background-size: contain;
+  z-index: 10;
+  opacity: 1;
+}
+
+.scene5-grey-circle.show-ssilp::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: url('./assets/SHREESHAKTI-logo.png') no-repeat center;
+  background-size: contain;
+  z-index: 10;
+  opacity: 1;
+}
+
+.scene5-new-text.show-convention {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.scene5-new-text.show-convention .scene5-group-1 {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.scene5-new-text.show-convention .scene5-group-2 {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.scene5-new-text.show-ssilp .scene5-group-1 {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.scene5-new-text.show-ssilp .scene5-group-2 {
+  display: block !important;
+  opacity: 1 !important;
+}
 
 /* Scene 6 - Image left, Red circle right */
 .scene6-circles-container {
