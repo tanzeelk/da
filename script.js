@@ -1442,6 +1442,29 @@ function updateScene5ToConvention() {
     imageCircle.style.top = "calc(50% - 300px)";
   }
 
+  // Animate grey outline circle to top right
+  const greyOutlineCircle = document.querySelector(".scene5-grey-outline-circle");
+  if (greyOutlineCircle) {
+    gsap.to(greyOutlineCircle, { 
+      left: "calc(100% - 200px)", 
+      top: "-100px",
+      duration: 1.2, 
+      ease: "power2.inOut" 
+    });
+  }
+
+  // Animate descending red circle from top right when convention is shown
+  const descendingRedCircle = document.querySelector(".scene5-descending-red-circle");
+  if (descendingRedCircle) {
+    gsap.set(descendingRedCircle, { right: "5%", left: "auto" });
+    gsap.to(descendingRedCircle, {
+      opacity: 1,
+      top: "-50px",
+      duration: 1.4,
+      ease: "power2.inOut"
+    });
+  }
+
   isShowingConvention = true;
 }
 
@@ -1498,6 +1521,89 @@ function updateScene5ToDefault() {
     gsap.to(ssilpContent, { opacity: 0, duration: 0.3 });
   }
 
+  // Animate grey outline circle
+  const greyOutlineCircle = document.querySelector(".scene5-grey-outline-circle");
+  if (greyOutlineCircle) {
+    if (isShowingConvention) {
+      // Coming from convention - move down and fade
+      gsap.to(greyOutlineCircle, {
+        top: "250px",
+        // opacity: 0,
+        duration: 0.8,
+        ease: "power2.inOut"
+      });
+    } else if (isShowingSSILP) {
+      // Coming from SSILP - just fade out and in at original position
+      gsap.to(greyOutlineCircle, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.inOut",
+        onComplete: () => {
+          gsap.set(greyOutlineCircle, {
+            left: "calc(80% - 100px)",
+            top: "-100px"
+          });
+          gsap.to(greyOutlineCircle, {
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.inOut"
+          });
+        }
+      });
+    }
+  }
+
+  // If coming from convention, bring back small red circle
+  if (isShowingConvention) {
+    const smallRedCircle = document.querySelector(".scene5-small-red-circle");
+    if (smallRedCircle) {
+      gsap.set(smallRedCircle, { opacity: 0, top: "-500px" });
+      gsap.to(smallRedCircle, {
+        opacity: 1,
+        top: "0px",
+        duration: 1.0,
+        ease: "power2.inOut"
+      });
+    }
+
+    // Descending red circle fades out
+    const descendingRedCircle = document.querySelector(".scene5-descending-red-circle");
+    if (descendingRedCircle) {
+      gsap.to(descendingRedCircle, {
+        opacity: 0,
+        top: "-500px",
+        duration: 1.0,
+        ease: "power2.inOut"
+      });
+    }
+  }
+
+  // If coming from SSILP, animate the red circles
+  if (isShowingSSILP) {
+    // Small red circle on top left goes up and disappears
+    const smallRedCircle = document.querySelector(".scene5-small-red-circle");
+    if (smallRedCircle) {
+      gsap.to(smallRedCircle, {
+        opacity: 0,
+        top: "-500px",
+        duration: 1.0,
+        ease: "power2.inOut"
+      });
+    }
+
+    // Right red circle (descending one) comes down
+    const descendingRedCircle = document.querySelector(".scene5-descending-red-circle");
+    if (descendingRedCircle) {
+      gsap.set(descendingRedCircle, { right: "5%", left: "auto", opacity: 0, top: "-500px" });
+      gsap.to(descendingRedCircle, {
+        opacity: 1,
+        top: "-300px",
+        duration: 1.4,
+        ease: "power2.inOut"
+      });
+    }
+  }
+
   isShowingConvention = false;
   isShowingSSILP = false;
 }
@@ -1540,6 +1646,29 @@ function updateScene5ToSSILP() {
     imageCircle.style.width = "485px";
     imageCircle.style.height = "485px";
     imageCircle.style.top = "calc(50% - 300px)";
+  }
+
+  // Animate grey outline circle to top left with fade out/in
+  const greyOutlineCircle = document.querySelector(".scene5-grey-outline-circle");
+  if (greyOutlineCircle) {
+    gsap.to(greyOutlineCircle, { 
+      opacity: 0,
+      duration: 0.25, 
+      ease: "power2.out",
+      onComplete: () => {
+        gsap.set(greyOutlineCircle, { 
+          left: "5%", 
+          top: "-500px",
+          opacity: 0
+        });
+        gsap.to(greyOutlineCircle, { 
+          opacity: 1,
+          top: "-300px",
+          duration: 0.6, 
+          ease: "power2.out"
+        });
+      }
+    });
   }
 
   isShowingSSILP = true;
