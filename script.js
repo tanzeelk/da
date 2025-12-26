@@ -192,7 +192,7 @@ let t4 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene4",
     start: "top 60%",
-    end: "+=1200",
+    end: "+=1000",
     scrub: 1,
     pin: true,
     markers: false,
@@ -1528,7 +1528,6 @@ function updateScene5ToDefault() {
       // Coming from convention - move down and fade
       gsap.to(greyOutlineCircle, {
         top: "250px",
-        // opacity: 0,
         duration: 0.8,
         ease: "power2.inOut"
       });
@@ -2186,5 +2185,47 @@ if (scene7SsilpBackArrowBtn) {
   scene7SsilpBackArrowBtn.addEventListener("click", (e) => {
     e.preventDefault();
     updateScene7ToDefault();
+  });
+}
+
+// Grey circles click handlers - Scroll to respective scenes
+const greyCircle1 = document.querySelector(".grey-circle-1");
+const greyCircle2 = document.querySelector(".grey-circle-2");
+const greyCircle3 = document.querySelector(".grey-circle-3");
+const greyCircle4 = document.querySelector(".grey-circle-4");
+
+if (greyCircle1) {
+  greyCircle1.addEventListener("click", () => {
+    const scene4 = document.querySelector(".scene4");
+    if (scene4) {
+      scene4.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+}
+
+if (greyCircle2) {
+  greyCircle2.addEventListener("click", () => {
+    const scene5 = document.querySelector(".scene5");
+    if (scene5) {
+      scene5.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+}
+
+if (greyCircle3) {
+  greyCircle3.addEventListener("click", () => {
+    const scene6 = document.querySelector(".scene6");
+    if (scene6) {
+      scene6.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+}
+
+if (greyCircle4) {
+  greyCircle4.addEventListener("click", () => {
+    const scene7 = document.querySelector(".scene7");
+    if (scene7) {
+      scene7.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   });
 }

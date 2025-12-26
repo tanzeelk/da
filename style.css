@@ -201,6 +201,7 @@
     margin-bottom: 80px;  /* Add space between scene4 and scene5 */
     padding-top: 0px;  /* Add space at top */
     margin-top: 400px;  /* Add top margin for spacing after pinned scene3 */
+    min-height: 100vh; /* Ensure enough height for scrolling */
   }
   
   .title {
@@ -762,6 +763,13 @@ body.bg-active {
   justify-content: center;
   align-items: center;
   z-index: 2;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.grey-circle:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .circle-logo {
