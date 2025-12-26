@@ -5,17 +5,53 @@ const circleBack = document.querySelector(".circle-back");
 // Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Fixed Navigation Bar - Show from Scene 4 onwards till the end
+// Fixed Navigation Bar - Show from Scene 1 onwards till the end
 const fixedNav = document.getElementById("fixedNav");
+const menuToggle = document.getElementById("menuToggle");
+const expandedMenu = document.getElementById("expandedMenu");
+let isMenuOpen = false;
 
 ScrollTrigger.create({
-  trigger: ".scene4",
-  start: "center center",
+  trigger: ".scene1",
+  start: "top top",
   endTrigger: "body",
   end: "bottom bottom",
   onEnter: () => fixedNav.classList.add("visible"),
   onLeaveBack: () => fixedNav.classList.remove("visible"),
   markers: false,
+});
+
+// Menu toggle functionality
+menuToggle.addEventListener("click", (e) => {
+  e.preventDefault();
+  isMenuOpen = !isMenuOpen;
+
+  if (isMenuOpen) {
+    expandedMenu.classList.add("active");
+    menuToggle.style.display = "none";
+  } else {
+    expandedMenu.classList.remove("active");
+    menuToggle.style.display = "block";
+  }
+});
+
+// Close menu when clicking on menu items
+document.querySelectorAll(".menu-item").forEach((item) => {
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Remove active class from all items
+    document.querySelectorAll(".menu-item").forEach((i) => {
+      i.classList.remove("active");
+    });
+
+    // Add active class to clicked item
+    item.classList.add("active");
+
+    isMenuOpen = false;
+    expandedMenu.classList.remove("active");
+    menuToggle.style.display = "block";
+  });
 });
 
 // Smooth scroll for footer links
@@ -155,7 +191,7 @@ circle.appendChild(circleCenter);
 let t4 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene4",
-    start: "top 50%",
+    start: "top 60%",
     end: "+=1200",
     scrub: 1,
     pin: true,
@@ -414,12 +450,11 @@ const bgCircles = document.querySelectorAll(".bg-circle");
 let t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
-    // start: "top bottom",    // starts when scene is just entering viewport
-    // end: "bottom 40%",   // longer scroll distance = smoother animations
-    // scrub: 4,            // smooth interpolation tied to scroll
-    start: "top 80%",
+    start: "top 90px",
     end: "bottom 80%",
     scrub: 1.5,
+    pin: ".scene3",
+    pinSpacing: true,
     markers: false,
   },
 });
@@ -477,24 +512,42 @@ t3.to(
 t3.fromTo(
   scene3GroupText,
   { opacity: 0, y: 250 },
-  { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }
+  { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+  "<0.3"
 );
 
 t3.fromTo(
   scene3VenturesText,
   { opacity: 0, y: 250 },
-  { opacity: 1, y: -40, duration: 0.9, ease: "power3.out" }
+  { opacity: 1, y: -40, duration: 0.5, ease: "power3.out" },
+  "<0.3"
 );
 
 t3.fromTo(
   scene3RedCircleText,
   { opacity: 0, y: 200 },
-  { opacity: 1, y: -10, duration: 1, ease: "power2.inOut" },
+  { opacity: 1, y: -10, duration: 0.8, ease: "power2.inOut" },
   "<"
 );
 
 // Animate the 4 main grey circles from grey-circles-section
 const greyCircles = document.querySelectorAll(".grey-circle");
+
+// Add grey circles to the main t3 timeline with stagger
+greyCircles.forEach((circle, index) => {
+  t3.fromTo(
+    circle,
+    { y: 200, opacity: 0 },
+    {
+      y: -120,
+      opacity: 1,
+      duration: 0.6,
+      ease: "sine.out",
+    },
+    `>-${0.5 - index * 0.1}` // Overlap animations: -0.5, -0.4, -0.3, -0.2
+  );
+});
+
 // Timeline for background circles floating up
 let floatTL = gsap.timeline({
   scrollTrigger: {
@@ -508,46 +561,17 @@ let floatTL = gsap.timeline({
 
 bgCircles.forEach((circle, i) => {
   // 60% chance to float up and disappear, 40% chance to float up and stop
-  const floatAway = Math.random() < 0.5;
+  const floatAway = Math.random() < 0.4;
 
   floatTL.fromTo(
     circle,
     { y: 0, opacity: 1 }, // start visible at their natural position
     {
-      y: floatAway ? -400 : -100, // float up high and disappear OR float up a bit and stop
+      y: floatAway ? -400 : -50, // float up high and disappear OR float up a bit and stop
       opacity: floatAway ? 0 : 1, // fade out if floating away, stay visible if stopping
       ease: "power1.out",
     },
     i * 0.05 // slight stagger for more dynamic effect
-  );
-});
-
-// Separate timeline for grey circles with different timing
-let greyCirclesTL = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".scene3",
-    start: "top 40%", // start later so animation happens when you reach scene3
-    end: "bottom 30%", // end when scene3 leaves viewport
-    scrub: 1.5,
-    markers: false,
-  },
-});
-
-// Animate grey circles sliding in with random speeds
-greyCircles.forEach((circle, index) => {
-  // const randomSpeed = 1.5 + Math.random() * 1.5; // Random duration between 1.5-3 seconds
-  const randomSpeed = 1.6 + Math.random() * 1.2; // 1.6–2.8s
-
-  greyCirclesTL.fromTo(
-    circle,
-    { y: 200, opacity: 0 }, // Start from below
-    {
-      y: -100, // End at original position
-      opacity: 1,
-      duration: randomSpeed,
-      ease: "sine.out"
-    },
-    0 // Start at the beginning of the timeline
   );
 });
 
@@ -709,11 +733,13 @@ const scene5Group1 = document.querySelector(".scene5-group-1");
 const scene5Group2 = document.querySelector(".scene5-group-2");
 const scene5SmallRedCircle = document.querySelector(".scene5-small-red-circle");
 const scene5TopLeftCircle = document.querySelector(".scene5-top-left-circle");
-const scene5GreyOutlineCircle = document.querySelector(".scene5-grey-outline-circle");
+const scene5GreyOutlineCircle = document.querySelector(
+  ".scene5-grey-outline-circle"
+);
 
 gsap.set(scene5SmallRedCircle, { y: -800, x: -550 });
 gsap.set(scene5TopLeftCircle, { left: "400px" });
-gsap.set(scene5GreyOutlineCircle, { top: "-100px", opacity:0 });
+gsap.set(scene5GreyOutlineCircle, { top: "-100px", opacity: 0 });
 
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene5ImageCircle, { y: 500 });
@@ -739,8 +765,8 @@ t5.to(
 
 // Top left circle slides in from left (0-0.25)
 t5.fromTo(
-  scene5TopLeftCircle,{ left: "400px", 
-    opacity: 0,  },
+  scene5TopLeftCircle,
+  { left: "400px", opacity: 0 },
   {
     opacity: 1,
     left: "220px",
@@ -748,9 +774,10 @@ t5.fromTo(
     ease: "power2.out",
     onComplete: () => {
       // Replace circle with image (keep same 75px size)
-      scene5TopLeftCircle.style.backgroundImage = "url('./assets/shaktismallimage.png')";
+      scene5TopLeftCircle.style.backgroundImage =
+        "url('./assets/shaktismallimage.png')";
       scene5TopLeftCircle.style.borderRadius = "0";
-    }
+    },
   },
   0
 );
@@ -762,7 +789,7 @@ t5.to(
     top: "calc(100vh - 450px)",
     duration: 0.4,
     ease: "power2.out",
-    opacity:1
+    opacity: 1,
   },
   1.2
 );
@@ -875,10 +902,10 @@ t5.to(
 let t6 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene6",
-    start: "top bottom",
-    end: "+=800",
-    scrub: 1.5,
-    pin: false,
+    start: "top 50%",
+    end: "+=1200",
+    scrub: 1,
+    pin: true,
     markers: false,
   },
 });
@@ -886,19 +913,243 @@ let t6 = gsap.timeline({
 const scene6ImageCircle = document.querySelector(".scene6-image-circle");
 const scene6RedCircle = document.querySelector(".scene6-red-circle");
 const scene6GreyCircle = document.querySelector(".scene6-grey-circle");
-const scene6Text = document.querySelector(".scene6-text");
-
-t6.to(scene6ImageCircle, { x: -150, duration: 1.25, ease: "power2.out" }, 0);
-t6.to(scene6RedCircle, { x: 150, duration: 1.25, ease: "power2.out" }, 0);
-t6.to(
-  scene6Text,
-  { opacity: 1, y: -60, duration: 0.6, ease: "power2.out" },
-  0.1
+const scene6SmallRedCircle = document.querySelector(".scene6-small-red-circle");
+const scene6SmallRedCircleRight = document.querySelector(
+  ".scene6-small-red-circle-right"
 );
+const scene6SmallRedCircleLogo = document.querySelector(
+  ".scene6-small-red-circle-logo"
+);
+const scene6SmallRedCircle1 = document.querySelector(
+  ".scene6-small-red-circle-1"
+);
+const scene6SmallRedCircle1Logo = document.querySelector(
+  ".scene6-small-red-circle-1-logo"
+);
+const scene6SmallRedCircle2 = document.querySelector(
+  ".scene6-small-red-circle-2"
+);
+const scene6SmallRedCircle3 = document.querySelector(
+  ".scene6-small-red-circle-3"
+);
+const scene6GreyOutlineCircle = document.querySelector(
+  ".scene6-grey-outline-circle"
+);
+const scene6RedText = document.querySelector(".scene6-red-text");
+const scene6Group1 = document.querySelector(".scene6-group-1");
+const scene6Group2 = document.querySelector(".scene6-group-2");
+const scene6SubcompanyBg = document.querySelector(".scene6-subcompany-bg");
+const scene6SubcompanyLogos = document.querySelector(
+  ".scene6-subcompany-logos"
+);
+const scene6RightArrows = document.querySelector(".scene6-right-arrows");
+
+// Set initial positions: red circle and image start below viewport
+gsap.set(scene6ImageCircle, { y: 700, x: 150 });
+gsap.set(scene6RedCircle, { y: 415, x: 150 });
+gsap.set(scene6SmallRedCircle, { y: -310 });
+gsap.set(scene6SmallRedCircleRight, { x: 0 });
+
+// Small red circle drops from top (0-0.3)
+
+// Step 1: Grey circle rises and stops (stays pinned)
 t6.to(
   scene6GreyCircle,
-  { opacity: 1, y: -300, duration: 0.2, ease: "power2.out" },
-  0.25
+  {
+    opacity: 1,
+    y: -250,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0
+);
+
+// Step 2: Red circle and image rise up together
+t6.to(
+  scene6ImageCircle,
+  {
+    y: 35,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0.4
+);
+t6.to(
+  scene6RedCircle,
+  {
+    y: -215,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  "<"
+);
+
+// Step 2.5: Text groups animate in while circles rise
+t6.fromTo(
+  scene6Group1,
+  { opacity: 0, y: 400 },
+  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  0.5
+);
+
+t6.fromTo(
+  scene6Group2,
+  { opacity: 0, y: 400 },
+  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  0.6
+);
+
+
+t6.fromTo(
+  scene6SmallRedCircle,
+  {
+    opacity: 0,
+    y: -290,
+  },
+  {
+    opacity: 1,
+    y: -220,
+    duration: 0.8,
+    ease: "power2.out",
+  },
+  "<0.1"
+);
+
+// Three small red circles sliding from behind (one after another)
+t6.fromTo(
+  scene6SmallRedCircle1,
+  {
+    opacity: 0,
+    x: 100,
+  },
+  {
+    opacity: 1,
+    x: 350,
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  "<0.1"
+);
+
+t6.fromTo(
+  scene6SmallRedCircle2,
+  {
+    opacity: 0,
+    x: 100,
+  },
+  {
+    opacity: 1,
+    x: 350,
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  "<0.25"
+);
+
+
+
+
+t6.fromTo(
+  scene6SmallRedCircle3,
+  {
+    opacity: 0,
+    x: 100,
+  },
+  {
+    opacity: 1,
+    x: 220,
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  "<0.25"
+);
+
+// Fade in SSSOI logo on circle1 when it moves down
+t6.to(
+  scene6SmallRedCircle1Logo,
+  {
+    opacity: 1,
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  "<"
+);
+
+// Fade in subcompany background, logos, and arrows
+t6.to(
+  scene6SubcompanyBg,
+  {
+    opacity: 1,
+    duration: 0.4,
+    pointerEvents: "none",
+    ease: "power2.out",
+  },
+  0.4
+);
+
+t6.to(
+  scene6SubcompanyLogos,
+  {
+    opacity: 1,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0.4
+);
+
+t6.to(
+  scene6RightArrows,
+  {
+    opacity: 1,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0.4
+);
+
+// Grey outline circle animates from top to top-right
+t6.to(
+  scene6GreyOutlineCircle,
+  {
+    opacity: 0.7,
+    top: "calc(50% - 630px)",
+    duration: 1.2,
+    ease: "power2.out",
+  },
+  0.5
+);
+
+t6.to(
+  scene6SmallRedCircle1,
+  {
+    y: 120,
+    duration: 2.0,
+    ease: "power2.out",
+  },
+  1.0
+);
+
+// Step 3: After red circle stops at grey circle, image slides left (red circle stays in place)
+t6.to(
+  scene6ImageCircle,
+  {
+    x: -220,
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  0.8
+);
+
+// Step 4: Text appears
+t6.to(
+  scene6RedText,
+  {
+    opacity: 1,
+    y: 0,
+    duration: 0.3,
+    ease: "power2.out",
+  },
+  0.8
 );
 
 // Scene 7 Timeline - Red circle left, Image right
@@ -1064,7 +1315,6 @@ function updateScene5ToDefault() {
     imageCircle.style.backgroundImage = "url(./assets/image05.png)";
     imageCircle.style.width = "595px";
     imageCircle.style.height = "595px";
-
   }
 
   // Remove show-convention class
@@ -1080,9 +1330,11 @@ function updateScene5ToDefault() {
   scene5CirclesContainer.classList.remove("show-ssilp");
 
   // Hide both convention and SSILP content
-  const conventionContent = document.querySelector(".scene5-convention-content");
+  const conventionContent = document.querySelector(
+    ".scene5-convention-content"
+  );
   const ssilpContent = document.querySelector(".scene5-ssilp-content");
-  
+
   if (conventionContent) {
     gsap.to(conventionContent, { opacity: 0, duration: 0.3 });
   }
@@ -1175,3 +1427,283 @@ if (ssilpBackArrowBtn) {
   });
 }
 
+// Scene 6 Arrow Click Handlers - Simple like t5
+const scene6Arrow1 = document.getElementById("scene6-arrow-1");
+const scene6Arrow2 = document.getElementById("scene6-arrow-2");
+const scene6Arrow3 = document.getElementById("scene6-arrow-3");
+const scene6BackArrowBtn = document.getElementById("scene6-back-arrow");
+const scene6ImageCircleElement = document.querySelector(".scene6-image-circle");
+
+let isShowingNSK = false;
+
+if (scene6Arrow1) {
+  scene6Arrow1.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    // Change the background image to NSK.png
+    if (scene6ImageCircleElement) {
+      scene6ImageCircleElement.style.backgroundImage = "url('./assets/NSK.png')";
+    }
+    
+    // Update red circle heading
+    const scene6RedHeading = document.querySelector(".scene6-red-heading");
+    if (scene6RedHeading) {
+      scene6RedHeading.innerHTML = "NARI SASHAKTIKARAN KENDRA";
+    }
+    
+    // Update red circle description
+    const scene6RedDesc = document.querySelector(".scene6-red-desc");
+    if (scene6RedDesc) {
+      scene6RedDesc.innerHTML = "With this establishment, we empower rural women to become agents of change. Training in pottery, agarbatti making, sewing, and handicrafts have helped women built an identity of their own. They gain confidence, decision-making capacity, and social mobility where they were previously excluded from formal economic and civic spaces.";
+    }
+    
+    // Update left side red and blue text
+    const scene6Group1 = document.querySelector(".scene6-group-1 .text-red");
+    const scene6Group2 = document.querySelector(".scene6-group-2 .text-blue");
+    
+    if (scene6Group1) {
+      scene6Group1.innerHTML = "Building <br>confidence,";
+    }
+    
+    if (scene6Group2) {
+      scene6Group2.innerHTML = "one skill at <br>a time.";
+    }
+    
+    // Hide subcompany elements
+    const scene6SubcompanyBg = document.querySelector(".scene6-subcompany-bg");
+    const scene6SubcompanyLogos = document.querySelector(".scene6-subcompany-logos");
+    const scene6RightArrows = document.querySelector(".scene6-right-arrows");
+    
+    if (scene6SubcompanyBg) {
+      gsap.to(scene6SubcompanyBg, { opacity: 0, duration: 0.3 });
+    }
+    if (scene6SubcompanyLogos) {
+      gsap.to(scene6SubcompanyLogos, { opacity: 0, duration: 0.3 });
+    }
+    if (scene6RightArrows) {
+      gsap.to(scene6RightArrows, { opacity: 0, duration: 0.3 });
+    }
+    
+    // Change grey circle logo to NSSK.png
+    const greyLogoNSK = document.querySelector(".scene6-grey-logo");
+    if (greyLogoNSK) {
+      greyLogoNSK.src = "./assets/NSSK.png";
+      greyLogoNSK.alt = "NSSK Logo";
+    }
+    
+    // Show back arrow
+    if (scene6BackArrowBtn) {
+      gsap.to(scene6BackArrowBtn, { opacity: 1, duration: 0.3 });
+    }
+    
+    // Add centering class to red text container
+    const scene6RedText = document.querySelector(".scene6-red-text");
+    if (scene6RedText) {
+      scene6RedText.classList.add("showing-nsk");
+    }
+    
+    isShowingNSK = true;
+  });
+}
+
+// Back arrow click handler
+if (scene6BackArrowBtn) {
+  scene6BackArrowBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    // Restore original content
+    if (scene6ImageCircleElement) {
+      scene6ImageCircleElement.style.backgroundImage = "url('./assets/image06.png')";
+    }
+    
+    const scene6RedHeading = document.querySelector(".scene6-red-heading");
+    if (scene6RedHeading) {
+      scene6RedHeading.innerHTML = "SHREE SHAKTI <br /> SEVA KENDRA";
+    }
+    
+    const scene6RedDesc = document.querySelector(".scene6-red-desc");
+    if (scene6RedDesc) {
+      scene6RedDesc.innerHTML = "Shree Shakti Seva Kendra, Ambaji has emerged as a <br /> transformative force, helping women claim fundamental  <br /> right to dignity and autonomy in the tribal and  <br /> underprivileged communities. Collaboration and  <br /> compassion have helped women work towards their <br />  empowerment, fostering lasting change.";
+    }
+    
+    const scene6Group1 = document.querySelector(".scene6-group-1 .text-red");
+    const scene6Group2 = document.querySelector(".scene6-group-2 .text-blue");
+    
+    if (scene6Group1) {
+      scene6Group1.innerHTML = "Lighting <br>new paths where";
+    }
+    
+    if (scene6Group2) {
+      scene6Group2.innerHTML = "empowerment <br>blooms.";
+    }
+    
+    // Show subcompany elements
+    const scene6SubcompanyBg = document.querySelector(".scene6-subcompany-bg");
+    const scene6SubcompanyLogos = document.querySelector(".scene6-subcompany-logos");
+    const scene6RightArrows = document.querySelector(".scene6-right-arrows");
+    
+    if (scene6SubcompanyBg) {
+      gsap.to(scene6SubcompanyBg, { opacity: 1, duration: 0.3 });
+    }
+    if (scene6SubcompanyLogos) {
+      gsap.to(scene6SubcompanyLogos, { opacity: 1, duration: 0.3 });
+    }
+    if (scene6RightArrows) {
+      gsap.to(scene6RightArrows, { opacity: 1, duration: 0.3 });
+    }
+    
+    // Hide back arrow
+    gsap.to(scene6BackArrowBtn, { opacity: 0, duration: 0.3 });
+    
+    // Restore original grey circle logo
+    const greyLogoRestore = document.querySelector(".scene6-grey-logo");
+    if (greyLogoRestore) {
+      greyLogoRestore.src = "./assets/SHREESHAKTIMAIN-logo.png";
+      greyLogoRestore.alt = "Shree Shakti Logo";
+    }
+    
+    // Remove centering class from red text container
+    const scene6RedText = document.querySelector(".scene6-red-text");
+    if (scene6RedText) {
+      scene6RedText.classList.remove("showing-nsk");
+    }
+    
+    isShowingNSK = false;
+  });
+}
+
+if (scene6Arrow2) {
+  scene6Arrow2.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    // Change the background image to SSSOI-microimage.png
+    if (scene6ImageCircleElement) {
+      scene6ImageCircleElement.style.backgroundImage = "url('./assets/SSSOI-microimage.png')";
+    }
+    
+    // Update red circle heading
+    const scene6RedHeading = document.querySelector(".scene6-red-heading");
+    if (scene6RedHeading) {
+      scene6RedHeading.innerHTML = "Shree Shakti <br /> School of Innovation";
+    }
+    
+    // Update red circle description
+    const scene6RedDesc = document.querySelector(".scene6-red-desc");
+    if (scene6RedDesc) {
+      scene6RedDesc.innerHTML = "Self-Reliance (Atmanirbharta), Collaborative Leadership. Indian Knowledge Systems, Challenge-Based Learning are the pillars of the Shree Shakti School of Innovation. The learning model goes beyond textbooks, with interactive experiences that help connect with nature, others, and the self.";
+    }
+    
+    // Update left side red and blue text
+    const scene6Group1 = document.querySelector(".scene6-group-1 .text-red");
+    const scene6Group2 = document.querySelector(".scene6-group-2 .text-blue");
+    
+    if (scene6Group1) {
+      scene6Group1.innerHTML = "Learning that <br>goes";
+    }
+    
+    if (scene6Group2) {
+      scene6Group2.innerHTML = "beyond <br>pages.";
+    }
+    
+    // Hide subcompany elements
+    const scene6SubcompanyBg = document.querySelector(".scene6-subcompany-bg");
+    const scene6SubcompanyLogos = document.querySelector(".scene6-subcompany-logos");
+    const scene6RightArrows = document.querySelector(".scene6-right-arrows");
+    
+    if (scene6SubcompanyBg) {
+      gsap.to(scene6SubcompanyBg, { opacity: 0, duration: 0.3 });
+    }
+    if (scene6SubcompanyLogos) {
+      gsap.to(scene6SubcompanyLogos, { opacity: 0, duration: 0.3 });
+    }
+    if (scene6RightArrows) {
+      gsap.to(scene6RightArrows, { opacity: 0, duration: 0.3 });
+    }
+    
+    // Change grey circle logo to SSSOI.png
+    const greyLogoSSSIOI = document.querySelector(".scene6-grey-logo");
+    if (greyLogoSSSIOI) {
+      greyLogoSSSIOI.src = "./assets/SSSOI.png";
+      greyLogoSSSIOI.alt = "SSSOI Logo";
+    }
+    
+    // Show back arrow
+    if (scene6BackArrowBtn) {
+      gsap.to(scene6BackArrowBtn, { opacity: 1, duration: 0.3 });
+    }
+    
+    // Add centering class to red text container
+    const scene6RedText = document.querySelector(".scene6-red-text");
+    if (scene6RedText) {
+      scene6RedText.classList.add("showing-nsk");
+    }
+  });
+}
+
+if (scene6Arrow3) {
+  scene6Arrow3.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    // Change the background image to Chhatralaya-microimage.png
+    if (scene6ImageCircleElement) {
+      scene6ImageCircleElement.style.backgroundImage = "url('./assets/Chhatralaya-microimage.png')";
+    }
+    
+    // Update red circle heading
+    const scene6RedHeading = document.querySelector(".scene6-red-heading");
+    if (scene6RedHeading) {
+      scene6RedHeading.innerHTML = "Chhatralaya";
+    }
+    
+    // Update red circle description
+    const scene6RedDesc = document.querySelector(".scene6-red-desc");
+    if (scene6RedDesc) {
+      scene6RedDesc.innerHTML = "More than just a hostel, Chhatralaya is an effort to build a home. With balanced meals and a nurturing environment, we help kids have a brighter future. This is a space that shields children from the consequences of poverty, helping them live a happier and healthier life.";
+    }
+    
+    // Update left side red and blue text
+    const scene6Group1 = document.querySelector(".scene6-group-1 .text-red");
+    const scene6Group2 = document.querySelector(".scene6-group-2 .text-blue");
+    
+    if (scene6Group1) {
+      scene6Group1.innerHTML = "A strong <br>foundation.";
+    }
+    
+    if (scene6Group2) {
+      scene6Group2.innerHTML = "A secure <br>future.";
+    }
+    
+    // Hide subcompany elements
+    const scene6SubcompanyBg = document.querySelector(".scene6-subcompany-bg");
+    const scene6SubcompanyLogos = document.querySelector(".scene6-subcompany-logos");
+    const scene6RightArrows = document.querySelector(".scene6-right-arrows");
+    
+    if (scene6SubcompanyBg) {
+      gsap.to(scene6SubcompanyBg, { opacity: 0, duration: 0.3 });
+    }
+    if (scene6SubcompanyLogos) {
+      gsap.to(scene6SubcompanyLogos, { opacity: 0, duration: 0.3 });
+    }
+    if (scene6RightArrows) {
+      gsap.to(scene6RightArrows, { opacity: 0, duration: 0.3 });
+    }
+    
+    // Change grey circle logo to Chhatralaya.png
+    const greyLogoChhatralaya = document.querySelector(".scene6-grey-logo");
+    if (greyLogoChhatralaya) {
+      greyLogoChhatralaya.src = "./assets/Chhatralaya.png";
+      greyLogoChhatralaya.alt = "Chhatralaya Logo";
+    }
+    
+    // Show back arrow
+    if (scene6BackArrowBtn) {
+      gsap.to(scene6BackArrowBtn, { opacity: 1, duration: 0.3 });
+    }
+    
+    // Add centering class to red text container
+    const scene6RedText = document.querySelector(".scene6-red-text");
+    if (scene6RedText) {
+      scene6RedText.classList.add("showing-nsk");
+    }
+  });
+}
