@@ -1712,7 +1712,7 @@ body.bg-active {
   background-position: center;
   position: absolute;
   top: 30%;
-  z-index: 19;
+  z-index: 2;
   opacity: 0;
 }
 
@@ -1785,6 +1785,7 @@ body.bg-active {
   top: -500px;
   z-index: 20;
   opacity: 1;
+  display: none;
 }
 
 .scene6-heading {
@@ -1820,20 +1821,20 @@ body.bg-active {
 .scene6-right-arrows * {
   pointer-events: auto;
 }
-/* Scene 7 - Red circle left, Image right */
+
+/* Scene 7 - Red circle left, Image right (exact duplicate of Scene 5) */
 .scene7-circles-container {
   position: absolute;
-  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 1200px;
-  height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0;
   z-index: 15;
+  pointer-events: none;
 }
 
 .scene7-red-circle {
@@ -1844,7 +1845,7 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: 50%;
+  left: 38%;
   transform: translate(-50%, calc(-50% - 40px));
   z-index: 10;
   opacity: 0.9;
@@ -1861,19 +1862,19 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% - 150px);
-  top: calc(50% - 250px);
+  left: 38%;
+  top: calc(50% - 500px);
   transform: translate(-50%, -50%);
   z-index: 9;
-  opacity: 0;
+  opacity: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .scene7-grey-logo {
-  width: 50px;
-  height: 50px;
+  width: 75px;
+  height: 75px;
   object-fit: contain;
   opacity: 1;
   position: relative;
@@ -1884,11 +1885,11 @@ body.bg-active {
   width: 595px;
   height: 595px;
   border-radius: 50%;
-  background-image: url('./assets/image07.png');
+  background-image: url('./assets/image08.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: 50%;
+  left: 38%;
   transform: translate(-50%, -50%);
   z-index: 5;
   opacity: 1;
@@ -1904,20 +1905,318 @@ body.bg-active {
   pointer-events: none;
 }
 
+.scene7-subcompany-bg {
+  position: absolute;
+  bottom: 73px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: auto;
+  opacity: 0;
+  z-index: 5;
+  object-fit: contain;
+}
+
+.scene7-subcompany-logos {
+  position: absolute;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 6;
+  opacity: 0;
+}
+
+.scene7-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.scene7-logo-separator {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.scene7-right-arrows {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  z-index: 6;
+  opacity: 0;
+}
+
+.scene7-convention-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  z-index: 6;
+  opacity: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.scene7-red-circle.show-convention .scene7-convention-content {
+  pointer-events: auto;
+}
+
+.scene7-red-circle.show-convention .scene7-convention-arrows,
+.scene7-red-circle.show-convention .scene7-convention-arrows button {
+  pointer-events: auto;
+}
+
+.scene7-ssilp-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  z-index: 6;
+  opacity: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.scene7-red-circle.show-ssilp .scene7-ssilp-content {
+  pointer-events: auto;
+}
+
+.scene7-red-circle.show-ssilp .scene7-ssilp-arrows,
+.scene7-red-circle.show-ssilp .scene7-ssilp-arrows button {
+  pointer-events: auto;
+}
+
+.scene7-convention-text {
+  width: 350px;
+}
+
+.scene7-convention-arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.scene7-ssilp-arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.scene7-arrow-back img {
+  transform: scaleX(-1);
+}
+
+.scene7-arrow-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.scene7-arrow-btn.scene7-arrow-left {
+  margin-right: 30px;
+}
+
+.scene7-arrow-btn:hover {
+  transform: scale(1.1);
+}
+
+.scene7-arrow-btn img {
+  height: 8px;
+  width: auto;
+  object-fit: contain;
+}
+
 .scene7-heading {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #fff;
   margin-bottom: 10px;
-  letter-spacing: 1px;
+  letter-spacing: -0.05em;
+  white-space: normal;
+  word-wrap: break-word;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .scene7-desc {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   line-height: 1.4;
   color: #fff;
+  white-space: normal;
+  word-wrap: break-word;
+  letter-spacing: -0.05em;
+}
+
+.scene7-small-red-circle {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-image: url('./assets/circle.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.scene7-grey-outline-circle {
+  position: fixed;
+  top: -100px;
+  left: calc(80% - 100px);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #9c9fa1;
+  background: transparent;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.scene7-top-left-circle {
+  position: fixed;
+  top: 220px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-image: url('./assets/circle.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+  transition: border-radius 0.3s ease;
+}
+
+/* Arrow state classes for Scene 7 content swap */
+.scene7-red-circle.show-convention .scene7-subcompany-bg,
+.scene7-red-circle.show-convention .scene7-subcompany-logos,
+.scene7-red-circle.show-convention .scene7-right-arrows {
+  display: none !important;
+}
+
+.scene7-red-circle.show-convention .scene7-convention-arrows {
+  display: flex !important;
+  pointer-events: auto;
+}
+
+.scene7-red-circle.show-convention .scene7-arrow-forward {
+  display: none !important;
+}
+
+.scene7-red-circle.show-ssilp .scene7-subcompany-bg,
+.scene7-red-circle.show-ssilp .scene7-subcompany-logos,
+.scene7-red-circle.show-ssilp .scene7-right-arrows {
+  display: none !important;
+}
+
+.scene7-red-circle.show-ssilp .scene7-ssilp-arrows {
+  display: flex !important;
+  pointer-events: auto;
+}
+
+.scene7-red-circle.show-ssilp .scene7-ssilp-arrows .scene7-arrow-forward {
+  display: none !important;
+}
+
+.scene7-red-circle.show-convention .scene7-text {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scene7-red-circle.show-ssilp .scene7-text {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scene7-red-circle.show-convention .scene7-heading,
+.scene7-red-circle.show-convention .scene7-desc {
+  opacity: 1;
+}
+
+.scene7-red-circle.show-ssilp .scene7-heading,
+.scene7-red-circle.show-ssilp .scene7-desc {
+  opacity: 1;
+}
+
+.scene7-grey-circle.show-convention .scene7-grey-logo {
+  display: none;
+  opacity: 0;
+}
+
+.scene7-grey-circle.show-ssilp .scene7-grey-logo {
+  display: none;
+  opacity: 0;
+}
+
+.scene7-grey-circle.show-convention::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75px;
+  height: 75px;
+  background: url('./assets/logo-TOYJOYTALES.png') no-repeat center;
+  background-size: contain;
+  z-index: 10;
+  opacity: 1;
+}
+
+.scene7-grey-circle.show-ssilp::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: url('./assets/logo-LITTLEWINGS.png') no-repeat center;
+  background-size: contain;
+  z-index: 10;
+  opacity: 1;
+}
+
+.scene7-new-text.show-convention {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.scene7-new-text.show-convention .scene7-group-1 {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.scene7-new-text.show-convention .scene7-group-2 {
+  display: block !important;
+  opacity: 1 !important;
 }
 
 /* Scene 8 - Image left, Red circle right */

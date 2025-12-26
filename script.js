@@ -1123,7 +1123,7 @@ t6.to(
   scene6SmallRedCircle1,
   {
     y: 120,
-    duration: 2.0,
+    duration: 1,
     ease: "power2.out",
   },
   1.0
@@ -1152,14 +1152,14 @@ t6.to(
   0.8
 );
 
-// Scene 7 Timeline - Red circle left, Image right
+// Scene 7 Timeline - Red circle left, Image right (exact duplicate of Scene 5)
 let t7 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene7",
-    start: "top bottom",
-    end: "+=800",
-    scrub: 1.5,
-    pin: false,
+    start: "top 50%",
+    end: "+=1200",
+    scrub: 1,
+    pin: true,
     markers: false,
   },
 });
@@ -1168,18 +1168,174 @@ const scene7ImageCircle = document.querySelector(".scene7-image-circle");
 const scene7RedCircle = document.querySelector(".scene7-red-circle");
 const scene7GreyCircle = document.querySelector(".scene7-grey-circle");
 const scene7Text = document.querySelector(".scene7-text");
+const scene7NewText = document.querySelector(".scene7-new-text");
+const scene7Group1 = document.querySelector(".scene7-group-1");
+const scene7Group2 = document.querySelector(".scene7-group-2");
+const scene7SmallRedCircle = document.querySelector(".scene7-small-red-circle");
+const scene7TopLeftCircle = document.querySelector(".scene7-top-left-circle");
+const scene7GreyOutlineCircle = document.querySelector(
+  ".scene7-grey-outline-circle"
+);
 
-t7.to(scene7RedCircle, { x: -150, duration: 1.25, ease: "power2.out" }, 0);
-t7.to(scene7ImageCircle, { x: 150, duration: 1.25, ease: "power2.out" }, 0);
+gsap.set(scene7SmallRedCircle, { y: -800, x: -550 });
+gsap.set(scene7TopLeftCircle, { left: "400px" });
+gsap.set(scene7GreyOutlineCircle, { top: "-100px", opacity: 0 });
+
+// Set initial positions: red circle and image start below viewport
+gsap.set(scene7ImageCircle, { y: 500 });
+gsap.set(scene7RedCircle, { y: 215 });
 t7.to(
-  scene7Text,
-  { opacity: 1, y: -60, duration: 0.6, ease: "power2.out" },
-  0.1
+  scene7ImageCircle,
+  {
+    y: 75,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0
 );
 t7.to(
-  scene7GreyCircle,
-  { opacity: 1, y: -300, duration: 0.2, ease: "power2.out" },
-  0.25
+  scene7RedCircle,
+  {
+    y: -225,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  "<"
+);
+
+// Top left circle slides in from left (0-0.25)
+t7.fromTo(
+  scene7TopLeftCircle,
+  { left: "400px", opacity: 0 },
+  {
+    opacity: 1,
+    left: "220px",
+    duration: 1,
+    ease: "power2.out",
+    onComplete: () => {
+      // Replace circle with image (keep same 75px size)
+      scene7TopLeftCircle.style.backgroundImage =
+        "url('./assets/shaktismallimage.png')";
+      scene7TopLeftCircle.style.borderRadius = "0";
+    },
+  },
+  0
+);
+
+// After circle reaches final position and becomes image, slide it left and down
+t7.to(
+  scene7TopLeftCircle,
+  {
+    top: "calc(100vh - 450px)",
+    duration: 0.4,
+    ease: "power2.out",
+    opacity: 1,
+  },
+  1.2
+);
+
+// Grey outline circle animates from top to bottom
+t7.to(
+  scene7GreyOutlineCircle,
+  {
+    opacity: 1,
+    top: "calc(100vh - 500px)",
+    duration: 1.2,
+    ease: "power2.out",
+  },
+  0
+);
+
+// Small red circle drops from top left (0-0.3)
+t7.fromTo(
+  scene7SmallRedCircle,
+  {
+    opacity: 0,
+    y: -800,
+    x: -550,
+  },
+  {
+    opacity: 1,
+    y: -550,
+    duration: 0.3,
+    ease: "power2.out",
+  },
+  0
+);
+
+// Step 4: After circles stop, image moves right (red circle stays in place)
+// Step 3: Text groups animate in while circles rise
+t7.fromTo(
+  scene7Group1,
+  { opacity: 0, y: 400 },
+  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  0.2
+);
+
+t7.fromTo(
+  scene7Group2,
+  { opacity: 0, y: 400 },
+  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  0.4
+);
+
+t7.to(
+  scene7ImageCircle,
+  {
+    x: 350,
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  0.4
+);
+
+t7.to(
+  scene7Text,
+  {
+    opacity: 1,
+    y: -60,
+    duration: 0.3,
+    ease: "power2.out",
+  },
+  0.1
+);
+
+// Fade in subcompany background when text animation stops
+const scene7SubcompanyBg = document.querySelector(".scene7-subcompany-bg");
+const scene7SubcompanyLogos = document.querySelector(
+  ".scene7-subcompany-logos"
+);
+const scene7RightArrows = document.querySelector(".scene7-right-arrows");
+t7.to(
+  scene7SubcompanyBg,
+  {
+    opacity: 1,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0.4
+);
+
+// Fade in logos at the same time
+t7.to(
+  scene7SubcompanyLogos,
+  {
+    opacity: 1,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0.4
+);
+
+// Fade in arrows at the same time
+t7.to(
+  scene7RightArrows,
+  {
+    opacity: 1,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0.4
 );
 
 // Scene 8 Timeline - Image left, Red circle right
@@ -1705,5 +1861,201 @@ if (scene6Arrow3) {
     if (scene6RedText) {
       scene6RedText.classList.add("showing-nsk");
     }
+  });
+}
+
+// Scene 7 Arrow Click Handlers
+const scene7LeftArrowBtn = document.getElementById("scene7-left-arrow");
+const scene7RightArrowBtn = document.getElementById("scene7-right-arrow");
+const scene7RedCircleContainer = document.querySelector(".scene7-red-circle");
+const scene7GreyCircleContainer = document.querySelector(".scene7-grey-circle");
+const scene7NewTextContainer = document.querySelector(".scene7-new-text");
+const scene7CirclesContainer = document.querySelector(".scene7-circles-container");
+
+let isShowingToyJoy = false;
+let isShowingLittleWings = false;
+
+// Store original content for group1 and group2 (already declared in timeline above)
+const originalScene7Group1HTML = scene7Group1.innerHTML;
+const originalScene7Group2HTML = scene7Group2.innerHTML;
+
+function updateScene7ToToyJoy() {
+  // Update text content
+  const heading = scene7RedCircleContainer.querySelector(".scene7-heading");
+  const desc = scene7RedCircleContainer.querySelector(".scene7-desc");
+
+  heading.innerHTML = "TOY JOY TALES";
+  desc.innerHTML = "An exciting new indoor play area where every corner sparks imagination and every moment is an adventure. From thrilling rides to creative zones, we're building a space that brings joy, laughter and unforgettable memories for kids and families.";
+
+  // Update main text
+  const group1 = scene7NewTextContainer.querySelector(".scene7-group-1");
+  const group2 = scene7NewTextContainer.querySelector(".scene7-group-2");
+
+  // Store original content
+  if (!group1.dataset.original) {
+    group1.dataset.original = group1.innerHTML;
+  }
+  if (!group2.dataset.original) {
+    group2.dataset.original = group2.innerHTML;
+  }
+
+  group1.innerHTML = '<div class="text-red">Endless <br>journey of</div>';
+  group2.innerHTML = '<div class="text-blue">joy and <br>delight.</div>';
+
+  group1.style.opacity = "1";
+  group2.style.opacity = "1";
+
+  // Add show-convention class to trigger CSS
+  scene7RedCircleContainer.classList.add("show-convention");
+  scene7GreyCircleContainer.classList.add("show-convention");
+  scene7NewTextContainer.classList.add("show-convention");
+  scene7CirclesContainer.classList.add("show-convention");
+
+  // Show convention content
+  const conventionContent = document.querySelector(".scene7-convention-content");
+
+  if (conventionContent) {
+    gsap.to(conventionContent, { opacity: 1, duration: 0.3 });
+  }
+
+  // Change image to image07.png
+  const imageCircle = document.querySelector(".scene7-image-circle");
+  if (imageCircle) {
+    imageCircle.style.backgroundImage = "url(./assets/image07.png)";
+    imageCircle.style.width = "485px";
+    imageCircle.style.height = "485px";
+    imageCircle.style.top = "calc(50% - 300px)";
+  }
+
+  isShowingToyJoy = true;
+}
+
+function updateScene7ToDefault() {
+  // Reset text content
+  const heading = scene7RedCircleContainer.querySelector(".scene7-heading");
+  const desc = scene7RedCircleContainer.querySelector(".scene7-desc");
+
+  heading.textContent = "Durgesh Child Care Initiative Pvt. Ltd.";
+  desc.innerHTML = "A space dedicated to nurturing young minds, fostering creativity, and supporting children in their journey of growth and discovery. We believe that every child deserves a safe, joyful, and enriching environment where they can thrive, explore, and reach their fullest potential through holistic learning methods.";
+
+  // Reset main text
+  const group1 = scene7NewTextContainer.querySelector(".scene7-group-1");
+  const group2 = scene7NewTextContainer.querySelector(".scene7-group-2");
+
+  // Restore original content
+  group1.innerHTML = originalScene7Group1HTML;
+  group2.innerHTML = originalScene7Group2HTML;
+
+  group1.style.opacity = "1";
+  group2.style.opacity = "1";
+
+  // Change image back to image08.png
+  const imageCircle = document.querySelector(".scene7-image-circle");
+  if (imageCircle) {
+    imageCircle.style.backgroundImage = "url(./assets/image08.png)";
+    imageCircle.style.width = "595px";
+    imageCircle.style.height = "595px";
+  }
+
+  // Remove show-convention class
+  scene7RedCircleContainer.classList.remove("show-convention");
+  scene7GreyCircleContainer.classList.remove("show-convention");
+  scene7NewTextContainer.classList.remove("show-convention");
+  scene7CirclesContainer.classList.remove("show-convention");
+
+  // Remove show-ssilp class
+  scene7RedCircleContainer.classList.remove("show-ssilp");
+  scene7GreyCircleContainer.classList.remove("show-ssilp");
+  scene7NewTextContainer.classList.remove("show-ssilp");
+  scene7CirclesContainer.classList.remove("show-ssilp");
+
+  // Hide both convention and SSILP content
+  const conventionContent = document.querySelector(".scene7-convention-content");
+  const ssilpContent = document.querySelector(".scene7-ssilp-content");
+
+  if (conventionContent) {
+    gsap.to(conventionContent, { opacity: 0, duration: 0.3 });
+  }
+  if (ssilpContent) {
+    gsap.to(ssilpContent, { opacity: 0, duration: 0.3 });
+  }
+
+  isShowingToyJoy = false;
+  isShowingLittleWings = false;
+}
+
+function updateScene7ToLittleWings() {
+  // Update text content
+  const heading = scene7RedCircleContainer.querySelector(".scene7-heading");
+  const desc = scene7RedCircleContainer.querySelector(".scene7-desc");
+
+  heading.innerHTML = "LITTLE WINGS";
+  desc.innerHTML = "A nurturing learning center focused on early childhood development through innovative, play-based education. We create meaningful learning experiences that help children discover their unique strengths and build a strong foundation for lifelong success.";
+
+  // Update main text
+  const group1 = scene7NewTextContainer.querySelector(".scene7-group-1");
+  const group2 = scene7NewTextContainer.querySelector(".scene7-group-2");
+
+  group1.innerHTML = '<div class="text-red">Shaping<br> minds for</div>';
+  group2.innerHTML = '<div class="text-blue">a brighter <br>future.</div>';
+
+  // Add show-ssilp class to trigger CSS
+  scene7RedCircleContainer.classList.add("show-ssilp");
+  scene7GreyCircleContainer.classList.add("show-ssilp");
+  scene7NewTextContainer.classList.add("show-ssilp");
+  scene7CirclesContainer.classList.add("show-ssilp");
+
+  group1.style.opacity = "1";
+  group2.style.opacity = "1";
+
+  // Show SSILP content
+  const ssilpContent = document.querySelector(".scene7-ssilp-content");
+  if (ssilpContent) {
+    gsap.to(ssilpContent, { opacity: 1, duration: 0.3 });
+  }
+
+  // Change image to littlewings-microimage.png
+  const imageCircle = document.querySelector(".scene7-image-circle");
+  if (imageCircle) {
+    imageCircle.style.backgroundImage = "url(./assets/littlewings-microimage.png)";
+    imageCircle.style.width = "485px";
+    imageCircle.style.height = "485px";
+    imageCircle.style.top = "calc(50% - 300px)";
+  }
+
+  isShowingLittleWings = true;
+}
+
+scene7LeftArrowBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (isShowingLittleWings) {
+    updateScene7ToDefault();
+  } else if (!isShowingLittleWings && !isShowingToyJoy) {
+    updateScene7ToToyJoy();
+  }
+});
+
+scene7RightArrowBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (!isShowingToyJoy && !isShowingLittleWings) {
+    updateScene7ToLittleWings();
+  } else if (isShowingToyJoy) {
+    updateScene7ToDefault();
+  }
+});
+
+const scene7BackArrowBtn = document.getElementById("scene7-back-arrow");
+if (scene7BackArrowBtn) {
+  scene7BackArrowBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    updateScene7ToDefault();
+  });
+}
+
+const scene7SsilpBackArrowBtn = document.getElementById("scene7-ssilp-back-arrow");
+if (scene7SsilpBackArrowBtn) {
+  scene7SsilpBackArrowBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    updateScene7ToDefault();
   });
 }
