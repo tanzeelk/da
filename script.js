@@ -2229,3 +2229,20 @@ if (greyCircle4) {
     }
   });
 }
+
+// Menu: Group Companies link - Scroll to scene3
+const groupCompaniesLink = document.getElementById("groupCompaniesLink");
+if (groupCompaniesLink) {
+  groupCompaniesLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    const scene3 = document.querySelector(".scene3");
+    if (scene3) {
+      scene3.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    // Close the menu after clicking
+    const expandedMenu = document.getElementById("expandedMenu");
+    if (expandedMenu) {
+      expandedMenu.classList.remove("show");
+    }
+  });
+}
