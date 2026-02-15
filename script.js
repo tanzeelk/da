@@ -1,6 +1,23 @@
 const heroText = document.querySelector(".hero-text");
 const body = document.body;
 const circleBack = document.querySelector(".circle-back");
+const redCircleOverlay = document.querySelector(".red-circle-overlay");
+function dockOverlayToCircle(targetEl, overlayEl) {
+  const r = targetEl.getBoundingClientRect();
+
+  // overlay is fixed with left:50%, top:56%, transform translate(-50%,-50%)
+  // so x/y here are offsets from that anchored center point
+  const overlayW = overlayEl.offsetWidth || 600;
+
+  const targetCenterX = r.left + r.width / 2;
+  const targetCenterY = r.top + r.height / 2;
+
+  return {
+    x: targetCenterX - window.innerWidth / 2,
+    y: targetCenterY - window.innerHeight / 2,
+    scale: r.width / overlayW,
+  };
+}
 
 // Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -16,8 +33,6 @@ ScrollTrigger.create({
   start: "top top",
   endTrigger: "body",
   end: "bottom bottom",
-  onEnter: () => fixedNav.classList.add("visible"),
-  onLeaveBack: () => fixedNav.classList.remove("visible"),
   markers: false,
 });
 
@@ -28,9 +43,11 @@ menuToggle.addEventListener("click", (e) => {
 
   if (isMenuOpen) {
     expandedMenu.classList.add("active");
+    fixedNav.classList.add("visible");
     menuToggle.style.display = "none";
   } else {
     expandedMenu.classList.remove("active");
+    fixedNav.classList.remove("visible");
     menuToggle.style.display = "block";
   }
 });
@@ -50,6 +67,7 @@ document.querySelectorAll(".menu-item").forEach((item) => {
 
     isMenuOpen = false;
     expandedMenu.classList.remove("active");
+    fixedNav.classList.remove("visible");
     menuToggle.style.display = "block";
   });
 });
@@ -117,23 +135,26 @@ let tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene1",
     start: "top top",
-    end: "+=2400", // longer scroll to allow rotation + expansion
+    end: "+=1800", // extended to include red circle moving down
     scrub: true,
     pin: true,
     markers: false,
   },
 });
 
+
+
 let t2 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene2",
     start: "top top",
-    end: "+=1500", // extended to allow image expansion
+    end: "+=500", // reduced for faster image reveal
     scrub: true,
     pin: true,
     markers: false,
   },
 });
+
 
 const topBar = document.querySelector(".top-bar");
 
@@ -186,18 +207,6 @@ const circle = document.querySelector(".circle");
 circle.appendChild(circleLeft);
 circle.appendChild(circleRight);
 circle.appendChild(circleCenter);
-
-// Scene 4 Timeline - Red circle and image rise up, then image slides left
-let t4 = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".scene4",
-    start: "top 60%",
-    end: "+=1000",
-    scrub: 1,
-    pin: true,
-    markers: false,
-  },
-});
 
 tl.to(
   ".circle-back",
@@ -304,16 +313,7 @@ tl.to(
 );
 
 tl.to(
-  circleCenter,
-  {
-    opacity: 0.5,
-    duration: 0.1,
-  },
-  "<"
-);
-
-tl.to(
-  circleBackBg,
+  redCircleOverlay,
   {
     opacity: 1,
     duration: 0.1,
@@ -343,6 +343,18 @@ tl.to(
   "<"
 );
 
+// Image fades in slowly with multiply blend while circles move out
+const circleBackBgEl = document.querySelector(".circle-back-bg");
+tl.to(
+  circleBackBgEl,
+  {
+    opacity: 1,
+    duration: 2.6,
+    ease: "power2.out",
+  },
+  "<"
+);
+
 // First line of hero text (red) - slides up from bottom at same time as circles move
 tl.fromTo(
   heroText,
@@ -368,21 +380,36 @@ tl.fromTo(
   "<"
 );
 
-// Step 3: After text animations stop, circleCenter moves down and grows
-tl.to(
-  circleCenter,
-  { y: 750, opacity: 1, scale: 15, duration: 1.2, ease: "power2.out" },
-  "+=0.5"
-);
+// Red circle moves down after side circles finish moving out
+// tl.to(
+//   redCircleOverlay,
+//   { y: 750, scale: 1.3, duration: 3, ease: "none" },
+//   ">-0.5"
+// );
 
-// Lock circleCenter in place after animation completes
-tl.to(circleCenter, {
-  duration: 1,
-  onComplete: function () {
-    // Remove from ScrollTrigger timeline so it doesn't move with scroll
-    gsap.set(circleCenter, { position: "fixed", top: "53%", left: "48%" });
-  },
+
+// tl.to(
+//   redCircleOverlay,
+//   { y: 1000, scale: 0.5, duration: 1, ease: "none" },
+//  ">"
+// );
+
+tl.to(redCircleOverlay, {
+  y: 750,
+  scale: 1.3,
+  duration: 3,
+  ease: "none"
 });
+
+tl.to(redCircleOverlay, {
+  y: 1200,
+  scale: 0.5,
+  duration: 2,
+  opacity:0,
+  ease: "none"
+});
+
+
 
 const circleBackScene2Top = document.querySelector(".scene2 .circle-back.top");
 const circleBackScene2 = document.querySelector(".scene2 .circle-back.back");
@@ -394,6 +421,20 @@ circleBackScene2.appendChild(circleBackScene2Bg);
 
 const foundingText = document.querySelector(".founding-text");
 const growthText = document.querySelector(".growth-text");
+// t2.to(
+//   redCircleOverlay,
+//   { y: 1250, scale: -1.3, duration: 2, ease: "power2.out" },
+//   ">-0.5"
+// );
+
+// Red circle continues descending through scene 2 and shrinks to hide behind scene 2 circle
+// t2.to(
+//   redCircleOverlay,
+//   { y: 1200, scale: 0.5, opacity: 0.3, duration: 2, ease: "none" },
+//  "0"
+// );
+
+
 
 // Fade in hero text while circles leave
 t2.fromTo(
@@ -403,12 +444,12 @@ t2.fromTo(
   "<-1.5"
 );
 
-// Everything starts scrolling up earlier
+// Scene 2 circle moves down
 t2.to(
   circleBackScene2Top,
   {
-    y: "90vh",
-    duration: 2.2,
+    y: "82vh",
+    duration: 2.5,
     ease: "power2.inOut",
   },
   "<"
@@ -450,29 +491,31 @@ const bgCircles = document.querySelectorAll(".bg-circle");
 let t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
-    start: "top 90px",
-    end: "bottom 80%",
-    scrub: 1.5,
-    pin: ".scene3",
+    start: "top+=170px top",
+    end: "+=1000", // extended for more time to animate circles and text
+    scrub: 1,
+    pin: true,
     pinSpacing: true,
+    anticipatePin: 1,
     markers: false,
   },
 });
 
 // -----------------------
-// Step 1: Fade in image + circle together
+// Elements are already visible, animation starts when pinned at top
 t3.fromTo(
   scene3Image,
-  { opacity: 0, width: "330px", height: "330px", borderRadius: "50%" },
-  { opacity: 1, ease: "power2.out" }
+  { opacity: 1, width: "330px", height: "330px", borderRadius: "50%" },
+  { opacity: 1, ease: "none" }
 );
 
 t3.fromTo(
   scene3RedCircle,
-  { opacity: 0, width: "300px", height: "300px" },
-  { opacity: 0.9, ease: "power2.out" },
+  { opacity: 1, width: "300px", height: "300px" },
+  { opacity: 1, ease: "none" },
   0
 );
+
 
 let expandTL = gsap.timeline();
 
@@ -493,6 +536,51 @@ expandTL.to(
   },
   0.1
 ); // starts at the same time as the image expansion
+
+// Timeline for background circles floating up - each with separate scroll trigger
+bgCircles.forEach((circle, i) => {
+  const shouldFloatAway = Math.random() < 0.5; // 50% chance to float away or stay
+  
+  if (shouldFloatAway) {
+    // Float away completely
+    const yDistance = gsap.utils.random(-1500, -2500);
+    const xDrift = gsap.utils.random(-200, 200);
+    
+    gsap.to(circle, {
+      y: yDistance,
+      x: xDrift,
+      opacity: 0,
+      rotation: gsap.utils.random(-180, 180),
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".grey-circles-section",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+        markers: false,
+      },
+    });
+  } else {
+    // Float up and stay behind grey circles
+    const yDistance = gsap.utils.random(-400, -700);
+    const xDrift = gsap.utils.random(-100, 100);
+    
+    gsap.to(circle, {
+      y: yDistance,
+      x: xDrift,
+      opacity: 0,
+      rotation: gsap.utils.random(-45, 45),
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".grey-circles-section",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+        markers: false,
+      },
+    });
+  }
+});
 
 t3.add(expandTL, ">0.5");
 
@@ -526,9 +614,11 @@ t3.fromTo(
 t3.fromTo(
   scene3RedCircleText,
   { opacity: 0, y: 200 },
-  { opacity: 1, y: -10, duration: 0.8, ease: "power2.inOut" },
+  { opacity: 1, y: -10, duration: 2, ease: "power3.out" },
   "<"
 );
+
+
 
 // Animate the 4 main grey circles from grey-circles-section
 const greyCircles = document.querySelectorAll(".grey-circle");
@@ -539,46 +629,35 @@ greyCircles.forEach((circle, index) => {
     circle,
     { y: 200, opacity: 0 },
     {
-      y: -120,
+      y: -150,
       opacity: 1,
-      duration: 0.6,
+      duration: 0.5,
       ease: "sine.out",
     },
-    `>-${0.5 - index * 0.1}` // Overlap animations: -0.5, -0.4, -0.3, -0.2
+    `>-${0.35 - index * 0.05}` // Overlap animations with faster timing
   );
 });
 
-// Timeline for background circles floating up
-let floatTL = gsap.timeline({
+// ============================================
+// SCENE 4 Timeline - Red circle and image rise up, then image slides left
+// ============================================
+
+let t4 = gsap.timeline({
   scrollTrigger: {
-    trigger: ".scene3",
-    start: "top 20%", // start earlier when scene3 enters viewport
-    end: "bottom 20%", // end later for longer animation duration
-    scrub: 2,
+    trigger: ".scene4",
+    start: "top top",
+    end: "+=1200",
+    scrub: 1,
+    pin: true,
+    pinSpacing: true,
+    anticipatePin: 1,
     markers: false,
   },
-});
-
-bgCircles.forEach((circle, i) => {
-  // 60% chance to float up and disappear, 40% chance to float up and stop
-  const floatAway = Math.random() < 0.4;
-
-  floatTL.fromTo(
-    circle,
-    { y: 0, opacity: 1 }, // start visible at their natural position
-    {
-      y: floatAway ? -400 : -50, // float up high and disappear OR float up a bit and stop
-      opacity: floatAway ? 0 : 1, // fade out if floating away, stay visible if stopping
-      ease: "power1.out",
-    },
-    i * 0.05 // slight stagger for more dynamic effect
-  );
 });
 
 const scene4ImageCircle = document.querySelector(".scene4-image-circle");
 const scene4RedCircle = document.querySelector(".scene4-red-circle");
 const scene4GreyCircle = document.querySelector(".scene4-grey-circle");
-// Falling circle from scene3 to scene4
 const scene4FallingCircle = document.querySelector(".scene4-falling-circle");
 const scene4SmallRedCircle = document.querySelector(".scene4-small-red-circle");
 const scene4SmallRedCircleRight = document.querySelector(
@@ -588,20 +667,32 @@ const scene4Tagline = document.querySelector(".scene4-tagline");
 const scene4NewText = document.querySelector(".scene4-new-text");
 const scene4Group1 = document.querySelector(".scene4-group-1");
 const scene4Group2 = document.querySelector(".scene4-group-2");
-
 const scene4RedText = document.querySelector(".scene4-red-text");
 
 // Set initial positions: red circle and image start below viewport
+gsap.set(scene4GreyCircle, { opacity: 1, y: 0 });
 gsap.set([scene4RedCircle, scene4ImageCircle], { y: 500 });
-gsap.set(scene4RedCircle, { y: 200 });
-gsap.set(scene4SmallRedCircle, { y: -500 });
-gsap.set(scene4SmallRedCircleRight, { x: 0 });
+gsap.set(scene4RedCircle, { y: 235 });
+gsap.set(scene4SmallRedCircle, { x:-150 });
+gsap.set(scene4SmallRedCircleRight, { x: 0, y: 400 });
+
+// Grey circle fades in as red circle rises
+t4.to(
+  scene4GreyCircle,
+  {
+    opacity: 1,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0
+);
+
 
 // Step 1: Red circle and image rise up together (0-0.4)
 t4.to(
   scene4ImageCircle,
   {
-    y: -50,
+    y: 390,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -610,7 +701,7 @@ t4.to(
 t4.to(
   scene4RedCircle,
   {
-    y: -350,
+    y: 88,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -622,11 +713,11 @@ t4.fromTo(
   scene4SmallRedCircle,
   {
     opacity: 0,
-    y: -500,
+    y: 0,
   },
   {
     opacity: 1,
-    y: -250,
+    y: 10,
     duration: 0.3,
     ease: "power2.out",
   },
@@ -642,8 +733,21 @@ t4.fromTo(
   },
   {
     opacity: 1,
-    x: -250,
-    duration: 0.3,
+    x: -300,
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  0
+);
+// Step 4: Red circle text appears when red circle stops (0.4-0.7)
+
+  t4.fromTo(
+    scene4RedText,
+  { opacity: 0, y: 500 },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
     ease: "power2.out",
   },
   0
@@ -652,40 +756,30 @@ t4.fromTo(
 // Step 2: Text groups animate in while circles rise (0-0.5)
 t4.fromTo(
   scene4Group1,
-  { opacity: 0, y: 200 },
-  { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
-  0.1
+  { opacity: 0, y: 300, x: -75 },
+  { opacity: 1, y: -20, duration: 0.5, ease: "power2.out" },
+  0
 );
 
 t4.fromTo(
   scene4Group2,
-  { opacity: 0, y: 200 },
-  { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
-  0.2
+  { opacity: 0, y: 300 , x: -75 },
+  { opacity: 1, y: -10, duration: 0.5, ease: "power2.out" },
+  0.1
 );
 
 // Step 3: After red circle stops, image slides left (0.4-0.7)
 t4.to(
   scene4ImageCircle,
   {
-    x: -300,
+    x: -350,
     duration: 0.3,
     ease: "power2.out",
   },
-  0.4
+  0.2
 );
 
-// Step 4: Red circle text appears when red circle stops (0.4-0.7)
-t4.to(
-  scene4RedText,
-  {
-    opacity: 1,
-    y: 0,
-    duration: 0.3,
-    ease: "power2.out",
-  },
-  0.4
-);
+
 
 t4.to(
   scene4Tagline,
@@ -716,7 +810,7 @@ t4.to(
 let t5 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene5",
-    start: "top 50%",
+    start: "top 55%",
     end: "+=1200",
     scrub: 1,
     pin: true,
@@ -747,7 +841,7 @@ gsap.set(scene5RedCircle, { y: 215 });
 t5.to(
   scene5ImageCircle,
   {
-    y: 75,
+    y: 65,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -756,7 +850,7 @@ t5.to(
 t5.to(
   scene5RedCircle,
   {
-    y: -225,
+    y: -230,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -828,14 +922,14 @@ t5.fromTo(
 t5.fromTo(
   scene5Group1,
   { opacity: 0, y: 400 },
-  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  { opacity: 1, y: 50, duration: 0.8, ease: "power2.out" },
   0.2
 );
 
 t5.fromTo(
   scene5Group2,
   { opacity: 0, y: 400 },
-  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  { opacity: 1, y: 50, duration: 0.8, ease: "power2.out" },
   0.4
 );
 
@@ -1152,6 +1246,8 @@ t6.to(
   0.8
 );
 
+/* TEMPORARILY COMMENTED OUT - SCENE 7
+
 // Scene 7 Timeline - Red circle left, Image right (exact duplicate of Scene 5)
 let t7 = gsap.timeline({
   scrollTrigger: {
@@ -1367,7 +1463,7 @@ t8.to(
   { opacity: 1, y: -300, duration: 0.2, ease: "power2.out" },
   0.25
 );
-
+*/
 // Scene 5 Arrow Click Handlers
 const leftArrowBtn = document.getElementById("scene5-left-arrow");
 const rightArrowBtn = document.getElementById("scene5-right-arrow");
@@ -1473,7 +1569,7 @@ function updateScene5ToDefault() {
   const heading = scene5RedCircleContainer.querySelector(".scene5-heading");
   const desc = scene5RedCircleContainer.querySelector(".scene5-desc");
 
-  heading.textContent = "DURGESH INFRASTRUCTURE PVT LTD";
+  heading.innerHTML = "DURGESH <br />INFRASTRUCTURE PVT LTD";
   desc.innerHTML =
     "Redefining urban living with innovative design,<br />luxury spaces and developments across<br />Ahmedabad and Mumbai's evolving skylines,<br />Durgesh Infrastructure Pvt. Ltd. is rapidly<br />gaining recognition in the real estate sector.";
 
@@ -1612,7 +1708,7 @@ function updateScene5ToSSILP() {
   const heading = scene5RedCircleContainer.querySelector(".scene5-heading");
   const desc = scene5RedCircleContainer.querySelector(".scene5-desc");
 
-  heading.innerHTML = "Shree Shakti Integrated Logistics Park";
+  heading.innerHTML = "SHREE SHAKTI INTEGRATED LOGISTICS PARK";
   desc.innerHTML =
     "Designed to support growing distribution needs, Shree Shakti Integrated Logistics Park is strategically located on the Ahmedabad–Rajkot National Highway to enable smooth and efficient operations. Its modern equipment, services, and facilities help minimise logistics overheads and address warehousing challenges.";
 
@@ -1622,6 +1718,7 @@ function updateScene5ToSSILP() {
 
   group1.innerHTML = '<div class="text-red">Paving<br>the way</div>';
   group2.innerHTML = '<div class="text-blue">to economic<br>growth</div>';
+  
 
   // Add show-ssilp class to trigger CSS
   scene5RedCircleContainer.classList.add("show-ssilp");
@@ -1642,9 +1739,9 @@ function updateScene5ToSSILP() {
   const imageCircle = document.querySelector(".scene5-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/SSILP.png)";
-    imageCircle.style.width = "485px";
-    imageCircle.style.height = "485px";
-    imageCircle.style.top = "calc(50% - 300px)";
+    imageCircle.style.width = "495px";
+    imageCircle.style.height = "495px";
+    imageCircle.style.top = "calc(50% - 295px)";
   }
 
   // Animate grey outline circle to top left with fade out/in
@@ -1710,6 +1807,29 @@ if (ssilpBackArrowBtn) {
     }
   });
 }
+
+// Logo click handlers - make logos clickable like arrows
+const scene5LogoSSILP = document.getElementById("scene5-logo-ssilp");
+if (scene5LogoSSILP) {
+  scene5LogoSSILP.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!isShowingSSILP && !isShowingConvention) {
+      updateScene5ToSSILP();
+    }
+  });
+}
+
+const scene5LogoConvention = document.getElementById("scene5-logo-convention");
+if (scene5LogoConvention) {
+  scene5LogoConvention.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!isShowingConvention && !isShowingSSILP) {
+      updateScene5ToConvention();
+    }
+  });
+}
+
+
 
 // Scene 6 Arrow Click Handlers - Simple like t5
 const scene6Arrow1 = document.getElementById("scene6-arrow-1");
@@ -1786,6 +1906,14 @@ if (scene6Arrow1) {
       scene6RedText.classList.add("showing-nsk");
     }
     
+    // Hide the navigation bar when showing sub-menu
+    if (fixedNav) {
+      gsap.to(fixedNav, { opacity: 0, duration: 0.3, pointerEvents: "none" });
+    }
+    if (expandedMenu) {
+      expandedMenu.classList.remove("active");
+    }
+    
     isShowingNSK = true;
   });
 }
@@ -1807,7 +1935,7 @@ if (scene6BackArrowBtn) {
     
     const scene6RedDesc = document.querySelector(".scene6-red-desc");
     if (scene6RedDesc) {
-      scene6RedDesc.innerHTML = "Shree Shakti Seva Kendra, Ambaji has emerged as a <br /> transformative force, helping women claim fundamental  <br /> right to dignity and autonomy in the tribal and  <br /> underprivileged communities. Collaboration and  <br /> compassion have helped women work towards their <br />  empowerment, fostering lasting change.";
+      scene6RedDesc.innerHTML = "Shree Shakti Seva Kendra, Ambaji has emerged as a <br />transformative force, helping women claim their <br />fundamental right to dignity and autonomy in the tribal <br />and underprivileged communities. Collaboration and <br />compassion have helped women work towards their <br />empowerment, fostering lasting change.";
     }
     
     const scene6Group1 = document.querySelector(".scene6-group-1 .text-red");
@@ -1852,6 +1980,14 @@ if (scene6BackArrowBtn) {
       scene6RedText.classList.remove("showing-nsk");
     }
     
+    // Show the navigation bar when returning to default state
+    if (fixedNav) {
+      gsap.to(fixedNav, { opacity: 1, duration: 0.3, pointerEvents: "auto" });
+    }
+    if (expandedMenu) {
+      expandedMenu.classList.remove("active");
+    }
+    
     isShowingNSK = false;
   });
 }
@@ -1868,7 +2004,7 @@ if (scene6Arrow2) {
     // Update red circle heading
     const scene6RedHeading = document.querySelector(".scene6-red-heading");
     if (scene6RedHeading) {
-      scene6RedHeading.innerHTML = "Shree Shakti <br /> School of Innovation";
+      scene6RedHeading.innerHTML = "SHREE SHAKTI <br /> SCHOOL OF INNOVATION";
     }
     
     // Update red circle description
@@ -1921,6 +2057,14 @@ if (scene6Arrow2) {
     if (scene6RedText) {
       scene6RedText.classList.add("showing-nsk");
     }
+    
+    // Hide the navigation bar when showing sub-menu
+    if (fixedNav) {
+      gsap.to(fixedNav, { opacity: 0, duration: 0.3, pointerEvents: "none" });
+    }
+    if (expandedMenu) {
+      expandedMenu.classList.remove("active");
+    }
   });
 }
 
@@ -1936,7 +2080,7 @@ if (scene6Arrow3) {
     // Update red circle heading
     const scene6RedHeading = document.querySelector(".scene6-red-heading");
     if (scene6RedHeading) {
-      scene6RedHeading.innerHTML = "Chhatralaya";
+      scene6RedHeading.innerHTML = "CHHATRALAYA";
     }
     
     // Update red circle description
@@ -1989,9 +2133,51 @@ if (scene6Arrow3) {
     if (scene6RedText) {
       scene6RedText.classList.add("showing-nsk");
     }
+    
+    // Hide the navigation bar when showing sub-menu
+    if (fixedNav) {
+      gsap.to(fixedNav, { opacity: 0, duration: 0.3, pointerEvents: "none" });
+    }
+    if (expandedMenu) {
+      expandedMenu.classList.remove("active");
+    }
   });
 }
 
+// Logo click handlers - make scene 6 logos clickable like arrows
+const scene6LogoNSSK = document.getElementById("scene6-logo-nssk");
+if (scene6LogoNSSK) {
+  scene6LogoNSSK.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!isShowingNSK) {
+      // Trigger the same action as arrow 1
+      scene6Arrow1.click();
+    }
+  });
+}
+
+const scene6LogoSSSIOI = document.getElementById("scene6-logo-sssoi");
+if (scene6LogoSSSIOI) {
+  scene6LogoSSSIOI.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!isShowingNSK) {
+      // Trigger the same action as arrow 2
+      scene6Arrow2.click();
+    }
+  });
+}
+
+const scene6LogoChhatralaya = document.getElementById("scene6-logo-chhatralaya");
+if (scene6LogoChhatralaya) {
+  scene6LogoChhatralaya.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!isShowingNSK) {
+      // Trigger the same action as arrow 3
+      scene6Arrow3.click();
+    }
+  });
+}
+/*
 // Scene 7 Arrow Click Handlers
 const scene7LeftArrowBtn = document.getElementById("scene7-left-arrow");
 const scene7RightArrowBtn = document.getElementById("scene7-right-arrow");
@@ -2246,3 +2432,19 @@ if (groupCompaniesLink) {
     }
   });
 }
+
+// Menu: Home link - Scroll to top
+const homeLink = document.getElementById("homeLink");
+if (homeLink) {
+  homeLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Close the menu after clicking
+    const expandedMenu = document.getElementById("expandedMenu");
+    if (expandedMenu) {
+      expandedMenu.classList.remove("show");
+    }
+  });
+}
+
+END OF COMMENTED OUT CODE - SCENE 7 */
