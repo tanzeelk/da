@@ -25,6 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 // Fixed Navigation Bar - Show from Scene 1 onwards till the end
 const fixedNav = document.getElementById("fixedNav");
 const menuToggle = document.getElementById("menuToggle");
+const menuClose = document.getElementById("menuClose");
 const expandedMenu = document.getElementById("expandedMenu");
 let isMenuOpen = false;
 
@@ -39,17 +40,18 @@ ScrollTrigger.create({
 // Menu toggle functionality
 menuToggle.addEventListener("click", (e) => {
   e.preventDefault();
-  isMenuOpen = !isMenuOpen;
+  isMenuOpen = true;
+  expandedMenu.classList.add("active");
+  fixedNav.classList.add("visible");
+  menuToggle.style.display = "none";
+});
 
-  if (isMenuOpen) {
-    expandedMenu.classList.add("active");
-    fixedNav.classList.add("visible");
-    menuToggle.style.display = "none";
-  } else {
-    expandedMenu.classList.remove("active");
-    fixedNav.classList.remove("visible");
-    menuToggle.style.display = "block";
-  }
+// Close button functionality
+menuClose.addEventListener("click", () => {
+  isMenuOpen = false;
+  expandedMenu.classList.remove("active");
+  fixedNav.classList.remove("visible");
+  menuToggle.style.display = "block";
 });
 
 // Close menu when clicking on menu items
