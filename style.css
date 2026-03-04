@@ -494,7 +494,7 @@ body.bg-active {
 /* Red circle overlay with multiply blend mode */
 .red-circle-overlay {
   position: fixed;
-  top: 56%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: var(--circle-size);

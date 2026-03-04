@@ -399,7 +399,7 @@ tl.fromTo(
 tl.to(redCircleOverlay, {
   y: 550,
   scale: 1.3,
-  duration: 1,
+  duration: 1.5,
   ease: "none"
 });
 
