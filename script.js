@@ -397,17 +397,18 @@ tl.fromTo(
 // );
 
 tl.to(redCircleOverlay, {
-  y: 750,
+  y: 550,
   scale: 1.3,
-  duration: 3,
+  duration: 1,
   ease: "none"
 });
 
+// Keep red circle visible to bridge Scene 1 and Scene 2
 tl.to(redCircleOverlay, {
-  y: 1200,
-  scale: 0.5,
+  y: 550,
+  scale: 1.2,
   duration: 2,
-  opacity:0,
+  opacity: 1,
   ease: "none"
 });
 
