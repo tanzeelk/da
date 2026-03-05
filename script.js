@@ -1249,7 +1249,7 @@ t6.to(
   0.8
 );
 
-/* TEMPORARILY COMMENTED OUT - SCENE 7
+// TEMPORARILY COMMENTED OUT - SCENE 7
 
 // Scene 7 Timeline - Red circle left, Image right (exact duplicate of Scene 5)
 let t7 = gsap.timeline({
@@ -1466,7 +1466,7 @@ t8.to(
   { opacity: 1, y: -300, duration: 0.2, ease: "power2.out" },
   0.25
 );
-*/
+
 // Scene 5 Arrow Click Handlers
 const leftArrowBtn = document.getElementById("scene5-left-arrow");
 const rightArrowBtn = document.getElementById("scene5-right-arrow");
@@ -2180,7 +2180,7 @@ if (scene6LogoChhatralaya) {
     }
   });
 }
-/*
+
 // Scene 7 Arrow Click Handlers
 const scene7LeftArrowBtn = document.getElementById("scene7-left-arrow");
 const scene7RightArrowBtn = document.getElementById("scene7-right-arrow");
@@ -2450,4 +2450,4 @@ if (homeLink) {
   });
 }
 
-END OF COMMENTED OUT CODE - SCENE 7 */
+// END OF COMMENTED OUT CODE - SCENE 7 
