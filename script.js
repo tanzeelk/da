@@ -617,8 +617,19 @@ t3.fromTo(
 t3.fromTo(
   scene3RedCircleText,
   { opacity: 0, y: 200 },
-  { opacity: 1, y: -10, duration: 2, ease: "power3.out" },
+  { opacity: 1, y: 0, duration: 2, ease: "power3.out" },
   "<"
+);
+
+// Animate text left position to match circle movement
+t3.to(
+  scene3RedCircleText,
+  {
+    left: "calc(50vw - 100px)",
+    ease: "none",
+    duration: 1,
+  },
+  0.1
 );
 
 

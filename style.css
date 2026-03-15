@@ -732,17 +732,18 @@ body.bg-active {
 
 .scene3-red-circle-text {
   position: absolute;
-  bottom: -150px;
-  right: -132%;
-  width: 240px;
+  top: 410px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(200px, 20vw, 280px);
   text-align: center;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 17px;
+  font-size: clamp(14px, 2vw, 20px);
   line-height: 1.5;
   opacity: 0;
-  z-index: 60;
+  z-index: 61;
   pointer-events: none;
   letter-spacing: -0.05em;
 }
