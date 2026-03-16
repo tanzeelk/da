@@ -1593,31 +1593,20 @@ body.bg-active {
   width: 500px;
   height: 500px;
   border-radius: 50%;
+  background-image: url('./assets/circle.png');
+  background-size: cover;
+  background-position: center;
   position: absolute;
   left: 50%;
   transform: translate(-50%, calc(-50% - 40px));
   z-index: 10;
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   outline: none;
-}
-
-.scene6-red-circle::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-image: url('./assets/circle.png');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.9;
-  mix-blend-mode: multiply;
-  pointer-events: none;
+  mix-blend-mode: normal;
 }
 
 .scene6-red-text {
@@ -1630,7 +1619,6 @@ body.bg-active {
   top: 100px;
   left: 50%;
   transform: translateX(-50%) translateY(60px);
-  z-index: 1;
 }
 
 .scene6-red-text.showing-nsk {
@@ -1644,8 +1632,6 @@ body.bg-active {
   color: #fff;
   margin-bottom: 20px;
   letter-spacing: -0.05em;
-  position: relative;
-  z-index: 2;
 }
 
 .scene6-red-desc {
@@ -1654,8 +1640,6 @@ body.bg-active {
   font-size: 13px;
   line-height: 1.3;
   margin: 0;
-  position: relative;
-  z-index: 2;
 }
 
 .scene6-grey-circle {
@@ -2000,12 +1984,12 @@ body.bg-active {
 }
 
 .scene7-image-circle {
-  width: 595px;
-  height: 595px;
+  width: 605px;
+  height: 605px;
   border-radius: 50%;
   background-image: url('./assets/image08.png');
   background-size: cover;
-  background-position: center;
+  background-position: 60% center;
   position: absolute;
   left: 38%;
   transform: translate(-50%, -50%);
