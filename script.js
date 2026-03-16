@@ -706,7 +706,7 @@ t4.to(
 t4.to(
   scene4ImageCircle,
   {
-    y: 390,
+    y: 450,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -715,7 +715,7 @@ t4.to(
 t4.to(
   scene4RedCircle,
   {
-    y: 88,
+    y: 185,
     duration: 0.4,
     ease: "power2.out",
   },
