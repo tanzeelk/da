@@ -1007,6 +1007,8 @@ t5.to(
 );
 
 // Scene 6 Timeline - Image left, Red circle right
+let scene6IsExpanded = false; // Track if user clicked an arrow to view details
+
 let t6 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene6",
@@ -1015,6 +1017,26 @@ let t6 = gsap.timeline({
     scrub: 1,
     pin: true,
     markers: false,
+    onUpdate: (self) => {
+      // If scene is expanded (arrow was clicked), keep subcompany elements hidden
+      if (scene6IsExpanded) {
+        const scene6SubcompanyBg = document.querySelector(".scene6-subcompany-bg");
+        const scene6SubcompanyLogos = document.querySelector(".scene6-subcompany-logos");
+        const scene6RightArrows = document.querySelector(".scene6-right-arrows");
+        const scene6BackArrow = document.getElementById("scene6-back-arrow");
+        const scene6Text = document.querySelector(".scene6-red-text");
+
+        if (scene6SubcompanyBg) gsap.set(scene6SubcompanyBg, { opacity: 0 });
+        if (scene6SubcompanyLogos) gsap.set(scene6SubcompanyLogos, { opacity: 0 });
+        if (scene6RightArrows) gsap.set(scene6RightArrows, { opacity: 0 });
+
+        // Show back arrow at the same timing as the text (matches text opacity)
+        if (scene6BackArrow && scene6Text) {
+          const textOpacity = parseFloat(window.getComputedStyle(scene6Text).opacity);
+          gsap.set(scene6BackArrow, { opacity: textOpacity });
+        }
+      }
+    }
   },
 });
 
@@ -1534,10 +1556,6 @@ function updateScene5ToConvention() {
   const conventionContent = document.querySelector(
     ".scene5-convention-content"
   );
-  const rightArrows = document.querySelector(".scene5-right-arrows");
-  const subcompanyBg = document.querySelector(".scene5-subcompany-bg");
-  const subcompanyLogos = document.querySelector(".scene5-subcompany-logos");
-  const regularArrows = document.querySelector(".scene5-right-arrows");
 
   if (conventionContent) {
     gsap.to(conventionContent, { opacity: 1, duration: 0.3 });
@@ -1857,7 +1875,9 @@ let isShowingNSK = false;
 if (scene6Arrow1) {
   scene6Arrow1.addEventListener("click", (e) => {
     e.preventDefault();
-    
+
+    scene6IsExpanded = true; // Set state to prevent reset on scroll
+
     // Change the background image to NSK.png
     if (scene6ImageCircleElement) {
       scene6ImageCircleElement.style.backgroundImage = "url('./assets/NSK.png')";
@@ -1936,7 +1956,9 @@ if (scene6Arrow1) {
 if (scene6BackArrowBtn) {
   scene6BackArrowBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    
+
+    scene6IsExpanded = false; // Reset state to allow scroll animations
+
     // Restore original content
     if (scene6ImageCircleElement) {
       scene6ImageCircleElement.style.backgroundImage = "url('./assets/image06.png')";
@@ -2009,7 +2031,9 @@ if (scene6BackArrowBtn) {
 if (scene6Arrow2) {
   scene6Arrow2.addEventListener("click", (e) => {
     e.preventDefault();
-    
+
+    scene6IsExpanded = true; // Set state to prevent reset on scroll
+
     // Change the background image to SSSOI-microimage.png
     if (scene6ImageCircleElement) {
       scene6ImageCircleElement.style.backgroundImage = "url('./assets/SSSOI-microimage.png')";
@@ -2085,7 +2109,9 @@ if (scene6Arrow2) {
 if (scene6Arrow3) {
   scene6Arrow3.addEventListener("click", (e) => {
     e.preventDefault();
-    
+
+    scene6IsExpanded = true; // Set state to prevent reset on scroll
+
     // Change the background image to Chhatralaya-microimage.png
     if (scene6ImageCircleElement) {
       scene6ImageCircleElement.style.backgroundImage = "url('./assets/Chhatralaya-microimage.png')";
