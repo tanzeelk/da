@@ -1009,37 +1009,7 @@ t5.to(
 // Scene 6 Timeline - Image left, Red circle right
 let scene6IsExpanded = false; // Track if user clicked an arrow to view details
 
-let t6 = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".scene6",
-    start: "top 50%",
-    end: "+=1200",
-    scrub: 1,
-    pin: true,
-    markers: false,
-    onUpdate: (self) => {
-      // If scene is expanded (arrow was clicked), keep subcompany elements hidden
-      if (scene6IsExpanded) {
-        const scene6SubcompanyBg = document.querySelector(".scene6-subcompany-bg");
-        const scene6SubcompanyLogos = document.querySelector(".scene6-subcompany-logos");
-        const scene6RightArrows = document.querySelector(".scene6-right-arrows");
-        const scene6BackArrow = document.getElementById("scene6-back-arrow");
-        const scene6Text = document.querySelector(".scene6-red-text");
-
-        if (scene6SubcompanyBg) gsap.set(scene6SubcompanyBg, { opacity: 0 });
-        if (scene6SubcompanyLogos) gsap.set(scene6SubcompanyLogos, { opacity: 0 });
-        if (scene6RightArrows) gsap.set(scene6RightArrows, { opacity: 0 });
-
-        // Show back arrow at the same timing as the text (matches text opacity)
-        if (scene6BackArrow && scene6Text) {
-          const textOpacity = parseFloat(window.getComputedStyle(scene6Text).opacity);
-          gsap.set(scene6BackArrow, { opacity: textOpacity });
-        }
-      }
-    }
-  },
-});
-
+// Select all elements first
 const scene6ImageCircle = document.querySelector(".scene6-image-circle");
 const scene6RedCircle = document.querySelector(".scene6-red-circle");
 const scene6GreyCircle = document.querySelector(".scene6-grey-circle");
@@ -1079,6 +1049,44 @@ gsap.set(scene6ImageCircle, { y: 700, x: 150 });
 gsap.set(scene6RedCircle, { y: 415, x: 150 });
 gsap.set(scene6SmallRedCircle, { y: -310 });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
+
+// Set initial opacity for subcompany elements to hidden BEFORE timeline creation
+gsap.set(scene6SubcompanyBg, { opacity: 0 });
+gsap.set(scene6SubcompanyLogos, { opacity: 0 });
+gsap.set(scene6RightArrows, { opacity: 0 });
+
+// Now create the timeline with ScrollTrigger
+let t6 = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".scene6",
+    start: "top 50%",
+    end: "+=1200",
+    scrub: 1,
+    pin: true,
+    markers: false,
+    onUpdate: (self) => {
+      // If scene is expanded (arrow was clicked), keep subcompany elements hidden
+      if (scene6IsExpanded) {
+        const scene6SubcompanyBg = document.querySelector(".scene6-subcompany-bg");
+        const scene6SubcompanyLogos = document.querySelector(".scene6-subcompany-logos");
+        const scene6RightArrows = document.querySelector(".scene6-right-arrows");
+        const scene6BackArrow = document.getElementById("scene6-back-arrow");
+        const scene6Text = document.querySelector(".scene6-red-text");
+
+        // Always hide subcompany elements when expanded
+        if (scene6SubcompanyBg) scene6SubcompanyBg.style.opacity = '0';
+        if (scene6SubcompanyLogos) scene6SubcompanyLogos.style.opacity = '0';
+        if (scene6RightArrows) scene6RightArrows.style.opacity = '0';
+
+        // Show back arrow at the same timing as the text (matches text opacity)
+        if (scene6BackArrow && scene6Text) {
+          const textOpacity = parseFloat(window.getComputedStyle(scene6Text).opacity);
+          scene6BackArrow.style.opacity = textOpacity;
+        }
+      }
+    }
+  },
+});
 
 // Small red circle drops from top (0-0.3)
 
@@ -1206,8 +1214,11 @@ t6.to(
 );
 
 // Fade in subcompany background, logos, and arrows
-t6.to(
+t6.fromTo(
   scene6SubcompanyBg,
+  {
+    opacity: 0,
+  },
   {
     opacity: 1,
     duration: 0.4,
@@ -1217,8 +1228,11 @@ t6.to(
   0.4
 );
 
-t6.to(
+t6.fromTo(
   scene6SubcompanyLogos,
+  {
+    opacity: 0,
+  },
   {
     opacity: 1,
     duration: 0.4,
@@ -1227,8 +1241,11 @@ t6.to(
   0.4
 );
 
-t6.to(
+t6.fromTo(
   scene6RightArrows,
+  {
+    opacity: 0,
+  },
   {
     opacity: 1,
     duration: 0.4,
@@ -1989,7 +2006,7 @@ if (scene6BackArrowBtn) {
     const scene6SubcompanyBg = document.querySelector(".scene6-subcompany-bg");
     const scene6SubcompanyLogos = document.querySelector(".scene6-subcompany-logos");
     const scene6RightArrows = document.querySelector(".scene6-right-arrows");
-    
+
     if (scene6SubcompanyBg) {
       gsap.to(scene6SubcompanyBg, { opacity: 1, duration: 0.3 });
     }
