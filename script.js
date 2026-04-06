@@ -495,7 +495,7 @@ let t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
     start: "top+=170px top",
-    end: "+=1000", // extended for more time to animate circles and text
+    end: "+=700", // extended for more time to animate circles and text
     scrub: 1,
     pin: true,
     pinSpacing: true,
