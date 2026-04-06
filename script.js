@@ -1,4 +1,35 @@
 const heroText = document.querySelector(".hero-text");
+
+// Read more toggle helper
+function setupReadMore(btnSelector, descSelector) {
+  const btn = document.querySelector(btnSelector);
+  const desc = document.querySelector(descSelector);
+  if (btn && desc) {
+    let expanded = false;
+    btn.addEventListener("click", () => {
+      expanded = !expanded;
+      desc.style.webkitLineClamp = expanded ? "unset" : "";
+      desc.style.overflow = expanded ? "visible" : "hidden";
+      btn.innerHTML = expanded ? "Read less &#8249;" : "Read more &#8250;";
+    });
+  }
+}
+
+// Read more toggles for all scenes
+setupReadMore(".scene4-read-more", ".scene4-red-desc");
+
+document.querySelectorAll(".read-more-btn").forEach((btn) => {
+  const desc = btn.previousElementSibling;
+  if (desc) {
+    let expanded = false;
+    btn.addEventListener("click", () => {
+      expanded = !expanded;
+      desc.style.webkitLineClamp = expanded ? "unset" : "";
+      desc.style.overflow = expanded ? "visible" : "hidden";
+      btn.innerHTML = expanded ? "Read less &#8249;" : "Read more &#8250;";
+    });
+  }
+});
 const body = document.body;
 const circleBack = document.querySelector(".circle-back");
 const redCircleOverlay = document.querySelector(".red-circle-overlay");
