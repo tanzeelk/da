@@ -856,7 +856,7 @@ let t5 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene5",
     start: "top 55%",
-    end: "+=1200",
+    end: "+=900",
     scrub: 1,
     pin: true,
     markers: false,
@@ -879,6 +879,7 @@ const scene5GreyOutlineCircle = document.querySelector(
 gsap.set(scene5SmallRedCircle, { y: -800, x: -550 });
 gsap.set(scene5TopLeftCircle, { left: "400px" });
 gsap.set(scene5GreyOutlineCircle, { top: "-100px", opacity: 0 });
+gsap.set(scene5GreyCircle, { opacity: 0, y: 500 });
 
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene5ImageCircle, { y: 500 });
@@ -908,7 +909,7 @@ t5.fromTo(
   { left: "400px", opacity: 0 },
   {
     opacity: 1,
-    left: "220px",
+    left: "180px",
     duration: 1,
     ease: "power2.out",
     onComplete: () => {
@@ -922,16 +923,16 @@ t5.fromTo(
 );
 
 // After circle reaches final position and becomes image, slide it left and down
-t5.to(
-  scene5TopLeftCircle,
-  {
-    top: "calc(100vh - 450px)",
-    duration: 0.4,
-    ease: "power2.out",
-    opacity: 1,
-  },
-  1.2
-);
+// t5.to(
+//   scene5TopLeftCircle,
+//   {
+//     top: "calc(100vh - 450px)",
+//     duration: 0.4,
+//     ease: "power2.out",
+//     opacity: 1,
+//   },
+//   1.2
+// );
 
 // Grey outline circle animates from top to bottom
 t5.to(
@@ -997,6 +998,17 @@ t5.to(
     ease: "power2.out",
   },
   0.1
+);
+
+t5.to(
+  scene5GreyCircle,
+  {
+    opacity: 1,
+    y: 0,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0
 );
 
 // Fade in subcompany background when text animation stops
@@ -1080,6 +1092,7 @@ gsap.set(scene6ImageCircle, { y: 700, x: 150 });
 gsap.set(scene6RedCircle, { y: 415, x: 150 });
 gsap.set(scene6SmallRedCircle, { y: -310 });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
+gsap.set(scene6GreyCircle, { opacity: 0, y: 100 });
 
 // Set initial opacity for subcompany elements to hidden BEFORE timeline creation
 gsap.set(scene6SubcompanyBg, { opacity: 0 });
@@ -1121,12 +1134,12 @@ let t6 = gsap.timeline({
 
 // Small red circle drops from top (0-0.3)
 
-// Step 1: Grey circle rises and stops (stays pinned)
+// Step 1: Grey circle animates into position (same time as red circle)
 t6.to(
   scene6GreyCircle,
   {
+    y: 0,
     opacity: 1,
-    y: -250,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1364,10 +1377,22 @@ gsap.set(scene7GreyOutlineCircle, { top: "-100px", opacity: 0 });
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene7ImageCircle, { y: 500 });
 gsap.set(scene7RedCircle, { y: 215 });
+gsap.set(scene7GreyCircle, { opacity: 0, y: 500 });
 t7.to(
   scene7ImageCircle,
   {
     y: 75,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0
+);
+
+t7.to(
+  scene7GreyCircle,
+  {
+    opacity: 1,
+    y: 0,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1389,8 +1414,8 @@ t7.fromTo(
   { left: "400px", opacity: 0 },
   {
     opacity: 1,
-    left: "220px",
-    duration: 1,
+    left: "180px",
+    duration: 2,
     ease: "power2.out",
     onComplete: () => {
       // Replace circle with image (keep same 75px size)
@@ -1403,23 +1428,24 @@ t7.fromTo(
 );
 
 // After circle reaches final position and becomes image, slide it left and down
-t7.to(
-  scene7TopLeftCircle,
-  {
-    top: "calc(100vh - 450px)",
-    duration: 0.4,
-    ease: "power2.out",
-    opacity: 1,
-  },
-  1.2
-);
+// t7.to(
+//   scene7TopLeftCircle,
+//   {
+//     top: "calc(100vh - 650px)",
+//     duration: 0.4,
+//     ease: "power2.out",
+//     opacity: 1,
+//   },
+//   1.2
+// );
 
 // Grey outline circle animates from top to bottom
 t7.to(
   scene7GreyOutlineCircle,
   {
     opacity: 1,
-    top: "calc(100vh - 500px)",
+    top: "calc(-350px)",
+    // left: "calc(20%)",
     duration: 1.2,
     ease: "power2.out",
   },
@@ -1432,7 +1458,7 @@ t7.fromTo(
   {
     opacity: 0,
     y: -800,
-    x: -550,
+    x: -710,
   },
   {
     opacity: 1,

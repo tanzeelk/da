@@ -867,6 +867,7 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
+  top: 30px;
   left: calc(50% + 150px);
   transform: translate(-50%, -50%);
   z-index: 5;
@@ -883,7 +884,7 @@ body.bg-active {
   position: absolute;
   left: calc(50% + 150px);
   transform: translate(-50%, -40%);
-  top: 90px;
+  top: 50px;
   z-index: 10;
   opacity: 0.9;
   display: flex;
@@ -1117,7 +1118,7 @@ body.bg-active {
   background-position: center;
   position: absolute;
   right: 5%;
-  top: 10%;
+  top: 13%;
   z-index: 20;
   opacity: 1;
 }
@@ -1130,8 +1131,8 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  right: -25px;
-  top: 20%;
+  right: -5.5%;
+  top: 30%;
   z-index: 20;
   opacity: 1;
   display: flex;
@@ -1462,7 +1463,7 @@ body.bg-active {
 
 .scene5-top-left-circle {
   position: fixed;
-  top: 220px;
+  top: 170px;
   /* right: -300px; */
   width: 75px;
   height: 75px;
@@ -1697,10 +1698,10 @@ body.bg-active {
   background-position: center;
   position: absolute;
   left: calc(50% + 160px);
-  top: calc(50% - 250px);
+  top: calc(50% - 500px);
   transform: translate(-50%, -50%);
   z-index: 0;
-  opacity: 0;
+  opacity: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2000,15 +2001,15 @@ body.bg-active {
 }
 
 .scene7-grey-circle {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
   left: 38%;
-  top: calc(50% - 500px);
+  top: calc(50% - 490px);
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -2237,10 +2238,10 @@ body.bg-active {
 
 .scene7-grey-outline-circle {
   position: fixed;
-  top: -100px;
-  left: calc(80% - 100px);
-  width: 200px;
-  height: 200px;
+  top: 100px;
+  left: calc(20% - 130px);
+  width: 275px;
+  height: 275px;
   border-radius: 50%;
   border: 2px solid #9c9fa1;
   background: transparent;
@@ -2250,7 +2251,7 @@ body.bg-active {
 
 .scene7-top-left-circle {
   position: fixed;
-  top: 220px;
+  top: 170px;
   width: 75px;
   height: 75px;
   border-radius: 50%;
