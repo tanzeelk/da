@@ -4,11 +4,11 @@
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap');
 
 @font-face {
   font-family: 'Gontserrat-Medium';
-  src: url('./fonts/Gontserrat-Medium.ttf') format('truetype');
+  src: url('./assets/fonts/Gontserrat-Medium.ttf') format('truetype');
   font-weight: 500;
   font-display: swap;
 }
@@ -314,20 +314,20 @@ body {
   position: absolute;
   top: 55%;
   left: 50%;
-  width: 70%;
-  max-width: 300px;
+  width: 40%;
+  max-width: 280px;
   height: 200px;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* vertical center */
-  align-items: center;
-  /* center the text block horizontally */
+  align-items: flex-start;
   color: white;
-  font-size: 22px;
-  line-height: 1.25;
-  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: left;
   white-space: pre-wrap;
   z-index: 10;
   opacity: 1;
@@ -348,8 +348,7 @@ body {
 }
 
 .final-text .line.indent {
-  padding-left: 0;
-  /* centered alignment */
+  padding-left: 50px;
 }
 
 .final-text .line span {
@@ -1698,7 +1697,7 @@ body.bg-active {
   background-position: center;
   position: absolute;
   left: calc(50% + 160px);
-  top: calc(50% - 500px);
+  top: calc(50% - 490px);
   transform: translate(-50%, -50%);
   z-index: 0;
   opacity: 1;

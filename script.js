@@ -192,20 +192,25 @@ let t2 = gsap.timeline({
 const topBar = document.querySelector(".top-bar");
 
 const finalText = document.querySelector(".final-text");
-const lines = finalText.textContent.trim().split("\n"); // split by new line
 finalText.innerHTML = "";
 
-// Wrap lines
-lines.forEach((lineText, i) => {
+// 4 lines, each built from 2 phrases that appear one after the other
+const lines = [
+  { phrases: ["A journey ", "of possibilities."], indent: false },
+  { phrases: ["A culture ", "of innovation."], indent: true },
+  { phrases: ["All within ", "an infinite"], indent: false },
+  { phrases: ["world of ", "imagination."], indent: true },
+];
+
+lines.forEach((lineData) => {
   const line = document.createElement("div");
   line.classList.add("line");
-  if (i % 2 === 1) line.classList.add("indent"); // indent 2nd & 4th line
+  if (lineData.indent) line.classList.add("indent");
 
-  const words = lineText.trim().split(" ");
-  words.forEach((word) => {
+  lineData.phrases.forEach((phrase) => {
     const span = document.createElement("span");
-    span.textContent = word + " ";
-    span.style.opacity = 0; // Start hidden
+    span.textContent = phrase;
+    span.style.opacity = 0;
     line.appendChild(span);
   });
 
@@ -1092,7 +1097,7 @@ gsap.set(scene6ImageCircle, { y: 700, x: 150 });
 gsap.set(scene6RedCircle, { y: 415, x: 150 });
 gsap.set(scene6SmallRedCircle, { y: -310 });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
-gsap.set(scene6GreyCircle, { opacity: 0, y: 100 });
+gsap.set(scene6GreyCircle, { opacity: 0, y: 500 });
 
 // Set initial opacity for subcompany elements to hidden BEFORE timeline creation
 gsap.set(scene6SubcompanyBg, { opacity: 0 });
@@ -1134,7 +1139,7 @@ let t6 = gsap.timeline({
 
 // Small red circle drops from top (0-0.3)
 
-// Step 1: Grey circle animates into position (same time as red circle)
+// Step 1: Grey circle, red circle, and image all animate at the same time
 t6.to(
   scene6GreyCircle,
   {
@@ -1145,8 +1150,6 @@ t6.to(
   },
   0
 );
-
-// Step 2: Red circle and image rise up together
 t6.to(
   scene6ImageCircle,
   {
@@ -1154,7 +1157,7 @@ t6.to(
     duration: 0.4,
     ease: "power2.out",
   },
-  0.4
+  0
 );
 t6.to(
   scene6RedCircle,
@@ -1163,7 +1166,7 @@ t6.to(
     duration: 0.4,
     ease: "power2.out",
   },
-  "<"
+  0
 );
 
 // Step 2.5: Text groups animate in while circles rise
