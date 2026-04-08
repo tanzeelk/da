@@ -8,6 +8,7 @@ function setupReadMore(btnSelector, descSelector) {
     let expanded = false;
     btn.addEventListener("click", () => {
       expanded = !expanded;
+      desc.style.display = expanded ? "block" : "";
       desc.style.webkitLineClamp = expanded ? "unset" : "";
       desc.style.overflow = expanded ? "visible" : "hidden";
       btn.innerHTML = expanded ? "Read less &#8249;" : "Read more &#8250;";
@@ -24,6 +25,7 @@ document.querySelectorAll(".read-more-btn").forEach((btn) => {
     let expanded = false;
     btn.addEventListener("click", () => {
       expanded = !expanded;
+      desc.style.display = expanded ? "block" : "";
       desc.style.webkitLineClamp = expanded ? "unset" : "";
       desc.style.overflow = expanded ? "visible" : "hidden";
       btn.innerHTML = expanded ? "Read less &#8249;" : "Read more &#8250;";

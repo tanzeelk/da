@@ -325,7 +325,7 @@ body {
   color: white;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.5;
   text-align: left;
   white-space: pre-wrap;
@@ -2118,8 +2118,18 @@ body.bg-active {
   pointer-events: none;
 }
 
+.scene7-red-circle.show-convention {
+  pointer-events: auto;
+}
+
 .scene7-red-circle.show-convention .scene7-convention-content {
   pointer-events: auto;
+}
+
+.scene7-red-circle.show-convention .scene7-convention-content button,
+.scene7-red-circle.show-convention .scene7-convention-content .read-more-btn {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .scene7-red-circle.show-convention .scene7-convention-arrows,
@@ -2143,8 +2153,18 @@ body.bg-active {
   pointer-events: none;
 }
 
+.scene7-red-circle.show-ssilp {
+  pointer-events: auto;
+}
+
 .scene7-red-circle.show-ssilp .scene7-ssilp-content {
   pointer-events: auto;
+}
+
+.scene7-red-circle.show-ssilp .scene7-ssilp-content button,
+.scene7-red-circle.show-ssilp .scene7-ssilp-content .read-more-btn {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .scene7-red-circle.show-ssilp .scene7-ssilp-arrows,
