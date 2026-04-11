@@ -859,8 +859,8 @@ body.bg-active {
 }
 
 .scene4-image-circle {
-  width: 600px;
-  height: 600px;
+  width: 525px;
+  height: 525px;
   border-radius: 50%;
   background-image: url('./assets/image04.png');
   background-size: cover;
@@ -1109,8 +1109,8 @@ body.bg-active {
 }
 
 .scene4-small-red-circle {
-  width: 75px;
-  height: 75px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   background-image: url('./assets/circle.png');
   background-size: cover;
@@ -1140,8 +1140,8 @@ body.bg-active {
 }
 
 .scene4-small-red-circle-logo {
-  width: 75px;
-  height: 75px;
+  width: 95px;
+  height: 95px;
   object-fit: contain;
   opacity: 0;
 }
@@ -1614,14 +1614,15 @@ body.bg-active {
 }
 
 .scene6-image-circle {
-  width: 500px;
-  height: 500px;
+  width: 535px;
+  height: 535px;
   border-radius: 50%;
   background-image: url('./assets/image06.png');
   background-size: cover;
   background-position: center;
   position: absolute;
   left: 50%;
+  top: 10%;
   transform: translate(-50%, -50%);
   z-index: 2;
   opacity: 1;
@@ -2027,13 +2028,14 @@ body.bg-active {
 }
 
 .scene7-image-circle {
-  width: 605px;
-  height: 605px;
+  width: 525px;
+  height: 525px;
   border-radius: 50%;
   background-image: url('./assets/image08.png');
   background-size: cover;
-  background-position: 60% center;
+  background-position: center;
   position: absolute;
+  top: 1%;
   left: 38%;
   transform: translate(-50%, -50%);
   z-index: 5;
@@ -2495,9 +2497,9 @@ body.bg-active {
 }
 
 /* Scene 7 image */
-.scene7 .scene4-image-circle {
+/* .scene7 .scene4-image-circle {
   background-image: url('./assets/image07.png');
-}
+} */
 
 /* Scene 8 image */
 .scene8 .scene4-image-circle {

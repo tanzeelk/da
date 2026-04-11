@@ -1644,9 +1644,9 @@ function updateScene5ToConvention() {
   const imageCircle = document.querySelector(".scene5-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/SSCC.png)";
-    imageCircle.style.width = "485px";
-    imageCircle.style.height = "485px";
-    imageCircle.style.top = "calc(50% - 300px)";
+    imageCircle.style.width = "525px";
+    imageCircle.style.height = "525px";
+    imageCircle.style.top = "calc(50% - 290px)";
   }
 
   // Animate grey outline circle to top right
@@ -1850,8 +1850,8 @@ function updateScene5ToSSILP() {
   const imageCircle = document.querySelector(".scene5-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/SSILP.png)";
-    imageCircle.style.width = "495px";
-    imageCircle.style.height = "495px";
+    imageCircle.style.width = "530px";
+    imageCircle.style.height = "530px";
     imageCircle.style.top = "calc(50% - 295px)";
   }
 
@@ -2355,8 +2355,8 @@ function updateScene7ToToyJoy() {
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/image07.png)";
-    imageCircle.style.width = "485px";
-    imageCircle.style.height = "485px";
+    imageCircle.style.width = "525px";
+    imageCircle.style.height = "525px";
     imageCircle.style.top = "calc(50% - 300px)";
   }
 
@@ -2451,8 +2451,8 @@ function updateScene7ToLittleWings() {
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/littlewings-microimage.png)";
-    imageCircle.style.width = "485px";
-    imageCircle.style.height = "485px";
+    imageCircle.style.width = "525px";
+    imageCircle.style.height = "525px";
     imageCircle.style.top = "calc(50% - 300px)";
   }
 
