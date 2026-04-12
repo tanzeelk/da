@@ -1395,11 +1395,11 @@ body.bg-active {
 }
 
 .scene5-heading {
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 20px;
-  letter-spacing: -0.05em;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
   white-space: normal;
   word-wrap: break-word;
   font-family: 'Montserrat', sans-serif;
@@ -1408,17 +1408,13 @@ body.bg-active {
 .scene5-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.4;
-  color: #fff;
-  white-space: normal;
-  word-wrap: break-word;
-  letter-spacing: -0.05em;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .scene5-small-red-circle {
@@ -1667,7 +1663,7 @@ body.bg-active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 0;
 }
 
 .scene6-red-text.showing-nsk {
@@ -1676,23 +1672,23 @@ body.bg-active {
 }
 
 .scene6-red-heading {
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 20px;
-  letter-spacing: -0.05em;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 .scene6-red-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 13px;
-  line-height: 1.3;
-  margin: 0 0 6px 0;
+  font-size: 14px;
+  line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .scene6-grey-circle {
@@ -2233,7 +2229,7 @@ body.bg-active {
   font-weight: 700;
   color: #fff;
   margin-bottom: 10px;
-  letter-spacing: -0.05em;
+  letter-spacing: 1px;
   white-space: normal;
   word-wrap: break-word;
   font-family: 'Montserrat', sans-serif;
@@ -2242,17 +2238,13 @@ body.bg-active {
 .scene7-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
-  color: #fff;
-  white-space: normal;
-  word-wrap: break-word;
-  letter-spacing: -0.05em;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .scene7-small-red-circle {
