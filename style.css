@@ -195,7 +195,7 @@ body {
 }
 
 .scene4 {
-  margin-bottom: 80px;
+  margin-bottom: 0px;
   /* Add space between scene4 and scene5 */
   padding-top: 0px;
   /* Add space at top */
@@ -1156,7 +1156,7 @@ body.bg-active {
 }
 
 .scene5 {
-  margin-top: 300px;
+  margin-top: 0px;
 }
 
 /* Scene 5 - Red circle left, Image right */
@@ -1594,6 +1594,12 @@ body.bg-active {
 
 .scene6 {
   isolation: isolate;
+  margin-top: -200px;
+}
+
+.scene7 {
+  margin-top: -200px;
+  margin-bottom: -160px;
 }
 
 /* Scene 6 - Image left, Red circle right */
@@ -1962,7 +1968,8 @@ body.bg-active {
 }
 
 .scene6-right-arrows,
-.scene6-right-arrows * {
+.scene6-right-arrows *,
+.scene6-subcompany-logos .scene6-logo {
   pointer-events: auto;
 }
 

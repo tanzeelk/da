@@ -2268,8 +2268,9 @@ const scene6LogoNSSK = document.getElementById("scene6-logo-nssk");
 if (scene6LogoNSSK) {
   scene6LogoNSSK.addEventListener("click", (e) => {
     e.preventDefault();
-    if (!isShowingNSK) {
-      // Trigger the same action as arrow 1
+    if (isShowingNSK) {
+      scene6BackArrowBtn.click();
+    } else {
       scene6Arrow1.click();
     }
   });
@@ -2279,10 +2280,7 @@ const scene6LogoSSSIOI = document.getElementById("scene6-logo-sssoi");
 if (scene6LogoSSSIOI) {
   scene6LogoSSSIOI.addEventListener("click", (e) => {
     e.preventDefault();
-    if (!isShowingNSK) {
-      // Trigger the same action as arrow 2
-      scene6Arrow2.click();
-    }
+    scene6Arrow2.click();
   });
 }
 
@@ -2290,10 +2288,7 @@ const scene6LogoChhatralaya = document.getElementById("scene6-logo-chhatralaya")
 if (scene6LogoChhatralaya) {
   scene6LogoChhatralaya.addEventListener("click", (e) => {
     e.preventDefault();
-    if (!isShowingNSK) {
-      // Trigger the same action as arrow 3
-      scene6Arrow3.click();
-    }
+    scene6Arrow3.click();
   });
 }
 
@@ -2386,8 +2381,8 @@ function updateScene7ToDefault() {
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/image08.png)";
-    imageCircle.style.width = "595px";
-    imageCircle.style.height = "595px";
+    imageCircle.style.width = "525px";
+    imageCircle.style.height = "525px";
   }
 
   // Remove show-convention class
@@ -2490,6 +2485,32 @@ if (scene7SsilpBackArrowBtn) {
   scene7SsilpBackArrowBtn.addEventListener("click", (e) => {
     e.preventDefault();
     updateScene7ToDefault();
+  });
+}
+
+// Scene 7 Logo Click Handlers
+const scene7LogoToyJoy = document.getElementById("scene7-logo-toyjoy");
+const scene7LogoLittleWings = document.getElementById("scene7-logo-littlewings");
+
+if (scene7LogoToyJoy) {
+  scene7LogoToyJoy.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (isShowingToyJoy) {
+      updateScene7ToDefault();
+    } else {
+      updateScene7ToToyJoy();
+    }
+  });
+}
+
+if (scene7LogoLittleWings) {
+  scene7LogoLittleWings.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (isShowingLittleWings) {
+      updateScene7ToDefault();
+    } else {
+      updateScene7ToLittleWings();
+    }
   });
 }
 
