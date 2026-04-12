@@ -1831,6 +1831,7 @@ body.bg-active {
   z-index: 9999;
   opacity: 0;
   pointer-events: auto;
+  margin-top: 8px;
 }
 
 .scene6-small-red-circle {
@@ -1850,8 +1851,8 @@ body.bg-active {
 .scene6-small-red-circle-1,
 .scene6-small-red-circle-2,
 .scene6-small-red-circle-3 {
-  width: 75px;
-  height: 75px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   background-image: url('./assets/circle.png');
   background-size: cover;
@@ -1860,7 +1861,22 @@ body.bg-active {
   top: 30%;
   z-index: 2;
   opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
+
+.scene6-small-red-circle-1-logo,
+.scene6-small-red-circle-2-logo,
+.scene6-small-red-circle-3-logo {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  opacity: 0;
+  border-radius: 50%;
+}
+
 
 .scene6-small-red-circle-1 {
   left: 62.5%;
@@ -1874,12 +1890,6 @@ body.bg-active {
   left: 62.5%;
 }
 
-.scene6-small-red-circle-1-logo {
-  width: 75px;
-  height: 75px;
-  object-fit: contain;
-  opacity: 0;
-}
 
 .scene6-grey-outline-circle {
   position: absolute;

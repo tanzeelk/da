@@ -1205,62 +1205,35 @@ t6.fromTo(
 // Three small red circles sliding from behind (one after another)
 t6.fromTo(
   scene6SmallRedCircle1,
-  {
-    opacity: 0,
-    x: 100,
-  },
-  {
-    opacity: 1,
-    x: 350,
-    duration: 0.5,
-    ease: "power2.out",
-  },
+  { opacity: 0, x: 100 },
+  { opacity: 1, x: 350, duration: 0.5, ease: "power2.out" },
   "<0.1"
 );
 
 t6.fromTo(
   scene6SmallRedCircle2,
-  {
-    opacity: 0,
-    x: 100,
-  },
-  {
-    opacity: 1,
-    x: 350,
-    duration: 0.5,
-    ease: "power2.out",
-  },
+  { opacity: 0, x: 100 },
+  { opacity: 1, x: 350, duration: 0.5, ease: "power2.out" },
   "<0.25"
 );
-
-
-
 
 t6.fromTo(
   scene6SmallRedCircle3,
-  {
-    opacity: 0,
-    x: 100,
-  },
-  {
-    opacity: 1,
-    x: 220,
-    duration: 0.5,
-    ease: "power2.out",
-  },
+  { opacity: 0, x: 100 },
+  { opacity: 1, x: 220, duration: 0.5, ease: "power2.out" },
   "<0.25"
 );
 
-// Fade in SSSOI logo on circle1 when it moves down
-t6.to(
-  scene6SmallRedCircle1Logo,
-  {
-    opacity: 1,
-    duration: 0.5,
-    ease: "power2.out",
-  },
-  "<"
-);
+// Fade in logos on small red circles (scrub auto-reverses on scroll up)
+const scene6SmallRedCircle2Logo = document.querySelector(".scene6-small-red-circle-2-logo");
+const scene6SmallRedCircle3Logo = document.querySelector(".scene6-small-red-circle-3-logo");
+
+t6.to(scene6SmallRedCircle1Logo, { opacity: 1, duration: 0.5, ease: "power2.out" }, "<");
+t6.to(scene6SmallRedCircle2Logo, { opacity: 1, duration: 0.5, ease: "power2.out" }, "<");
+t6.to(scene6SmallRedCircle3Logo, { opacity: 1, duration: 0.5, ease: "power2.out" }, "<");
+
+
+
 
 // Fade in subcompany background, logos, and arrows
 t6.fromTo(
