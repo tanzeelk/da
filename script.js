@@ -1616,7 +1616,7 @@ function updateScene5ToConvention() {
   // Change image to SSCC.png
   const imageCircle = document.querySelector(".scene5-image-circle");
   if (imageCircle) {
-    imageCircle.style.backgroundImage = "url(./assets/SSCC.png)";
+    imageCircle.style.backgroundImage = "url(./assets/SSCC.webp)";
     imageCircle.style.width = "525px";
     imageCircle.style.height = "525px";
     imageCircle.style.top = "calc(50% - 290px)";
@@ -1671,7 +1671,7 @@ function updateScene5ToDefault() {
   // Change image back to image05.png
   const imageCircle = document.querySelector(".scene5-image-circle");
   if (imageCircle) {
-    imageCircle.style.backgroundImage = "url(./assets/image05.png)";
+    imageCircle.style.backgroundImage = "url(./assets/image05.webp)";
     imageCircle.style.width = "595px";
     imageCircle.style.height = "595px";
   }
@@ -1822,7 +1822,7 @@ function updateScene5ToSSILP() {
   // Change image to SSILP.png
   const imageCircle = document.querySelector(".scene5-image-circle");
   if (imageCircle) {
-    imageCircle.style.backgroundImage = "url(./assets/SSILP.png)";
+    imageCircle.style.backgroundImage = "url(./assets/SSILP.webp)";
     imageCircle.style.width = "530px";
     imageCircle.style.height = "530px";
     imageCircle.style.top = "calc(50% - 295px)";
@@ -1932,7 +1932,7 @@ if (scene6Arrow1) {
 
     // Change the background image to NSK.png
     if (scene6ImageCircleElement) {
-      scene6ImageCircleElement.style.backgroundImage = "url('./assets/NSK.png')";
+      scene6ImageCircleElement.style.backgroundImage = "url('./assets/NSK.webp')";
     }
     
     // Update red circle heading
@@ -2013,7 +2013,7 @@ if (scene6BackArrowBtn) {
 
     // Restore original content
     if (scene6ImageCircleElement) {
-      scene6ImageCircleElement.style.backgroundImage = "url('./assets/image06.png')";
+      scene6ImageCircleElement.style.backgroundImage = "url('./assets/image06.webp')";
     }
     
     const scene6RedHeading = document.querySelector(".scene6-red-heading");
@@ -2088,7 +2088,7 @@ if (scene6Arrow2) {
 
     // Change the background image to SSSOI-microimage.png
     if (scene6ImageCircleElement) {
-      scene6ImageCircleElement.style.backgroundImage = "url('./assets/SSSOI-microimage.png')";
+      scene6ImageCircleElement.style.backgroundImage = "url('./assets/SSSOI-microimage.webp')";
     }
     
     // Update red circle heading
@@ -2166,7 +2166,7 @@ if (scene6Arrow3) {
 
     // Change the background image to Chhatralaya-microimage.png
     if (scene6ImageCircleElement) {
-      scene6ImageCircleElement.style.backgroundImage = "url('./assets/Chhatralaya-microimage.png')";
+      scene6ImageCircleElement.style.backgroundImage = "url('./assets/Chhatralaya-microimage.webp')";
     }
     
     // Update red circle heading
@@ -2322,7 +2322,7 @@ function updateScene7ToToyJoy() {
   // Change image to image07.png
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
-    imageCircle.style.backgroundImage = "url(./assets/image07.png)";
+    imageCircle.style.backgroundImage = "url(./assets/image07.webp)";
     imageCircle.style.width = "525px";
     imageCircle.style.height = "525px";
     imageCircle.style.top = "calc(50% - 300px)";
@@ -2353,7 +2353,7 @@ function updateScene7ToDefault() {
   // Change image back to image08.png
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
-    imageCircle.style.backgroundImage = "url(./assets/image08.png)";
+    imageCircle.style.backgroundImage = "url(./assets/image08.webp)";
     imageCircle.style.width = "525px";
     imageCircle.style.height = "525px";
   }
@@ -2418,7 +2418,7 @@ function updateScene7ToLittleWings() {
   // Change image to littlewings-microimage.png
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
-    imageCircle.style.backgroundImage = "url(./assets/littlewings-microimage.png)";
+    imageCircle.style.backgroundImage = "url(./assets/littlewings-microimage.webp)";
     imageCircle.style.width = "525px";
     imageCircle.style.height = "525px";
     imageCircle.style.top = "calc(50% - 300px)";

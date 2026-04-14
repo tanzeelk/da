@@ -268,7 +268,7 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: url('./assets/circle.png');
+  background: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -287,7 +287,7 @@ body {
   width: 50px;
   height: 50px;
   /* half height */
-  background: url('./assets/circle1.png');
+  background: url('./assets/circle1.webp');
   background-size: 100% 100%;
   position: absolute;
   top: 0;
@@ -537,7 +537,7 @@ body.bg-active {
   border-radius: 50%;
   top: 0;
   left: 0;
-  background-image: url('./assets/image01.png');
+  background-image: url('./assets/image01.webp');
   /* replace with actual */
   background-size: inherit;
   /* background-position: center top; */
@@ -570,7 +570,7 @@ body.bg-active {
   border-radius: 50%;
   top: 0;
   left: 0;
-  background-image: url('./assets/image02.png');
+  background-image: url('./assets/image02.webp');
   /* replace with actual */
   background-size: inherit;
   background-position: center;
@@ -670,7 +670,7 @@ body.bg-active {
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   position: absolute;
   top: 265px;
@@ -687,7 +687,7 @@ body.bg-active {
   width: 350px;
   height: 300px;
   border-radius: 50%;
-  background-image: url('./assets/image03.png');
+  background-image: url('./assets/image03.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -789,7 +789,7 @@ body.bg-active {
 }
 
 .bg-circle.circle-asset {
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
 }
@@ -866,7 +866,7 @@ body.bg-active {
   width: 525px;
   height: 525px;
   border-radius: 50%;
-  background-image: url('./assets/image04.png');
+  background-image: url('./assets/image04.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -881,7 +881,7 @@ body.bg-active {
   width: 489px;
   height: 489px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -1102,7 +1102,7 @@ body.bg-active {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: fixed;
@@ -1116,7 +1116,7 @@ body.bg-active {
   width: 85px;
   height: 85px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -1130,7 +1130,7 @@ body.bg-active {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -1183,7 +1183,7 @@ body.bg-active {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -1229,7 +1229,7 @@ body.bg-active {
   width: 535px;
   height: 535px;
   border-radius: 50%;
-  background-image: url('./assets/image05.png');
+  background-image: url('./assets/image05.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -1426,7 +1426,7 @@ body.bg-active {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   z-index: 0;
@@ -1453,7 +1453,7 @@ body.bg-active {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   z-index: 8;
@@ -1468,7 +1468,7 @@ body.bg-active {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   z-index: 2;
@@ -1624,7 +1624,7 @@ body.bg-active {
   width: 535px;
   height: 535px;
   border-radius: 50%;
-  background-image: url('./assets/image06.png');
+  background-image: url('./assets/image06.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -1639,7 +1639,7 @@ body.bg-active {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -1843,7 +1843,7 @@ body.bg-active {
   width: 75px;
   height: 75px;
   /* border-radius: 50%; */
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -1859,7 +1859,7 @@ body.bg-active {
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -1914,7 +1914,7 @@ body.bg-active {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -1938,7 +1938,7 @@ body.bg-active {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: fixed;
@@ -2003,7 +2003,7 @@ body.bg-active {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -2049,7 +2049,7 @@ body.bg-active {
   width: 535px;
   height: 535px;
   border-radius: 50%;
-  background-image: url('./assets/image08.png');
+  background-image: url('./assets/image08.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -2266,7 +2266,7 @@ body.bg-active {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
 }
@@ -2290,7 +2290,7 @@ body.bg-active {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   z-index: 2;
@@ -2425,7 +2425,7 @@ body.bg-active {
   width: 595px;
   height: 595px;
   border-radius: 50%;
-  background-image: url('./assets/image08.png');
+  background-image: url('./assets/image08.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -2439,7 +2439,7 @@ body.bg-active {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background-image: url('./assets/circle.png');
+  background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -2507,17 +2507,17 @@ body.bg-active {
 
 /* Scene 6 image */
 .scene6 .scene4-image-circle {
-  background-image: url('./assets/image06.png');
+  background-image: url('./assets/image06.webp');
 }
 
 /* Scene 7 image */
 /* .scene7 .scene4-image-circle {
-  background-image: url('./assets/image07.png');
+  background-image: url('./assets/image07.webp');
 } */
 
 /* Scene 8 image */
 .scene8 .scene4-image-circle {
-  background-image: url('./assets/image08.png');
+  background-image: url('./assets/image08.webp');
 }
 
 /* Footer Section */
