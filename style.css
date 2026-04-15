@@ -671,7 +671,7 @@ body.bg-active {
   height: 320px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   position: absolute;
   top: 265px;
   left: 50%;
@@ -1103,7 +1103,7 @@ body.bg-active {
   height: 80px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: fixed;
   right: -60%;
@@ -1117,7 +1117,7 @@ body.bg-active {
   height: 85px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: absolute;
   right: 5%;
@@ -1131,7 +1131,7 @@ body.bg-active {
   height: 75px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: absolute;
   right: -5.5%;
@@ -1427,7 +1427,7 @@ body.bg-active {
   height: 75px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   z-index: 0;
 }
@@ -1454,7 +1454,7 @@ body.bg-active {
   height: 75px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   z-index: 8;
   opacity: 0;
@@ -1469,7 +1469,7 @@ body.bg-active {
   height: 75px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   z-index: 2;
   transition: border-radius 0.3s ease;
@@ -1844,7 +1844,7 @@ body.bg-active {
   height: 75px;
   /* border-radius: 50%; */
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: absolute;
   right: 20%;
@@ -1860,7 +1860,7 @@ body.bg-active {
   height: 65px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: absolute;
   top: 30%;
@@ -1915,7 +1915,7 @@ body.bg-active {
   height: 75px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: absolute;
   left: 95%;
@@ -1939,7 +1939,7 @@ body.bg-active {
   height: 80px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: fixed;
   left: 5%;
@@ -2267,7 +2267,7 @@ body.bg-active {
   height: 75px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
 }
 
@@ -2291,7 +2291,7 @@ body.bg-active {
   height: 75px;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   z-index: 2;
   transition: border-radius 0.3s ease;

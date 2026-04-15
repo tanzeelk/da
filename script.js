@@ -1672,8 +1672,9 @@ function updateScene5ToDefault() {
   const imageCircle = document.querySelector(".scene5-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/image05.webp)";
-    imageCircle.style.width = "595px";
-    imageCircle.style.height = "595px";
+    imageCircle.style.width = "";
+    imageCircle.style.height = "";
+    imageCircle.style.top = "";
   }
 
   // Remove show-convention class
