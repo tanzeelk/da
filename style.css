@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap');
+html, body {
+  overflow-x: hidden;
+}
+
 
 @font-face {
   font-family: 'Gontserrat-Medium';
@@ -19,15 +24,14 @@
   --color-blue: #3F5881;
   --color-blue2: #315e87;
 
-  /* Responsive base units */
-  --base-scale: clamp(0.8, 2vw, 1);
-  --spacing-unit: clamp(10px, 2vw, 20px);
-  --font-base: clamp(14px, 2vw, 18px);
-  --font-hero: clamp(24px, 5.5vw, 100px);
-  --font-hero-scene2: clamp(20px, 3.5vw, 75px);
-  --font-small: clamp(11px, 1.5vw, 15px);
-  --circle-size: clamp(400px, 50vw, 600px);
-  --circle-size-scene2: clamp(350px, 40vw, 500px);
+  --base-scale: 1;
+  --spacing-unit: 1.39vw;
+  --font-base: 1.25vw;
+  --font-hero: 6.94vw;
+  --font-hero-scene2: 5.21vw;
+  --font-small: 1.04vw;
+  --circle-size: 41.67vw;
+  --circle-size-scene2: 34.72vw;
 }
 
 body {
@@ -49,12 +53,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.69vw;
   z-index: 1000;
   opacity: 1;
   pointer-events: auto;
   transition: background 0.3s ease-out;
-  padding: 10px 0px 10px 0px;
+  padding: 0.69vw 0px 0.69vw 0px;
 }
 
 .fixed-nav.visible {
@@ -63,13 +67,13 @@ body {
 }
 
 .fixed-nav-logo {
-  height: 55px;
+  height: 3.82vw;
   width: auto;
   object-fit: contain;
 }
 
 .fixed-nav-menu {
-  height: 20px;
+  height: 1.39vw;
   width: auto;
   object-fit: contain;
   cursor: pointer;
@@ -78,7 +82,7 @@ body {
 /* Expanded Menu */
 .expanded-menu {
   position: fixed;
-  top: 10px;
+  top: 0.69vw;
   left: 0;
   right: 0;
   width: 100%;
@@ -86,14 +90,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 60px 60px 0px 60px;
+  padding: 4.17vw 4.17vw 0px 4.17vw;
   z-index: 999;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-150%);
   transition: all 0.3s ease-out;
-  gap: 40px;
-  min-height: 100px;
+  gap: 2.78vw;
+  min-height: 6.94vw;
   /* background-color: #2d5d86; */
 }
 
@@ -104,8 +108,8 @@ body {
 }
 
 .menu-close {
-  flex: 0 0 50px;
-  font-size: 32px;
+  flex: 0 0 3.47vw;
+  font-size: 2.22vw;
   color: #77797b;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -125,12 +129,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 25px;
+  gap: 1.74vw;
 }
 
 .menu-item {
   font-family: Montserrat, sans-serif;
-  font-size: 14px;
+  font-size: 0.97vw;
   font-weight: 500;
   color: #77797b;
   text-decoration: none;
@@ -148,7 +152,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 5px;
+  gap: 0.35vw;
 }
 
 .social-icon {
@@ -158,7 +162,7 @@ body {
 }
 
 .social-icon img {
-  height: 24px;
+  height: 1.67vw;
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
@@ -174,9 +178,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding: 2.78vw;
   position: relative;
-  margin-bottom: 80px;
+  margin-bottom: 5.56vw;
 }
 
 
@@ -190,7 +194,7 @@ body {
 }
 
 .scene2 {
-  margin-top: 50px;
+  margin-top: 3.47vw;
   /* Reduced space to move scene2 up */
 }
 
@@ -212,11 +216,11 @@ body {
 
 .scroll-text {
   position: absolute;
-  bottom: 25px;
+  bottom: 1.74vw;
   /* pushes it below the circles */
   left: 50%;
   transform: translateX(-50%);
-  font-size: 16px;
+  font-size: 1.11vw;
   letter-spacing: 1px;
   pointer-events: none;
   color: #9c9fa1;
@@ -265,8 +269,8 @@ body {
 
 /* BACK CIRCLE — FULL */
 .circle-back {
-  width: 50px;
-  height: 50px;
+  width: 3.47vw;
+  height: 3.47vw;
   border-radius: 50%;
   background: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -284,8 +288,8 @@ body {
 
 /* FRONT CIRCLE — HALF */
 .circle-front {
-  width: 50px;
-  height: 50px;
+  width: 3.47vw;
+  height: 3.47vw;
   /* half height */
   background: url('./assets/circle1.webp');
   background-size: 100% 100%;
@@ -300,7 +304,7 @@ body {
 .nav-bar {
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-12px);
+  transform: translateY(-0.83vw);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -316,8 +320,8 @@ body {
   top: 55%;
   left: 50%;
   width: 40%;
-  max-width: 280px;
-  height: 200px;
+  max-width: 19.44vw;
+  height: 13.89vw;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -326,7 +330,7 @@ body {
   color: white;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 20px;
+  font-size: 1.39vw;
   line-height: 1.5;
   text-align: left;
   white-space: pre-wrap;
@@ -349,7 +353,7 @@ body {
 }
 
 .final-text .line.indent {
-  padding-left: 50px;
+  padding-left: 3.47vw;
 }
 
 .final-text .line span {
@@ -387,7 +391,7 @@ body {
 
 .top-bar {
   position: fixed;
-  top: 40px;
+  top: 2.78vw;
   /* adjust to place above the circle */
   left: 50%;
   transform: translateX(-50%);
@@ -395,7 +399,7 @@ body {
   flex-direction: column;
   /* stack vertically */
   align-items: center;
-  gap: 20px;
+  gap: 1.39vw;
   opacity: 0;
   /* hidden initially */
   z-index: 1001;
@@ -409,7 +413,7 @@ body {
 }
 
 .logo {
-  width: 65px;
+  width: 4.51vw;
   /* adjust logo size */
 }
 
@@ -417,8 +421,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 45px;
-  height: 20px;
+  width: 3.13vw;
+  height: 1.39vw;
   cursor: pointer;
   pointer-events: auto;
   transition: transform 0.3s ease;
@@ -607,8 +611,8 @@ body.bg-active {
   opacity: 0;
   z-index: 10;
   pointer-events: none;
-  max-width: clamp(300px, 50vw, 600px);
-  padding: 0 clamp(50px, 10vw, 100px);
+  max-width: clamp(20.83vw, 50vw, 41.67vw);
+  padding: 0 clamp(3.47vw, 10vw, 6.94vw);
   letter-spacing: -0.05em;
 }
 
@@ -626,15 +630,15 @@ body.bg-active {
 .founding-text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 1.74vw;
   color: white;
   opacity: 0;
-  margin-bottom: 35px;
+  margin-bottom: 2.43vw;
   line-height: 1;
-  padding-left: 140px;
+  padding-left: 9.72vw;
   text-align: left;
-  max-width: 600px;
-  margin-top: 35px;
+  max-width: 41.67vw;
+  margin-top: 2.43vw;
 }
 
 .growth-text {
@@ -647,19 +651,19 @@ body.bg-active {
   opacity: 0;
   z-index: 7;
   pointer-events: none;
-  max-width: 600px;
-  padding-left: 140px;
+  max-width: 41.67vw;
+  padding-left: 9.72vw;
   letter-spacing: -0.05em;
 }
 
 /* Scene 3 - Red circle and DA-3 image */
 .scene3-circle-container {
   position: absolute;
-  top: 70px;
+  top: 4.86vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 320px;
-  height: 320px;
+  width: 22.22vw;
+  height: 22.22vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -667,13 +671,13 @@ body.bg-active {
 }
 
 .scene3-red-circle {
-  width: 320px;
-  height: 320px;
+  width: 22.22vw;
+  height: 22.22vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   position: absolute;
-  top: 265px;
+  top: 18.40vw;
   left: 50%;
   transform: translateX(-50%);
   z-index: 60;
@@ -684,14 +688,14 @@ body.bg-active {
 }
 
 .scene3-image {
-  width: 350px;
-  height: 300px;
+  width: 24.31vw;
+  height: 20.83vw;
   border-radius: 50%;
   background-image: url('./assets/image03.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
-  top: 250px;
+  top: 17.36vw;
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
@@ -702,12 +706,12 @@ body.bg-active {
 .scene3-group-text {
   position: absolute;
   left: -107%;
-  top: calc(50% + 250px);
+  top: calc(50% + 17.36vw);
   transform: translateY(-50%);
   color: #ec1c24;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 70px;
+  font-size: 4.86vw;
   opacity: 0;
   z-index: 60;
   pointer-events: none;
@@ -718,12 +722,12 @@ body.bg-active {
 
 .scene3-ventures-text {
   position: absolute;
-  top: calc(51% + 250px);
+  top: calc(51% + 17.36vw);
   right: -21%;
   color: var(--color-blue2);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 65px;
+  font-size: 4.51vw;
   opacity: 0;
   z-index: 60;
   pointer-events: none;
@@ -735,15 +739,15 @@ body.bg-active {
 
 .scene3-red-circle-text {
   position: absolute;
-  top: 410px;
+  top: 28.47vw;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(200px, 20vw, 280px);
+  width: clamp(13.89vw, 20vw, 19.44vw);
   text-align: center;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: clamp(14px, 2vw, 20px);
+  font-size: clamp(0.97vw, 2vw, 1.39vw);
   line-height: 1.5;
   opacity: 0;
   z-index: 61;
@@ -759,9 +763,9 @@ body.bg-active {
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: 1.39vw;
   padding-top: 0px;
-  margin-bottom: 50px;
+  margin-bottom: 3.47vw;
   margin-top: 0px;
   overflow: visible;
   z-index: 1;
@@ -802,15 +806,15 @@ body.bg-active {
   width: 100%;
   z-index: 10;
   position: absolute;
-  padding: 0 clamp(50px, 10vw, 150px);
-  top: clamp(40px, 8vh, 120px);
+  padding: 0 clamp(3.47vw, 10vw, 10.42vw);
+  top: clamp(2.78vw, 8vh, 8.33vw);
   left: 0;
   right: 0;
 }
 
 .grey-circle {
-  width: 200px;
-  height: 200px;
+  width: 13.89vw;
+  height: 13.89vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
@@ -830,21 +834,21 @@ body.bg-active {
 }
 
 .circle-logo {
-  width: 80px;
+  width: 5.56vw;
   height: auto;
   object-fit: contain;
 }
 
 .grey-circle:first-child .circle-logo {
-  width: 130px;
+  width: 9.03vw;
 }
 
 .grey-circle:nth-child(2) .circle-logo {
-  width: 70px;
+  width: 4.86vw;
 }
 
 .grey-circle:nth-child(4) .circle-logo {
-  width: 100px;
+  width: 6.94vw;
 }
 
 /* Scene 4 - Two small circles animating apart */
@@ -853,8 +857,8 @@ body.bg-active {
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
+  width: 34.72vw;
+  height: 34.72vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -863,31 +867,31 @@ body.bg-active {
 }
 
 .scene4-image-circle {
-  width: 525px;
-  height: 525px;
+  width: 36.46vw;
+  height: 36.46vw;
   border-radius: 50%;
   background-image: url('./assets/image04.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
-  top: 30px;
-  left: calc(50% + 150px);
+  top: 2.08vw;
+  left: calc(50% + 10.42vw);
   transform: translate(-50%, -50%);
   z-index: 5;
   opacity: 1;
 }
 
 .scene4-red-circle {
-  width: 489px;
-  height: 489px;
+  width: 33.96vw;
+  height: 33.96vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  left: calc(50% + 150px);
+  left: calc(50% + 10.42vw);
   transform: translate(-50%, -40%);
-  top: 50px;
+  top: 3.47vw;
   z-index: 10;
   opacity: 0.9;
   display: flex;
@@ -899,15 +903,15 @@ body.bg-active {
 }
 
 .scene4-grey-circle {
-  width: 200px;
-  height: 200px;
+  width: 13.89vw;
+  height: 13.89vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 150px);
-  top: calc(50% - 175px);
+  left: calc(50% + 10.42vw);
+  top: calc(50% - 12.15vw);
   transform: translate(-50%, -50%);
   z-index: 0;
   opacity: 1;
@@ -917,17 +921,17 @@ body.bg-active {
 }
 
 .scene4-grey-logo {
-  width: 140px;
+  width: 9.72vw;
   /* height: 100px; */
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -25px;
+  top: -1.74vw;
 }
 
 .scene4-red-text {
   position: relative;
-  width: 340px;
+  width: 23.61vw;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
@@ -939,14 +943,14 @@ body.bg-active {
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 0.69vw;
   letter-spacing: 1px;
 }
 
 .scene4-red-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 0.97vw;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -960,7 +964,7 @@ body.bg-active {
   border: none;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  font-size: 0.90vw;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -973,7 +977,7 @@ body.bg-active {
   border: none;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  font-size: 0.90vw;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -984,11 +988,11 @@ body.bg-active {
 
 .scene4-new-text {
   position: absolute;
-  left: calc(50% - 475px);
-  top: calc(50% - 40px);
+  left: calc(50% - 32.99vw);
+  top: calc(50% - 2.78vw);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 50px;
+  font-size: 3.47vw;
   line-height: 1;
   letter-spacing: -0.05em;
   z-index: 11;
@@ -1013,11 +1017,11 @@ body.bg-active {
 
 .scene5-new-text {
   position: absolute;
-  right: calc(50% - 560px);
-  top: calc(50% - 535px);
+  right: calc(50% - 38.89vw);
+  top: calc(50% - 37.15vw);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 55px;
+  font-size: 3.82vw;
   line-height: 1.1;
   letter-spacing: -0.05em;
   z-index: 11;
@@ -1035,11 +1039,11 @@ body.bg-active {
 
 .scene7-new-text {
   position: absolute;
-  right: calc(50% - 520px);
-  top: calc(50% - 535px);
+  right: calc(50% - 36.11vw);
+  top: calc(50% - 37.15vw);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 60px;
+  font-size: 4.17vw;
   line-height: 1.1;
   letter-spacing: -0.05em;
   z-index: 11;
@@ -1057,11 +1061,11 @@ body.bg-active {
 
 .scene6-new-text {
   position: absolute;
-  left: calc(50% - 600px);
-  top: calc(50% - 485px);
+  left: calc(50% - 41.67vw);
+  top: calc(50% - 33.68vw);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 60px;
+  font-size: 4.17vw;
   line-height: 1.1;
   letter-spacing: -0.05em;
   z-index: 11;
@@ -1081,7 +1085,7 @@ body.bg-active {
   left: -50%;
   top: -20%;
   font-family: 'Montserrat', sans-serif;
-  font-size: 60px;
+  font-size: 4.17vw;
   font-weight: 700;
   line-height: 1.2;
   z-index: 12;
@@ -1099,22 +1103,22 @@ body.bg-active {
 }
 
 .scene4-falling-circle {
-  width: 80px;
-  height: 80px;
+  width: 5.56vw;
+  height: 5.56vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: fixed;
   right: -60%;
-  top: -500px;
+  top: -34.72vw;
   z-index: 20;
   opacity: 1;
 }
 
 .scene4-small-red-circle {
-  width: 85px;
-  height: 85px;
+  width: 5.90vw;
+  height: 5.90vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1127,8 +1131,8 @@ body.bg-active {
 }
 
 .scene4-small-red-circle-right {
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1144,8 +1148,8 @@ body.bg-active {
 }
 
 .scene4-small-red-circle-logo {
-  width: 95px;
-  height: 95px;
+  width: 6.60vw;
+  height: 6.60vw;
   object-fit: contain;
   opacity: 0;
 }
@@ -1166,10 +1170,8 @@ body.bg-active {
 /* Scene 5 - Red circle left, Image right */
 .scene5-circles-container {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1200px;
+  left: 0;
+  width: 100vw;
   /* height: 400px; */
   display: flex;
   justify-content: center;
@@ -1180,15 +1182,15 @@ body.bg-active {
 }
 
 .scene5-red-circle {
-  width: 500px;
-  height: 500px;
+  width: 34.72vw;
+  height: 34.72vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
   left: 38%;
-  transform: translate(-50%, calc(-50% - 40px));
+  transform: translate(-50%, calc(-50% - 2.78vw));
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -1200,15 +1202,15 @@ body.bg-active {
 }
 
 .scene5-grey-circle {
-  width: 200px;
-  height: 200px;
+  width: 13.89vw;
+  height: 13.89vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
   left: 38%;
-  top: calc(50% - 500px);
+  top: calc(50% - 34.72vw);
   transform: translate(-50%, -50%);
   opacity: 1;
   display: flex;
@@ -1217,17 +1219,17 @@ body.bg-active {
 }
 
 .scene5-grey-logo {
-  width: 65px;
-  height: 65px;
+  width: 4.51vw;
+  height: 4.51vw;
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -25px;
+  top: -1.74vw;
 }
 
 .scene5-image-circle {
-  width: 535px;
-  height: 535px;
+  width: 37.15vw;
+  height: 37.15vw;
   border-radius: 50%;
   background-image: url('./assets/image05.webp');
   background-size: cover;
@@ -1242,7 +1244,7 @@ body.bg-active {
 
 .scene5-text {
   position: relative;
-  width: 300px;
+  width: 20.83vw;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
@@ -1252,10 +1254,10 @@ body.bg-active {
 
 .scene5-subcompany-bg {
   position: absolute;
-  bottom: 73px;
+  bottom: 5.07vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 500px;
+  width: 34.72vw;
   height: auto;
   opacity: 0;
   z-index: 5;
@@ -1264,40 +1266,40 @@ body.bg-active {
 
 .scene5-subcompany-logos {
   position: absolute;
-  bottom: 85px;
+  bottom: 5.90vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 500px;
+  width: 34.72vw;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 1.39vw;
   z-index: 6;
   opacity: 0;
 }
 
 .scene5-logo {
-  height: 75px;
+  height: 5.21vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene5-logo-separator {
-  height: 80px;
+  height: 5.56vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene5-right-arrows {
   position: absolute;
-  bottom: 45px;
+  bottom: 3.13vw;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 120px;
+  gap: 8.33vw;
   z-index: 6;
   opacity: 0;
 }
@@ -1311,7 +1313,7 @@ body.bg-active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.69vw;
   z-index: 6;
   opacity: 0;
   text-align: center;
@@ -1336,7 +1338,7 @@ body.bg-active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.69vw;
   z-index: 6;
   opacity: 0;
   text-align: center;
@@ -1353,21 +1355,21 @@ body.bg-active {
 }
 
 .scene5-convention-text {
-  width: 350px;
+  width: 24.31vw;
 }
 
 .scene5-convention-arrows {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 2.78vw;
 }
 
 .scene5-ssilp-arrows {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 2.78vw;
 }
 
 .scene5-arrow-back img {
@@ -1386,7 +1388,7 @@ body.bg-active {
 }
 
 .scene5-arrow-btn.scene5-arrow-left {
-  margin-right: 30px;
+  margin-right: 2.08vw;
 }
 
 .scene5-arrow-btn:hover {
@@ -1394,7 +1396,7 @@ body.bg-active {
 }
 
 .scene5-arrow-btn img {
-  height: 8px;
+  height: 0.56vw;
   width: auto;
   object-fit: contain;
 }
@@ -1403,7 +1405,7 @@ body.bg-active {
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 0.69vw;
   letter-spacing: 1px;
   white-space: normal;
   word-wrap: break-word;
@@ -1413,7 +1415,7 @@ body.bg-active {
 .scene5-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 0.97vw;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1423,8 +1425,8 @@ body.bg-active {
 }
 
 .scene5-small-red-circle {
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1434,10 +1436,10 @@ body.bg-active {
 
 .scene5-grey-outline-circle {
   position: fixed;
-  top: -100px;
-  left: calc(80% - 100px);
-  width: 200px;
-  height: 200px;
+  top: -6.94vw;
+  left: calc(80% - 6.94vw);
+  width: 13.89vw;
+  height: 13.89vw;
   border-radius: 50%;
   border: 2px solid #9c9fa1;
   background: transparent;
@@ -1447,11 +1449,11 @@ body.bg-active {
 
 .scene5-descending-red-circle {
   position: fixed;
-  top: -500px;
+  top: -34.72vw;
   right: 5%;
   left: auto;
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1463,10 +1465,10 @@ body.bg-active {
 
 .scene5-top-left-circle {
   position: fixed;
-  top: 170px;
+  top: 11.81vw;
   /* right: -300px; */
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1544,8 +1546,8 @@ body.bg-active {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
+  width: 6.94vw;
+  height: 6.94vw;
   background: url('./assets/Shreeshakti_Convention.png') no-repeat center;
   background-size: contain;
   z-index: 10;
@@ -1558,8 +1560,8 @@ body.bg-active {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
+  width: 6.94vw;
+  height: 6.94vw;
   background: url('./assets/SHREESHAKTI-logo.png') no-repeat center;
   background-size: contain;
   z-index: 10;
@@ -1595,23 +1597,21 @@ body.bg-active {
 
 .scene6 {
   isolation: isolate;
-  margin-top: -200px;
+  margin-top: -13.89vw;
 }
 
 .scene7 {
-  margin-top: -200px;
-  margin-bottom: -160px;
+  margin-top: -13.89vw;
+  margin-bottom: -11.11vw;
 }
 
 /* Scene 6 - Image left, Red circle right */
 .scene6-circles-container {
   position: absolute;
   /* top: 20%; */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1200px;
-  height: 400px;
+  left: 0;
+  width: 100vw;
+  height: 27.78vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1621,8 +1621,8 @@ body.bg-active {
 }
 
 .scene6-image-circle {
-  width: 535px;
-  height: 535px;
+  width: 37.15vw;
+  height: 37.15vw;
   border-radius: 50%;
   background-image: url('./assets/image06.webp');
   background-size: cover;
@@ -1636,15 +1636,15 @@ body.bg-active {
 }
 
 .scene6-red-circle {
-  width: 500px;
-  height: 500px;
+  width: 34.72vw;
+  height: 34.72vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
   left: 50%;
-  transform: translate(-50%, calc(-50% - 40px));
+  transform: translate(-50%, calc(-50% - 2.78vw));
   z-index: 10;
   opacity: 0.9;
   display: flex;
@@ -1657,12 +1657,12 @@ body.bg-active {
 
 .scene6-red-text {
   position: absolute;
-  width: 380px;
+  width: 26.39vw;
   text-align: center;
   opacity: 0;
   font-family: 'Montserrat', sans-serif;
   pointer-events: none;
-  top: 100px;
+  top: 6.94vw;
   left: 50%;
   transform: translateX(-50%) translateY(60px);
   display: flex;
@@ -1680,14 +1680,14 @@ body.bg-active {
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 0.69vw;
   letter-spacing: 1px;
 }
 
 .scene6-red-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 0.97vw;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1697,15 +1697,15 @@ body.bg-active {
 }
 
 .scene6-grey-circle {
-  width: 200px;
-  height: 200px;
+  width: 13.89vw;
+  height: 13.89vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 160px);
-  top: calc(50% - 490px);
+  left: calc(50% + 11.11vw);
+  top: calc(50% - 34.03vw);
   transform: translate(-50%, -50%);
   z-index: 0;
   opacity: 1;
@@ -1715,17 +1715,17 @@ body.bg-active {
 }
 
 .scene6-grey-logo {
-  width: 100px;
-  height: 100px;
+  width: 6.94vw;
+  height: 6.94vw;
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -35px;
+  top: -2.43vw;
 }
 
 .scene6-text {
   position: relative;
-  width: 300px;
+  width: 20.83vw;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
@@ -1735,10 +1735,10 @@ body.bg-active {
 
 .scene6-subcompany-bg {
   position: absolute;
-  bottom: 73px;
+  bottom: 5.07vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 500px;
+  width: 34.72vw;
   height: auto;
   opacity: 0;
   z-index: 5;
@@ -1747,45 +1747,45 @@ body.bg-active {
 
 .scene6-subcompany-logos {
   position: absolute;
-  bottom: 85px;
+  bottom: 5.90vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 500px;
+  width: 34.72vw;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 1.39vw;
   z-index: 6;
   opacity: 0;
 }
 
 .scene6-logo {
-  height: 80px;
+  height: 5.56vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene6-logo-separator {
-  height: 60px;
+  height: 4.17vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene6-logo-chhatralaya {
-  height: 20px !important;
+  height: 1.39vw !important;
 }
 
 
 .scene6-right-arrows {
   position: relative;
-  top: 195px;
+  top: 13.54vw;
   left: 30%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 85px;
+  gap: 5.90vw;
   z-index: 1000;
   opacity: 0;
   pointer-events: auto;
@@ -1795,9 +1795,9 @@ body.bg-active {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 10px;
-  width: 40px;
-  height: 40px;
+  padding: 0.69vw;
+  width: 2.78vw;
+  height: 2.78vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1828,27 +1828,27 @@ body.bg-active {
   border: none;
   cursor: pointer;
   padding: 0px;
-  width: 24px;
-  height: 24px;
+  width: 1.67vw;
+  height: 1.67vw;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   opacity: 0;
   pointer-events: auto;
-  margin-top: 8px;
+  margin-top: 0.56vw;
 }
 
 .scene6-small-red-circle {
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   /* border-radius: 50%; */
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
   right: 20%;
-  top: -75px;
+  top: -5.21vw;
   z-index: 20;
   opacity: 1;
 }
@@ -1856,8 +1856,8 @@ body.bg-active {
 .scene6-small-red-circle-1,
 .scene6-small-red-circle-2,
 .scene6-small-red-circle-3 {
-  width: 65px;
-  height: 65px;
+  width: 4.51vw;
+  height: 4.51vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1875,8 +1875,8 @@ body.bg-active {
 .scene6-small-red-circle-1-logo,
 .scene6-small-red-circle-2-logo,
 .scene6-small-red-circle-3-logo {
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   object-fit: cover;
   opacity: 0;
   border-radius: 50%;
@@ -1898,10 +1898,10 @@ body.bg-active {
 
 .scene6-grey-outline-circle {
   position: absolute;
-  top: -500px;
-  left: calc(50% + 270px);
-  width: 250px;
-  height: 250px;
+  top: -34.72vw;
+  left: calc(50% + 18.75vw);
+  width: 17.36vw;
+  height: 17.36vw;
   border-radius: 50%;
   border: 2px solid #9c9fa1;
   background: transparent;
@@ -1911,14 +1911,14 @@ body.bg-active {
 }
 
 .scene6-small-red-circle-right {
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  left: 95%;
+  left: 87.5vw;
   top: 20%;
   z-index: 20;
   opacity: 1;
@@ -1928,39 +1928,39 @@ body.bg-active {
 }
 
 .scene6-small-red-circle-logo {
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   object-fit: contain;
   opacity: 0;
 }
 
 .scene6-falling-circle {
-  width: 80px;
-  height: 80px;
+  width: 5.56vw;
+  height: 5.56vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: fixed;
   left: 5%;
-  top: -500px;
+  top: -34.72vw;
   z-index: 20;
   opacity: 1;
   display: none;
 }
 
 .scene6-heading {
-  font-size: 18px;
+  font-size: 1.25vw;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 1.39vw;
   letter-spacing: -0.05em;
 }
 
 .scene6-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.83vw;
   line-height: 1.4;
   color: #fff;
 }
@@ -1987,10 +1987,8 @@ body.bg-active {
 /* Scene 7 - Red circle left, Image right (exact duplicate of Scene 5) */
 .scene7-circles-container {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1200px;
+  left: 0;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2000,15 +1998,15 @@ body.bg-active {
 }
 
 .scene7-red-circle {
-  width: 500px;
-  height: 500px;
+  width: 34.72vw;
+  height: 34.72vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
   left: 38%;
-  transform: translate(-50%, calc(-50% - 40px));
+  transform: translate(-50%, calc(-50% - 2.78vw));
   z-index: 10;
   opacity: 0.9;
   display: flex;
@@ -2019,15 +2017,15 @@ body.bg-active {
 }
 
 .scene7-grey-circle {
-  width: 180px;
-  height: 180px;
+  width: 12.50vw;
+  height: 12.50vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
   left: 38%;
-  top: calc(50% - 490px);
+  top: calc(50% - 34.03vw);
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -2037,17 +2035,17 @@ body.bg-active {
 }
 
 .scene7-grey-logo {
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -25px;
+  top: -1.74vw;
 }
 
 .scene7-image-circle {
-  width: 535px;
-  height: 535px;
+  width: 37.15vw;
+  height: 37.15vw;
   border-radius: 50%;
   background-image: url('./assets/image08.webp');
   background-size: cover;
@@ -2062,7 +2060,7 @@ body.bg-active {
 
 .scene7-text {
   position: relative;
-  width: 300px;
+  width: 20.83vw;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
@@ -2072,10 +2070,10 @@ body.bg-active {
 
 .scene7-subcompany-bg {
   position: absolute;
-  bottom: 73px;
+  bottom: 5.07vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 500px;
+  width: 34.72vw;
   height: auto;
   opacity: 0;
   z-index: 5;
@@ -2084,40 +2082,40 @@ body.bg-active {
 
 .scene7-subcompany-logos {
   position: absolute;
-  bottom: 85px;
+  bottom: 5.90vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 500px;
+  width: 34.72vw;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 1.39vw;
   z-index: 6;
   opacity: 0;
 }
 
 .scene7-logo {
-  height: 80px;
+  height: 5.56vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene7-logo-separator {
-  height: 60px;
+  height: 4.17vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene7-right-arrows {
   position: absolute;
-  bottom: 45px;
+  bottom: 3.13vw;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 120px;
+  gap: 8.33vw;
   z-index: 6;
   opacity: 0;
 }
@@ -2131,7 +2129,7 @@ body.bg-active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.69vw;
   z-index: 6;
   opacity: 0;
   text-align: center;
@@ -2166,7 +2164,7 @@ body.bg-active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.69vw;
   z-index: 6;
   opacity: 0;
   text-align: center;
@@ -2193,21 +2191,21 @@ body.bg-active {
 }
 
 .scene7-convention-text {
-  width: 350px;
+  width: 24.31vw;
 }
 
 .scene7-convention-arrows {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 2.78vw;
 }
 
 .scene7-ssilp-arrows {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 2.78vw;
 }
 
 .scene7-arrow-back img {
@@ -2226,7 +2224,7 @@ body.bg-active {
 }
 
 .scene7-arrow-btn.scene7-arrow-left {
-  margin-right: 30px;
+  margin-right: 2.08vw;
 }
 
 .scene7-arrow-btn:hover {
@@ -2234,7 +2232,7 @@ body.bg-active {
 }
 
 .scene7-arrow-btn img {
-  height: 8px;
+  height: 0.56vw;
   width: auto;
   object-fit: contain;
 }
@@ -2243,7 +2241,7 @@ body.bg-active {
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 0.69vw;
   letter-spacing: 1px;
   white-space: normal;
   word-wrap: break-word;
@@ -2253,7 +2251,7 @@ body.bg-active {
 .scene7-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 0.97vw;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -2263,8 +2261,8 @@ body.bg-active {
 }
 
 .scene7-small-red-circle {
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -2273,10 +2271,10 @@ body.bg-active {
 
 .scene7-grey-outline-circle {
   position: fixed;
-  top: 100px;
-  left: calc(20% - 130px);
-  width: 275px;
-  height: 275px;
+  top: 6.94vw;
+  left: calc(20% - 9.03vw);
+  width: 19.10vw;
+  height: 19.10vw;
   border-radius: 50%;
   border: 2px solid #9c9fa1;
   background: transparent;
@@ -2286,9 +2284,9 @@ body.bg-active {
 
 .scene7-top-left-circle {
   position: fixed;
-  top: 170px;
-  width: 75px;
-  height: 75px;
+  top: 11.81vw;
+  width: 5.21vw;
+  height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -2366,8 +2364,8 @@ body.bg-active {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 75px;
-  height: 75px;
+  width: 5.21vw;
+  height: 5.21vw;
   background: url('./assets/logo-TOYJOYTALES.png') no-repeat center;
   background-size: contain;
   z-index: 10;
@@ -2380,8 +2378,8 @@ body.bg-active {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
+  width: 6.94vw;
+  height: 6.94vw;
   background: url('./assets/logo-LITTLEWINGS.png') no-repeat center;
   background-size: contain;
   z-index: 10;
@@ -2412,8 +2410,8 @@ body.bg-active {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 1200px;
-  height: 400px;
+  max-width: 83.33vw;
+  height: 27.78vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2422,8 +2420,8 @@ body.bg-active {
 }
 
 .scene8-image-circle {
-  width: 595px;
-  height: 595px;
+  width: 41.32vw;
+  height: 41.32vw;
   border-radius: 50%;
   background-image: url('./assets/image08.webp');
   background-size: cover;
@@ -2436,15 +2434,15 @@ body.bg-active {
 }
 
 .scene8-red-circle {
-  width: 500px;
-  height: 500px;
+  width: 34.72vw;
+  height: 34.72vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
   left: 50%;
-  transform: translate(-50%, calc(-50% - 40px));
+  transform: translate(-50%, calc(-50% - 2.78vw));
   z-index: 10;
   opacity: 0.9;
   display: flex;
@@ -2453,15 +2451,15 @@ body.bg-active {
 }
 
 .scene8-grey-circle {
-  width: 200px;
-  height: 200px;
+  width: 13.89vw;
+  height: 13.89vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 150px);
-  top: calc(50% - 250px);
+  left: calc(50% + 10.42vw);
+  top: calc(50% - 17.36vw);
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 0;
@@ -2471,17 +2469,17 @@ body.bg-active {
 }
 
 .scene8-grey-logo {
-  width: 50px;
-  height: 50px;
+  width: 3.47vw;
+  height: 3.47vw;
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -25px;
+  top: -1.74vw;
 }
 
 .scene8-text {
   position: relative;
-  width: 300px;
+  width: 20.83vw;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
@@ -2493,14 +2491,14 @@ body.bg-active {
   font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 0.69vw;
   letter-spacing: 1px;
 }
 
 .scene8-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.83vw;
   line-height: 1.4;
   color: #fff;
 }
@@ -2523,74 +2521,74 @@ body.bg-active {
 /* Footer Section */
 .footer {
   background-color: #e5e6e7;
-  padding: 0px 40px 40px;
+  padding: 0px 2.78vw 2.78vw;
   color: white;
   font-family: 'Montserrat', sans-serif;
 }
 
 .footer-container {
-  max-width: 1400px;
+  max-width: 97.22vw;
   margin: 0 auto;
   display: flex;
-  gap: 30px;
+  gap: 2.08vw;
   align-items: flex-start;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 2.78vw;
+  padding-right: 2.78vw;
   justify-content: center;
 }
 
 .footer-columns-wrapper {
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  max-width: 69.44vw;
 }
 
 .footer-titles-row {
   display: flex;
   justify-content: flex-start;
-  gap: 30px;
+  gap: 2.08vw;
   width: 100%;
 }
 
 .footer-content-row {
   display: flex;
   justify-content: flex-start;
-  gap: 30px;
+  gap: 2.08vw;
   width: 100%;
 }
 
 .footer-column {
   flex: 0 0 auto;
-  min-width: 180px;
+  min-width: 12.50vw;
 }
 
 .footer-content-row .footer-column {
-  width: 180px;
+  width: 12.50vw;
 }
 
 .footer-logo {
   flex: 0 0 auto;
-  width: 150px;
-  margin-right: 20px;
+  width: 10.42vw;
+  margin-right: 1.39vw;
 }
 
 .footer-logo-img {
-  width: 120px;
+  width: 8.33vw;
   height: auto;
 }
 
 .footer-title {
   color: var(--color-red);
-  font-size: 16px;
+  font-size: 1.11vw;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 0.69vw;
   letter-spacing: 1px;
 }
 
 .footer-full-line {
   width: 100%;
   height: auto;
-  margin: 20px 0;
+  margin: 1.39vw 0;
   display: block;
 }
 
@@ -2599,7 +2597,7 @@ body.bg-active {
 }
 
 .footer-contact p {
-  font-size: 13px;
+  font-size: 0.90vw;
   line-height: 1.8;
   color: #636466;
   margin-bottom: 2px;
@@ -2608,19 +2606,19 @@ body.bg-active {
 .contact-group {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 0.69vw;
+  margin-bottom: 0.69vw;
 }
 
 .contact-icon {
-  font-size: 18px;
+  font-size: 1.25vw;
   line-height: 1.8;
   flex-shrink: 0;
 }
 
 .contact-icon-img {
-  width: 20px;
-  height: 20px;
+  width: 1.39vw;
+  height: 1.39vw;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -2630,8 +2628,8 @@ body.bg-active {
 }
 
 .footer-contact .footer-spacing {
-  margin-top: 15px;
-  margin-bottom: 10px;
+  margin-top: 1.04vw;
+  margin-bottom: 0.69vw;
 }
 
 .footer-links {
@@ -2641,13 +2639,13 @@ body.bg-active {
 }
 
 .footer-links li {
-  margin-bottom: 12px;
+  margin-bottom: 0.83vw;
 }
 
 .footer-links a {
   color: #636466;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 0.90vw;
   transition: color 0.3s;
 }
 
@@ -2658,22 +2656,22 @@ body.bg-active {
 .newsletter-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1.04vw;
   background-color: white;
-  padding: 10px;
+  padding: 0.69vw;
   border-radius: 8px;
   width: 150%;
-  max-width: 600px;
+  max-width: 41.67vw;
 }
 
 .newsletter-input {
-  padding: 10px 0;
+  padding: 0.69vw 0;
   border: none;
   border-bottom: 1px solid #888;
   background-color: transparent;
   color: #636466;
   font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  font-size: 0.90vw;
   outline: none;
 }
 
@@ -2688,18 +2686,18 @@ body.bg-active {
 .newsletter-checkbox {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 0.69vw;
 }
 
 .checkbox-input {
   margin-top: 4px;
-  width: 16px;
-  height: 16px;
+  width: 1.11vw;
+  height: 1.11vw;
   cursor: pointer;
 }
 
 .newsletter-checkbox label {
-  font-size: 12px;
+  font-size: 0.83vw;
   color: #636466;
   line-height: 1.5;
   cursor: pointer;
