@@ -747,7 +747,7 @@ body.bg-active {
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: clamp(0.97vw, 2vw, 1.39vw);
+  font-size: 1.15vw;
   line-height: 1.5;
   opacity: 0;
   z-index: 61;
@@ -1065,7 +1065,7 @@ body.bg-active {
   top: calc(50% - 33.68vw);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 4.17vw;
+  font-size: 3.4vw;
   line-height: 1.1;
   letter-spacing: -0.05em;
   z-index: 11;

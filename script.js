@@ -571,7 +571,7 @@ let expandTL = gsap.timeline();
 expandTL.to(scene3Image, {
   width: "100vw",
   height: vw(330),
-  borderRadius: vw(200),
+  borderRadius: "9999px",
   ease: "none", // no easing so scroll fully controls pace
   duration: 1,
 });
@@ -579,7 +579,7 @@ expandTL.to(scene3Image, {
 expandTL.to(
   scene3RedCircle,
   {
-    left: "calc(50vw - 100px)",
+    x: vw(520),
     ease: "none", // important! scroll-controlled
     duration: 1,
   },
@@ -671,7 +671,7 @@ t3.fromTo(
 t3.to(
   scene3RedCircleText,
   {
-    left: "calc(50vw - 100px)",
+    x: vw(520),
     ease: "none",
     duration: 1,
   },
@@ -782,6 +782,18 @@ t4.fromTo(
     ease: "power2.out",
   },
   0
+);
+
+// Small red circle slides right and fades
+t4.to(
+  scene4SmallRedCircle,
+  {
+    x: vw(200),
+    opacity: 0,
+    duration: 0.5,
+    ease: "power1.inOut",
+  },
+  0.35
 );
 
 // Small red circle slides from right to left (0-0.3)
@@ -978,6 +990,18 @@ t5.fromTo(
   0
 );
 
+// Small red circle slides left and fades
+t5.to(
+  scene5SmallRedCircle,
+  {
+    x: vw(-700),
+    opacity: 0,
+    duration: 0.55,
+    ease: "power1.inOut",
+  },
+  0.45
+);
+
 // Step 4: After circles stop, image moves right (red circle stays in place)
 // Step 3: Text groups animate in while circles rise
 t5.fromTo(
@@ -1064,6 +1088,17 @@ t5.to(
   0.4
 );
 
+// Fade out grey outline circle once all animations complete
+t5.to(
+  scene5GreyOutlineCircle,
+  {
+    opacity: 0,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0.6
+);
+
 // Scene 6 Timeline - Image left, Red circle right
 let scene6IsExpanded = false; // Track if user clicked an arrow to view details
 
@@ -1108,6 +1143,7 @@ gsap.set(scene6RedCircle, { y: vw(415), x: vw(-100) });
 gsap.set(scene6SmallRedCircle, { y: vw(-310) });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
 gsap.set(scene6GreyCircle, { opacity: 0, y: vw(500) });
+gsap.set(scene6GreyOutlineCircle, { opacity: 0 });
 
 // Set initial opacity for subcompany elements to hidden BEFORE timeline creation
 gsap.set(scene6SubcompanyBg, { opacity: 0 });
@@ -1210,6 +1246,18 @@ t6.fromTo(
   "<0.1"
 );
 
+// Small red circle exits right together with grey outline circle
+t6.to(
+  scene6SmallRedCircle,
+  {
+    x: vw(900),
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.in",
+  },
+  1.7
+);
+
 // Three small red circles sliding from behind (one after another)
 t6.fromTo(
   scene6SmallRedCircle1,
@@ -1307,6 +1355,7 @@ t6.to(
 );
 
 // Step 3: After red circle stops at grey circle, image slides left (red circle stays in place)
+
 t6.to(
   scene6ImageCircle,
   {
@@ -1329,6 +1378,16 @@ t6.to(
   0.8
 );
 
+t6.to(
+  scene6GreyOutlineCircle,
+  {
+    x: vw(900),
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.in",
+  },
+  1.7
+);
 // TEMPORARILY COMMENTED OUT - SCENE 7
 
 // Scene 7 Timeline - Red circle left, Image right (exact duplicate of Scene 5)
@@ -1425,17 +1484,27 @@ t7.fromTo(
 //   1.2
 // );
 
-// Grey outline circle animates from top to bottom
+// Grey outline circle slides in from left, then exits left
 t7.to(
   scene7GreyOutlineCircle,
   {
-    opacity: 1,
-    top: "calc(-350px)",
-    // left: "calc(20%)",
+    x: vw(-285),
+    opacity: 0.7,
     duration: 1.2,
     ease: "power2.out",
   },
-  0
+  0.5
+);
+
+t7.to(
+  scene7GreyOutlineCircle,
+  {
+    x: vw(-900),
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.in",
+  },
+  1.7
 );
 
 // Small red circle drops from top left (0-0.3)
@@ -1453,6 +1522,20 @@ t7.fromTo(
     ease: "power2.out",
   },
   0
+);
+
+// Small red circle drifts further up and fades out
+t7.to(
+  scene7SmallRedCircle,
+  {
+    y: vw(-750),
+    x: vw(-600),
+    scale: 1.15,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.inOut",
+  },
+  0.5
 );
 
 // Step 4: After circles stop, image moves right (red circle stays in place)
