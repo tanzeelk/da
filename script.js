@@ -1103,8 +1103,8 @@ const scene6SubcompanyLogos = document.querySelector(
 const scene6RightArrows = document.querySelector(".scene6-right-arrows");
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene6ImageCircle, { y: vw(700), x: vw(-70) });
-gsap.set(scene6RedCircle, { y: vw(415), x: vw(-50) });
+gsap.set(scene6ImageCircle, { y: vw(700), x: vw(-120) });
+gsap.set(scene6RedCircle, { y: vw(415), x: vw(-100) });
 gsap.set(scene6SmallRedCircle, { y: vw(-310) });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
 gsap.set(scene6GreyCircle, { opacity: 0, y: vw(500) });
@@ -1289,7 +1289,7 @@ t6.to(
   scene6GreyOutlineCircle,
   {
     opacity: 0.7,
-    top: "calc(50% - 630px)",
+    top: "calc(50% - 785px)",
     duration: 1.2,
     ease: "power2.out",
   },
@@ -1310,7 +1310,7 @@ t6.to(
 t6.to(
   scene6ImageCircle,
   {
-    x: vw(-470),
+    x: vw(-485),
     duration: 0.5,
     ease: "power2.out",
   },

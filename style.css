@@ -27,8 +27,8 @@ html, body {
   --base-scale: 1;
   --spacing-unit: 1.39vw;
   --font-base: 1.25vw;
-  --font-hero: 6.94vw;
-  --font-hero-scene2: 5.21vw;
+  --font-hero: 5vw;
+  --font-hero-scene2: 5vw;
   --font-small: 1.04vw;
   --circle-size: 41.67vw;
   --circle-size-scene2: 34.72vw;
@@ -273,7 +273,7 @@ body {
   height: 3.47vw;
   border-radius: 50%;
   background: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 110% 110%; 
   background-position: center;
   position: absolute;
   top: 0;
@@ -554,8 +554,8 @@ body.bg-active {
 /* Red circle overlay with multiply blend mode */
 .red-circle-overlay {
   position: fixed;
-  top: 56.5%;
-  left: 50%;
+  top: 55.8%;
+  left: 50.4%;
   transform: translate(-50%, -50%);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -675,7 +675,7 @@ body.bg-active {
   height: 22.22vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   position: absolute;
   top: 18.40vw;
   left: 50%;
@@ -706,7 +706,7 @@ body.bg-active {
 .scene3-group-text {
   position: absolute;
   left: -107%;
-  top: calc(50% + 17.36vw);
+  top: calc(50% + 14.36vw);
   transform: translateY(-50%);
   color: #ec1c24;
   font-family: 'Montserrat', sans-serif;
@@ -722,8 +722,8 @@ body.bg-active {
 
 .scene3-ventures-text {
   position: absolute;
-  top: calc(51% + 17.36vw);
-  right: -21%;
+  top: calc(50% + 17.7vw);
+  right: -45%;
   color: var(--color-blue2);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -1429,7 +1429,7 @@ body.bg-active {
   height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   z-index: 0;
 }
@@ -1456,7 +1456,7 @@ body.bg-active {
   height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   z-index: 8;
   opacity: 0;
@@ -1471,7 +1471,7 @@ body.bg-active {
   height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   z-index: 2;
   transition: border-radius 0.3s ease;
@@ -1844,7 +1844,7 @@ body.bg-active {
   height: 5.21vw;
   /* border-radius: 50%; */
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: absolute;
   right: 20%;
@@ -1860,7 +1860,7 @@ body.bg-active {
   height: 4.51vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: absolute;
   top: 30%;
@@ -1915,7 +1915,7 @@ body.bg-active {
   height: 5.21vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: absolute;
   left: 87.5vw;
@@ -1939,7 +1939,7 @@ body.bg-active {
   height: 5.56vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
-  background-size: 110% 110%;
+  background-size: 100% 100%;
   background-position: center;
   position: fixed;
   left: 5%;
