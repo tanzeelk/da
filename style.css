@@ -1235,9 +1235,8 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  top: 1vw;
   left: 38%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, calc(-50% - 2.78vw));
   z-index: 5;
   opacity: 1;
 }
@@ -1629,8 +1628,7 @@ body.bg-active {
   background-position: center;
   position: absolute;
   left: 50%;
-  top: 4.33vw;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, calc(-50% - 2.78vw));
   z-index: 2;
   opacity: 1;
 }
@@ -2051,9 +2049,8 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  top: 1.2vw;
   left: 38%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, calc(-50% - 2.78vw));
   z-index: 5;
   opacity: 1;
 }

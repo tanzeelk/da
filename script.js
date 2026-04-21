@@ -1,6 +1,7 @@
 // Converts design px (at 1440px base) to current viewport px at runtime.
 // Use this for all GSAP x/y/width/height values so animations scale with viewport.
 function vw(px) { return (px / 1440) * window.innerWidth; }
+function vh(px) { return (px / 900) * window.innerHeight; }
 
 const heroText = document.querySelector(".hero-text");
 
@@ -909,12 +910,12 @@ gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 gsap.set(scene5GreyCircle, { opacity: 0, y: vw(500) });
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene5ImageCircle, { y: vw(500) });
+gsap.set(scene5ImageCircle, { y: vw(215) });
 gsap.set(scene5RedCircle, { y: vw(215) });
 t5.to(
   scene5ImageCircle,
   {
-    y: vw(-200),
+    y: vw(-230),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1138,7 +1139,7 @@ const scene6SubcompanyLogos = document.querySelector(
 const scene6RightArrows = document.querySelector(".scene6-right-arrows");
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene6ImageCircle, { y: vw(700), x: vw(-120) });
+gsap.set(scene6ImageCircle, { y: vw(415), x: vw(-120) });
 gsap.set(scene6RedCircle, { y: vw(415), x: vw(-100) });
 gsap.set(scene6SmallRedCircle, { y: vw(-310) });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
@@ -1199,7 +1200,7 @@ t6.to(
 t6.to(
   scene6ImageCircle,
   {
-    y: vw(-235),
+    y: vw(-215),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1420,13 +1421,13 @@ gsap.set(scene7TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene7ImageCircle, { y: vw(500) });
+gsap.set(scene7ImageCircle, { y: vw(215) });
 gsap.set(scene7RedCircle, { y: vw(215) });
 gsap.set(scene7GreyCircle, { opacity: 0, y: vw(500) });
 t7.to(
   scene7ImageCircle,
   {
-    y: vw(-200),
+    y: vw(-225),
     duration: 0.4,
     ease: "power2.out",
   },
