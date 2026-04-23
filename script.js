@@ -9,13 +9,9 @@ function setupReadMore(btnSelector, descSelector) {
   const btn = document.querySelector(btnSelector);
   const desc = document.querySelector(descSelector);
   if (btn && desc) {
-    let expanded = false;
-    btn.addEventListener("click", () => {
-      expanded = !expanded;
-      desc.style.display = expanded ? "block" : "";
-      desc.style.webkitLineClamp = expanded ? "unset" : "";
-      desc.style.overflow = expanded ? "visible" : "hidden";
-      btn.innerHTML = expanded ? "Read less &#8249;" : "Read more &#8250;";
+    btn.addEventListener("click", (e) => {
+      const expanded = desc.classList.toggle("desc-expanded");
+      btn.innerHTML = expanded ? "Read less &#8249;" : '<img src="./assets/read_more_icon.png" alt="Read more" class="read-more-icon" />';
     });
   }
 }
@@ -26,13 +22,9 @@ setupReadMore(".scene4-read-more", ".scene4-red-desc");
 document.querySelectorAll(".read-more-btn").forEach((btn) => {
   const desc = btn.previousElementSibling;
   if (desc) {
-    let expanded = false;
-    btn.addEventListener("click", () => {
-      expanded = !expanded;
-      desc.style.display = expanded ? "block" : "";
-      desc.style.webkitLineClamp = expanded ? "unset" : "";
-      desc.style.overflow = expanded ? "visible" : "hidden";
-      btn.innerHTML = expanded ? "Read less &#8249;" : "Read more &#8250;";
+    btn.addEventListener("click", (e) => {
+      const expanded = desc.classList.toggle("desc-expanded");
+      btn.innerHTML = expanded ? "Read less &#8249;" : '<img src="./assets/read_more_icon.png" alt="Read more" class="read-more-icon" />';
     });
   }
 });
@@ -1560,6 +1552,13 @@ t8.to(
   0.25
 );
 
+function resetReadMore(container) {
+  const desc = container.querySelector(".scene5-desc, .scene6-desc, .scene7-desc, .scene6-red-desc");
+  const btn = container.querySelector(".read-more-btn");
+  if (desc) desc.classList.remove("desc-expanded");
+  if (btn) btn.innerHTML = '<img src="./assets/read_more_icon.png" alt="Read more" class="read-more-icon" />';
+}
+
 // Scene 5 Arrow Click Handlers
 const leftArrowBtn = document.getElementById("scene5-left-arrow");
 const rightArrowBtn = document.getElementById("scene5-right-arrow");
@@ -1580,7 +1579,7 @@ const originalGroup1HTML = group1.innerHTML;
 const originalGroup2HTML = group2.innerHTML;
 
 function updateScene5ToConvention() {
-  // Update text content
+  resetReadMore(scene5RedCircleContainer);
   const heading = scene5RedCircleContainer.querySelector(".scene5-heading");
   const desc = scene5RedCircleContainer.querySelector(".scene5-desc");
 
@@ -1625,9 +1624,9 @@ function updateScene5ToConvention() {
   const imageCircle = document.querySelector(".scene5-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/SSCC.webp)";
-    imageCircle.style.width = vw(525) + "px";
-    imageCircle.style.height = vw(525) + "px";
-    imageCircle.style.top = `calc(50% - ${vw(290)}px)`;
+    imageCircle.style.width = "";
+    imageCircle.style.height = "";
+    imageCircle.style.top = "";
   }
 
   // Animate grey outline circle to top right
@@ -1657,7 +1656,7 @@ function updateScene5ToConvention() {
 }
 
 function updateScene5ToDefault() {
-  // Reset text content
+  resetReadMore(scene5RedCircleContainer);
   const heading = scene5RedCircleContainer.querySelector(".scene5-heading");
   const desc = scene5RedCircleContainer.querySelector(".scene5-desc");
 
@@ -1796,7 +1795,7 @@ function updateScene5ToDefault() {
 }
 
 function updateScene5ToSSILP() {
-  // Update text content
+  resetReadMore(scene5RedCircleContainer);
   const heading = scene5RedCircleContainer.querySelector(".scene5-heading");
   const desc = scene5RedCircleContainer.querySelector(".scene5-desc");
 
@@ -1831,9 +1830,9 @@ function updateScene5ToSSILP() {
   const imageCircle = document.querySelector(".scene5-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/SSILP.webp)";
-    imageCircle.style.width = vw(530) + "px";
-    imageCircle.style.height = vw(530) + "px";
-    imageCircle.style.top = `calc(50% - ${vw(295)}px)`;
+    imageCircle.style.width = "";
+    imageCircle.style.height = "";
+    imageCircle.style.top = "";
   }
 
   // Animate grey outline circle to top left with fade out/in
@@ -1935,6 +1934,7 @@ let isShowingNSK = false;
 if (scene6Arrow1) {
   scene6Arrow1.addEventListener("click", (e) => {
     e.preventDefault();
+    resetReadMore(scene6RedCircle);
 
     scene6IsExpanded = true; // Set state to prevent reset on scroll
 
@@ -1979,7 +1979,7 @@ if (scene6Arrow1) {
       gsap.to(scene6SubcompanyLogos, { opacity: 0, duration: 0.3 });
     }
     if (scene6RightArrows) {
-      gsap.to(scene6RightArrows, { opacity: 0, duration: 0.3 });
+      gsap.to(scene6RightArrows, { opacity: 0, duration: 0.3, pointerEvents: "none" });
     }
     
     // Change grey circle logo to NSSK.png
@@ -2014,9 +2014,9 @@ if (scene6Arrow1) {
 
 // Back arrow click handler
 if (scene6BackArrowBtn) {
-  scene6BackArrowBtn.addEventListener("click", (e) => {
+  scene6BackArrowBtn.addEventListener("mousedown", (e) => {
     e.preventDefault();
-
+    resetReadMore(scene6RedCircle);
     scene6IsExpanded = false; // Reset state to allow scroll animations
 
     // Restore original content
@@ -2057,7 +2057,7 @@ if (scene6BackArrowBtn) {
       gsap.to(scene6SubcompanyLogos, { opacity: 1, duration: 0.3 });
     }
     if (scene6RightArrows) {
-      gsap.to(scene6RightArrows, { opacity: 1, duration: 0.3 });
+      gsap.to(scene6RightArrows, { opacity: 1, duration: 0.3, pointerEvents: "auto" });
     }
     
     // Hide back arrow
@@ -2091,7 +2091,7 @@ if (scene6BackArrowBtn) {
 if (scene6Arrow2) {
   scene6Arrow2.addEventListener("click", (e) => {
     e.preventDefault();
-
+    resetReadMore(scene6RedCircle);
     scene6IsExpanded = true; // Set state to prevent reset on scroll
 
     // Change the background image to SSSOI-microimage.png
@@ -2135,7 +2135,7 @@ if (scene6Arrow2) {
       gsap.to(scene6SubcompanyLogos, { opacity: 0, duration: 0.3 });
     }
     if (scene6RightArrows) {
-      gsap.to(scene6RightArrows, { opacity: 0, duration: 0.3 });
+      gsap.to(scene6RightArrows, { opacity: 0, duration: 0.3, pointerEvents: "none" });
     }
     
     // Change grey circle logo to SSSOI.png
@@ -2169,7 +2169,7 @@ if (scene6Arrow2) {
 if (scene6Arrow3) {
   scene6Arrow3.addEventListener("click", (e) => {
     e.preventDefault();
-
+    resetReadMore(scene6RedCircle);
     scene6IsExpanded = true; // Set state to prevent reset on scroll
 
     // Change the background image to Chhatralaya-microimage.png
@@ -2213,7 +2213,7 @@ if (scene6Arrow3) {
       gsap.to(scene6SubcompanyLogos, { opacity: 0, duration: 0.3 });
     }
     if (scene6RightArrows) {
-      gsap.to(scene6RightArrows, { opacity: 0, duration: 0.3 });
+      gsap.to(scene6RightArrows, { opacity: 0, duration: 0.3, pointerEvents: "none" });
     }
     
     // Change grey circle logo to Chhatralaya.png
@@ -2289,7 +2289,7 @@ const originalScene7Group1HTML = scene7Group1.innerHTML;
 const originalScene7Group2HTML = scene7Group2.innerHTML;
 
 function updateScene7ToToyJoy() {
-  // Update text content
+  resetReadMore(scene7RedCircleContainer);
   const heading = scene7RedCircleContainer.querySelector(".scene7-heading");
   const desc = scene7RedCircleContainer.querySelector(".scene7-desc");
 
@@ -2331,16 +2331,16 @@ function updateScene7ToToyJoy() {
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/image07.webp)";
-    imageCircle.style.width = vw(525) + "px";
-    imageCircle.style.height = vw(525) + "px";
-    imageCircle.style.top = "calc(50% - " + vw(300) + "px)";
+    imageCircle.style.width = "";
+    imageCircle.style.height = "";
+    imageCircle.style.top = "";
   }
 
   isShowingToyJoy = true;
 }
 
 function updateScene7ToDefault() {
-  // Reset text content
+  resetReadMore(scene7RedCircleContainer);
   const heading = scene7RedCircleContainer.querySelector(".scene7-heading");
   const desc = scene7RedCircleContainer.querySelector(".scene7-desc");
 
@@ -2394,7 +2394,7 @@ function updateScene7ToDefault() {
 }
 
 function updateScene7ToLittleWings() {
-  // Update text content
+  resetReadMore(scene7RedCircleContainer);
   const heading = scene7RedCircleContainer.querySelector(".scene7-heading");
   const desc = scene7RedCircleContainer.querySelector(".scene7-desc");
 
@@ -2427,9 +2427,9 @@ function updateScene7ToLittleWings() {
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/littlewings-microimage.webp)";
-    imageCircle.style.width = vw(525) + "px";
-    imageCircle.style.height = vw(525) + "px";
-    imageCircle.style.top = "calc(50% - " + vw(300) + "px)";
+    imageCircle.style.width = "";
+    imageCircle.style.height = "";
+    imageCircle.style.top = "";
   }
 
   isShowingLittleWings = true;
@@ -2569,3 +2569,7 @@ if (homeLink) {
 }
 
 // END OF COMMENTED OUT CODE - SCENE 7 
+
+document.getElementById("scrollToTopBtn").addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});

@@ -962,28 +962,25 @@ body.bg-active {
 .scene4-read-more {
   background: none;
   border: none;
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.90vw;
-  font-weight: 600;
   cursor: pointer;
   padding: 0;
-  letter-spacing: 0.5px;
   opacity: 0.9;
 }
 
 .read-more-btn {
   background: none;
   border: none;
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.90vw;
-  font-weight: 600;
   cursor: pointer;
   padding: 0;
-  letter-spacing: 0.5px;
   opacity: 0.9;
   pointer-events: auto;
+}
+
+.read-more-icon {
+  height: 1.67vw;
+  width: auto;
+  display: block;
+  filter: invert(1);
 }
 
 .scene4-new-text {
@@ -1363,6 +1360,8 @@ body.bg-active {
   justify-content: center;
   align-items: center;
   gap: 2.78vw;
+  position: relative;
+  z-index: 20;
 }
 
 .scene5-ssilp-arrows {
@@ -1370,6 +1369,8 @@ body.bg-active {
   justify-content: center;
   align-items: center;
   gap: 2.78vw;
+  position: relative;
+  z-index: 20;
 }
 
 .scene5-arrow-back img {
@@ -1422,6 +1423,14 @@ body.bg-active {
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin-bottom: 10px;
+}
+
+.desc-expanded {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  overflow-y: auto !important;
+  max-height: 8vw;
+  pointer-events: none;
 }
 
 .scene5-small-red-circle {
@@ -2199,6 +2208,8 @@ body.bg-active {
   justify-content: center;
   align-items: center;
   gap: 2.78vw;
+  position: relative;
+  z-index: 20;
 }
 
 .scene7-ssilp-arrows {
@@ -2206,6 +2217,8 @@ body.bg-active {
   justify-content: center;
   align-items: center;
   gap: 2.78vw;
+  position: relative;
+  z-index: 20;
 }
 
 .scene7-arrow-back img {
@@ -2516,6 +2529,29 @@ body.bg-active {
 /* Scene 8 image */
 .scene8 .scene4-image-circle {
   background-image: url('./assets/image08.webp');
+}
+
+.pre-footer-top-btn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.39vw 4.17vw;
+  background: #e5e6e7;
+  position: relative;
+  z-index: 1000;
+}
+
+.scroll-to-top-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.scroll-to-top-btn img {
+  width: 3.47vw;
+  height: auto;
+  display: block;
 }
 
 /* Footer Section */
