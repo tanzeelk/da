@@ -91,7 +91,8 @@ menuClose.addEventListener("click", () => {
 // Close menu when clicking on menu items
 document.querySelectorAll(".menu-item").forEach((item) => {
   item.addEventListener("click", (e) => {
-    e.preventDefault();
+    const href = item.getAttribute("href");
+    if (!href || href === "#") e.preventDefault();
 
     // Remove active class from all items
     document.querySelectorAll(".menu-item").forEach((i) => {

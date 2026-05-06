@@ -17,32 +17,16 @@
     <img src="./assets/menubar3.png" alt="Menu" class="fixed-nav-menu" id="menuToggle" />
   </nav>
 
-  <div id="expandedMenu" class="expanded-menu career-expanded-menu">
-
-    <!-- Search (left) -->
-    <div class="career-search-wrap">
-      <svg class="career-search-svg" width="13" height="13" viewBox="0 0 14 14" fill="none">
-        <circle cx="5.5" cy="5.5" r="4.5" stroke="#77797b" stroke-width="1.5"/>
-        <line x1="9" y1="9" x2="13" y2="13" stroke="#77797b" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-      <input type="text" class="career-search-input" placeholder="" />
+  <!-- Expanded Menu -->
+  <div id="expandedMenu" class="expanded-menu">
+    <div class="menu-close" id="menuClose">&times;</div>
+    <div class="menu-center">
+      <a href="index.html" class="menu-item">Home</a>
+      <a href="about.html" class="menu-item">About Us</a>
+      <a href="#" class="menu-item" id="groupCompaniesLink">Group Companies</a>
+      <a href="career.html" class="menu-item active">Career</a>
+      <a href="contact.html" class="menu-item">Contact Us</a>
     </div>
-
-    <!-- Center: logo + nav links -->
-    <div class="menu-center career-menu-center">
-      <a href="index.html" class="career-logo-link">
-        <img src="./assets/logo.png" alt="DA Group" class="career-nav-logo-img" />
-      </a>
-      <div class="career-nav-links">
-        <a href="index.html" class="menu-item">Home</a>
-        <a href="about.html" class="menu-item">About Us</a>
-        <a href="#" class="menu-item">Group Companies</a>
-        <a href="career.html" class="menu-item active">Career</a>
-        <a href="#" class="menu-item">Contact Us</a>
-      </div>
-    </div>
-
-    <!-- Social Icons (right) -->
     <div class="menu-social">
       <a href="#" class="social-icon"><img src="./assets/smicon-fb.png" alt="Facebook" /></a>
       <a href="#" class="social-icon"><img src="./assets/smicon-yt.png" alt="YouTube" /></a>
@@ -184,15 +168,16 @@
   </main>
 
   <script>
-    document.getElementById('fixedNav').style.display = 'none';
-
     // File input label update
     const fileInput = document.querySelector('.career-file-input');
     const fileName  = document.querySelector('.career-file-name');
-    fileInput.addEventListener('change', () => {
-      fileName.textContent = fileInput.files[0] ? fileInput.files[0].name : 'No file chosen';
-    });
+    if (fileInput) {
+      fileInput.addEventListener('change', () => {
+        fileName.textContent = fileInput.files[0] ? fileInput.files[0].name : 'No file chosen';
+      });
+    }
   </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
