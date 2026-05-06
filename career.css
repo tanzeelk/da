@@ -102,8 +102,9 @@
 
 /* Large red circle — left of center, vertically centered */
 .career-red-circle {
-  width: 33.96vw;
-  height: 33.96vw;
+  mix-blend-mode: multiply;
+  width: 36.46vw;
+  height: 36.46vw;
   border-radius: 50%;
   background: #e31d36;
   position: absolute;
@@ -140,6 +141,7 @@
 
 /* Person photo circle — right of center, vertically centered */
 .career-photo-circle {
+  mix-blend-mode: multiply;
   width: 36.46vw;
   height: 36.46vw;
   border-radius: 50%;
@@ -158,14 +160,14 @@
   object-position: center top;
 }
 
-/* Tagline — top-right corner */
+/* Tagline — top aligns with top of photo circle, left-aligned */
 .career-tagline {
   position: absolute;
-  right: 4vw;
-  top: 10%;
+  right: 10vw;
+  top: calc(50% - 18.23vw);
   z-index: 11;
-  text-align: right;
-  line-height: 1.1;
+  text-align: left;
+  line-height: 0.8;
   letter-spacing: -0.03em;
   pointer-events: none;
 }
@@ -184,6 +186,7 @@
   font-size: 4.17vw;
   color: #3F5881;
   display: block;
+  margin-left: 6.2vw;
 }
 
 /* ── Job Listings ── */

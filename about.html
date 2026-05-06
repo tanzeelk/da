@@ -7,8 +7,6 @@
   <title>About Us — DA Group</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="about.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body class="about-page">
@@ -112,7 +110,7 @@
           </p>
         </div>
         <div class="about-circle-sm-botright">
-          <img src="./assets/image004.webp" alt="" />
+          <img src="./assets/about-us-bot-right.jpg" alt="" />
         </div>
       </div>
 
@@ -194,11 +192,9 @@
       <!-- Row 2: Durgesh circle left · Durgesh bio right (overlaps up) -->
       <div class="founders-row founders-row--2">
         <div class="founders-cell founders-cell--circle-durgesh">
-          <div class="founder-circle-wrap">
-            <div class="founder-circle founder-circle-2">
-              <img src="./assets/our-founders-2.jpg" alt="Durgesh Agarwal" />
-            </div>
-            <span class="founder-name founder-name--durgesh">Durgesh Agarwal</span>
+          <span class="founder-name founder-name--durgesh">Durgesh Agarwal</span>
+          <div class="founder-circle founder-circle-2">
+            <img src="./assets/our-founders-2.jpg" alt="Durgesh Agarwal" />
           </div>
         </div>
         <div class="founders-cell founders-cell--bio-durgesh">
@@ -217,57 +213,15 @@
 
     </section>
 
+    <!-- Our Progress -->
+    <section class="progress-section">
+      <img src="./assets/our-progress.png" alt="Our progress" class="progress-img" />
+    </section>
+
   </main>
 
   <script>
-    // Keep hamburger hidden — header is always the expanded menu on this page
     document.getElementById('fixedNav').style.display = 'none';
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Entry animations
-    gsap.from(".about-heading",       { duration: 0.9, y: 24, opacity: 0, ease: "power3.out", delay: 0.15 });
-    gsap.from(".about-body-text p",   { duration: 0.8, y: 16, opacity: 0, stagger: 0.14, ease: "power2.out", delay: 0.35 });
-    gsap.from(".about-circle-main",      { duration: 1,   scale: 0.88, opacity: 0, ease: "power3.out", delay: 0.2 });
-    gsap.from(".about-circle-sm-topleft",{ duration: 0.8, x: -20, opacity: 0, ease: "power2.out", delay: 0.4 });
-    gsap.from(".about-circle-xs-botleft",{ duration: 0.8, y: 20,  opacity: 0, ease: "power2.out", delay: 0.55 });
-    gsap.from(".about-circle-sm-botright",{ duration: 0.8, x: 20, opacity: 0, ease: "power2.out", delay: 0.55 });
-
-    // VMV scroll animations
-    gsap.from(".vmv-heading", {
-      scrollTrigger: { trigger: ".vmv-section", start: "top 80%" },
-      duration: 0.8, y: 20, opacity: 0, stagger: 0.15, ease: "power3.out"
-    });
-    gsap.from(".vmv-circle", {
-      scrollTrigger: { trigger: ".vmv-section", start: "top 75%" },
-      duration: 0.9, scale: 0.85, opacity: 0, stagger: 0.15, ease: "power3.out", delay: 0.2
-    });
-    gsap.from(".vmv-text", {
-      scrollTrigger: { trigger: ".vmv-section", start: "top 70%" },
-      duration: 0.8, y: 16, opacity: 0, stagger: 0.15, ease: "power2.out", delay: 0.4
-    });
-
-    // Founders scroll animations
-    gsap.from(".founders-heading", {
-      scrollTrigger: { trigger: ".founders-section", start: "top 80%" },
-      duration: 0.9, y: 24, opacity: 0, ease: "power3.out"
-    });
-    gsap.from(".founder-bio--anil", {
-      scrollTrigger: { trigger: ".founders-row--1", start: "top 80%" },
-      duration: 0.9, x: -30, opacity: 0, ease: "power2.out", delay: 0.1
-    });
-    gsap.from(".founders-cell--circle-anil .founder-circle", {
-      scrollTrigger: { trigger: ".founders-row--1", start: "top 80%" },
-      duration: 1, x: 40, opacity: 0, ease: "power3.out", delay: 0.1
-    });
-    gsap.from(".founders-cell--circle-durgesh .founder-circle", {
-      scrollTrigger: { trigger: ".founders-row--2", start: "top 85%" },
-      duration: 1, x: -40, opacity: 0, ease: "power3.out"
-    });
-    gsap.from(".founder-bio--durgesh", {
-      scrollTrigger: { trigger: ".founders-row--2", start: "top 85%" },
-      duration: 0.9, x: 30, opacity: 0, ease: "power2.out", delay: 0.15
-    });
   </script>
 
 </body>

@@ -353,23 +353,18 @@
 
 /* Durgesh circle — left cell of row 2 */
 .founders-cell--circle-durgesh {
+  flex-direction: column;
   align-items: flex-end;
+  justify-content: flex-end;
   padding: 0 60px 0 0;
-  position: relative;
-  overflow: visible;
-}
-
-.founder-circle-wrap {
-  position: relative;
-  width: 400px;
-  height: 400px;
-  flex-shrink: 0;
 }
 
 .founder-name--durgesh {
-  position: absolute;
-  bottom: 80px;
-  left: 0;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 50px;
+  text-align: left;
+  margin-left: 40px;
 }
 
 /* Durgesh bio — right cell of row 2 */
@@ -433,7 +428,7 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #333;
+  color: rgb(29, 61, 120);
   letter-spacing: 0.01em;
   position: absolute;
   bottom: 80px;
@@ -507,4 +502,16 @@
   .about-heading { font-size: 20px; }
   .about-body-text p { font-size: 8px; }
   .about-content { padding: 0 20px; height: calc(100vh - 80px); }
+}
+
+/* ── Our Progress ── */
+.progress-section {
+  width: 100%;
+  background: #e5e6e7;
+}
+
+.progress-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
