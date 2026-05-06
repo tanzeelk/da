@@ -21,7 +21,7 @@
   width: 100%;
   height: 40vh;
   min-height: 240px;
-  background: url('./assets/about-us-circle-image.jpg') center center / cover no-repeat;
+  background: url('./assets/about-us-circle-image.webp') center center / cover no-repeat;
   display: flex;
   align-items: flex-start;
   justify-content: center;

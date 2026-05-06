@@ -49,12 +49,14 @@ function dockOverlayToCircle(targetEl, overlayEl) {
   };
 }
 
-// Register ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
+// Register ScrollTrigger (only on pages that load GSAP)
+if (typeof gsap !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
 
-window.addEventListener('load', () => {
-  ScrollTrigger.refresh();
-});
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+  });
+}
 
 // Fixed Navigation Bar - Show from Scene 1 onwards till the end
 const fixedNav = document.getElementById("fixedNav");
@@ -63,13 +65,15 @@ const menuClose = document.getElementById("menuClose");
 const expandedMenu = document.getElementById("expandedMenu");
 let isMenuOpen = false;
 
-ScrollTrigger.create({
-  trigger: ".scene1",
-  start: "top top",
-  endTrigger: "body",
-  end: "bottom bottom",
-  markers: false,
-});
+if (typeof gsap !== 'undefined') {
+  ScrollTrigger.create({
+    trigger: ".scene1",
+    start: "top top",
+    endTrigger: "body",
+    end: "bottom bottom",
+    markers: false,
+  });
+}
 
 // Menu toggle functionality
 menuToggle.addEventListener("click", (e) => {
@@ -119,6 +123,8 @@ document.querySelectorAll('a[href="#footer"]').forEach((link) => {
     });
   });
 });
+
+if (typeof gsap !== 'undefined') {
 
 // Hero title animation
 gsap.from(".title", {
@@ -2626,13 +2632,7 @@ if (greyCircle4) {
 // Menu: Group Companies link - Scroll to scene3
 const groupCompaniesLink = document.getElementById("groupCompaniesLink");
 if (groupCompaniesLink) {
-  groupCompaniesLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    const scene3 = document.querySelector(".scene3");
-    if (scene3) {
-      scene3.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    // Close the menu after clicking
+  groupCompaniesLink.addEventListener("click", () => {
     const expandedMenu = document.getElementById("expandedMenu");
     if (expandedMenu) {
       expandedMenu.classList.remove("show");
@@ -2654,8 +2654,13 @@ if (homeLink) {
   });
 }
 
-// END OF COMMENTED OUT CODE - SCENE 7 
+// END OF COMMENTED OUT CODE - SCENE 7
 
-document.getElementById("scrollToTopBtn").addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+} // end gsap guard
+
+const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+if (scrollToTopBtn) {
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
