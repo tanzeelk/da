@@ -19,11 +19,12 @@
 .contact-hero {
   position: relative;
   width: 100%;
-  height: 55vh;
-  min-height: 320px;
+  height: 40vh;
+  min-height: 240px;
   background: url('./assets/about-us-circle-image.jpg') center center / cover no-repeat;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+  justify-content: center;
   padding: 4vw 6vw;
   box-sizing: border-box;
 }
@@ -44,50 +45,65 @@
   line-height: 1;
   letter-spacing: -0.01em;
   margin: 0;
+  margin-top: 40px;
 }
 
 /* ── Our Branches ── */
 .branches-section {
-  padding: 5vw 6vw 4vw;
+  padding: 5vw 6vw 6vw;
   box-sizing: border-box;
+}
+
+.branches-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
 }
 
 .branches-heading {
   font-family: 'Gontserrat-Medium', sans-serif;
   font-weight: 700;
-  font-size: 2.5vw;
-  color: #333;
-  margin-bottom: 3vw;
+  font-size: 2vw;
+  color: #3F5881;
   letter-spacing: -0.01em;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin: 0;
+  line-height: 1.1;
 }
 
 .branches-grid {
+  flex: 0 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 13vw);
   gap: 2.5vw 4vw;
 }
 
 .branch h3.branch-city {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 0.8vw;
-  color: #333;
+  font-size: 0.845vw;
+  color: #e31d36;
   letter-spacing: 0.04em;
   margin-bottom: 0.6vw;
+  padding-bottom: 0.6vw;
+  border-bottom: 1.5px solid #fff;
 }
 
 .branch p {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.75vw;
+  font-size: 0.83vw;
   font-weight: 400;
   color: #555;
-  line-height: 1.7;
+  line-height: 1.3;
   margin: 0;
 }
 
 /* ── Map ── */
 .contact-map-section {
   width: 100%;
+  position: relative;
 }
 
 .contact-map {
@@ -96,6 +112,13 @@
   min-height: 300px;
   border: none;
   display: block;
+}
+
+.contact-map-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 12%, rgba(227, 29, 54, 0.75) 12%);
+  pointer-events: none;
 }
 
 /* ── Get in touch ── */
@@ -278,6 +301,8 @@
 }
 
 @media (max-width: 900px) {
+  .branches-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .branches-heading { flex: none; font-size: 28px; }
   .branches-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-form-section { flex-direction: column; gap: 40px; }
   .contact-form-left { flex: none; }
