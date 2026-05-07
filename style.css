@@ -807,7 +807,8 @@ body.bg-active {
   z-index: 10;
   position: absolute;
   padding: 0 clamp(3.47vw, 10vw, 10.42vw);
-  top: clamp(2.78vw, 8vh, 8.33vw);
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
   right: 0;
 }
