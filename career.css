@@ -102,11 +102,14 @@
 
 /* Large red circle — left of center, vertically centered */
 .career-red-circle {
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
+  opacity: 0.9;
   width: 36.46vw;
   height: 36.46vw;
   border-radius: 50%;
-  background: #e31d36;
+  background-image: url('./assets/circle.webp');
+  background-size: 110% 110%;
+  background-position: center;
   position: absolute;
   left: calc(50% - 10.42vw);
   top: 50%;
