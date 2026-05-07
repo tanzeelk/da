@@ -79,12 +79,11 @@
   padding-top: 3.5vw;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
-/* Background circles scoped to the about-content section only */
+/* Background circles visible in the about-content section */
 .about-content .bg-circles {
-  display: none;
+  z-index: 1;
 }
 
 /* ── Content layout: images left, text right ── */
@@ -95,10 +94,10 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  padding: 0 4.167vw;
+  padding: 14vw 4.167vw;
   width: 100%;
-  height: calc(100vh - 3.5vw);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* ── Image group: 4 overlapping circles ── */
@@ -230,16 +229,17 @@
 .vmv-section {
   position: relative;
   z-index: 2;
-  padding: 2vw 8vw 7vw;
+  padding: 2vw 8vw 10vw;
   width: 100%;
   box-sizing: border-box;
 }
 
 .vmv-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 22vw));
   gap: 0;
   text-align: center;
+  justify-content: center;
 }
 
 .vmv-card {
@@ -260,8 +260,8 @@
 }
 
 .vmv-circle {
-  width: 15vw;
-  height: 15vw;
+  width: 10vw;
+  height: 10vw;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -432,7 +432,7 @@
   .about-nav-logo-img { height: 40px; }
   .about-search-input { font-size: 11px; }
   .about-main { padding-top: 80px; }
-  .about-content { height: calc(100vh - 80px); }
+  .about-content { padding: 6vw 4.167vw; }
 }
 
 /* ── Our Progress ── */
