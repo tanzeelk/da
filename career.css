@@ -412,22 +412,3 @@
   .career-form-grid { gap: 16px 40px; }
 }
 
-@media (max-width: 1000px) {
-  .career-hero { height: auto; min-height: 80vw; padding: 8vw 4vw; flex-direction: column; }
-  .career-red-circle { position: relative; left: auto; top: auto; transform: none;
-    width: 70vw; height: 70vw; max-width: none; max-height: none; margin: 0 auto; }
-  .career-photo-circle { position: relative; right: auto; top: auto; transform: none;
-    width: 60vw; height: 60vw; max-width: none; max-height: none; margin: -10vw auto 0; }
-  .career-tagline { position: relative; top: auto; right: auto; text-align: center; margin: 4vw 0 0; }
-  .career-outline-circle { display: none; }
-  .career-listings { padding: 6vw 4vw; }
-  .career-form-section { padding: 6vw 4vw 8vw; }
-  .career-form-grid { grid-template-columns: 1fr; }
-  .career-form-bottom { flex-direction: column; align-items: flex-start; }
-}
-
-@media (max-width: 600px) {
-  .career-nav-links { gap: 3vw; }
-  .career-search-input { font-size: 2.5vw; }
-  .career-table th, .career-table td { padding: 8px 10px; }
-}

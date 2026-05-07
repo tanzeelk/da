@@ -1,0 +1,76 @@
+/* ── About Us v2 — image-based sections ── */
+
+.about2-page {
+  background: #e5e6e7;
+  color: #333;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Fixed expanded nav ── */
+.about2-page .about2-expanded-menu {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+  position: fixed;
+  top: 0;
+  padding: 0 4.17vw;
+  min-height: 7.5vw;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.about2-menu-center {
+  flex-direction: column !important;
+  gap: 0.5vw !important;
+  align-items: center;
+}
+
+/* ── Main offset for fixed nav ── */
+.about2-main {
+  padding-top: 7.5vw;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Section base: full-width background image ── */
+.about2-section {
+  width: 100%;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+/*
+  Aspect ratios from original images:
+    1: 1920 × 837  → 837/1920 = 43.59%
+    2: 1920 × 799  → 799/1920 = 41.61%
+    3: 1920 × 823  → 823/1920 = 42.86%
+    4: 1917 × 802  → 802/1917 = 41.84%
+*/
+
+.about2-section--1 {
+  background-image: url('./assets/about-section-1.png');
+  padding-bottom: 43.59%;
+}
+
+.about2-section--2 {
+  background-image: url('./assets/about-section-2.png');
+  padding-bottom: 41.61%;
+}
+
+.about2-section--3 {
+  background-image: url('./assets/about-section-3.png');
+  padding-bottom: 42.86%;
+}
+
+.about2-section--4 {
+  background-image: url('./assets/about-section-4.png');
+  padding-bottom: 41.84%;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1400px) {
+  .about2-page .about2-expanded-menu { min-height: 80px; padding: 0 40px; }
+  .about2-main { padding-top: 80px; }
+}
