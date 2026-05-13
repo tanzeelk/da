@@ -412,3 +412,174 @@
   .career-form-grid { gap: 16px 40px; }
 }
 
+@media (max-width: 768px) {
+  /* fixedNav: show as top bar with centered logo */
+  .career-page #fixedNav {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 3vw 4vw;
+    background: #e5e6e7;
+    z-index: 1000;
+  }
+
+  .career-page #fixedNav .fixed-nav-logo {
+    height: 14vw;
+    width: auto;
+    display: block;
+  }
+
+  /* Hide hamburger on career mobile — menu always shown */
+  .career-page #fixedNav .fixed-nav-menu {
+    display: none;
+  }
+
+  /* expandedMenu: sits below fixedNav, column layout */
+  .career-page #expandedMenu {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 4vw 4vw;
+    gap: 0;
+    min-height: unset;
+    top: 0;
+  }
+
+  .career-page .menu-close {
+    display: none;
+  }
+
+  /* Social icons: right-aligned, same row concept — float above links */
+  .career-page .menu-social {
+    order: 1;
+    align-self: flex-end;
+    gap: 2vw;
+    margin-bottom: 2vw;
+  }
+
+  .career-page .menu-social .social-icon img {
+    height: 3vw;
+    width: auto;
+  }
+
+  /* Nav links: centered, stacked */
+  .career-page .menu-center {
+    order: 2;
+    flex-direction: column !important;
+    gap: 0.3vw !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  .career-page .menu-item {
+    font-size: 2.5vw;
+  }
+
+  .career-main { padding-top: 0; }
+
+  /* Hide decorative background small circles on mobile */
+  .career-hero .bg-circles { display: none; }
+
+  /* Hero — tall enough for tagline + photo (60vw) + red overlap (70vw, top at 48vw) = 118vw total */
+  .career-hero {
+    height: auto;
+    min-height: unset;
+    overflow: visible;
+    padding-bottom: 86vw;
+  }
+
+  /* Tagline — left side, vertically centered in photo circle zone */
+  .career-tagline {
+    position: absolute;
+    left: 18vw;
+    right: auto;
+    top: 1.5vw;
+    z-index: 12;
+  }
+
+  .career-tagline-red,
+  .career-tagline-blue {
+    font-size: 6vw;
+    line-height: 0.7;
+    letter-spacing: -0.03em;
+  }
+
+  .career-tagline-blue {
+    margin-left: 0;
+  }
+
+  /* Photo circle — centered horizontally, top of hero */
+  .career-photo-circle {
+    width: 55vw;
+    height: 55vw;
+    top: 0.5vw;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    z-index: 11;
+  }
+
+  /* Red circle — same size, centered, overlaps bottom of photo circle */
+  .career-red-circle {
+    width: 55vw;
+    height: 55vw;
+    left: 50%;
+    top: 40vw;
+    transform: translateX(-50%);
+    padding: 7vw;
+    z-index: 10;
+  }
+
+  .career-join-heading {
+    font-size: 2.5vw;
+    margin-bottom: 1vw;
+    letter-spacing: -0.03em;
+  }
+
+  .career-join-text {
+    font-size: 1.6vw;
+    max-width: 64vw;
+  }
+
+  .career-outline-circle {
+    display: none;
+  }
+
+  /* Listings — below stacked circles */
+  .career-listings {
+    padding: 6vw 4vw 6vw;
+    margin-top: 14vw;
+  }
+
+  /* Form */
+  .career-form-section {
+    padding: 8vw 6vw 10vw;
+  }
+
+  .career-form-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .career-form-heading {
+    font-size: 5vw;
+    margin-bottom: 6vw;
+  }
+
+  .career-form-bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .career-submit-btn {
+    width: 100%;
+    padding: 14px;
+  }
+}
+
