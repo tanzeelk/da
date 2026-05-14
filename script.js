@@ -89,7 +89,7 @@ menuClose.addEventListener("click", () => {
   isMenuOpen = false;
   expandedMenu.classList.remove("active");
   fixedNav.classList.remove("visible");
-  menuToggle.style.display = "block";
+  if (window.innerWidth > 768) menuToggle.style.display = "block";
 });
 
 // Close menu when clicking on menu items
@@ -109,7 +109,7 @@ document.querySelectorAll(".menu-item").forEach((item) => {
     isMenuOpen = false;
     expandedMenu.classList.remove("active");
     fixedNav.classList.remove("visible");
-    menuToggle.style.display = "block";
+    if (window.innerWidth > 768) menuToggle.style.display = "block";
   });
 });
 

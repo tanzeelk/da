@@ -79,6 +79,12 @@ body {
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .fixed-nav-menu {
+    display: none;
+  }
+}
+
 /* Expanded Menu */
 .expanded-menu {
   position: fixed;
