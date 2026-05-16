@@ -211,10 +211,10 @@
 .about-body-text p {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9375vw;
-  font-weight: 400;
+  font-weight: 500;
   color: #555;
   line-height: 1.4;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.05em;
 }
 
 .about-body-text {
@@ -279,10 +279,10 @@
 .vmv-text {
   font-family: 'Montserrat', sans-serif;
   font-size: 1vw;
-  font-weight: 400;
+  font-weight: 500;
   color: #555;
   line-height: 1.5;
-  /* letter-spacing: -0.01em; */
+  letter-spacing: -0.05em;
   margin: 0;
   max-width: 18vw;
   text-align: center;
@@ -301,10 +301,10 @@
   font-family: 'Gontserrat-Medium', sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 2.5vw;
+  font-size: 2.3vw;
   color: #e31d36;
   text-align: center;
-  margin: -3.125vw 0 -5.208vw -10.417vw;
+  margin: -3.125vw 0 -5.208vw -12.417vw;
   line-height: 1.1;
   position: relative;
   z-index: 4;
@@ -355,9 +355,9 @@
 .founder-name--durgesh {
   position: relative;
   z-index: 2;
-  margin-bottom: 2.604vw;
+  margin-bottom: 4vw;
   text-align: left;
-  margin-left: 2.083vw;
+  margin-left: 5.8vw;
 }
 
 /* Durgesh bio — right cell of row 2 */
@@ -370,11 +370,11 @@
 /* ── Bio text ── */
 .founder-bio {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.833vw;
-  font-weight: 400;
+  font-size: 1vw;
+  font-weight: 500;
   color: #555;
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.05em;
   margin: 0;
   max-width: 23.438vw;
 }
@@ -385,6 +385,7 @@
 .founder-bio-wrap {
   border-top: 1px solid #fff;
   padding-top: 0.625vw;
+  margin-top: 1.5vw
 }
 
 /* ── Circle ── */
@@ -405,12 +406,12 @@
 }
 
 .founder-circle-1 img{
-  transform: scale(1.8);
+  /* transform: scale(1.8); */
   transform-origin: center center;
 }
 
 .founder-circle-2 img{
-  transform: scale(1.5);
+  /* transform: scale(1.5); */
   transform-origin: center center;
 }
 
