@@ -58,9 +58,32 @@
 .gc-circles-section {
   position: relative;
   background: #e5e6e7;
-  height: 19vw;
-  overflow: visible;
+  height: 20vw;
+  overflow: hidden;
+  z-index: 2;
 }
+
+/* ── Company Panels ── */
+.gc-panels {
+  background: #e5e6e7;
+  position: relative;
+  z-index: 1;
+}
+
+/* Scenes hidden by default, shown on grey circle click */
+.gc-company-panel {
+  display: none;
+}
+
+.gc-company-panel.gc-panel-active {
+  display: block;
+}
+
+.grey-circle.gc-active {
+  outline: 3px solid #e31d36;
+  outline-offset: 4px;
+}
+
 
 @media (max-width: 768px) {
 
@@ -271,4 +294,5 @@
   .gc-page .grey-circle:nth-child(4) .circle-logo {
     width: 22vw;
   }
+
 }
