@@ -1,7 +1,7 @@
-// Converts design px (at 1440px base) to current viewport px at runtime.
+// Converts design px (at 1920px base) to current viewport px at runtime.
 // Use this for all GSAP x/y/width/height values so animations scale with viewport.
-function vw(px) { return (px / 1440) * window.innerWidth; }
-function vh(px) { return (px / 900) * window.innerHeight; }
+function vw(px) { return (px / 1920) * window.innerWidth; }
+function vh(px) { return (px / 1080) * window.innerHeight; }
 
 const heroText = document.querySelector(".hero-text");
 
@@ -55,6 +55,19 @@ if (typeof gsap !== 'undefined') {
 
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (t3) { t3.kill(); }
+      ScrollTrigger.getAll().forEach(st => {
+        if (st.vars && st.vars.trigger === ".scene3") st.kill();
+      });
+      initScene3();
+      ScrollTrigger.refresh(true);
+    }, 200);
   });
 }
 
@@ -537,7 +550,9 @@ const scene3RedCircleText = document.querySelector(".scene3-red-circle-text");
 const bgCircles = document.querySelectorAll(".bg-circle");
 
 // ScrollTrigger timeline
-let t3 = gsap.timeline({
+let t3;
+function initScene3() {
+t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
     start: "top+=170px top",
@@ -554,13 +569,13 @@ let t3 = gsap.timeline({
 // Elements are already visible, animation starts when pinned at top
 t3.fromTo(
   scene3Image,
-  { opacity: 1, width: vw(330), height: vw(330), borderRadius: "50%" },
+  () => ({ opacity: 1, width: vw(330), height: vw(330)}),
   { opacity: 1, ease: "none" }
 );
 
 t3.fromTo(
   scene3RedCircle,
-  { opacity: 1, width: vw(300), height: vw(300) },
+  () => ({ opacity: 1, width: vw(330), height: vw(330) }),
   { opacity: 1, ease: "none" },
   0
 );
@@ -569,18 +584,21 @@ t3.fromTo(
 let expandTL = gsap.timeline();
 
 expandTL.to(scene3Image, {
-  width: "100vw",
-  height: vw(330),
+  width: () => window.innerWidth,
+  height: () => vw(500),
   borderRadius: "9999px",
-  ease: "none", // no easing so scroll fully controls pace
+  ease: "none",
   duration: 1,
 });
 
 expandTL.to(
   scene3RedCircle,
   {
-    x: vw(520),
-    ease: "none", // important! scroll-controlled
+    x: () => {
+      const circleRect = scene3RedCircle.getBoundingClientRect();
+      return window.innerWidth - (circleRect.left + circleRect.width);
+    },
+    ease: "none",
     duration: 1,
   },
   0.1
@@ -648,22 +666,22 @@ t3.to(
 // Step 5: Fade + slide up 'Our Group' and 'Our Ventures' texts
 t3.fromTo(
   scene3GroupText,
-  { opacity: 0, y: vw(250) },
+  () => ({ opacity: 0, y: vw(250) }),
   { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
   "<0.3"
 );
 
 t3.fromTo(
   scene3VenturesText,
-  { opacity: 0, y: vw(250) },
-  { opacity: 1, y: vw(-40), duration: 0.5, ease: "power3.out" },
+  () => ({ opacity: 0, y: vw(250) }),
+  { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
   "<0.3"
 );
 
 t3.fromTo(
   scene3RedCircleText,
-  { opacity: 0, y: vw(200) },
-  { opacity: 1, y: 0, duration: 2, ease: "power3.out" },
+  () => ({ opacity: 0, y: vw(200), xPercent: -50, yPercent: -50 }),
+  { opacity: 1, y: 0, xPercent: -50, yPercent: -50, duration: 2, ease: "power3.out" },
   "<"
 );
 
@@ -671,7 +689,13 @@ t3.fromTo(
 t3.to(
   scene3RedCircleText,
   {
-    x: vw(520),
+    x: () => {
+      const circleRect = scene3RedCircle.getBoundingClientRect();
+      return window.innerWidth - (circleRect.left + circleRect.width);
+    },
+    y: () => vw(85),
+    xPercent: -50,
+    yPercent: -50,
     ease: "none",
     duration: 1,
   },
@@ -697,6 +721,8 @@ greyCircles.forEach((circle, index) => {
     `>-${0.35 - index * 0.05}` // Overlap animations with faster timing
   );
 });
+}
+initScene3();
 
 // ============================================
 // SCENE 4 Timeline - Red circle and image rise up, then image slides left
@@ -730,9 +756,8 @@ const scene4Group2 = document.querySelector(".scene4-group-2");
 const scene4RedText = document.querySelector(".scene4-red-text");
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene4GreyCircle, { opacity: 1, y: 0 });
-gsap.set([scene4RedCircle, scene4ImageCircle], { y: vw(500) });
-gsap.set(scene4RedCircle, { y: vw(235) });
+gsap.set(scene4GreyCircle, { opacity: 0, y: 0 });
+gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: vw(500) });
 gsap.set(scene4SmallRedCircle, { x: vw(-150) });
 gsap.set(scene4SmallRedCircleRight, { x: 0, y: vw(400) });
 
@@ -750,9 +775,9 @@ t4.to(
 
 // Step 1: Red circle and image rise up together (0-0.4)
 t4.to(
-  scene4ImageCircle,
+  [scene4ImageCircle, scene4NewText],
   {
-    y: vw(450),
+    y: vw(185),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -906,13 +931,14 @@ const scene5GreyOutlineCircle = document.querySelector(
 gsap.set(scene5SmallRedCircle, { y: vw(-800), x: vw(-550) });
 gsap.set(scene5TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
-gsap.set(scene5GreyCircle, { opacity: 0, y: vw(500) });
+gsap.set(scene5GreyCircle, { opacity: 0, y: vw(215) });
 
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene5ImageCircle, { y: vw(215) });
+gsap.set(scene5NewText, { y: vw(215) });
 gsap.set(scene5RedCircle, { y: vw(215) });
 t5.to(
-  scene5ImageCircle,
+  [scene5ImageCircle, scene5NewText],
   {
     y: vw(-230),
     duration: 0.4,
@@ -1019,13 +1045,13 @@ t5.fromTo(
 );
 
 t5.to(
-  scene5ImageCircle,
+  [scene5ImageCircle, scene5NewText],
   {
-    x: vw(100),
-    duration: 0.5,
+    x: vw(350),
+    duration: 0.3,
     ease: "power2.out",
   },
-  0.4
+  0.2
 );
 
 t5.to(
@@ -1043,7 +1069,7 @@ t5.to(
   scene5GreyCircle,
   {
     opacity: 1,
-    y: 0,
+    y: vw(-290),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1136,10 +1162,12 @@ const scene6SubcompanyLogos = document.querySelector(
   ".scene6-subcompany-logos"
 );
 const scene6RightArrows = document.querySelector(".scene6-right-arrows");
+const scene6NewText = document.querySelector(".scene6-new-text");
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene6ImageCircle, { y: vw(415), x: vw(-120) });
-gsap.set(scene6RedCircle, { y: vw(415), x: vw(-100) });
+gsap.set(scene6ImageCircle, { y: vw(500) });
+gsap.set(scene6NewText, { y: vw(500) });
+gsap.set(scene6RedCircle, { y: vw(500) });
 gsap.set(scene6SmallRedCircle, { y: vw(-310) });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
 gsap.set(scene6GreyCircle, { opacity: 0, y: vw(500) });
@@ -1189,7 +1217,7 @@ let t6 = gsap.timeline({
 t6.to(
   scene6GreyCircle,
   {
-    y: 0,
+    y: vw(-125),
     opacity: 1,
     duration: 0.4,
     ease: "power2.out",
@@ -1197,7 +1225,7 @@ t6.to(
   0
 );
 t6.to(
-  scene6ImageCircle,
+  [scene6ImageCircle, scene6NewText],
   {
     y: vw(-215),
     duration: 0.4,
@@ -1359,11 +1387,11 @@ t6.to(
 t6.to(
   scene6ImageCircle,
   {
-    x: vw(-485),
-    duration: 0.5,
+    x: vw(-350),
+    duration: 0.3,
     ease: "power2.out",
   },
-  0.8
+  0.2
 );
 
 // Step 4: Text appears
@@ -1422,11 +1450,12 @@ gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene7ImageCircle, { y: vw(215) });
 gsap.set(scene7RedCircle, { y: vw(215) });
-gsap.set(scene7GreyCircle, { opacity: 0, y: vw(500) });
+gsap.set(scene7GreyCircle, { opacity: 0, y: vw(215) });
+gsap.set(scene7NewText, { y: vw(215) });
 t7.to(
-  scene7ImageCircle,
+  [scene7ImageCircle, scene7NewText],
   {
-    y: vw(-225),
+    y: vw(-700),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1437,7 +1466,7 @@ t7.to(
   scene7GreyCircle,
   {
     opacity: 1,
-    y: 0,
+    y: vw(-290),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1446,7 +1475,7 @@ t7.to(
 t7.to(
   scene7RedCircle,
   {
-    y: vw(-225),
+    y: vw(-700),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1557,11 +1586,11 @@ t7.fromTo(
 t7.to(
   scene7ImageCircle,
   {
-    x: vw(80),
-    duration: 0.5,
+    x: vw(350),
+    duration: 0.3,
     ease: "power2.out",
   },
-  0.4
+  0.2
 );
 
 t7.to(
