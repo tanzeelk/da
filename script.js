@@ -871,7 +871,7 @@ t4.fromTo(
 t4.to(
   scene4ImageCircle,
   {
-    x: vw(-350),
+    x: vw(-470),
     duration: 0.3,
     ease: "power2.out",
   },
@@ -1050,7 +1050,7 @@ t5.fromTo(
 t5.to(
   [scene5ImageCircle, scene5NewText],
   {
-    x: vw(350),
+    x: vw(470),
     duration: 0.3,
     ease: "power2.out",
   },
@@ -1391,7 +1391,7 @@ t6.to(
 t6.to(
   scene6ImageCircle,
   {
-    x: vw(-350),
+    x: vw(-470),
     duration: 0.3,
     ease: "power2.out",
   },
@@ -1594,7 +1594,7 @@ t7.fromTo(
 t7.to(
   scene7ImageCircle,
   {
-    x: () => vw(350),
+    x: () => vw(470),
     duration: 0.3,
     ease: "power2.out",
   },
@@ -2491,8 +2491,8 @@ function updateScene7ToDefault() {
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
     imageCircle.style.backgroundImage = "url(./assets/image08.webp)";
-    imageCircle.style.width = vw(525) + "px";
-    imageCircle.style.height = vw(525) + "px";
+    imageCircle.style.width = "";
+    imageCircle.style.height = "";
   }
 
   // Remove show-convention class

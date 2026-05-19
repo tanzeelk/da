@@ -876,7 +876,7 @@ body.bg-active {
   background-position: center;
   position: absolute;
   top: 21vw;
-  left: calc(50% + 10.42vw);
+  left: calc(50% + 12.5vw);
   transform: translate(-50%, -50%);
   z-index: 5;
   opacity: 1;
@@ -890,7 +890,7 @@ body.bg-active {
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  left: calc(50% + 10.42vw);
+  left: calc(50% + 12.5vw);
   transform: translate(-50%, -50%);
   top: 21vw;
   z-index: 10;
@@ -911,7 +911,7 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 10.42vw);
+  left: calc(50% + 12.6vw);
   top: 15vh;
   transform: translate(-50%, -40%);
   z-index: 0;
@@ -1061,7 +1061,7 @@ body.bg-active {
 
 .scene6-new-text {
   position: absolute;
-  right: 46vw;
+  right: 51.5vw;
   top: -5vw;
   width: 36vw;
   font-family: 'Montserrat', sans-serif;
@@ -1192,7 +1192,7 @@ body.bg-active {
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  left: calc(50% - 27.77vw);
+  left: calc(50% - 28vw);
   transform: translate(0, -50%);
   top: 21vw;
   z-index: 10;
@@ -1203,6 +1203,7 @@ body.bg-active {
   border: none;
   outline: none;
   mix-blend-mode: normal;
+  pointer-events: auto;
 }
 
 .scene5-grey-circle {
@@ -1241,7 +1242,7 @@ body.bg-active {
   background-position: center;
   position: absolute;
   top: 21vw;
-  left: calc(50% - 27.77vw);
+  left: calc(50% - 31vw);
   transform: translate(0, -50%);
   z-index: 5;
   opacity: 1;
@@ -1307,6 +1308,7 @@ body.bg-active {
   gap: 8.33vw;
   z-index: 6;
   opacity: 0;
+  pointer-events: auto;
 }
 
 .scene5-convention-content {
@@ -1646,7 +1648,7 @@ body.bg-active {
   background-position: center;
   position: absolute;
   top: 21vw;
-  left: calc(50% + 10.42vw);
+  left: calc(50% + 12.5vw);
   transform: translate(-50%, -50%);
   z-index: 5;
   opacity: 1;
@@ -1661,7 +1663,7 @@ body.bg-active {
   background-position: center;
   position: absolute;
   top: 21vw;
-  left: calc(50% + 10.42vw);
+  left: calc(50% + 12.5vw);
   transform: translate(-50%, -50%);
   z-index: 10;
   opacity: 0.9;
@@ -1671,6 +1673,7 @@ body.bg-active {
   border: none;
   outline: none;
   mix-blend-mode: normal;
+  pointer-events: auto;
 }
 
 .scene6-red-text {
@@ -1722,7 +1725,7 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 11.11vw);
+  left: calc(50% + 12.6vw);
   top: calc(50% - 34.03vw);
   transform: translate(-50%, -50%);
   z-index: 0;
@@ -2023,7 +2026,7 @@ body.bg-active {
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  left: calc(50% - 27.77vw);
+  left: calc(50% - 28.5vw);
   transform: translate(0, -50%);
   top: 21vw;
   z-index: 10;
@@ -2034,6 +2037,7 @@ body.bg-active {
   border: none;
   outline: none;
   mix-blend-mode: normal;
+  pointer-events: auto;
 }
 
 .scene7-grey-circle {
@@ -2072,11 +2076,10 @@ body.bg-active {
   background-position: center;
   position: absolute;
   top: 21vw;
-  left: calc(50% - 27.77vw);
+  left: calc(50% - 31vw);
   transform: translate(0, -50%);
   z-index: 5;
   opacity: 1;
-  overflow: visible;
 }
 
 .scene7-text {
@@ -2139,6 +2142,7 @@ body.bg-active {
   gap: 8.33vw;
   z-index: 6;
   opacity: 0;
+  pointer-events: auto;
 }
 
 .scene7-convention-content {
