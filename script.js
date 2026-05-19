@@ -756,8 +756,9 @@ const scene4Group2 = document.querySelector(".scene4-group-2");
 const scene4RedText = document.querySelector(".scene4-red-text");
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene4GreyCircle, { opacity: 0, y: 0 });
-gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: vw(500) });
+const scene4CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
+gsap.set(scene4GreyCircle, { opacity: 0, y: () => window.innerHeight });
+gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: () => window.innerHeight });
 gsap.set(scene4SmallRedCircle, { x: vw(-150) });
 gsap.set(scene4SmallRedCircleRight, { x: 0, y: vw(400) });
 
@@ -766,6 +767,7 @@ t4.to(
   scene4GreyCircle,
   {
     opacity: 1,
+    y: () => scene4CenterY() - vw(-130),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -777,7 +779,7 @@ t4.to(
 t4.to(
   [scene4ImageCircle, scene4NewText],
   {
-    y: vw(185),
+    y: scene4CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -786,7 +788,7 @@ t4.to(
 t4.to(
   scene4RedCircle,
   {
-    y: vw(185),
+    y: scene4CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -907,7 +909,7 @@ t4.to(
 let t5 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene5",
-    start: "top 55%",
+    start: "top top",
     end: "+=900",
     scrub: 1,
     pin: true,
@@ -931,16 +933,17 @@ const scene5GreyOutlineCircle = document.querySelector(
 gsap.set(scene5SmallRedCircle, { y: vw(-800), x: vw(-550) });
 gsap.set(scene5TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
-gsap.set(scene5GreyCircle, { opacity: 0, y: vw(215) });
+const scene5CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene5ImageCircle, { y: vw(215) });
-gsap.set(scene5NewText, { y: vw(215) });
-gsap.set(scene5RedCircle, { y: vw(215) });
+gsap.set(scene5ImageCircle, { y: () => window.innerHeight });
+gsap.set(scene5NewText, { y: () => window.innerHeight });
+gsap.set(scene5RedCircle, { y: () => window.innerHeight });
+gsap.set(scene5GreyCircle, { opacity: 0, y: () => window.innerHeight });
 t5.to(
   [scene5ImageCircle, scene5NewText],
   {
-    y: vw(-230),
+    y: scene5CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -949,7 +952,7 @@ t5.to(
 t5.to(
   scene5RedCircle,
   {
-    y: vw(-230),
+    y: scene5CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1069,7 +1072,7 @@ t5.to(
   scene5GreyCircle,
   {
     opacity: 1,
-    y: vw(-290),
+    y: () => scene5CenterY() - vw(-130),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1165,12 +1168,13 @@ const scene6RightArrows = document.querySelector(".scene6-right-arrows");
 const scene6NewText = document.querySelector(".scene6-new-text");
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene6ImageCircle, { y: vw(500) });
-gsap.set(scene6NewText, { y: vw(500) });
-gsap.set(scene6RedCircle, { y: vw(500) });
+const scene6CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
+gsap.set(scene6ImageCircle, { y: () => window.innerHeight });
+gsap.set(scene6NewText, { y: () => window.innerHeight });
+gsap.set(scene6RedCircle, { y: () => window.innerHeight });
 gsap.set(scene6SmallRedCircle, { y: vw(-310) });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
-gsap.set(scene6GreyCircle, { opacity: 0, y: vw(500) });
+gsap.set(scene6GreyCircle, { opacity: 0, y: () => window.innerHeight });
 gsap.set(scene6GreyOutlineCircle, { opacity: 0 });
 
 // Set initial opacity for subcompany elements to hidden BEFORE timeline creation
@@ -1182,7 +1186,7 @@ gsap.set(scene6RightArrows, { opacity: 0 });
 let t6 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene6",
-    start: "top 50%",
+    start: "top top",
     end: "+=1200",
     scrub: 1,
     pin: true,
@@ -1217,7 +1221,7 @@ let t6 = gsap.timeline({
 t6.to(
   scene6GreyCircle,
   {
-    y: vw(-125),
+    y: () => scene6CenterY() - vw(-130),
     opacity: 1,
     duration: 0.4,
     ease: "power2.out",
@@ -1227,7 +1231,7 @@ t6.to(
 t6.to(
   [scene6ImageCircle, scene6NewText],
   {
-    y: vw(-215),
+    y: scene6CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1236,7 +1240,7 @@ t6.to(
 t6.to(
   scene6RedCircle,
   {
-    y: vw(-215),
+    y: scene6CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1422,7 +1426,7 @@ t6.to(
 let t7 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene7",
-    start: "top 50%",
+    start: "top top",
     end: "+=1200",
     scrub: 1,
     pin: true,
@@ -1448,14 +1452,18 @@ gsap.set(scene7TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene7ImageCircle, { y: vw(215) });
-gsap.set(scene7RedCircle, { y: vw(215) });
-gsap.set(scene7GreyCircle, { opacity: 0, y: vw(215) });
-gsap.set(scene7NewText, { y: vw(215) });
+gsap.set(scene7ImageCircle, { y: () => window.innerHeight });
+gsap.set(scene7RedCircle, { y: () => window.innerHeight });
+gsap.set(scene7GreyCircle, { opacity: 0, y: () => window.innerHeight });
+gsap.set(scene7NewText, { y: () => window.innerHeight });
+
+// Land circles at vertical center: offset = 50vh - CSS top (21vw)
+const scene7CenterY = () => window.innerHeight * 0.23 - window.innerWidth * 0.21;
+
 t7.to(
   [scene7ImageCircle, scene7NewText],
   {
-    y: vw(-700),
+    y: scene7CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1466,7 +1474,7 @@ t7.to(
   scene7GreyCircle,
   {
     opacity: 1,
-    y: vw(-290),
+    y: () => vw(370),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1475,7 +1483,7 @@ t7.to(
 t7.to(
   scene7RedCircle,
   {
-    y: vw(-700),
+    y: scene7CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1541,12 +1549,12 @@ t7.fromTo(
   scene7SmallRedCircle,
   {
     opacity: 0,
-    y: vw(-800),
-    x: vw(-710),
+    y: () => vw(-800),
+    x: () => vw(-710),
   },
   {
     opacity: 1,
-    y: vw(-550),
+    y: () => vw(-550),
     duration: 0.3,
     ease: "power2.out",
   },
@@ -1557,8 +1565,8 @@ t7.fromTo(
 t7.to(
   scene7SmallRedCircle,
   {
-    y: vw(-750),
-    x: vw(-600),
+    y: () => vw(-750),
+    x: () => vw(-600),
     scale: 1.15,
     opacity: 0,
     duration: 0.6,
@@ -1571,14 +1579,14 @@ t7.to(
 // Step 3: Text groups animate in while circles rise
 t7.fromTo(
   scene7Group1,
-  { opacity: 0, y: vw(400) },
+  { opacity: 0, y: () => vw(400) },
   { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
   0.2
 );
 
 t7.fromTo(
   scene7Group2,
-  { opacity: 0, y: vw(400) },
+  { opacity: 0, y: () => vw(400) },
   { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
   0.4
 );
@@ -1586,7 +1594,7 @@ t7.fromTo(
 t7.to(
   scene7ImageCircle,
   {
-    x: vw(350),
+    x: () => vw(350),
     duration: 0.3,
     ease: "power2.out",
   },
