@@ -767,7 +767,7 @@ t4.to(
   scene4GreyCircle,
   {
     opacity: 1,
-    y: () => scene4CenterY() - vw(-130),
+    y: () => scene4CenterY() - vw(240),
     duration: 0.4,
     ease: "power2.out",
   },
