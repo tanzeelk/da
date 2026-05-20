@@ -321,7 +321,7 @@ body {
   left: 50%;
   width: 40%;
   max-width: 19.44vw;
-  height: 13.89vw;
+  height: 12.5vw;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -810,8 +810,8 @@ body.bg-active {
 }
 
 .grey-circle {
-  width: 13.89vw;
-  height: 13.89vw;
+  width: 12.5vw;
+  height: 12.5vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
@@ -863,8 +863,8 @@ body.bg-active {
 }
 
 .scene4-image-circle {
-  width: 32vw;
-  height: 32vw;
+  width: 36vw;
+  height: 36vw;
   border-radius: 50%;
   background-image: url('./assets/image04.webp');
   background-size: 110% 110%;
@@ -878,8 +878,8 @@ body.bg-active {
 }
 
 .scene4-red-circle {
-  width: 32vw;
-  height: 32vw;
+  width: 36vw;
+  height: 36vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -899,8 +899,8 @@ body.bg-active {
 }
 
 .scene4-grey-circle {
-  width: 12vw;
-  height: 12vw;
+  width: 12.5vw;
+  height: 12.5vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
@@ -1034,8 +1034,8 @@ body.bg-active {
 
 .scene7-new-text {
   position: absolute;
-  right: 15%;
-  top: 3vw;
+  right: 10%;
+  top: -5vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 3.82vw;
@@ -1165,6 +1165,12 @@ body.bg-active {
   margin-top: 0;
 }
 
+.pin-spacer,
+.gsap-pin-spacer {
+  pointer-events: none !important;
+}
+
+
 /* Scene 5 - Red circle left, Image right */
 .scene5-circles-container {
   position: absolute;
@@ -1180,8 +1186,8 @@ body.bg-active {
 }
 
 .scene5-red-circle {
-  width: 32vw;
-  height: 32vw;
+  width: 36vw;
+  height: 36vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1202,15 +1208,15 @@ body.bg-active {
 }
 
 .scene5-grey-circle {
-  width: 12vw;
-  height: 12vw;
+  width: 12.5vw;
+  height: 12.5vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% - 12vw);
-  top: 21vw;
+  left:40%;
+  top: 20vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -1229,8 +1235,8 @@ body.bg-active {
 }
 
 .scene5-image-circle {
-  width: 32vw;
-  height: 32vw;
+  width: 36vw;
+  height: 36vw;
   border-radius: 50%;
   background-image: url('./assets/image05.webp');
   background-size: 110% 110%;
@@ -1241,6 +1247,7 @@ body.bg-active {
   transform: translate(0, -50%);
   z-index: 5;
   opacity: 1;
+  pointer-events: none;
 }
 
 .scene5-text {
@@ -1258,7 +1265,7 @@ body.bg-active {
   bottom: 5.07vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 32vw;
+  width: 100%;
   height: auto;
   opacity: 0;
   z-index: 5;
@@ -1270,7 +1277,7 @@ body.bg-active {
   bottom: 5.90vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 32vw;
+  width: 100%;
   height: auto;
   display: flex;
   justify-content: center;
@@ -1284,6 +1291,8 @@ body.bg-active {
   height: 5.21vw;
   width: auto;
   object-fit: contain;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .scene5-logo-separator {
@@ -1391,6 +1400,7 @@ body.bg-active {
   justify-content: center;
   align-items: center;
   transition: transform 0.3s ease;
+  pointer-events: auto;
 }
 
 .scene5-arrow-btn.scene5-arrow-left {
@@ -1451,8 +1461,8 @@ body.bg-active {
   position: fixed;
   top: -6.94vw;
   left: calc(80% - 6.94vw);
-  width: 13.89vw;
-  height: 13.89vw;
+  width: 12.5vw;
+  height: 12.5vw;
   border-radius: 50%;
   border: 2px solid #9c9fa1;
   background: transparent;
@@ -1582,10 +1592,8 @@ body.bg-active {
 }
 
 .scene5-new-text.show-convention {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
+  display: block;
+  text-align: right;
 }
 
 .scene5-new-text.show-convention .scene5-group-1 {
@@ -1634,8 +1642,8 @@ body.bg-active {
 }
 
 .scene6-image-circle {
-  width: 32vw;
-  height: 32vw;
+  width: 36vw;
+  height: 36vw;
   border-radius: 50%;
   background-image: url('./assets/image06.webp');
   background-size: 110% 110%;
@@ -1646,11 +1654,12 @@ body.bg-active {
   transform: translate(-50%, -50%);
   z-index: 5;
   opacity: 1;
+  pointer-events: none;
 }
 
 .scene6-red-circle {
-  width: 32vw;
-  height: 32vw;
+  width: 36vw;
+  height: 36vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1713,15 +1722,15 @@ body.bg-active {
 }
 
 .scene6-grey-circle {
-  width: 12vw;
-  height: 12vw;
+  width: 12.5vw;
+  height: 12.5vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 12.5vw);
-  top: 21vw;
+  right: 25%;
+  top: 19vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -1754,7 +1763,7 @@ body.bg-active {
   bottom: 5.07vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 32vw;
+  width: 100%;
   height: auto;
   opacity: 0;
   z-index: 5;
@@ -1994,6 +2003,16 @@ body.bg-active {
   pointer-events: none;
 }
 
+.scene5-right-arrows,
+.scene5-right-arrows *,
+.scene5-convention-arrows,
+.scene5-convention-arrows *,
+.scene5-ssilp-arrows,
+.scene5-ssilp-arrows *,
+.scene5-subcompany-logos .scene5-logo {
+  pointer-events: auto;
+}
+
 .scene6-right-arrows,
 .scene6-right-arrows *,
 .scene6-subcompany-logos .scene6-logo {
@@ -2014,8 +2033,8 @@ body.bg-active {
 }
 
 .scene7-red-circle {
-  width: 32vw;
-  height: 32vw;
+  width: 36vw;
+  height: 36vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -2037,15 +2056,15 @@ body.bg-active {
 }
 
 .scene7-grey-circle {
-  width: 12vw;
-  height: 12vw;
+  width: 12.5vw;
+  height: 12.5vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% - 12vw);
-  top: 21vw;
+  left: 40%;
+  top: 20vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -2064,8 +2083,8 @@ body.bg-active {
 }
 
 .scene7-image-circle {
-  width: 32vw;
-  height: 32vw;
+  width: 36vw;
+  height: 36vw;
   border-radius: 50%;
   background-image: url('./assets/image08.webp');
   background-size: 110% 110%;
@@ -2093,7 +2112,7 @@ body.bg-active {
   bottom: 5.07vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 32vw;
+  width: 100%;
   height: auto;
   opacity: 0;
   z-index: 5;
@@ -2263,7 +2282,7 @@ body.bg-active {
 }
 
 .scene7-heading {
-  font-size: 1.1vw;
+  font-size: 1.2vw;
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.69vw;
@@ -2276,7 +2295,7 @@ body.bg-active {
 .scene7-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.97vw;
+  font-size: 0.8vw;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -2476,8 +2495,8 @@ body.bg-active {
 }
 
 .scene8-grey-circle {
-  width: 13.89vw;
-  height: 13.89vw;
+  width: 12.5vw;
+  height: 12.5vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;

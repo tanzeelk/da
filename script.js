@@ -552,13 +552,13 @@ t3 = gsap.timeline({
 // Elements are already visible, animation starts when pinned at top
 t3.fromTo(
   scene3Image,
-  () => ({ opacity: 1, width: vw(330), height: vw(330)}),
+  () => ({ opacity: 1, width: vw(461), height: vw(461)}),
   { opacity: 1, ease: "none" }
 );
 
 t3.fromTo(
   scene3RedCircle,
-  () => ({ opacity: 1, width: vw(330), height: vw(330) }),
+  () => ({ opacity: 1, width: vw(461), height: vw(461) }),
   { opacity: 1, ease: "none" },
   0
 );
@@ -755,7 +755,7 @@ t4.to(
   scene4GreyCircle,
   {
     opacity: 1,
-    y: () => scene4CenterY() - vw(330),
+    y: () => scene4CenterY() - vw(350),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -901,6 +901,7 @@ let t5 = gsap.timeline({
     end: "+=900",
     scrub: 1,
     pin: true,
+    pinSpacing: true,
     markers: false,
   },
 });
@@ -927,7 +928,7 @@ const scene5CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
 gsap.set(scene5ImageCircle, { y: () => window.innerHeight });
 gsap.set(scene5NewText, { y: () => window.innerHeight });
 gsap.set(scene5RedCircle, { y: () => window.innerHeight });
-gsap.set(scene5GreyCircle, { opacity: 0, y: scene5CenterY });
+gsap.set(scene5GreyCircle, { opacity: 0, y: () => scene5CenterY() - vw(346) });
 t5.to(
   [scene5ImageCircle, scene5NewText],
   {
@@ -1060,7 +1061,7 @@ t5.to(
   scene5GreyCircle,
   {
     opacity: 1,
-    y: () => scene5CenterY() - vw(330),
+    y: () => scene5CenterY() - vw(346),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1423,6 +1424,7 @@ let t7 = gsap.timeline({
 const scene7ImageCircle = document.querySelector(".scene7-image-circle");
 const scene7RedCircle = document.querySelector(".scene7-red-circle");
 const scene7GreyCircle = document.querySelector(".scene7-grey-circle");
+const scene7CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
 const scene7Text = document.querySelector(".scene7-text");
 const scene7Group1 = document.querySelector(".scene7-group-1");
 const scene7Group2 = document.querySelector(".scene7-group-2");
@@ -1437,13 +1439,13 @@ gsap.set(scene7TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene7ImageCircle, { y: vw(500) });
-gsap.set(scene7RedCircle, { y: vw(500) });
-gsap.set(scene7GreyCircle, { opacity: 0, y: vw(500) });
+gsap.set(scene7ImageCircle, { y: () => window.innerHeight });
+gsap.set(scene7RedCircle, { y: () => window.innerHeight });
+gsap.set(scene7GreyCircle, { opacity: 0, y: () => scene7CenterY() - vw(346) });
 t7.to(
   scene7ImageCircle,
   {
-    y: vw(300),
+    y: scene7CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1454,7 +1456,7 @@ t7.to(
   scene7GreyCircle,
   {
     opacity: 1,
-    y: vw(-30),
+    y: () => scene7CenterY() - vw(346),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1463,7 +1465,7 @@ t7.to(
 t7.to(
   scene7RedCircle,
   {
-    y: vw(300),
+    y: scene7CenterY,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1725,7 +1727,7 @@ function updateScene5ToConvention() {
   );
 
   if (conventionContent) {
-    gsap.to(conventionContent, { opacity: 1, duration: 0.3 });
+    gsap.to(conventionContent, { opacity: 1, duration: 0.3, pointerEvents: "auto" });
   }
 
   // Change image to SSCC.png
@@ -1772,16 +1774,12 @@ function updateScene5ToDefault() {
   desc.innerHTML =
     "Redefining urban living with innovative design,<br />luxury spaces and developments across<br />Ahmedabad and Mumbai's evolving skylines,<br />Durgesh Infrastructure Pvt. Ltd. is rapidly<br />gaining recognition in the real estate sector.";
 
-  // Reset main text
+  // Reset main text — swap content instantly (text is hidden by show-convention removal)
   const group1 = scene5NewTextContainer.querySelector(".scene5-group-1");
   const group2 = scene5NewTextContainer.querySelector(".scene5-group-2");
 
-  // Restore original content
   group1.innerHTML = originalGroup1HTML;
   group2.innerHTML = originalGroup2HTML;
-
-  group1.style.opacity = "1";
-  group2.style.opacity = "1";
 
   // Change image back to image05.png
   const imageCircle = document.querySelector(".scene5-image-circle");
@@ -1992,9 +1990,8 @@ const backArrowBtn = document.getElementById("scene5-back-arrow");
 if (backArrowBtn) {
   backArrowBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    if (isShowingConvention) {
-      updateScene5ToDefault();
-    }
+    e.stopPropagation();
+    updateScene5ToDefault();
   });
 }
 
