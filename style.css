@@ -27,9 +27,9 @@ html, body {
   --base-scale: 1;
   --spacing-unit: 1.39vw;
   --font-base: 1.25vw;
-  --font-hero: 5vw;
+  --font-hero: 4.5vw;
   --font-hero-scene2: 5vw;
-  --font-small: 1.04vw;
+  --font-small: 1vw;
   --circle-size: 41.67vw;
   --circle-size-scene2: 34.72vw;
 }
@@ -191,7 +191,7 @@ body {
 
 
 .scene3 {
-  min-height: 100vh;
+  height: 60vw;
   position: relative;
   margin-bottom: 0px;
   z-index: 10;
@@ -267,8 +267,8 @@ body {
 
 .circle {
   position: relative;
-  left: -25px;
-  top: 25px;
+  width: 3.47vw;
+  height: 3.47vw;
 }
 
 /* BACK CIRCLE — FULL */
@@ -277,15 +277,12 @@ body {
   height: 3.47vw;
   border-radius: 50%;
   background: url('./assets/circle.webp');
-  background-size: 110% 110%; 
+  background-size: 110% 110%;
   background-position: center;
   position: absolute;
   top: 0;
   left: 0;
-  transform-style: preserve-3d;
   z-index: 7;
-  transform: rotateY(90deg);
-  transform-style: preserve-3d;
   border: none;
   outline: none;
 }
@@ -294,14 +291,13 @@ body {
 .circle-front {
   width: 3.47vw;
   height: 3.47vw;
-  /* half height */
-  background: url('./assets/circle1.webp');
-  background-size: 100% 100%;
+  border-radius: 50%;
+  background: url('./assets/circle.webp');
+  background-size: 110% 110%;
+  background-position: center;
   position: absolute;
   top: 0;
   left: 0;
-  /* rotate as a half */
-  transform-style: preserve-3d;
   z-index: 3;
 }
 
@@ -465,8 +461,8 @@ body {
 /* Hero text in center */
 .hero-text {
   position: absolute;
-  top: 60%;
-  left: 55%;
+  top: 52%;
+  left: 50%;
   transform: translate(-50%, -50%);
   color: white;
   font-size: var(--font-hero);
@@ -477,7 +473,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   letter-spacing: -0.045em;
-  margin-left: calc(-1 * var(--spacing-unit) * 4.25);
 }
 
 .hero-text span {
@@ -498,8 +493,8 @@ body {
 /* Hero text in center - 2 */
 .hero-text-scene2 {
   position: absolute;
-  top: 60%;
-  left: 48%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   color: white;
   font-size: var(--font-hero);
@@ -510,7 +505,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   letter-spacing: -0.045em;
-  margin-left: 0;
 }
 
 .hero-text-scene2 span {
@@ -558,8 +552,8 @@ body.bg-active {
 /* Red circle overlay with multiply blend mode */
 .red-circle-overlay {
   position: fixed;
-  top: 55.8%;
-  left: 50.4%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -602,9 +596,9 @@ body.bg-active {
 
 /* Journey text styling */
 .journey-text {
-  position: fixed;
-  top: 55%;
-  left: 53%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Gontserrat-Medium', sans-serif;
   font-weight: 500;
@@ -623,7 +617,7 @@ body.bg-active {
 /* Scene2 scrolling text */
 .scene2-scroll-text {
   position: absolute;
-  top: 56%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -682,8 +676,9 @@ body.bg-active {
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  top: 18.405vw;
-  /* left: 50%; */
+  top: 18.4vw;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 60;
   opacity: 0.9;
   border: none;
@@ -745,7 +740,8 @@ body.bg-active {
   position: absolute;
   top: 28.815vw;
   left: 50%;
-  width: 13vw;
+  transform: translate(-50%, -50%);
+  width: 16vw;
   text-align: center;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
@@ -911,10 +907,10 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 12.6vw);
-  top: 15vh;
-  transform: translate(-50%, -40%);
-  z-index: 0;
+  left: calc(50% + 12.5vw);
+  top: 15vw;
+  transform: translate(-50%, -50%);
+  z-index: 9;
   opacity: 1;
   display: flex;
   justify-content: center;
@@ -941,7 +937,7 @@ body.bg-active {
 }
 
 .scene4-red-heading {
-  font-size: 1rem;
+  font-size: 1.1vw;
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.69vw;
@@ -1214,10 +1210,10 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% - 17.365vw);
-  top: calc(50% - 34.03vw);
-  transform: translate(0, -50%);
-  z-index: 0;
+  left: calc(50% - 10.65vw);
+  top: 15vw;
+  transform: translate(-50%, -50%);
+  z-index: 9;
   opacity: 1;
   display: flex;
   justify-content: center;
@@ -1413,7 +1409,7 @@ body.bg-active {
 }
 
 .scene5-heading {
-  font-size: 1rem;
+  font-size: 1.1vw;
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.69vw;
@@ -1698,7 +1694,7 @@ body.bg-active {
 }
 
 .scene6-red-heading {
-  font-size: 1rem;
+  font-size: 1.1vw;
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.69vw;
@@ -1725,10 +1721,10 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 12.6vw);
-  top: calc(50% - 34.03vw);
+  left: calc(50% + 12.5vw);
+  top: 15vw;
   transform: translate(-50%, -50%);
-  z-index: 0;
+  z-index: 9;
   opacity: 1;
   display: flex;
   justify-content: center;
@@ -2048,10 +2044,10 @@ body.bg-active {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% - 17.365vw);
-  top: calc(50% - 34.03vw);
-  transform: translate(0, -50%);
-  z-index: 0;
+  left: calc(50% - 11.15vw);
+  top: 15vw;
+  transform: translate(-50%, -50%);
+  z-index: 9;
   opacity: 1;
   display: flex;
   justify-content: center;
@@ -2267,7 +2263,7 @@ body.bg-active {
 }
 
 .scene7-heading {
-  font-size: 1rem;
+  font-size: 1.1vw;
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.69vw;

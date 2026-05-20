@@ -269,26 +269,7 @@ circle.appendChild(circleLeft);
 circle.appendChild(circleRight);
 circle.appendChild(circleCenter);
 
-tl.to(
-  ".circle-back",
-  {
-    rotationY: 0,
-    duration: 1,
-    repeat: 0,
-    ease: "none",
-  },
-  0
-);
-
-tl.to(
-  ".circle-front",
-  {
-    opacity: 0,
-    duration: 0.2,
-    ease: "power1.out",
-  },
-  ">"
-);
+gsap.set(".circle-front", { opacity: 0 });
 
 tl.to(".circle-back", {
   scale: 4,
@@ -456,7 +437,7 @@ tl.fromTo(
 // );
 
 tl.to(redCircleOverlay, {
-  y: vw(550),
+  y: "55vh",
   scale: 1.3,
   duration: 1.5,
   ease: "none"
@@ -464,7 +445,7 @@ tl.to(redCircleOverlay, {
 
 // Keep red circle visible to bridge Scene 1 and Scene 2
 tl.to(redCircleOverlay, {
-  y: vw(550),
+  y: "55vh",
   scale: 1.2,
   duration: 2,
   opacity: 1,
@@ -476,6 +457,7 @@ tl.to(redCircleOverlay, {
 const circleBackScene2Top = document.querySelector(".scene2 .circle-back.top");
 const circleBackScene2 = document.querySelector(".scene2 .circle-back.back");
 const heroTextScene2 = document.querySelector(".scene2 .hero-text-scene2");
+gsap.set([circleBackScene2Top, circleBackScene2], { scale: 10 });
 // Add a background inside the center circle
 const circleBackScene2Bg = document.createElement("div");
 circleBackScene2Bg.classList.add("circle-back-scene2-bg");
@@ -556,7 +538,7 @@ t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
     start: "top+=170px top",
-    end: "+=700", // extended for more time to animate circles and text
+    end: "+=70vh",
     scrub: 1,
     pin: true,
     pinSpacing: true,
@@ -592,11 +574,35 @@ expandTL.to(scene3Image, {
 });
 
 expandTL.to(
+  [scene3GroupText, scene3VenturesText],
+  {
+    y: () => {
+      const imageRect = scene3Image.getBoundingClientRect();
+      const textRect = scene3GroupText.getBoundingClientRect();
+      const imageCenterY = imageRect.top + imageRect.height / 2;
+      const textCenterY = textRect.top + textRect.height / 2;
+      return imageCenterY - textCenterY;
+    },
+    ease: "none",
+    duration: 1,
+  },
+  0.1
+);
+
+expandTL.to(
   scene3RedCircle,
   {
     x: () => {
       const circleRect = scene3RedCircle.getBoundingClientRect();
-      return window.innerWidth - (circleRect.left + circleRect.width);
+      const rightMargin = window.innerWidth * 0.02;
+      return window.innerWidth - rightMargin - (circleRect.left + circleRect.width);
+    },
+    y: () => {
+      const imageRect = scene3Image.getBoundingClientRect();
+      const circleRect = scene3RedCircle.getBoundingClientRect();
+      const imageCenterY = imageRect.top + imageRect.height / 2;
+      const circleCenterY = circleRect.top + circleRect.height / 2;
+      return imageCenterY - circleCenterY;
     },
     ease: "none",
     duration: 1,
@@ -691,7 +697,8 @@ t3.to(
   {
     x: () => {
       const circleRect = scene3RedCircle.getBoundingClientRect();
-      return window.innerWidth - (circleRect.left + circleRect.width);
+      const rightMargin = window.innerWidth * 0.02;
+      return window.innerWidth - rightMargin - (circleRect.left + circleRect.width);
     },
     y: () => vw(85),
     xPercent: -50,
@@ -1072,7 +1079,7 @@ t5.to(
   scene5GreyCircle,
   {
     opacity: 1,
-    y: () => scene5CenterY() - vw(-130),
+    y: () => scene5CenterY() - vw(240),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1221,7 +1228,7 @@ let t6 = gsap.timeline({
 t6.to(
   scene6GreyCircle,
   {
-    y: () => scene6CenterY() - vw(-130),
+    y: () => scene6CenterY() - vw(240),
     opacity: 1,
     duration: 0.4,
     ease: "power2.out",
@@ -1474,7 +1481,7 @@ t7.to(
   scene7GreyCircle,
   {
     opacity: 1,
-    y: () => vw(370),
+    y: () => scene7CenterY() - vw(240),
     duration: 0.4,
     ease: "power2.out",
   },
