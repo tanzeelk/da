@@ -12,7 +12,7 @@ function setupReadMore(btnSelector, descSelector) {
   if (btn && desc) {
     btn.addEventListener("click", (e) => {
       const expanded = desc.classList.toggle("desc-expanded");
-      btn.innerHTML = expanded ? "Read less &#8249;" : '<img src="./assets/read_more_icon.png" alt="Read more" class="read-more-icon" />';
+      btn.innerHTML = expanded ? '<img src="./assets/Read less.png" alt="Read less" class="read-more-icon" />' : '<img src="./assets/Read more.png" alt="Read more" class="read-more-icon" />';
     });
   }
 }
@@ -25,7 +25,7 @@ document.querySelectorAll(".read-more-btn").forEach((btn) => {
   if (desc) {
     btn.addEventListener("click", (e) => {
       const expanded = desc.classList.toggle("desc-expanded");
-      btn.innerHTML = expanded ? "Read less &#8249;" : '<img src="./assets/read_more_icon.png" alt="Read more" class="read-more-icon" />';
+      btn.innerHTML = expanded ? '<img src="./assets/Read less.png" alt="Read less" class="read-more-icon" />' : '<img src="./assets/Read more.png" alt="Read more" class="read-more-icon" />';
     });
   }
 });
@@ -522,6 +522,7 @@ t2.fromTo(
   "<0.5"
 );
 
+
 const scene3Image = document.querySelector(".scene3-image");
 const scene3RedCircle = document.querySelector(".scene3-red-circle");
 const scene3GroupText = document.querySelector(".scene3-group-text");
@@ -538,7 +539,7 @@ t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
     start: "top+=170px top",
-    end: "+=70vh",
+    end: "+=700",
     scrub: 1,
     pin: true,
     pinSpacing: true,
@@ -567,8 +568,9 @@ let expandTL = gsap.timeline();
 
 expandTL.to(scene3Image, {
   width: () => window.innerWidth,
-  height: () => vw(500),
+  height: () => window.innerHeight * 0.45,
   borderRadius: "9999px",
+  // top: "22vw",
   ease: "none",
   duration: 1,
 });
@@ -608,17 +610,16 @@ expandTL.to(
     duration: 1,
   },
   0.1
-); // starts at the same time as the image expansion
+);
 
 // Timeline for background circles floating up - each with separate scroll trigger
 bgCircles.forEach((circle, i) => {
-  const shouldFloatAway = Math.random() < 0.5; // 50% chance to float away or stay
-  
+  const shouldFloatAway = Math.random() < 0.5;
+
   if (shouldFloatAway) {
-    // Float away completely
     const yDistance = gsap.utils.random(vw(-1500), vw(-2500));
     const xDrift = gsap.utils.random(vw(-200), vw(200));
-    
+
     gsap.to(circle, {
       y: yDistance,
       x: xDrift,
@@ -634,10 +635,9 @@ bgCircles.forEach((circle, i) => {
       },
     });
   } else {
-    // Float up and stay behind grey circles
     const yDistance = gsap.utils.random(vw(-400), vw(-700));
     const xDrift = gsap.utils.random(vw(-100), vw(100));
-    
+
     gsap.to(circle, {
       y: yDistance,
       x: xDrift,
@@ -666,7 +666,7 @@ t3.to(
     ease: "power2.out",
   },
   "<+=1"
-); // starts slightly after expansion begins
+);
 
 // -----------------------
 // Step 5: Fade + slide up 'Our Group' and 'Our Ventures' texts
@@ -709,8 +709,6 @@ t3.to(
   0.1
 );
 
-
-
 // Animate the 4 main grey circles from grey-circles-section
 const greyCircles = document.querySelectorAll(".grey-circle");
 
@@ -725,7 +723,7 @@ greyCircles.forEach((circle, index) => {
       duration: 0.5,
       ease: "sine.out",
     },
-    `>-${0.35 - index * 0.05}` // Overlap animations with faster timing
+    `>-${0.35 - index * 0.05}`
   );
 });
 }
@@ -764,7 +762,7 @@ const scene4RedText = document.querySelector(".scene4-red-text");
 
 // Set initial positions: red circle and image start below viewport
 const scene4CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
-gsap.set(scene4GreyCircle, { opacity: 0, y: () => window.innerHeight });
+gsap.set(scene4GreyCircle, { opacity: 0, y: scene4CenterY });
 gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: () => window.innerHeight });
 gsap.set(scene4SmallRedCircle, { x: vw(-150) });
 gsap.set(scene4SmallRedCircleRight, { x: 0, y: vw(400) });
@@ -774,7 +772,7 @@ t4.to(
   scene4GreyCircle,
   {
     opacity: 1,
-    y: () => scene4CenterY() - vw(240),
+    y: () => scene4CenterY() - vw(330),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -946,7 +944,7 @@ const scene5CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
 gsap.set(scene5ImageCircle, { y: () => window.innerHeight });
 gsap.set(scene5NewText, { y: () => window.innerHeight });
 gsap.set(scene5RedCircle, { y: () => window.innerHeight });
-gsap.set(scene5GreyCircle, { opacity: 0, y: () => window.innerHeight });
+gsap.set(scene5GreyCircle, { opacity: 0, y: scene5CenterY });
 t5.to(
   [scene5ImageCircle, scene5NewText],
   {
@@ -1079,7 +1077,7 @@ t5.to(
   scene5GreyCircle,
   {
     opacity: 1,
-    y: () => scene5CenterY() - vw(240),
+    y: () => scene5CenterY() - vw(330),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1181,7 +1179,7 @@ gsap.set(scene6NewText, { y: () => window.innerHeight });
 gsap.set(scene6RedCircle, { y: () => window.innerHeight });
 gsap.set(scene6SmallRedCircle, { y: vw(-310) });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
-gsap.set(scene6GreyCircle, { opacity: 0, y: () => window.innerHeight });
+gsap.set(scene6GreyCircle, { opacity: 0, y: scene6CenterY });
 gsap.set(scene6GreyOutlineCircle, { opacity: 0 });
 
 // Set initial opacity for subcompany elements to hidden BEFORE timeline creation
@@ -1228,7 +1226,7 @@ let t6 = gsap.timeline({
 t6.to(
   scene6GreyCircle,
   {
-    y: () => scene6CenterY() - vw(240),
+    y: () => scene6CenterY() - vw(330),
     opacity: 1,
     duration: 0.4,
     ease: "power2.out",
@@ -1427,8 +1425,6 @@ t6.to(
   },
   1.7
 );
-// TEMPORARILY COMMENTED OUT - SCENE 7
-
 // Scene 7 Timeline - Red circle left, Image right (exact duplicate of Scene 5)
 let t7 = gsap.timeline({
   scrollTrigger: {
@@ -1445,7 +1441,6 @@ const scene7ImageCircle = document.querySelector(".scene7-image-circle");
 const scene7RedCircle = document.querySelector(".scene7-red-circle");
 const scene7GreyCircle = document.querySelector(".scene7-grey-circle");
 const scene7Text = document.querySelector(".scene7-text");
-const scene7NewText = document.querySelector(".scene7-new-text");
 const scene7Group1 = document.querySelector(".scene7-group-1");
 const scene7Group2 = document.querySelector(".scene7-group-2");
 const scene7SmallRedCircle = document.querySelector(".scene7-small-red-circle");
@@ -1459,18 +1454,13 @@ gsap.set(scene7TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene7ImageCircle, { y: () => window.innerHeight });
-gsap.set(scene7RedCircle, { y: () => window.innerHeight });
-gsap.set(scene7GreyCircle, { opacity: 0, y: () => window.innerHeight });
-gsap.set(scene7NewText, { y: () => window.innerHeight });
-
-// Land circles at vertical center: offset = 50vh - CSS top (21vw)
-const scene7CenterY = () => window.innerHeight * 0.23 - window.innerWidth * 0.21;
-
+gsap.set(scene7ImageCircle, { y: vw(500) });
+gsap.set(scene7RedCircle, { y: vw(500) });
+gsap.set(scene7GreyCircle, { opacity: 0, y: vw(500) });
 t7.to(
-  [scene7ImageCircle, scene7NewText],
+  scene7ImageCircle,
   {
-    y: scene7CenterY,
+    y: vw(300),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1481,7 +1471,7 @@ t7.to(
   scene7GreyCircle,
   {
     opacity: 1,
-    y: () => scene7CenterY() - vw(240),
+    y: vw(-30),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1490,7 +1480,7 @@ t7.to(
 t7.to(
   scene7RedCircle,
   {
-    y: scene7CenterY,
+    y: vw(300),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1556,12 +1546,12 @@ t7.fromTo(
   scene7SmallRedCircle,
   {
     opacity: 0,
-    y: () => vw(-800),
-    x: () => vw(-710),
+    y: vw(-800),
+    x: vw(-710),
   },
   {
     opacity: 1,
-    y: () => vw(-550),
+    y: vw(-550),
     duration: 0.3,
     ease: "power2.out",
   },
@@ -1572,8 +1562,8 @@ t7.fromTo(
 t7.to(
   scene7SmallRedCircle,
   {
-    y: () => vw(-750),
-    x: () => vw(-600),
+    y: vw(-750),
+    x: vw(-600),
     scale: 1.15,
     opacity: 0,
     duration: 0.6,
@@ -1586,14 +1576,14 @@ t7.to(
 // Step 3: Text groups animate in while circles rise
 t7.fromTo(
   scene7Group1,
-  { opacity: 0, y: () => vw(400) },
+  { opacity: 0, y: vw(400) },
   { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
   0.2
 );
 
 t7.fromTo(
   scene7Group2,
-  { opacity: 0, y: () => vw(400) },
+  { opacity: 0, y: vw(400) },
   { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
   0.4
 );
@@ -1601,11 +1591,11 @@ t7.fromTo(
 t7.to(
   scene7ImageCircle,
   {
-    x: () => vw(470),
-    duration: 0.3,
+    x: vw(470),
+    duration: 0.5,
     ease: "power2.out",
   },
-  0.2
+  0.4
 );
 
 t7.to(
@@ -1691,7 +1681,7 @@ function resetReadMore(container) {
   const desc = container.querySelector(".scene5-desc, .scene6-desc, .scene7-desc, .scene6-red-desc");
   const btn = container.querySelector(".read-more-btn");
   if (desc) desc.classList.remove("desc-expanded");
-  if (btn) btn.innerHTML = '<img src="./assets/read_more_icon.png" alt="Read more" class="read-more-icon" />';
+  if (btn) btn.innerHTML = '<img src="./assets/Read more.png" alt="Read more" class="read-more-icon" />';
 }
 
 // Scene 5 Arrow Click Handlers

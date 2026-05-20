@@ -31,7 +31,7 @@ html, body {
   --font-hero-scene2: 5vw;
   --font-small: 1vw;
   --circle-size: 41.67vw;
-  --circle-size-scene2: 34.72vw;
+  --circle-size-scene2: 32vw;
 }
 
 body {
@@ -191,7 +191,7 @@ body {
 
 
 .scene3 {
-  height: 60vw;
+  min-height: 60vh;
   position: relative;
   margin-bottom: 0px;
   z-index: 10;
@@ -864,8 +864,8 @@ body.bg-active {
 }
 
 .scene4-image-circle {
-  width: 34.7vw;
-  height: 34.7vw;
+  width: 32vw;
+  height: 32vw;
   border-radius: 50%;
   background-image: url('./assets/image04.webp');
   background-size: 110% 110%;
@@ -879,8 +879,8 @@ body.bg-active {
 }
 
 .scene4-red-circle {
-  width: 34.7vw;
-  height: 34.7vw;
+  width: 32vw;
+  height: 32vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -900,15 +900,15 @@ body.bg-active {
 }
 
 .scene4-grey-circle {
-  width: 13.89vw;
-  height: 13.89vw;
+  width: 12vw;
+  height: 12vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
   left: calc(50% + 12.5vw);
-  top: 15vw;
+  top: 21vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -977,7 +977,7 @@ body.bg-active {
   height: 1.67vw;
   width: auto;
   display: block;
-  filter: invert(1);
+  filter: brightness(0) invert(1);
 }
 
 .scene4-new-text {
@@ -1109,7 +1109,7 @@ body.bg-active {
   background-position: center;
   position: fixed;
   right: -60%;
-  top: -34.72vw;
+  top: -32vw;
   z-index: 20;
   opacity: 1;
 }
@@ -1181,8 +1181,8 @@ body.bg-active {
 }
 
 .scene5-red-circle {
-  width: 34.7vw;
-  height: 34.7vw;
+  width: 32vw;
+  height: 32vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1203,15 +1203,15 @@ body.bg-active {
 }
 
 .scene5-grey-circle {
-  width: 13.89vw;
-  height: 13.89vw;
+  width: 12vw;
+  height: 12vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% - 10.65vw);
-  top: 15vw;
+  left: calc(50% - 12vw);
+  top: 21vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -1230,15 +1230,15 @@ body.bg-active {
 }
 
 .scene5-image-circle {
-  width: 34.7vw;
-  height: 34.7vw;
+  width: 32vw;
+  height: 32vw;
   border-radius: 50%;
   background-image: url('./assets/image05.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
   top: 21vw;
-  left: calc(50% - 31vw);
+  left: calc(50% - 28vw);
   transform: translate(0, -50%);
   z-index: 5;
   opacity: 1;
@@ -1259,7 +1259,7 @@ body.bg-active {
   bottom: 5.07vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 34.72vw;
+  width: 32vw;
   height: auto;
   opacity: 0;
   z-index: 5;
@@ -1271,7 +1271,7 @@ body.bg-active {
   bottom: 5.90vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 34.72vw;
+  width: 32vw;
   height: auto;
   display: flex;
   justify-content: center;
@@ -1434,8 +1434,7 @@ body.bg-active {
 .desc-expanded {
   display: block !important;
   -webkit-line-clamp: unset !important;
-  overflow-y: auto !important;
-  max-height: 8vw;
+  overflow: visible !important;
   pointer-events: none;
 }
 
@@ -1464,7 +1463,7 @@ body.bg-active {
 
 .scene5-descending-red-circle {
   position: fixed;
-  top: -34.72vw;
+  top: -32vw;
   right: 5%;
   left: auto;
   width: 5.21vw;
@@ -1636,8 +1635,8 @@ body.bg-active {
 }
 
 .scene6-image-circle {
-  width: 34.7vw;
-  height: 34.7vw;
+  width: 32vw;
+  height: 32vw;
   border-radius: 50%;
   background-image: url('./assets/image06.webp');
   background-size: 110% 110%;
@@ -1651,8 +1650,8 @@ body.bg-active {
 }
 
 .scene6-red-circle {
-  width: 34.7vw;
-  height: 34.7vw;
+  width: 32vw;
+  height: 32vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -1670,6 +1669,7 @@ body.bg-active {
   outline: none;
   mix-blend-mode: normal;
   pointer-events: auto;
+  overflow: hidden;
 }
 
 .scene6-red-text {
@@ -1714,15 +1714,15 @@ body.bg-active {
 }
 
 .scene6-grey-circle {
-  width: 13.89vw;
-  height: 13.89vw;
+  width: 12vw;
+  height: 12vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
   left: calc(50% + 12.5vw);
-  top: 15vw;
+  top: 21vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -1755,7 +1755,7 @@ body.bg-active {
   bottom: 5.07vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 34.72vw;
+  width: 32vw;
   height: auto;
   opacity: 0;
   z-index: 5;
@@ -1767,7 +1767,7 @@ body.bg-active {
   bottom: 5.90vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 34.72vw;
+  width: 32vw;
   height: auto;
   display: flex;
   justify-content: center;
@@ -1795,9 +1795,9 @@ body.bg-active {
 
 
 .scene6-right-arrows {
-  position: relative;
-  top: 13.54vw;
-  left: 30%;
+  position: absolute;
+  bottom: 2vw;
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
@@ -1915,7 +1915,7 @@ body.bg-active {
 
 .scene6-grey-outline-circle {
   position: absolute;
-  top: -34.72vw;
+  top: -32vw;
   left: calc(50% + 18.75vw);
   width: 17.36vw;
   height: 17.36vw;
@@ -1960,7 +1960,7 @@ body.bg-active {
   background-position: center;
   position: fixed;
   left: 5%;
-  top: -34.72vw;
+  top: -32vw;
   z-index: 20;
   opacity: 1;
   display: none;
@@ -2015,14 +2015,14 @@ body.bg-active {
 }
 
 .scene7-red-circle {
-  width: 34.7vw;
-  height: 34.7vw;
+  width: 32vw;
+  height: 32vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  left: calc(50% - 28.5vw);
+  left: calc(50% - 28vw);
   transform: translate(0, -50%);
   top: 21vw;
   z-index: 10;
@@ -2034,18 +2034,19 @@ body.bg-active {
   outline: none;
   mix-blend-mode: normal;
   pointer-events: auto;
+  overflow: hidden;
 }
 
 .scene7-grey-circle {
-  width: 13.89vw;
-  height: 13.89vw;
+  width: 12vw;
+  height: 12vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% - 11.15vw);
-  top: 15vw;
+  left: calc(50% - 12vw);
+  top: 21vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -2064,15 +2065,15 @@ body.bg-active {
 }
 
 .scene7-image-circle {
-  width: 34.7vw;
-  height: 34.7vw;
+  width: 32vw;
+  height: 32vw;
   border-radius: 50%;
   background-image: url('./assets/image08.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
   top: 21vw;
-  left: calc(50% - 31vw);
+  left: calc(50% - 28vw);
   transform: translate(0, -50%);
   z-index: 5;
   opacity: 1;
@@ -2093,7 +2094,7 @@ body.bg-active {
   bottom: 5.07vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 34.72vw;
+  width: 32vw;
   height: auto;
   opacity: 0;
   z-index: 5;
@@ -2105,7 +2106,7 @@ body.bg-active {
   bottom: 5.90vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 34.72vw;
+  width: 32vw;
   height: auto;
   display: flex;
   justify-content: center;
@@ -2459,8 +2460,8 @@ body.bg-active {
 }
 
 .scene8-red-circle {
-  width: 34.72vw;
-  height: 34.72vw;
+  width: 32vw;
+  height: 32vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;

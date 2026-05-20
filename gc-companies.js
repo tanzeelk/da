@@ -1,4 +1,8 @@
-function vw(px) { return (px / 1440) * window.innerWidth; }
+function vw(px) { return (px / 1920) * window.innerWidth; }
+const scene4CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
+const scene5CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
+const scene6CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
+const scene7CenterY = () => window.innerHeight * 0.6 - window.innerWidth * 0.21;
 
 // ── Read more helpers ─────────────────────────────────────
 
@@ -28,7 +32,7 @@ let t4 = null, t5 = null, t6 = null, t7 = null;
 // ── Scene 4 ──────────────────────────────────────────────
 
 function initScene4() {
-  if (t4) { t4.kill(); t4 = null; }
+  if (t4) { if (t4.scrollTrigger) t4.scrollTrigger.kill(); t4.kill(); t4 = null; }
 
   setupReadMore('.scene4-read-more', '.scene4-red-desc');
 
@@ -43,9 +47,8 @@ function initScene4() {
   const scene4RedText = document.querySelector('.scene4-red-text');
   const scene4SmallRedCircleLogo = document.querySelector('.scene4-small-red-circle-logo');
 
-  gsap.set(scene4GreyCircle, { opacity: 1, y: 0 });
-  gsap.set(scene4ImageCircle, { y: vw(500), x: 0 });
-  gsap.set(scene4RedCircle, { y: vw(235) });
+  gsap.set(scene4GreyCircle, { opacity: 0 });
+  gsap.set([scene4RedCircle, scene4ImageCircle], { y: () => window.innerHeight });
   gsap.set(scene4SmallRedCircle, { x: vw(-150), opacity: 1 });
   gsap.set(scene4SmallRedCircleRight, { x: 0, y: vw(400), opacity: 1 });
   gsap.set(scene4Group1, { opacity: 0, y: vw(300), x: vw(-75) });
@@ -67,15 +70,15 @@ function initScene4() {
   });
 
   t4.to(scene4GreyCircle, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
-  t4.to(scene4ImageCircle, { y: vw(450), duration: 0.4, ease: 'power2.out' }, 0);
-  t4.to(scene4RedCircle, { y: vw(185), duration: 0.4, ease: 'power2.out' }, '<');
+  t4.to(scene4ImageCircle, { y: scene4CenterY, duration: 0.4, ease: 'power2.out' }, 0);
+  t4.to(scene4RedCircle, { y: scene4CenterY, duration: 0.4, ease: 'power2.out' }, '<');
   t4.fromTo(scene4SmallRedCircle, { opacity: 0, y: 0 }, { opacity: 1, y: vw(10), duration: 0.3, ease: 'power2.out' }, 0);
   t4.to(scene4SmallRedCircle, { x: vw(200), opacity: 0, duration: 0.5, ease: 'power1.inOut' }, 0.35);
   t4.fromTo(scene4SmallRedCircleRight, { opacity: 0, x: vw(500) }, { opacity: 1, x: vw(-300), duration: 0.5, ease: 'power2.out' }, 0);
   t4.fromTo(scene4RedText, { opacity: 0, y: vw(500) }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0);
   t4.fromTo(scene4Group1, { opacity: 0, y: vw(300), x: vw(-75) }, { opacity: 1, y: vw(-20), duration: 0.5, ease: 'power2.out' }, 0);
   t4.fromTo(scene4Group2, { opacity: 0, y: vw(300), x: vw(-75) }, { opacity: 1, y: vw(-10), duration: 0.5, ease: 'power2.out' }, 0.1);
-  t4.to(scene4ImageCircle, { x: vw(-350), duration: 0.3, ease: 'power2.out' }, 0.2);
+  t4.to(scene4ImageCircle, { x: vw(-470), duration: 0.3, ease: 'power2.out' }, 0.2);
   if (scene4Tagline) t4.to(scene4Tagline, { opacity: 1, y: vw(50), duration: 0.5, ease: 'power2.out' }, 0);
   if (scene4SmallRedCircleLogo) t4.to(scene4SmallRedCircleLogo, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.55);
 }
@@ -86,7 +89,7 @@ let isShowingConvention = false;
 let isShowingSSILP = false;
 
 function initScene5() {
-  if (t5) { t5.kill(); t5 = null; }
+  if (t5) { if (t5.scrollTrigger) t5.scrollTrigger.kill(); t5.kill(); t5 = null; }
   isShowingConvention = false;
   isShowingSSILP = false;
 
@@ -111,12 +114,15 @@ function initScene5() {
   const scene5SubcompanyLogos = document.querySelector('.scene5-subcompany-logos');
   const scene5RightArrows = document.querySelector('.scene5-right-arrows');
 
+  const scene5NewTextContainer = document.querySelector('.scene5-new-text');
+  const scene5CirclesContainer = document.querySelector('.scene5-circles-container');
+
   gsap.set(scene5SmallRedCircle, { y: vw(-800), x: vw(-550) });
   if (scene5TopLeftCircle) gsap.set(scene5TopLeftCircle, { left: vw(400) + 'px' });
   if (scene5GreyOutlineCircle) gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + 'px', opacity: 0 });
-  gsap.set(scene5GreyCircle, { opacity: 0, y: vw(500) });
-  gsap.set(scene5ImageCircle, { y: vw(215), x: 0 });
-  gsap.set(scene5RedCircle, { y: vw(215) });
+  gsap.set(scene5GreyCircle, { opacity: 0 });
+  gsap.set(scene5ImageCircle, { y: () => window.innerHeight, x: 0 });
+  gsap.set(scene5RedCircle, { y: () => window.innerHeight });
   gsap.set(scene5Group1, { opacity: 0, y: vw(400) });
   gsap.set(scene5Group2, { opacity: 0, y: vw(400) });
   gsap.set(scene5Text, { opacity: 0, y: 0 });
@@ -127,8 +133,6 @@ function initScene5() {
   // Reset convention/ssilp state visually
   scene5RedCircle.classList.remove('show-convention', 'show-ssilp');
   scene5GreyCircle.classList.remove('show-convention', 'show-ssilp');
-  const scene5NewTextContainer = document.querySelector('.scene5-new-text');
-  const scene5CirclesContainer = document.querySelector('.scene5-circles-container');
   if (scene5NewTextContainer) scene5NewTextContainer.classList.remove('show-convention', 'show-ssilp');
   if (scene5CirclesContainer) scene5CirclesContainer.classList.remove('show-convention', 'show-ssilp');
   const cc5 = document.querySelector('.scene5-convention-content');
@@ -146,7 +150,7 @@ function initScene5() {
   t5 = gsap.timeline({
     scrollTrigger: {
       trigger: '.scene5',
-      start: 'top 55%',
+      start: 'top top',
       end: '+=900',
       scrub: 1,
       pin: true,
@@ -154,17 +158,17 @@ function initScene5() {
     },
   });
 
-  t5.to(scene5ImageCircle, { y: vw(-230), duration: 0.4, ease: 'power2.out' }, 0);
-  t5.to(scene5RedCircle, { y: vw(-230), duration: 0.4, ease: 'power2.out' }, '<');
+  t5.to(scene5ImageCircle, { y: scene5CenterY, duration: 0.4, ease: 'power2.out' }, 0);
+  t5.to(scene5RedCircle, { y: scene5CenterY, duration: 0.4, ease: 'power2.out' }, '<');
   if (scene5TopLeftCircle) t5.fromTo(scene5TopLeftCircle, { left: vw(400) + 'px', opacity: 0 }, { opacity: 1, left: vw(180) + 'px', duration: 1, ease: 'power2.out', onComplete: () => { scene5TopLeftCircle.style.backgroundImage = "url('./assets/shaktismallimage.png')"; scene5TopLeftCircle.style.borderRadius = '0'; } }, 0);
   if (scene5GreyOutlineCircle) t5.to(scene5GreyOutlineCircle, { opacity: 1, top: 'calc(100vh - 500px)', duration: 1.2, ease: 'power2.out' }, 0);
   t5.fromTo(scene5SmallRedCircle, { opacity: 0, y: vw(-800), x: vw(-550) }, { opacity: 1, y: vw(-550), duration: 0.3, ease: 'power2.out' }, 0);
   t5.to(scene5SmallRedCircle, { x: vw(-700), opacity: 0, duration: 0.55, ease: 'power1.inOut' }, 0.45);
   t5.fromTo(scene5Group1, { opacity: 0, y: vw(400) }, { opacity: 1, y: vw(50), duration: 0.8, ease: 'power2.out' }, 0.2);
   t5.fromTo(scene5Group2, { opacity: 0, y: vw(400) }, { opacity: 1, y: vw(50), duration: 0.8, ease: 'power2.out' }, 0.4);
-  t5.to(scene5ImageCircle, { x: vw(100), duration: 0.5, ease: 'power2.out' }, 0.4);
+  t5.to(scene5ImageCircle, { x: vw(470), duration: 0.3, ease: 'power2.out' }, 0.2);
   t5.to(scene5Text, { opacity: 1, y: vw(-60), duration: 0.3, ease: 'power2.out' }, 0.1);
-  t5.to(scene5GreyCircle, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0);
+  t5.to(scene5GreyCircle, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
   if (scene5SubcompanyBg) t5.to(scene5SubcompanyBg, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.4);
   if (scene5SubcompanyLogos) t5.to(scene5SubcompanyLogos, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.4);
   if (scene5RightArrows) t5.to(scene5RightArrows, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.4);
@@ -260,7 +264,7 @@ function initScene5() {
 // ── Scene 6 ──────────────────────────────────────────────
 
 function initScene6() {
-  if (t6) { t6.kill(); t6 = null; }
+  if (t6) { if (t6.scrollTrigger) t6.scrollTrigger.kill(); t6.kill(); t6 = null; }
 
   document.querySelectorAll('.scene6 .read-more-btn').forEach((btn) => {
     const desc = btn.previousElementSibling;
@@ -286,6 +290,7 @@ function initScene6() {
   const scene6RedText = document.querySelector('.scene6-red-text');
   const scene6Group1 = document.querySelector('.scene6-group-1');
   const scene6Group2 = document.querySelector('.scene6-group-2');
+  const scene6NewText = document.querySelector('.scene6-new-text');
   const scene6SubcompanyBg = document.querySelector('.scene6-subcompany-bg');
   const scene6SubcompanyLogos = document.querySelector('.scene6-subcompany-logos');
   const scene6RightArrows = document.querySelector('.scene6-right-arrows');
@@ -304,10 +309,10 @@ function initScene6() {
   if (rg1) rg1.innerHTML = 'Lighting <br>new paths where';
   if (rg2) rg2.innerHTML = 'empowerment <br>blooms.';
 
-  gsap.set(scene6ImageCircle, { y: vw(415), x: vw(-120) });
-  gsap.set(scene6RedCircle, { y: vw(415), x: vw(-100) });
+  gsap.set(scene6ImageCircle, { y: () => window.innerHeight, x: vw(-120) });
+  gsap.set(scene6RedCircle, { y: () => window.innerHeight, x: vw(-100) });
   gsap.set(scene6SmallRedCircle, { y: vw(-310), x: 0 });
-  gsap.set(scene6GreyCircle, { opacity: 0, y: vw(500) });
+  gsap.set(scene6GreyCircle, { opacity: 0 });
   gsap.set(scene6GreyOutlineCircle, { opacity: 0 });
   gsap.set(scene6SubcompanyBg, { opacity: 0 });
   gsap.set(scene6SubcompanyLogos, { opacity: 0 });
@@ -327,7 +332,7 @@ function initScene6() {
   t6 = gsap.timeline({
     scrollTrigger: {
       trigger: '.scene6',
-      start: 'top 50%',
+      start: 'top top',
       end: '+=1200',
       scrub: 1,
       pin: true,
@@ -348,9 +353,9 @@ function initScene6() {
     },
   });
 
-  t6.to(scene6GreyCircle, { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
-  t6.to(scene6ImageCircle, { y: vw(-215), duration: 0.4, ease: 'power2.out' }, 0);
-  t6.to(scene6RedCircle, { y: vw(-215), duration: 0.4, ease: 'power2.out' }, 0);
+  t6.to(scene6GreyCircle, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
+  t6.to(scene6ImageCircle, { y: scene6CenterY, duration: 0.4, ease: 'power2.out' }, 0);
+  t6.to(scene6RedCircle, { y: scene6CenterY, duration: 0.4, ease: 'power2.out' }, 0);
   t6.fromTo(scene6Group1, { opacity: 0, y: vw(400) }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 0.5);
   t6.fromTo(scene6Group2, { opacity: 0, y: vw(400) }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 0.6);
   t6.fromTo(scene6SmallRedCircle, { opacity: 0, y: vw(-290) }, { opacity: 1, y: vw(-220), duration: 0.8, ease: 'power2.out' }, '<0.1');
@@ -366,7 +371,7 @@ function initScene6() {
   t6.fromTo(scene6RightArrows, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.4);
   t6.to(scene6GreyOutlineCircle, { opacity: 0.7, top: 'calc(50% - 785px)', duration: 1.2, ease: 'power2.out' }, 0.5);
   t6.to(scene6SmallRedCircle1, { y: vw(120), duration: 1, ease: 'power2.out' }, 1.0);
-  t6.to(scene6ImageCircle, { x: vw(-485), duration: 0.5, ease: 'power2.out' }, 0.8);
+  t6.to(scene6ImageCircle, { x: vw(-470), duration: 0.3, ease: 'power2.out' }, 0.2);
   t6.to(scene6RedText, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, 0.8);
   t6.to(scene6GreyOutlineCircle, { x: vw(900), opacity: 0, duration: 0.8, ease: 'power2.in' }, 1.7);
 
@@ -433,7 +438,7 @@ function initScene6() {
 // ── Scene 7 ──────────────────────────────────────────────
 
 function initScene7() {
-  if (t7) { t7.kill(); t7 = null; }
+  if (t7) { if (t7.scrollTrigger) t7.scrollTrigger.kill(); t7.kill(); t7 = null; }
 
   document.querySelectorAll('.scene7 .read-more-btn').forEach((btn) => {
     const desc = btn.previousElementSibling;
@@ -480,9 +485,9 @@ function initScene7() {
   gsap.set(scene7SmallRedCircle, { y: vw(-800), x: vw(-550) });
   if (scene7TopLeftCircle) gsap.set(scene7TopLeftCircle, { left: vw(400) + 'px', opacity: 0, backgroundImage: '', borderRadius: '' });
   if (scene7GreyOutlineCircle) gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + 'px', opacity: 0, x: 0 });
-  gsap.set(scene7ImageCircle, { y: vw(215), x: 0 });
-  gsap.set(scene7RedCircle, { y: vw(215) });
-  gsap.set(scene7GreyCircle, { opacity: 0, y: vw(500) });
+  gsap.set(scene7ImageCircle, { y: () => window.innerHeight, x: 0 });
+  gsap.set(scene7RedCircle, { y: () => window.innerHeight });
+  gsap.set(scene7GreyCircle, { opacity: 0 });
   gsap.set(scene7Group1, { opacity: 0, y: vw(400) });
   gsap.set(scene7Group2, { opacity: 0, y: vw(400) });
   gsap.set(scene7Text, { opacity: 0, y: 0 });
@@ -493,7 +498,7 @@ function initScene7() {
   t7 = gsap.timeline({
     scrollTrigger: {
       trigger: '.scene7',
-      start: 'top 50%',
+      start: 'top top',
       end: '+=1200',
       scrub: 1,
       pin: true,
@@ -501,9 +506,10 @@ function initScene7() {
     },
   });
 
-  t7.to(scene7ImageCircle, { y: vw(-225), duration: 0.4, ease: 'power2.out' }, 0);
-  t7.to(scene7GreyCircle, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0);
-  t7.to(scene7RedCircle, { y: vw(-225), duration: 0.4, ease: 'power2.out' }, '<');
+  t7.to(scene7ImageCircle, { y: scene7CenterY, duration: 0.4, ease: 'power2.out' }, 0);
+  t7.to(scene7GreyCircle, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
+  t7.to(scene7RedCircle, { y: scene7CenterY, duration: 0.4, ease: 'power2.out' }, '<');
+  t7.to(scene7ImageCircle, { x: () => vw(470), duration: 0.3, ease: 'power2.out' }, 0.2);
   if (scene7TopLeftCircle) t7.fromTo(scene7TopLeftCircle, { left: vw(400) + 'px', opacity: 0 }, { opacity: 1, left: vw(180) + 'px', duration: 2, ease: 'power2.out', onComplete: () => { scene7TopLeftCircle.style.backgroundImage = "url('./assets/shaktismallimage.png')"; scene7TopLeftCircle.style.borderRadius = '0'; } }, 0);
   if (scene7GreyOutlineCircle) {
     t7.to(scene7GreyOutlineCircle, { x: vw(-285), opacity: 0.7, duration: 1.2, ease: 'power2.out' }, 0.5);
@@ -513,7 +519,6 @@ function initScene7() {
   t7.to(scene7SmallRedCircle, { y: vw(-750), x: vw(-600), scale: 1.15, opacity: 0, duration: 0.6, ease: 'power2.inOut' }, 0.5);
   t7.fromTo(scene7Group1, { opacity: 0, y: vw(400) }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 0.2);
   t7.fromTo(scene7Group2, { opacity: 0, y: vw(400) }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 0.4);
-  t7.to(scene7ImageCircle, { x: vw(80), duration: 0.5, ease: 'power2.out' }, 0.4);
   t7.to(scene7Text, { opacity: 1, y: vw(-60), duration: 0.3, ease: 'power2.out' }, 0.1);
   if (scene7SubcompanyBg) t7.to(scene7SubcompanyBg, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.4);
   if (scene7SubcompanyLogos) t7.to(scene7SubcompanyLogos, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.4);
@@ -558,7 +563,7 @@ function initScene7() {
     lg1.innerHTML = originalScene7Group1HTML; lg2.innerHTML = originalScene7Group2HTML;
     lg1.style.opacity = '1'; lg2.style.opacity = '1';
     const ic = document.querySelector('.scene7-image-circle');
-    if (ic) { ic.style.backgroundImage = 'url(./assets/image08.webp)'; ic.style.width = vw(525) + 'px'; ic.style.height = vw(525) + 'px'; }
+    if (ic) { ic.style.backgroundImage = 'url(./assets/image08.webp)'; ic.style.width = ''; ic.style.height = ''; }
     scene7RedCircleContainer.classList.remove('show-convention', 'show-ssilp');
     scene7GreyCircleContainer.classList.remove('show-convention', 'show-ssilp');
     scene7NewTextContainer.classList.remove('show-convention', 'show-ssilp');
@@ -611,6 +616,12 @@ document.querySelectorAll('.grey-circles-container .grey-circle[data-company]').
   circle.addEventListener('click', function () {
     const id = this.getAttribute('data-company');
 
+    // Kill all scene timelines + their ScrollTriggers before switching
+    [['t4', t4], ['t5', t5], ['t6', t6], ['t7', t7]].forEach(([, t]) => {
+      if (t) { if (t.scrollTrigger) t.scrollTrigger.kill(); t.kill(); }
+    });
+    t4 = null; t5 = null; t6 = null; t7 = null;
+
     document.querySelectorAll('.grey-circles-container .grey-circle').forEach(c => c.classList.remove('gc-active'));
     document.querySelectorAll('.gc-company-panel').forEach(p => p.classList.remove('gc-panel-active'));
 
@@ -618,10 +629,10 @@ document.querySelectorAll('.grey-circles-container .grey-circle[data-company]').
     const panel = document.querySelector('.gc-company-panel[data-company="' + id + '"]');
     if (panel) {
       panel.classList.add('gc-panel-active');
-      requestAnimationFrame(() => {
+      requestAnimationFrame(() => requestAnimationFrame(() => {
         if (initFns[id]) initFns[id]();
         ScrollTrigger.refresh();
-      });
+      }));
     }
   });
 });
