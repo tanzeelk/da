@@ -539,7 +539,7 @@ t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
     start: "top+=170px top",
-    end: "+=700",
+    end: "+=1200",
     scrub: 1,
     pin: true,
     pinSpacing: true,
@@ -568,36 +568,22 @@ let expandTL = gsap.timeline();
 
 expandTL.to(scene3Image, {
   width: () => window.innerWidth,
-  height: () => window.innerHeight * 0.45,
+  height: () => vh(500),
   borderRadius: "9999px",
   // top: "22vw",
   ease: "none",
   duration: 1,
 });
 
-expandTL.to(
-  [scene3GroupText, scene3VenturesText],
-  {
-    y: () => {
-      const imageRect = scene3Image.getBoundingClientRect();
-      const textRect = scene3GroupText.getBoundingClientRect();
-      const imageCenterY = imageRect.top + imageRect.height / 2;
-      const textCenterY = textRect.top + textRect.height / 2;
-      return imageCenterY - textCenterY;
-    },
-    ease: "none",
-    duration: 1,
-  },
-  0.1
-);
 
 expandTL.to(
   scene3RedCircle,
   {
     x: () => {
-      const circleRect = scene3RedCircle.getBoundingClientRect();
-      const rightMargin = window.innerWidth * 0.02;
-      return window.innerWidth - rightMargin - (circleRect.left + circleRect.width);
+      const circleHalfW = scene3RedCircle.offsetWidth / 2;
+      const targetCenterX = window.innerWidth * 0.95 - circleHalfW;
+      const currentCenterX = window.innerWidth * 0.5;
+      return targetCenterX - currentCenterX;
     },
     y: () => {
       const imageRect = scene3Image.getBoundingClientRect();
@@ -673,36 +659,30 @@ t3.to(
 t3.fromTo(
   scene3GroupText,
   () => ({ opacity: 0, y: vw(250) }),
-  { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+  { opacity: 1, y: () => {
+      const imageRect = scene3Image.getBoundingClientRect();
+      const textRect = scene3GroupText.getBoundingClientRect();
+      return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2);
+    }, duration: 0.5, ease: "power3.out" },
   "<0.3"
 );
 
 t3.fromTo(
   scene3VenturesText,
   () => ({ opacity: 0, y: vw(250) }),
-  { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+  { opacity: 1, y: () => {
+      const imageRect = scene3Image.getBoundingClientRect();
+      const textRect = scene3VenturesText.getBoundingClientRect();
+      return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2);
+    }, duration: 0.5, ease: "power3.out" },
   "<0.3"
 );
 
-t3.fromTo(
-  scene3RedCircleText,
-  () => ({ opacity: 0, y: vw(200), xPercent: -50, yPercent: -50 }),
-  { opacity: 1, y: 0, xPercent: -50, yPercent: -50, duration: 2, ease: "power3.out" },
-  "<"
-);
-
-// Animate text left position to match circle movement
-t3.to(
+// Text is child of circle, moves with it automatically — just fade in
+expandTL.to(
   scene3RedCircleText,
   {
-    x: () => {
-      const circleRect = scene3RedCircle.getBoundingClientRect();
-      const rightMargin = window.innerWidth * 0.02;
-      return window.innerWidth - rightMargin - (circleRect.left + circleRect.width);
-    },
-    y: () => vw(85),
-    xPercent: -50,
-    yPercent: -50,
+    opacity: 1,
     ease: "none",
     duration: 1,
   },
@@ -726,6 +706,9 @@ greyCircles.forEach((circle, index) => {
     `>-${0.35 - index * 0.05}`
   );
 });
+
+// Hold final state for extra scroll time
+t3.to({}, { duration: 2 });
 }
 initScene3();
 

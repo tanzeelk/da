@@ -677,8 +677,7 @@ body.bg-active {
   background-position: center;
   position: absolute;
   top: 18.4vw;
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(50% - 10.415vw);
   z-index: 60;
   opacity: 0.9;
   border: none;
@@ -705,7 +704,7 @@ body.bg-active {
 .scene3-group-text {
   position: absolute;
   right: 22vw;
-  top: 28.82vw;
+  /* top: 28.82vw; */
   transform: translateY(-50%);
   color: #ec1c24;
   font-family: 'Montserrat', sans-serif;
@@ -722,7 +721,7 @@ body.bg-active {
 .scene3-ventures-text {
   position: absolute;
   left: 2vw;
-  top: 28.82vw;
+  /* top: 28.82vw; */
   transform: translateY(-50%);
   color: var(--color-blue2);
   font-family: 'Montserrat', sans-serif;
@@ -738,10 +737,10 @@ body.bg-active {
 
 .scene3-red-circle-text {
   position: absolute;
-  top: 28.815vw;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 16vw;
+  width: 85%;
   text-align: center;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
