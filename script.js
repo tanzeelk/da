@@ -11,21 +11,25 @@ function setupReadMore(btnSelector, descSelector) {
   const desc = document.querySelector(descSelector);
   if (btn && desc) {
     btn.addEventListener("click", (e) => {
+      e.stopPropagation();
       const expanded = desc.classList.toggle("desc-expanded");
-      btn.innerHTML = expanded ? '<img src="./assets/Read less.png" alt="Read less" class="read-more-icon" />' : '<img src="./assets/Read more.png" alt="Read more" class="read-more-icon" />';
+      btn.classList.toggle("expanded", expanded);
     });
   }
 }
 
 // Read more toggles for all scenes
 setupReadMore(".scene4-read-more", ".scene4-red-desc");
+setupReadMore(".scene5-main-read-more", ".scene5-main-desc");
+setupReadMore(".scene7-main-read-more", ".scene7-main-desc");
 
 document.querySelectorAll(".read-more-btn").forEach((btn) => {
   const desc = btn.previousElementSibling;
   if (desc) {
     btn.addEventListener("click", (e) => {
+      e.stopPropagation();
       const expanded = desc.classList.toggle("desc-expanded");
-      btn.innerHTML = expanded ? '<img src="./assets/Read less.png" alt="Read less" class="read-more-icon" />' : '<img src="./assets/Read more.png" alt="Read more" class="read-more-icon" />';
+      btn.classList.toggle("expanded", expanded);
     });
   }
 });
@@ -1050,7 +1054,7 @@ t5.to(
   scene5Text,
   {
     opacity: 1,
-    y: vw(-60),
+    y: 0,
     duration: 0.3,
     ease: "power2.out",
   },
@@ -1089,6 +1093,7 @@ t5.to(
   scene5SubcompanyLogos,
   {
     opacity: 1,
+    pointerEvents: "auto",
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1100,6 +1105,7 @@ t5.to(
   scene5RightArrows,
   {
     opacity: 1,
+    pointerEvents: "auto",
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1587,7 +1593,7 @@ t7.to(
   scene7Text,
   {
     opacity: 1,
-    y: vw(-60),
+    y: 0,
     duration: 0.3,
     ease: "power2.out",
   },
@@ -1615,6 +1621,7 @@ t7.to(
   scene7SubcompanyLogos,
   {
     opacity: 1,
+    pointerEvents: "auto",
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1626,6 +1633,7 @@ t7.to(
   scene7RightArrows,
   {
     opacity: 1,
+    pointerEvents: "auto",
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1663,10 +1671,8 @@ t8.to(
 );
 
 function resetReadMore(container) {
-  const desc = container.querySelector(".scene5-desc, .scene6-desc, .scene7-desc, .scene6-red-desc");
-  const btn = container.querySelector(".read-more-btn");
-  if (desc) desc.classList.remove("desc-expanded");
-  if (btn) btn.innerHTML = '<img src="./assets/Read more.png" alt="Read more" class="read-more-icon" />';
+  container.querySelectorAll(".desc-expanded").forEach(el => el.classList.remove("desc-expanded"));
+  container.querySelectorAll(".expanded").forEach(el => el.classList.remove("expanded"));
 }
 
 // Scene 5 Arrow Click Handlers
@@ -1720,15 +1726,6 @@ function updateScene5ToConvention() {
   scene5GreyCircleContainer.classList.add("show-convention");
   scene5NewTextContainer.classList.add("show-convention");
   scene5CirclesContainer.classList.add("show-convention");
-
-  // Show convention content (right arrow hidden by CSS .show-convention class)
-  const conventionContent = document.querySelector(
-    ".scene5-convention-content"
-  );
-
-  if (conventionContent) {
-    gsap.to(conventionContent, { opacity: 1, duration: 0.3, pointerEvents: "auto" });
-  }
 
   // Change image to SSCC.png
   const imageCircle = document.querySelector(".scene5-image-circle");
@@ -1801,19 +1798,6 @@ function updateScene5ToDefault() {
   scene5GreyCircleContainer.classList.remove("show-ssilp");
   scene5NewTextContainer.classList.remove("show-ssilp");
   scene5CirclesContainer.classList.remove("show-ssilp");
-
-  // Hide both convention and SSILP content
-  const conventionContent = document.querySelector(
-    ".scene5-convention-content"
-  );
-  const ssilpContent = document.querySelector(".scene5-ssilp-content");
-
-  if (conventionContent) {
-    gsap.to(conventionContent, { opacity: 0, duration: 0.3 });
-  }
-  if (ssilpContent) {
-    gsap.to(ssilpContent, { opacity: 0, duration: 0.3 });
-  }
 
   // Animate grey outline circle
   const greyOutlineCircle = document.querySelector(".scene5-grey-outline-circle");
@@ -1926,12 +1910,6 @@ function updateScene5ToSSILP() {
 
   group1.style.opacity = "1";
   group2.style.opacity = "1";
-
-  // Show SSILP content
-  const ssilpContent = document.querySelector(".scene5-ssilp-content");
-  if (ssilpContent) {
-    gsap.to(ssilpContent, { opacity: 1, duration: 0.3 });
-  }
 
   // Change image to SSILP.png
   const imageCircle = document.querySelector(".scene5-image-circle");
@@ -2426,13 +2404,6 @@ function updateScene7ToToyJoy() {
   scene7NewTextContainer.classList.add("show-convention");
   scene7CirclesContainer.classList.add("show-convention");
 
-  // Show convention content
-  const conventionContent = document.querySelector(".scene7-convention-content");
-
-  if (conventionContent) {
-    gsap.to(conventionContent, { opacity: 1, duration: 0.3 });
-  }
-
   // Change image to image07.png
   const imageCircle = document.querySelector(".scene7-image-circle");
   if (imageCircle) {
@@ -2484,17 +2455,6 @@ function updateScene7ToDefault() {
   scene7NewTextContainer.classList.remove("show-ssilp");
   scene7CirclesContainer.classList.remove("show-ssilp");
 
-  // Hide both convention and SSILP content
-  const conventionContent = document.querySelector(".scene7-convention-content");
-  const ssilpContent = document.querySelector(".scene7-ssilp-content");
-
-  if (conventionContent) {
-    gsap.to(conventionContent, { opacity: 0, duration: 0.3 });
-  }
-  if (ssilpContent) {
-    gsap.to(ssilpContent, { opacity: 0, duration: 0.3 });
-  }
-
   isShowingToyJoy = false;
   isShowingLittleWings = false;
 }
@@ -2522,12 +2482,6 @@ function updateScene7ToLittleWings() {
 
   group1.style.opacity = "1";
   group2.style.opacity = "1";
-
-  // Show SSILP content
-  const ssilpContent = document.querySelector(".scene7-ssilp-content");
-  if (ssilpContent) {
-    gsap.to(ssilpContent, { opacity: 1, duration: 0.3 });
-  }
 
   // Change image to littlewings-microimage.png
   const imageCircle = document.querySelector(".scene7-image-circle");

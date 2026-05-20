@@ -955,12 +955,15 @@ body.bg-active {
   margin-bottom: 10px;
 }
 
-.scene4-read-more {
+.scene4-read-more,
+.scene5-main-read-more,
+.scene7-main-read-more {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
   opacity: 0.9;
+  pointer-events: auto;
 }
 
 .read-more-btn {
@@ -977,6 +980,24 @@ body.bg-active {
   width: auto;
   display: block;
   filter: brightness(0) invert(1);
+}
+
+.read-less-img {
+  display: none;
+}
+
+.read-more-btn.expanded .read-more-img,
+.scene4-read-more.expanded .read-more-img,
+.scene5-main-read-more.expanded .read-more-img,
+.scene7-main-read-more.expanded .read-more-img {
+  display: none;
+}
+
+.read-more-btn.expanded .read-less-img,
+.scene4-read-more.expanded .read-less-img,
+.scene5-main-read-more.expanded .read-less-img,
+.scene7-main-read-more.expanded .read-less-img {
+  display: block;
 }
 
 .scene4-new-text {
@@ -1257,7 +1278,9 @@ body.bg-active {
   opacity: 0;
   transform: translateY(60px);
   font-family: 'Montserrat', sans-serif;
-  pointer-events: none;
+  pointer-events: auto;
+  margin-top: -3.13vw;
+  z-index: 10;
 }
 
 .scene5-subcompany-bg {
@@ -1270,6 +1293,7 @@ body.bg-active {
   opacity: 0;
   z-index: 5;
   object-fit: contain;
+  pointer-events: none;
 }
 
 .scene5-subcompany-logos {
@@ -1285,6 +1309,7 @@ body.bg-active {
   gap: 1.39vw;
   z-index: 6;
   opacity: 0;
+  pointer-events: none;
 }
 
 .scene5-logo {
@@ -1312,7 +1337,7 @@ body.bg-active {
   gap: 8.33vw;
   z-index: 6;
   opacity: 0;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .scene5-convention-content {
@@ -1329,9 +1354,11 @@ body.bg-active {
   opacity: 0;
   text-align: center;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .scene5-red-circle.show-convention .scene5-convention-content {
+  opacity: 1;
   pointer-events: auto;
 }
 
@@ -1354,9 +1381,11 @@ body.bg-active {
   opacity: 0;
   text-align: center;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .scene5-red-circle.show-ssilp .scene5-ssilp-content {
+  opacity: 1;
   pointer-events: auto;
 }
 
@@ -1768,6 +1797,7 @@ body.bg-active {
   opacity: 0;
   z-index: 5;
   object-fit: contain;
+  pointer-events: none;
 }
 
 .scene6-subcompany-logos {
@@ -2003,8 +2033,6 @@ body.bg-active {
   pointer-events: none;
 }
 
-.scene5-right-arrows,
-.scene5-right-arrows *,
 .scene5-convention-arrows,
 .scene5-convention-arrows *,
 .scene5-ssilp-arrows,
@@ -2104,7 +2132,9 @@ body.bg-active {
   opacity: 0;
   transform: translateY(60px);
   font-family: 'Montserrat', sans-serif;
-  pointer-events: none;
+  pointer-events: auto;
+  margin-top: -3.13vw;
+  z-index: 10;
 }
 
 .scene7-subcompany-bg {
@@ -2117,6 +2147,7 @@ body.bg-active {
   opacity: 0;
   z-index: 5;
   object-fit: contain;
+  pointer-events: none;
 }
 
 .scene7-subcompany-logos {
@@ -2132,6 +2163,7 @@ body.bg-active {
   gap: 1.39vw;
   z-index: 6;
   opacity: 0;
+  pointer-events: none;
 }
 
 .scene7-logo {
@@ -2157,7 +2189,7 @@ body.bg-active {
   gap: 8.33vw;
   z-index: 6;
   opacity: 0;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .scene7-convention-content {
@@ -2174,6 +2206,7 @@ body.bg-active {
   opacity: 0;
   text-align: center;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .scene7-red-circle.show-convention {
@@ -2181,6 +2214,7 @@ body.bg-active {
 }
 
 .scene7-red-circle.show-convention .scene7-convention-content {
+  opacity: 1;
   pointer-events: auto;
 }
 
@@ -2209,6 +2243,7 @@ body.bg-active {
   opacity: 0;
   text-align: center;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .scene7-red-circle.show-ssilp {
@@ -2216,6 +2251,7 @@ body.bg-active {
 }
 
 .scene7-red-circle.show-ssilp .scene7-ssilp-content {
+  opacity: 1;
   pointer-events: auto;
 }
 
