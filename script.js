@@ -191,6 +191,7 @@ gsap.to(".content", {
   },
 });
 
+
 let tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene1",

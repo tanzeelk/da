@@ -269,6 +269,7 @@ body {
   position: relative;
   width: 3.47vw;
   height: 3.47vw;
+  top: 3vw;
 }
 
 /* BACK CIRCLE — FULL */
@@ -461,9 +462,9 @@ body {
 /* Hero text in center */
 .hero-text {
   position: absolute;
-  top: 52%;
+  top: 48%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
   color: white;
   font-size: var(--font-hero);
   text-align: left;
@@ -493,9 +494,9 @@ body {
 /* Hero text in center - 2 */
 .hero-text-scene2 {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
   color: white;
   font-size: var(--font-hero);
   text-align: left;
@@ -552,7 +553,7 @@ body.bg-active {
 /* Red circle overlay with multiply blend mode */
 .red-circle-overlay {
   position: fixed;
-  top: 50%;
+  top: calc(50% + 3vw);
   left: 50%;
   transform: translate(-50%, -50%);
   width: var(--circle-size);
