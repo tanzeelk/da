@@ -158,8 +158,8 @@
 /* Person photo circle — right of center, vertically centered */
 .career-photo-circle {
   mix-blend-mode: multiply;
-  width: 32vw;
-  height: 32vw;
+  width: 35.2vw;
+  height: 35.2vw;
   border-radius: 50%;
   overflow: hidden;
   position: absolute;
@@ -172,6 +172,7 @@
 .career-photo-circle img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 /* Tagline — top aligns with top of photo circle, left-aligned */
