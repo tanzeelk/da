@@ -232,7 +232,7 @@ circle.appendChild(circleCenter);
 gsap.set(".circle-front", { opacity: 0 });
 
 const circleBaseSize = window.innerWidth * 0.03123;
-const circleMaxScale = (designH() * 0.67) / circleBaseSize;
+const circleMaxScale = (designH() * 0.54) / circleBaseSize;
 const circleFinalPx = circleBaseSize * circleMaxScale;
 gsap.set(redCircleOverlay, { width: circleFinalPx, height: circleFinalPx });
 const circleMidScale = circleMaxScale / 3;
