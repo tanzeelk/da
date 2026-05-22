@@ -284,7 +284,7 @@
   line-height: 1.5;
   letter-spacing: -0.05em;
   margin: 0;
-  max-width: 18vw;
+  max-width: 15vw;
   text-align: center;
 }
 
@@ -319,7 +319,7 @@
 
 /* Row 2 pulls up to overlap row 1's circle */
 .founders-row--2 {
-  margin-top: -3.125vw;
+  margin-top: 0;
 }
 
 /* ── Cells ── */
@@ -330,10 +330,12 @@
 
 /* Anil bio — left cell of row 1, centered text */
 .founders-cell--bio-anil {
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
-  padding: 0 0 0 6.25vw;
+  padding: 4.5vw 0 0 6.25vw;
   margin-right: 5.729vw;
+  position: relative;
+  z-index: 1;
 }
 
 /* Anil circle — right cell of row 1 */
@@ -362,8 +364,8 @@
 
 /* Durgesh bio — right cell of row 2 */
 .founders-cell--bio-durgesh {
-  justify-content: center;
-  padding: 0 6.25vw 0 0;
+  justify-content: flex-start;
+  padding: 4.5vw 6.25vw 0 0;
   margin-left: -1.563vw;
 }
 
@@ -382,10 +384,64 @@
 .founder-bio--anil   { text-align: right; }
 .founder-bio--durgesh { text-align: left; }
 
+.founder-bio-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 4.5em;
+}
+
+.founder-bio-clamped.expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.founder-read-more {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 0.4vw;
+  cursor: pointer;
+  display: block;
+}
+
+.founder-read-more-img {
+  height: 1.67vw;
+  width: auto;
+  display: block;
+}
+
+.founder-read-less-img {
+  height: 1.67vw;
+  width: auto;
+  display: none;
+}
+
+.founder-read-more.expanded .founder-read-more-img {
+  display: none;
+}
+
+.founder-read-more.expanded .founder-read-less-img {
+  display: block;
+}
+
+.founder-bio--anil ~ .founder-read-more {
+  margin-left: auto;
+}
+
 .founder-bio-wrap {
   border-top: 1px solid #fff;
   padding-top: 0.625vw;
-  margin-top: 1.5vw
+  margin-top: 1.5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.founders-cell--bio-durgesh .founder-bio-wrap {
+  align-items: flex-start;
 }
 
 /* ── Circle ── */
