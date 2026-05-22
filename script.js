@@ -2,7 +2,7 @@
 // Use this for all GSAP x/y/width/height values so animations scale with viewport.
 function vw(px) { return (px / 1920) * window.innerWidth; }
 function vh(px) { return (px / 1080) * (window.innerWidth * 0.625); }
-const designH = () => window.innerWidth * 0.625;
+const designH = () => Math.min(window.innerWidth * 0.625, window.innerHeight);
 
 const heroText = document.querySelector(".hero-text");
 
