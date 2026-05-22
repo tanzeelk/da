@@ -232,7 +232,7 @@ circle.appendChild(circleCenter);
 gsap.set(".circle-front", { opacity: 0 });
 
 const circleBaseSize = window.innerWidth * 0.03123;
-const circleMaxScale = (designH() * 0.54) / circleBaseSize;
+const circleMaxScale = (designH() * 0.7) / circleBaseSize;
 const circleFinalPx = circleBaseSize * circleMaxScale;
 gsap.set(redCircleOverlay, { width: circleFinalPx, height: circleFinalPx });
 const circleMidScale = circleMaxScale / 3;
@@ -677,7 +677,7 @@ const scene4Group2 = document.querySelector(".scene4-group-2");
 const scene4RedText = document.querySelector(".scene4-red-text");
 
 // Set initial positions: red circle and image start below viewport
-const scene4CenterY = () => designH() * 0.5 - window.innerWidth * 0.18;
+const scene4CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
 gsap.set(scene4GreyCircle, { opacity: 0, y: scene4CenterY });
 gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: () => designH() });
 gsap.set(scene4SmallRedCircle, { x: vw(-150) });
@@ -855,7 +855,7 @@ const scene5GreyOutlineCircle = document.querySelector(
 gsap.set(scene5SmallRedCircle, { y: vw(-800), x: vw(-550) });
 gsap.set(scene5TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
-const scene5CenterY = () => designH() * 0.5 - window.innerWidth * 0.18;
+const scene5CenterY = () => designH() * 0.6 - window.innerWidth * 0.18;
 
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene5ImageCircle, { y: () => designH() });
@@ -1077,7 +1077,7 @@ const scene6RightArrows = document.querySelector(".scene6-right-arrows");
 const scene6NewText = document.querySelector(".scene6-new-text");
 
 // Set initial positions: red circle and image start below viewport
-const scene6CenterY = () => designH() * 0.5 - window.innerWidth * 0.18;
+const scene6CenterY = () => designH() * 0.55 - window.innerWidth * 0.18;
 gsap.set(scene6ImageCircle, { y: () => designH() });
 gsap.set(scene6NewText, { y: () => designH() });
 gsap.set(scene6RedCircle, { y: () => designH() });
@@ -1344,7 +1344,7 @@ let t7 = gsap.timeline({
 const scene7ImageCircle = document.querySelector(".scene7-image-circle");
 const scene7RedCircle = document.querySelector(".scene7-red-circle");
 const scene7GreyCircle = document.querySelector(".scene7-grey-circle");
-const scene7CenterY = () => designH() * 0.5 - window.innerWidth * 0.18;
+const scene7CenterY = () => designH() * 0.55 - window.innerWidth * 0.18;
 const scene7Text = document.querySelector(".scene7-text");
 const scene7Group1 = document.querySelector(".scene7-group-1");
 const scene7Group2 = document.querySelector(".scene7-group-2");
