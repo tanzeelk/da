@@ -245,7 +245,7 @@ tl.to(".circle-back", {
     const textEl = document.querySelector(".scroll-text");
 
     if (scale >= 1 && scale < circleMaxScale * 0.75 && !window._textChanged) {
-      textEl.innerText = "Scroll continue";
+      textEl.innerText = "Scroll to continue";
     }
   },
 });
