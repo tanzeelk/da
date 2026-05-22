@@ -143,53 +143,7 @@ document.querySelectorAll('a[href="#footer"]').forEach((link) => {
 
 if (typeof gsap !== 'undefined') {
 
-// Hero title animation
-gsap.from(".title", {
-  duration: 1.5,
-  y: vw(50),
-  opacity: 0,
-  ease: "power3.out",
-});
 
-// Parallax scroll effect
-gsap.to(".layer-bg", {
-  y: vw(-100),
-  scrollTrigger: {
-    trigger: ".parallax",
-    start: "top bottom",
-    scrub: true,
-  },
-});
-
-gsap.to(".layer-mid", {
-  y: vw(-200),
-  scrollTrigger: {
-    trigger: ".parallax",
-    start: "top bottom",
-    scrub: true,
-  },
-});
-
-gsap.to(".layer-fg", {
-  y: vw(-300),
-  scrollTrigger: {
-    trigger: ".parallax",
-    start: "top bottom",
-    scrub: true,
-  },
-});
-
-// Fade-in content section
-gsap.to(".content", {
-  opacity: 1,
-  duration: 1.5,
-  y: vw(-30),
-  scrollTrigger: {
-    trigger: ".content",
-    start: "top 80%",
-    toggleActions: "play none none reverse",
-  },
-});
 
 
 let tl = gsap.timeline({
@@ -276,14 +230,20 @@ circle.appendChild(circleCenter);
 
 gsap.set(".circle-front", { opacity: 0 });
 
+const circleBaseSize = window.innerWidth * 0.0347;
+const circleMaxScale = (window.innerHeight * 0.67) / circleBaseSize;
+const circleFinalPx = circleBaseSize * circleMaxScale;
+gsap.set(redCircleOverlay, { width: circleFinalPx, height: circleFinalPx });
+const circleMidScale = circleMaxScale / 3;
+
 tl.to(".circle-back", {
-  scale: 4,
+  scale: circleMidScale,
   ease: "none",
   onUpdate: function () {
     const scale = gsap.getProperty(".circle-back", "scale");
     const textEl = document.querySelector(".scroll-text");
 
-    if (scale >= 1 && scale < 9 && !window._textChanged) {
+    if (scale >= 1 && scale < circleMaxScale * 0.75 && !window._textChanged) {
       textEl.innerText = "Scroll continue";
     }
   },
@@ -291,7 +251,7 @@ tl.to(".circle-back", {
 
 // medium → large
 tl.to(".circle-back", {
-  scale: 12,
+  scale: circleMaxScale,
   ease: "none",
   onUpdate: function () {
     const scale = gsap.getProperty(".circle-back", "scale");
@@ -443,7 +403,6 @@ tl.fromTo(
 
 tl.to(redCircleOverlay, {
   y: "55vh",
-  scale: 1.3,
   duration: 1.5,
   ease: "none"
 });
@@ -451,7 +410,6 @@ tl.to(redCircleOverlay, {
 // Keep red circle visible to bridge Scene 1 and Scene 2
 tl.to(redCircleOverlay, {
   y: "55vh",
-  scale: 1.2,
   duration: 2,
   opacity: 1,
   ease: "none"
@@ -1641,35 +1599,6 @@ t7.to(
   0.4
 );
 
-// Scene 8 Timeline - Image left, Red circle right
-let t8 = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".scene8",
-    start: "top bottom",
-    end: "+=800",
-    scrub: 1.5,
-    pin: false,
-    markers: false,
-  },
-});
-
-const scene8ImageCircle = document.querySelector(".scene8-image-circle");
-const scene8RedCircle = document.querySelector(".scene8-red-circle");
-const scene8GreyCircle = document.querySelector(".scene8-grey-circle");
-const scene8Text = document.querySelector(".scene8-text");
-
-t8.to(scene8ImageCircle, { x: vw(-150), duration: 1.25, ease: "power2.out" }, 0);
-t8.to(scene8RedCircle, { x: vw(150), duration: 1.25, ease: "power2.out" }, 0);
-t8.to(
-  scene8Text,
-  { opacity: 1, y: vw(-60), duration: 0.6, ease: "power2.out" },
-  0.1
-);
-t8.to(
-  scene8GreyCircle,
-  { opacity: 1, y: vw(-300), duration: 0.2, ease: "power2.out" },
-  0.25
-);
 
 function resetReadMore(container) {
   container.querySelectorAll(".desc-expanded").forEach(el => el.classList.remove("desc-expanded"));

@@ -2077,9 +2077,6 @@ body.bg-active {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
-  outline: none;
-  mix-blend-mode: normal;
   pointer-events: auto;
   overflow: hidden;
 }
@@ -2096,7 +2093,6 @@ body.bg-active {
   top: 20vw;
   transform: translate(-50%, -50%);
   z-index: 9;
-  opacity: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2106,7 +2102,6 @@ body.bg-active {
   width: 5.21vw;
   height: 5.21vw;
   object-fit: contain;
-  opacity: 1;
   position: relative;
   top: -1.74vw;
 }
@@ -2123,7 +2118,6 @@ body.bg-active {
   left: calc(50% - 28vw);
   transform: translate(0, -50%);
   z-index: 5;
-  opacity: 1;
 }
 
 .scene7-text {
@@ -2144,7 +2138,6 @@ body.bg-active {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  height: auto;
   opacity: 0;
   z-index: 5;
   object-fit: contain;
@@ -2351,7 +2344,7 @@ body.bg-active {
 }
 
 .scene7-grey-outline-circle {
-  position: fixed;
+  position: absolute;
   top: 6.94vw;
   left: calc(20% - 9.03vw);
   width: 19.10vw;
@@ -2364,7 +2357,7 @@ body.bg-active {
 }
 
 .scene7-top-left-circle {
-  position: fixed;
+  position: absolute;
   top: 11.81vw;
   width: 5.21vw;
   height: 5.21vw;
