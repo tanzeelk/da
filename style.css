@@ -916,7 +916,7 @@ body {
 .scene5-new-text {
   position: absolute;
   left: 35%;
-  top: -1vw;
+  top: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 3.63vw;
@@ -938,7 +938,7 @@ body {
 .scene7-new-text {
   position: absolute;
   right: 10%;
-  top: -4.75vw;
+  top: -7vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 3.63vw;
@@ -960,7 +960,7 @@ body {
 .scene6-new-text {
   position: absolute;
   right: 51.5vw;
-  top: -5vw;
+  top: -7vw;
   width: 36vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
