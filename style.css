@@ -30,8 +30,8 @@ html, body {
   --font-hero: 4.5vw;
   --font-hero-scene2: 5vw;
   --font-small: 1vw;
-  --circle-size: 41.67vw;
-  --circle-size-scene2: 32vw;
+  --circle-size: 37.5vw;
+  --circle-size-scene2: 28.8vw;
 }
 
 body {
@@ -229,15 +229,15 @@ body {
 
 .circle {
   position: relative;
-  width: 3.47vw;
-  height: 3.47vw;
+  width: 3.12vw;
+  height: 3.12vw;
   top: 3vw;
 }
 
 /* BACK CIRCLE — FULL */
 .circle-back {
-  width: 3.47vw;
-  height: 3.47vw;
+  width: 3.12vw;
+  height: 3.12vw;
   border-radius: 50%;
   background: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -252,8 +252,8 @@ body {
 
 /* FRONT CIRCLE — HALF */
 .circle-front {
-  width: 3.47vw;
-  height: 3.47vw;
+  width: 3.12vw;
+  height: 3.12vw;
   border-radius: 50%;
   background: url('./assets/circle.webp');
   background-size: 110% 110%;
@@ -743,31 +743,31 @@ body {
 }
 
 .scene4-image-circle {
-  width: 36vw;
-  height: 36vw;
+  width: 34.2vw;
+  height: 34.2vw;
   border-radius: 50%;
   background-image: url('./assets/image04.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  top: 21vw;
-  left: calc(50% + 12.5vw);
+  top: 19.95vw;
+  left: calc(50% + 11.88vw);
   transform: translate(-50%, -50%);
   z-index: 5;
   opacity: 1;
 }
 
 .scene4-red-circle {
-  width: 36vw;
-  height: 36vw;
+  width: 34.2vw;
+  height: 34.2vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  left: calc(50% + 12.5vw);
+  left: calc(50% + 11.88vw);
   transform: translate(-50%, -50%);
-  top: 21vw;
+  top: 19.95vw;
   z-index: 10;
   opacity: 0.9;
   display: flex;
@@ -779,15 +779,15 @@ body {
 }
 
 .scene4-grey-circle {
-  width: 12.5vw;
-  height: 12.5vw;
+  width: 11.88vw;
+  height: 11.88vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 12.5vw);
-  top: 21vw;
+  left: calc(50% + 11.88vw);
+  top: 19.95vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -797,17 +797,17 @@ body {
 }
 
 .scene4-grey-logo {
-  width: 9.72vw;
+  width: 9.23vw;
   /* height: 100px; */
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -1.74vw;
+  top: -1.65vw;
 }
 
 .scene4-red-text {
   position: relative;
-  width: 23.61vw;
+  width: 22.43vw;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
@@ -816,17 +816,17 @@ body {
 }
 
 .scene4-red-heading {
-  font-size: 1.1vw;
+  font-size: 1.05vw;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 0.69vw;
+  margin-bottom: 0.66vw;
   letter-spacing: 1px;
 }
 
 .scene4-red-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.97vw;
+  font-size: 0.92vw;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -882,12 +882,12 @@ body {
 
 .scene4-new-text {
   position: absolute;
-  right: calc(50% + 6.93vw);
-  top: 3.65vw;
-  width: 28vw;
+  right: calc(50% + 6.58vw);
+  top: 3.47vw;
+  width: 26.6vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 3.47vw;
+  font-size: 3.3vw;
   line-height: 1;
   letter-spacing: -0.05em;
   z-index: 11;
@@ -917,7 +917,7 @@ body {
   top: -1vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 3.82vw;
+  font-size: 3.63vw;
   line-height: 1.1;
   letter-spacing: -0.05em;
   z-index: 11;
@@ -936,10 +936,10 @@ body {
 .scene7-new-text {
   position: absolute;
   right: 10%;
-  top: -5vw;
+  top: -4.75vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 3.82vw;
+  font-size: 3.63vw;
   line-height: 1.1;
   letter-spacing: -0.05em;
   z-index: 110;
@@ -962,7 +962,7 @@ body {
   width: 36vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 3.4vw;
+  font-size: 3.23vw;
   line-height: 1.1;
   letter-spacing: -0.05em;
   z-index: 11;
@@ -979,8 +979,8 @@ body {
 }
 
 .scene4-small-red-circle {
-  width: 5.90vw;
-  height: 5.90vw;
+  width: 5.61vw;
+  height: 5.61vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;
@@ -993,8 +993,8 @@ body {
 }
 
 .scene4-small-red-circle-right {
-  width: 5.21vw;
-  height: 5.21vw;
+  width: 4.95vw;
+  height: 4.95vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;
@@ -1051,16 +1051,16 @@ body {
 }
 
 .scene5-red-circle {
-  width: 36vw;
-  height: 36vw;
+  width: 34.2vw;
+  height: 34.2vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  left: calc(50% - 28vw);
+  left: calc(50% - 26.6vw);
   transform: translate(0, -50%);
-  top: 21vw;
+  top: 19.95vw;
   z-index: 10;
   opacity: 0.9;
   display: flex;
@@ -1073,15 +1073,15 @@ body {
 }
 
 .scene5-grey-circle {
-  width: 12.5vw;
-  height: 12.5vw;
+  width: 11.88vw;
+  height: 11.88vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
   left:40%;
-  top: 20vw;
+  top: 19vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -1091,24 +1091,24 @@ body {
 }
 
 .scene5-grey-logo {
-  width: 4.51vw;
-  height: 4.51vw;
+  width: 4.28vw;
+  height: 4.28vw;
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -1.74vw;
+  top: -1.65vw;
 }
 
 .scene5-image-circle {
-  width: 36vw;
-  height: 36vw;
+  width: 34.2vw;
+  height: 34.2vw;
   border-radius: 50%;
   background-image: url('./assets/image05.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  top: 21vw;
-  left: calc(50% - 28vw);
+  top: 19.95vw;
+  left: calc(50% - 26.6vw);
   transform: translate(0, -50%);
   z-index: 5;
   opacity: 1;
@@ -1117,19 +1117,19 @@ body {
 
 .scene5-text {
   position: relative;
-  width: 20.83vw;
+  width: 19.79vw;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
   font-family: 'Montserrat', sans-serif;
   pointer-events: auto;
-  margin-top: -3.13vw;
+  margin-top: -2.97vw;
   z-index: 10;
 }
 
 .scene5-subcompany-bg {
   position: absolute;
-  bottom: 5.07vw;
+  bottom: 4.82vw;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -1142,7 +1142,7 @@ body {
 
 .scene5-subcompany-logos {
   position: absolute;
-  bottom: 5.90vw;
+  bottom: 5.61vw;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -1150,14 +1150,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.39vw;
+  gap: 1.32vw;
   z-index: 6;
   opacity: 0;
   pointer-events: none;
 }
 
 .scene5-logo {
-  height: 5.21vw;
+  height: 4.95vw;
   width: auto;
   object-fit: contain;
   pointer-events: auto;
@@ -1165,20 +1165,20 @@ body {
 }
 
 .scene5-logo-separator {
-  height: 5.56vw;
+  height: 5.28vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene5-right-arrows {
   position: absolute;
-  bottom: 3.13vw;
+  bottom: 2.97vw;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8.33vw;
+  gap: 7.92vw;
   z-index: 6;
   opacity: 0;
   pointer-events: none;
@@ -1193,7 +1193,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.69vw;
+  gap: 0.66vw;
   z-index: 6;
   opacity: 0;
   text-align: center;
@@ -1220,7 +1220,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.69vw;
+  gap: 0.66vw;
   z-index: 6;
   opacity: 0;
   text-align: center;
@@ -1239,14 +1239,14 @@ body {
 }
 
 .scene5-convention-text {
-  width: 24.31vw;
+  width: 23.09vw;
 }
 
 .scene5-convention-arrows {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2.78vw;
+  gap: 2.64vw;
   position: relative;
   z-index: 20;
 }
@@ -1255,7 +1255,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2.78vw;
+  gap: 2.64vw;
   position: relative;
   z-index: 20;
 }
@@ -1277,7 +1277,7 @@ body {
 }
 
 .scene5-arrow-btn.scene5-arrow-left {
-  margin-right: 2.08vw;
+  margin-right: 1.98vw;
 }
 
 .scene5-arrow-btn:hover {
@@ -1285,16 +1285,16 @@ body {
 }
 
 .scene5-arrow-btn img {
-  height: 0.56vw;
+  height: 0.53vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene5-heading {
-  font-size: 1.1vw;
+  font-size: 1.05vw;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 0.69vw;
+  margin-bottom: 0.66vw;
   letter-spacing: 1px;
   white-space: normal;
   word-wrap: break-word;
@@ -1304,7 +1304,7 @@ body {
 .scene5-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.97vw;
+  font-size: 0.92vw;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1321,8 +1321,8 @@ body {
 }
 
 .scene5-small-red-circle {
-  width: 5.21vw;
-  height: 5.21vw;
+  width: 4.95vw;
+  height: 4.95vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;
@@ -1332,10 +1332,10 @@ body {
 
 .scene5-grey-outline-circle {
   position: fixed;
-  top: -6.94vw;
+  top: -6.59vw;
   left: calc(80% - 6.94vw);
-  width: 12.5vw;
-  height: 12.5vw;
+  width: 11.88vw;
+  height: 11.88vw;
   border-radius: 50%;
   border: 2px solid #9c9fa1;
   background: transparent;
@@ -1348,8 +1348,8 @@ body {
   top: -32vw;
   right: 5%;
   left: auto;
-  width: 5.21vw;
-  height: 5.21vw;
+  width: 4.95vw;
+  height: 4.95vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;
@@ -1361,10 +1361,10 @@ body {
 
 .scene5-top-left-circle {
   position: fixed;
-  top: 11.81vw;
+  top: 11.22vw;
   /* right: -300px; */
-  width: 5.21vw;
-  height: 5.21vw;
+  width: 4.95vw;
+  height: 4.95vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;
@@ -1515,15 +1515,15 @@ body {
 }
 
 .scene6-image-circle {
-  width: 36vw;
-  height: 36vw;
+  width: 34.2vw;
+  height: 34.2vw;
   border-radius: 50%;
   background-image: url('./assets/image06.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  top: 21vw;
-  left: calc(50% + 12.5vw);
+  top: 19.95vw;
+  left: calc(50% + 11.88vw);
   transform: translate(-50%, -50%);
   z-index: 5;
   opacity: 1;
@@ -1531,15 +1531,15 @@ body {
 }
 
 .scene6-red-circle {
-  width: 36vw;
-  height: 36vw;
+  width: 34.2vw;
+  height: 34.2vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  top: 21vw;
-  left: calc(50% + 12.5vw);
+  top: 19.95vw;
+  left: calc(50% + 11.88vw);
   transform: translate(-50%, -50%);
   z-index: 10;
   opacity: 0.9;
@@ -1555,12 +1555,12 @@ body {
 
 .scene6-red-text {
   position: absolute;
-  width: 26.39vw;
+  width: 25.07vw;
   text-align: center;
   opacity: 0;
   font-family: 'Montserrat', sans-serif;
   pointer-events: none;
-  top: 6.94vw;
+  top: 6.59vw;
   left: 50%;
   transform: translateX(-50%) translateY(60px);
   display: flex;
@@ -1575,17 +1575,17 @@ body {
 }
 
 .scene6-red-heading {
-  font-size: 1.1vw;
+  font-size: 1.05vw;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 0.69vw;
+  margin-bottom: 0.66vw;
   letter-spacing: 1px;
 }
 
 .scene6-red-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.97vw;
+  font-size: 0.92vw;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1595,15 +1595,15 @@ body {
 }
 
 .scene6-grey-circle {
-  width: 12.5vw;
-  height: 12.5vw;
+  width: 11.88vw;
+  height: 11.88vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
   right: 25%;
-  top: 19vw;
+  top: 18.05vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   opacity: 1;
@@ -1613,17 +1613,17 @@ body {
 }
 
 .scene6-grey-logo {
-  width: 6.94vw;
-  height: 6.94vw;
+  width: 6.59vw;
+  height: 6.59vw;
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -2.43vw;
+  top: -2.31vw;
 }
 
 .scene6-text {
   position: relative;
-  width: 20.83vw;
+  width: 19.79vw;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
@@ -1633,7 +1633,7 @@ body {
 
 .scene6-subcompany-bg {
   position: absolute;
-  bottom: 5.07vw;
+  bottom: 4.82vw;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -1646,27 +1646,27 @@ body {
 
 .scene6-subcompany-logos {
   position: absolute;
-  bottom: 5.90vw;
+  bottom: 5.61vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 32vw;
+  width: 30.4vw;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.39vw;
+  gap: 1.32vw;
   z-index: 6;
   opacity: 0;
 }
 
 .scene6-logo {
-  height: 5.56vw;
+  height: 5.28vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene6-logo-separator {
-  height: 4.17vw;
+  height: 3.96vw;
   width: auto;
   object-fit: contain;
 }
@@ -1684,7 +1684,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5.90vw;
+  gap: 5.61vw;
   z-index: 1000;
   opacity: 0;
   pointer-events: auto;
@@ -1739,15 +1739,15 @@ body {
 }
 
 .scene6-small-red-circle {
-  width: 5.21vw;
-  height: 5.21vw;
+  width: 4.95vw;
+  height: 4.95vw;
   /* border-radius: 50%; */
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;
   background-position: center;
   position: absolute;
   right: 20%;
-  top: -5.21vw;
+  top: -4.95vw;
   z-index: 20;
   opacity: 1;
 }
@@ -1755,8 +1755,8 @@ body {
 .scene6-small-red-circle-1,
 .scene6-small-red-circle-2,
 .scene6-small-red-circle-3 {
-  width: 4.51vw;
-  height: 4.51vw;
+  width: 4.28vw;
+  height: 4.28vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;
@@ -1774,8 +1774,8 @@ body {
 .scene6-small-red-circle-1-logo,
 .scene6-small-red-circle-2-logo,
 .scene6-small-red-circle-3-logo {
-  width: 5.21vw;
-  height: 5.21vw;
+  width: 4.95vw;
+  height: 4.95vw;
   object-fit: cover;
   opacity: 0;
   border-radius: 50%;
@@ -1799,8 +1799,8 @@ body {
   position: absolute;
   top: -32vw;
   left: calc(50% + 18.75vw);
-  width: 17.36vw;
-  height: 17.36vw;
+  width: 16.49vw;
+  height: 16.49vw;
   border-radius: 50%;
   border: 2px solid #9c9fa1;
   background: transparent;
@@ -1810,8 +1810,8 @@ body {
 }
 
 .scene6-small-red-circle-right {
-  width: 5.21vw;
-  height: 5.21vw;
+  width: 4.95vw;
+  height: 4.95vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;
@@ -1867,16 +1867,16 @@ body {
 }
 
 .scene7-red-circle {
-  width: 36vw;
-  height: 36vw;
+  width: 34.2vw;
+  height: 34.2vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  left: calc(50% - 28vw);
+  left: calc(50% - 26.6vw);
   transform: translate(0, -50%);
-  top: 21vw;
+  top: 19.95vw;
   z-index: 10;
   opacity: 0.9;
   display: flex;
@@ -1887,15 +1887,15 @@ body {
 }
 
 .scene7-grey-circle {
-  width: 12.5vw;
-  height: 12.5vw;
+  width: 11.88vw;
+  height: 11.88vw;
   border-radius: 50%;
   background-image: url('./assets/CircleGrey.png');
   background-size: cover;
   background-position: center;
   position: absolute;
   left: 40%;
-  top: 20vw;
+  top: 19vw;
   transform: translate(-50%, -50%);
   z-index: 9;
   display: flex;
@@ -1904,42 +1904,42 @@ body {
 }
 
 .scene7-grey-logo {
-  width: 5.21vw;
-  height: 5.21vw;
+  width: 4.95vw;
+  height: 4.95vw;
   object-fit: contain;
   position: relative;
-  top: -1.74vw;
+  top: -1.65vw;
 }
 
 .scene7-image-circle {
-  width: 36vw;
-  height: 36vw;
+  width: 34.2vw;
+  height: 34.2vw;
   border-radius: 50%;
   background-image: url('./assets/image08.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  top: 21vw;
-  left: calc(50% - 28vw);
+  top: 19.95vw;
+  left: calc(50% - 26.6vw);
   transform: translate(0, -50%);
   z-index: 5;
 }
 
 .scene7-text {
   position: relative;
-  width: 20.83vw;
+  width: 19.79vw;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
   font-family: 'Montserrat', sans-serif;
   pointer-events: auto;
-  margin-top: -3.13vw;
+  margin-top: -2.97vw;
   z-index: 10;
 }
 
 .scene7-subcompany-bg {
   position: absolute;
-  bottom: 5.07vw;
+  bottom: 4.82vw;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -1951,41 +1951,41 @@ body {
 
 .scene7-subcompany-logos {
   position: absolute;
-  bottom: 5.90vw;
+  bottom: 5.61vw;
   left: 50%;
   transform: translateX(-50%);
-  width: 32vw;
+  width: 30.4vw;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.39vw;
+  gap: 1.32vw;
   z-index: 6;
   opacity: 0;
   pointer-events: none;
 }
 
 .scene7-logo {
-  height: 5.56vw;
+  height: 5.28vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene7-logo-separator {
-  height: 4.17vw;
+  height: 3.96vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene7-right-arrows {
   position: absolute;
-  bottom: 3.13vw;
+  bottom: 2.97vw;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8.33vw;
+  gap: 7.92vw;
   z-index: 6;
   opacity: 0;
   pointer-events: none;
@@ -2000,7 +2000,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.69vw;
+  gap: 0.66vw;
   z-index: 6;
   opacity: 0;
   text-align: center;
@@ -2066,14 +2066,14 @@ body {
 }
 
 .scene7-convention-text {
-  width: 24.31vw;
+  width: 23.09vw;
 }
 
 .scene7-convention-arrows {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2.78vw;
+  gap: 2.64vw;
   position: relative;
   z-index: 20;
 }
@@ -2082,7 +2082,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2.78vw;
+  gap: 2.64vw;
   position: relative;
   z-index: 20;
 }
@@ -2103,7 +2103,7 @@ body {
 }
 
 .scene7-arrow-btn.scene7-arrow-left {
-  margin-right: 2.08vw;
+  margin-right: 1.98vw;
 }
 
 .scene7-arrow-btn:hover {
@@ -2111,16 +2111,16 @@ body {
 }
 
 .scene7-arrow-btn img {
-  height: 0.56vw;
+  height: 0.53vw;
   width: auto;
   object-fit: contain;
 }
 
 .scene7-heading {
-  font-size: 1.2vw;
+  font-size: 1.14vw;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 0.69vw;
+  margin-bottom: 0.66vw;
   letter-spacing: 1px;
   white-space: normal;
   word-wrap: break-word;
@@ -2130,7 +2130,7 @@ body {
 .scene7-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.8vw;
+  font-size: 0.76vw;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -2140,8 +2140,8 @@ body {
 }
 
 .scene7-small-red-circle {
-  width: 5.21vw;
-  height: 5.21vw;
+  width: 4.95vw;
+  height: 4.95vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;
@@ -2150,10 +2150,10 @@ body {
 
 .scene7-grey-outline-circle {
   position: absolute;
-  top: 6.94vw;
-  left: calc(20% - 9.03vw);
-  width: 19.10vw;
-  height: 19.10vw;
+  top: 6.59vw;
+  left: calc(20% - 8.58vw);
+  width: 18.15vw;
+  height: 18.15vw;
   border-radius: 50%;
   border: 2px solid #9c9fa1;
   background: transparent;
@@ -2163,9 +2163,9 @@ body {
 
 .scene7-top-left-circle {
   position: absolute;
-  top: 11.81vw;
-  width: 5.21vw;
-  height: 5.21vw;
+  top: 11.22vw;
+  width: 4.95vw;
+  height: 4.95vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 100% 100%;

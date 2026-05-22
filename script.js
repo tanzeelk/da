@@ -231,7 +231,7 @@ circle.appendChild(circleCenter);
 
 gsap.set(".circle-front", { opacity: 0 });
 
-const circleBaseSize = window.innerWidth * 0.0347;
+const circleBaseSize = window.innerWidth * 0.03123;
 const circleMaxScale = (designH() * 0.67) / circleBaseSize;
 const circleFinalPx = circleBaseSize * circleMaxScale;
 gsap.set(redCircleOverlay, { width: circleFinalPx, height: circleFinalPx });
@@ -688,7 +688,7 @@ t4.to(
   scene4GreyCircle,
   {
     opacity: 1,
-    y: () => scene4CenterY() - vw(350),
+    y: () => scene4CenterY() - vw(333),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -861,7 +861,7 @@ const scene5CenterY = () => designH() * 0.5 - window.innerWidth * 0.18;
 gsap.set(scene5ImageCircle, { y: () => designH() });
 gsap.set(scene5NewText, { y: () => designH() });
 gsap.set(scene5RedCircle, { y: () => designH() });
-gsap.set(scene5GreyCircle, { opacity: 0, y: () => scene5CenterY() - vw(346) });
+gsap.set(scene5GreyCircle, { opacity: 0, y: () => scene5CenterY() - vw(329) });
 t5.to(
   [scene5ImageCircle, scene5NewText],
   {
@@ -982,7 +982,7 @@ t5.to(
   scene5GreyCircle,
   {
     opacity: 1,
-    y: () => scene5CenterY() - vw(346),
+    y: () => scene5CenterY() - vw(329),
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1130,7 +1130,7 @@ let t6 = gsap.timeline({
 t6.to(
   scene6GreyCircle,
   {
-    y: () => scene6CenterY() - vw(330),
+    y: () => scene6CenterY() - vw(314),
     opacity: 1,
     duration: 0.4,
     ease: "power2.out",
@@ -1361,7 +1361,7 @@ gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene7ImageCircle, { y: () => designH() });
 gsap.set(scene7RedCircle, { y: () => designH() });
-gsap.set(scene7GreyCircle, { opacity: 0, y: () => scene7CenterY() - vw(346) });
+gsap.set(scene7GreyCircle, { opacity: 0, y: () => scene7CenterY() - vw(329) });
 t7.to(
   scene7ImageCircle,
   {
@@ -1376,7 +1376,7 @@ t7.to(
   scene7GreyCircle,
   {
     opacity: 1,
-    y: () => scene7CenterY() - vw(346),
+    y: () => scene7CenterY() - vw(329),
     duration: 0.4,
     ease: "power2.out",
   },
