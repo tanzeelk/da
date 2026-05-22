@@ -788,7 +788,7 @@ body {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: calc(50% + 11.88vw);
+  left: 62.5%;
   top: 19.95vw;
   transform: translate(-50%, -50%);
   z-index: 9;
@@ -798,9 +798,8 @@ body {
   align-items: center;
 }
 
-{MARK4}
-  width: 9.23vw;
-  /* height: 100px; */
+.scene4-grey-logo {
+  width: 7vw;
   object-fit: contain;
   opacity: 1;
   position: relative;
@@ -808,11 +807,12 @@ body {
 }
 
 .scene4-red-text {
-  position: relative;
+  position: absolute;
   width: 22.43vw;
   text-align: center;
   opacity: 0;
-  transform: translateY(60px);
+  top: 50%;
+  left: 50%;
   font-family: 'Montserrat', sans-serif;
   pointer-events: auto;
 }
@@ -1082,7 +1082,7 @@ body {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left:40%;
+  left: 37.25%;
   top: 19vw;
   transform: translate(-50%, -50%);
   z-index: 9;
@@ -1606,7 +1606,7 @@ body {
   background-size: cover;
   background-position: center;
   position: absolute;
-  right: 25%;
+  left: 62.5%;
   top: 21vw;
   transform: translate(-50%, -50%);
   z-index: 9;
@@ -1617,12 +1617,12 @@ body {
 }
 
 .scene6-grey-logo {
-  width: 5.93vw;
-  height: 5.93vw;
+  width: 5vw;
+  height: 5vw;
   object-fit: contain;
   opacity: 1;
   position: relative;
-  top: -2.31vw;
+  top: -1.5vw;
 }
 
 .scene6-text {
@@ -1898,7 +1898,7 @@ body {
   background-size: cover;
   background-position: center;
   position: absolute;
-  left: 40%;
+  left: 37.25%;
   top: 22vw;
   transform: translate(-50%, -50%);
   z-index: 9;

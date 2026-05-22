@@ -760,6 +760,7 @@ t4.fromTo(
   0
 );
 // Step 4: Red circle text appears when red circle stops (0.4-0.7)
+gsap.set(scene4RedText, { xPercent: -50, yPercent: -50 });
 
   t4.fromTo(
     scene4RedText,
