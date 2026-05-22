@@ -191,7 +191,7 @@ body {
 
 
 .scene3 {
-  min-height: 60vh;
+  min-height: 57vw;
   position: relative;
   margin-bottom: 0px;
   z-index: 10;
@@ -209,13 +209,8 @@ body {
   /* Add space at top */
   margin-top: 0px;
   /* Remove top margin for spacing after scene3 */
-  min-height: 100vh;
+  min-height: 62.5vw;
   /* Ensure enough height for scrolling */
-}
-
-.title {
-  font-size: 3rem;
-  margin-bottom: 20px;
 }
 
 .scroll-text {
@@ -230,39 +225,6 @@ body {
   color: #9c9fa1;
   opacity: 1;
   transition: opacity 0.3s ease-out;
-}
-
-/* Parallax Section */
-.parallax {
-  position: relative;
-  background: #000;
-  overflow: hidden;
-}
-
-.layer {
-  position: absolute;
-  width: 120%;
-  height: 120%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.5;
-}
-
-.layer-bg {
-  background-image: url('https://picsum.photos/id/1015/1200/800');
-}
-
-.layer-mid {
-  background-image: url('https://picsum.photos/id/1005/1200/800');
-}
-
-.layer-fg {
-  background-image: url('https://picsum.photos/id/1021/1200/800');
-}
-
-/* Content Section */
-.content {
-  opacity: 0;
 }
 
 .circle {
@@ -301,20 +263,6 @@ body {
   left: 0;
   z-index: 3;
 }
-
-.nav-bar {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-0.83vw);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.top-bar.open .nav-bar {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
 
 .final-text {
   position: absolute;
@@ -361,16 +309,6 @@ body {
   display: inline-block;
 }
 
-/* Alternate indentation */
-/* .final-text .line:nth-child(even) {
-  justify-content: flex-end;  
-}
-
-.final-text .line span {
-  opacity: 0; 
-  display: inline-block;
-  margin: 0 3px;           
-} */
 /* Typewriter animation styling */
 .typewriter span {
   border-right: 2px solid white;
@@ -390,56 +328,6 @@ body {
   }
 }
 
-.top-bar {
-  position: fixed;
-  top: 2.78vw;
-  /* adjust to place above the circle */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  /* stack vertically */
-  align-items: center;
-  gap: 1.39vw;
-  opacity: 0;
-  /* hidden initially */
-  z-index: 1001;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.top-bar.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.logo {
-  width: 4.51vw;
-  /* adjust logo size */
-}
-
-.menu-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 3.13vw;
-  height: 1.39vw;
-  cursor: pointer;
-  pointer-events: auto;
-  transition: transform 0.3s ease;
-}
-
-.menu-btn:hover {
-  transform: scale(1.1);
-}
-
-.menu-btn span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: #9d9fa2;
-  border-radius: 2px;
-}
 
 
 .circle-left {
@@ -522,15 +410,6 @@ body {
   letter-spacing: -0.045em;
   z-index: 10;
 }
-
-/* Background image for body */
-body.bg-active {
-  background-image: url('your-background.jpg');
-  /* replace with actual */
-  background-size: cover;
-  background-position: center;
-}
-
 
 /* Center circle back image */
 .circle-back-bg {
@@ -670,15 +549,15 @@ body.bg-active {
 }
 
 .scene3-red-circle {
-  width: 20.83vw;
-  height: 20.83vw;
+  width: 16vw;
+  height: 16vw;
   border-radius: 50%;
   background-image: url('./assets/circle.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
-  top: 18.4vw;
-  left: calc(50% - 10.415vw);
+  top: 19.36vw;
+  left: calc(50% - 8vw);
   z-index: 60;
   opacity: 0.9;
   border: none;
@@ -687,8 +566,8 @@ body.bg-active {
 }
 
 .scene3-image {
-  width: 100%;
-  height: 22.92vw;
+  width: 20vw;
+  height: 20vw;
   border-radius: 50%;
   background-image: url('./assets/image03.webp');
   background-size: cover;
@@ -706,7 +585,7 @@ body.bg-active {
   position: absolute;
   right: 22vw;
   /* top: 28.82vw; */
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
   color: #ec1c24;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -723,7 +602,7 @@ body.bg-active {
   position: absolute;
   left: 2vw;
   /* top: 28.82vw; */
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
   color: var(--color-blue2);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -746,7 +625,7 @@ body.bg-active {
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 1.15vw;
+  font-size: 0.85vw;
   line-height: 1.5;
   opacity: 0;
   z-index: 61;
@@ -1099,42 +978,6 @@ body.bg-active {
   margin-bottom: 0;
 }
 
-.scene4-tagline {
-  position: absolute;
-  left: -50%;
-  top: -20%;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 4.17vw;
-  font-weight: 700;
-  line-height: 1.2;
-  z-index: 12;
-  opacity: 0;
-}
-
-.scene4-tagline-red {
-  color: var(--color-red);
-  display: block;
-}
-
-.scene4-tagline-blue {
-  color: var(--color-blue);
-  display: block;
-}
-
-.scene4-falling-circle {
-  width: 5.56vw;
-  height: 5.56vw;
-  border-radius: 50%;
-  background-image: url('./assets/circle.webp');
-  background-size: 100% 100%;
-  background-position: center;
-  position: fixed;
-  right: -60%;
-  top: -32vw;
-  z-index: 20;
-  opacity: 1;
-}
-
 .scene4-small-red-circle {
   width: 5.90vw;
   height: 5.90vw;
@@ -1179,7 +1022,7 @@ body.bg-active {
 .scene7,
 .scene8,
 .scene9 {
-  height: 80vh;
+  height: 55.56vw;
 }
 
 
@@ -1981,44 +1824,6 @@ body.bg-active {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.scene6-small-red-circle-logo {
-  width: 5.21vw;
-  height: 5.21vw;
-  object-fit: contain;
-  opacity: 0;
-}
-
-.scene6-falling-circle {
-  width: 5.56vw;
-  height: 5.56vw;
-  border-radius: 50%;
-  background-image: url('./assets/circle.webp');
-  background-size: 100% 100%;
-  background-position: center;
-  position: fixed;
-  left: 5%;
-  top: -32vw;
-  z-index: 20;
-  opacity: 1;
-  display: none;
-}
-
-.scene6-heading {
-  font-size: 1.25vw;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 1.39vw;
-  letter-spacing: -0.05em;
-}
-
-.scene6-desc {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 0.83vw;
-  line-height: 1.4;
-  color: #fff;
 }
 
 .scene6-image-circle,
