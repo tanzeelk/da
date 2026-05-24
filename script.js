@@ -487,7 +487,7 @@ t3 = gsap.timeline({
 // Elements are already visible, animation starts when pinned at top
 t3.fromTo(
   scene3Image,
-  () => ({ opacity: 1, width: vw(461), height: vw(461)}),
+  () => ({ opacity: 1, width: vw(350), height: vw(350)}),
   { opacity: 1, ease: "none" }
 );
 
@@ -1078,7 +1078,7 @@ const scene6RightArrows = document.querySelector(".scene6-right-arrows");
 const scene6NewText = document.querySelector(".scene6-new-text");
 
 // Set initial positions: red circle and image start below viewport
-const scene6CenterY = () => designH() * 0.55 - window.innerWidth * 0.18;
+const scene6CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
 gsap.set(scene6ImageCircle, { y: () => designH() });
 gsap.set(scene6NewText, { y: () => designH() });
 gsap.set(scene6RedCircle, { y: () => designH() });
@@ -1345,8 +1345,9 @@ let t7 = gsap.timeline({
 const scene7ImageCircle = document.querySelector(".scene7-image-circle");
 const scene7RedCircle = document.querySelector(".scene7-red-circle");
 const scene7GreyCircle = document.querySelector(".scene7-grey-circle");
-const scene7CenterY = () => designH() * 0.55 - window.innerWidth * 0.18;
+const scene7CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
 const scene7Text = document.querySelector(".scene7-text");
+const scene7NewText = document.querySelector(".scene7-new-text");
 const scene7Group1 = document.querySelector(".scene7-group-1");
 const scene7Group2 = document.querySelector(".scene7-group-2");
 const scene7SmallRedCircle = document.querySelector(".scene7-small-red-circle");
@@ -1361,10 +1362,11 @@ gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene7ImageCircle, { y: () => designH() });
+gsap.set(scene7NewText, { y: () => designH() });
 gsap.set(scene7RedCircle, { y: () => designH() });
 gsap.set(scene7GreyCircle, { opacity: 0, y: () => scene7CenterY() - window.innerWidth * 0.1625 });
 t7.to(
-  scene7ImageCircle,
+  [scene7ImageCircle, scene7NewText],
   {
     y: scene7CenterY,
     duration: 0.4,
@@ -1483,7 +1485,7 @@ t7.fromTo(
 );
 
 t7.to(
-  scene7ImageCircle,
+  [scene7ImageCircle, scene7NewText],
   {
     x: vw(470),
     duration: 0.5,
@@ -1851,9 +1853,8 @@ const ssilpBackArrowBtn = document.getElementById("scene5-ssilp-back-arrow");
 if (ssilpBackArrowBtn) {
   ssilpBackArrowBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    if (isShowingSSILP) {
-      updateScene5ToDefault();
-    }
+    e.stopPropagation();
+    updateScene5ToDefault();
   });
 }
 
