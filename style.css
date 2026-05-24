@@ -29,7 +29,7 @@ html, body {
   --font-base: 1.25vw;
   --font-hero: 4.5vw;
   --font-hero-scene2: 5vw;
-  --font-small: 1vw;
+  --font-small: 0.9vw;
   --circle-size: 37.5vw;
   --circle-size-scene2: 28.8vw;
 }
@@ -508,14 +508,14 @@ body {
 .founding-text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 1.74vw;
+  font-size: 1.5vw;
   color: white;
   opacity: 0;
   margin-bottom: 2.43vw;
   line-height: 1;
   padding-left: 9.72vw;
   text-align: left;
-  max-width: 41.67vw;
+  max-width: 35vw;
   margin-top: 2.43vw;
 }
 
@@ -529,7 +529,7 @@ body {
   opacity: 0;
   z-index: 7;
   pointer-events: none;
-  max-width: 41.67vw;
+  max-width: 35vw;
   padding-left: 9.72vw;
   letter-spacing: -0.05em;
 }

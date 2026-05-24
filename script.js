@@ -2296,7 +2296,7 @@ function updateScene7ToDefault() {
   const heading = scene7RedCircleContainer.querySelector(".scene7-heading");
   const desc = scene7RedCircleContainer.querySelector(".scene7-desc");
 
-  heading.textContent = "Durgesh Child Care Initiative Pvt. Ltd.";
+  heading.textContent = "DURGESH CHILD CARE INITIATIVE PVT. LTD.";
   desc.innerHTML = "A space dedicated to nurturing young minds, fostering creativity, and supporting children in their journey of growth and discovery. We believe that every child deserves a safe, joyful, and enriching environment where they can thrive, explore, and reach their fullest potential through holistic learning methods.";
 
   // Reset main text
