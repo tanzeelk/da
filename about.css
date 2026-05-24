@@ -91,7 +91,7 @@
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 0;
   padding: 14vw 4.167vw;
@@ -108,6 +108,7 @@
   height: 21.875vw;
   margin-right: -4.167vw;
   overflow: visible;
+  margin-top: 3vw;
 }
 
 /* Large circle — centered in the image group */
@@ -175,7 +176,7 @@
   height: 8.854vw;
   border-radius: 50%;
   overflow: hidden;
-  top: 10%;
+  top: 2vw;
   right: -8.333vw;
   z-index: 4;
   flex-shrink: 0;
@@ -193,8 +194,8 @@
   flex-shrink: 0;
   margin-left: -5.208vw;
   z-index: 5;
-  bottom: 1.563vw;
   position: relative;
+  margin-top: 3vw;
 }
 
 .about-heading {
@@ -219,10 +220,58 @@
 
 .about-body-text {
   padding-left: 12.5vw;
+  position: relative;
 }
 
 .about-body-text p:last-child {
   margin-bottom: 0;
+}
+
+.about-body-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.about-body-clamped.expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.about-read-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.4vw;
+}
+
+.about-read-more {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+}
+
+.about-read-more .founder-read-more-img {
+  height: 1.67vw;
+  width: auto;
+  display: block;
+}
+
+.about-read-more .founder-read-less-img {
+  height: 1.67vw;
+  width: auto;
+  display: none;
+}
+
+.about-read-more.expanded .founder-read-more-img {
+  display: none;
+}
+
+.about-read-more.expanded .founder-read-less-img {
+  display: block;
 }
 
 /* ── Vision / Mission / Values ── */
@@ -405,6 +454,8 @@
   margin-top: 0.4vw;
   cursor: pointer;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .founder-read-more-img {
@@ -427,9 +478,6 @@
   display: block;
 }
 
-.founder-bio--anil ~ .founder-read-more {
-  margin-left: auto;
-}
 
 .founder-bio-wrap {
   border-top: 1px solid #fff;
