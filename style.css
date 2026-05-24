@@ -2423,10 +2423,11 @@ body {
 .pre-footer-top-btn {
   display: flex;
   justify-content: flex-end;
-  padding: 1.39vw 4.17vw;
+  padding: 0 4.17vw;
   background: #e5e6e7;
   position: relative;
   z-index: 1000;
+  margin-top: -5vw;
 }
 
 .scroll-to-top-btn {

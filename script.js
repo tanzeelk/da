@@ -655,11 +655,19 @@ let t4 = gsap.timeline({
     trigger: ".scene4",
     start: "top top",
     end: "+=1200",
-    scrub: 1,
+    scrub: 0.5,
     pin: true,
     pinSpacing: true,
     anticipatePin: 1,
     markers: false,
+    onLeave: () => {
+      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene5");
+      if (st) window.scrollTo({ top: st.start, behavior: "smooth" });
+    },
+    onLeaveBack: () => {
+      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene3");
+      if (st) window.scrollTo({ top: st.end, behavior: "smooth" });
+    },
   },
 });
 
@@ -833,10 +841,18 @@ let t5 = gsap.timeline({
     trigger: ".scene5",
     start: "top top",
     end: "+=900",
-    scrub: 1,
+    scrub: 0.5,
     pin: true,
     pinSpacing: true,
     markers: false,
+    onLeave: () => {
+      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene6");
+      if (st) window.scrollTo({ top: st.start, behavior: "smooth" });
+    },
+    onLeaveBack: () => {
+      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene4");
+      if (st) window.scrollTo({ top: st.end, behavior: "smooth" });
+    },
   },
 });
 
@@ -1098,7 +1114,7 @@ let t6 = gsap.timeline({
     trigger: ".scene6",
     start: "top top",
     end: "+=1200",
-    scrub: 1,
+    scrub: 0.5,
     pin: true,
     markers: false,
     onUpdate: () => {
@@ -1121,7 +1137,15 @@ let t6 = gsap.timeline({
           scene6BackArrow.style.opacity = textOpacity;
         }
       }
-    }
+    },
+    onLeave: () => {
+      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene7");
+      if (st) window.scrollTo({ top: st.start, behavior: "smooth" });
+    },
+    onLeaveBack: () => {
+      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene5");
+      if (st) window.scrollTo({ top: st.end, behavior: "smooth" });
+    },
   },
 });
 
@@ -1335,10 +1359,18 @@ let t7 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene7",
     start: "top top",
-    end: "+=1200",
-    scrub: 1,
+    end: "+=800",
+    scrub: 0.5,
     pin: true,
+    pinSpacing: true,
     markers: false,
+    onLeave: (self) => {
+      window.scrollTo({ top: self.end, behavior: "smooth" });
+    },
+    onLeaveBack: () => {
+      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene6");
+      if (st) window.scrollTo({ top: st.end, behavior: "smooth" });
+    },
   },
 });
 
