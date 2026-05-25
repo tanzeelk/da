@@ -209,8 +209,7 @@ body {
   /* Add space at top */
   margin-top: 0px;
   /* Remove top margin for spacing after scene3 */
-  min-height: min(62.5vw, 100vh);
-  /* Ensure enough height for scrolling */
+  height: min(62.5vw, 100vh);
 }
 
 .scroll-text {
