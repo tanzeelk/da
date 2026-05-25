@@ -1898,7 +1898,7 @@ body {
   background-position: center;
   position: absolute;
   left: 37.25%;
-  top: 50%;
+  top: 30%;
   transform: translate(-50%, -50%);
   z-index: 9;
   display: flex;
