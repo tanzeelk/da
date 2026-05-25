@@ -162,7 +162,7 @@ let tl = gsap.timeline({
 // Skip scene1 animation and jump directly to where hero-text is fully visible,
 // but before the red circle starts moving down (last 3.5 duration units of tl).
 function goToScene1End() {
-  history.replaceState(null, '', window.location.pathname);
+  // history.replaceState(null, '', window.location.pathname);
   const st = tl.scrollTrigger;
   if (!st) { window.scrollTo({ top: 1800, behavior: 'instant' }); return; }
   const totalDur = tl.totalDuration();
@@ -2540,6 +2540,11 @@ if (homeLink) {
 
 // Handle deep-link from group-companies page: jump to end of the target scene's animation
 window.addEventListener('load', () => {
+  if (window.location.hash === '#home') {
+    history.replaceState(null, '', window.location.pathname);
+    goToScene1End();
+    return;
+  }
   const sceneMap = {
     '#durgesh-impex': t4,
     '#da-infra': t5,
