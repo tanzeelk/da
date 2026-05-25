@@ -541,7 +541,7 @@ expandTL.to(
     ease: "none",
     duration: 1,
   },
-  0.1
+  0.01
 );
 
 // Timeline for background circles floating up - each with separate scroll trigger
@@ -638,8 +638,9 @@ expandTL.to(
 // Animate the 4 main grey circles from grey-circles-section
 const greyCircles = document.querySelectorAll(".grey-circle");
 
-// Add grey circles to the main t3 timeline with stagger
-greyCircles.forEach((circle, index) => {
+// Label at group text start so all circles anchor to same point
+t3.addLabel("circlesStart", "<");
+greyCircles.forEach((circle, i) => {
   t3.fromTo(
     circle,
     { y: vh(200), opacity: 0 },
@@ -649,12 +650,10 @@ greyCircles.forEach((circle, index) => {
       duration: 0.5,
       ease: "sine.out",
     },
-    `>-${0.35 - index * 0.05}`
+    `circlesStart+=${i * 0.04}`
   );
 });
 
-// Hold final state for extra scroll time
-t3.to({}, { duration: 2 });
 }
 initScene3();
 
