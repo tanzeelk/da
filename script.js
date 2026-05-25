@@ -87,6 +87,7 @@ if (typeof gsap !== 'undefined') {
     endTrigger: "body",
     end: "bottom bottom",
     markers: false,
+    invalidateOnRefresh: true,
   });
 }
 
@@ -152,6 +153,7 @@ let tl = gsap.timeline({
     scrub: true,
     pin: true,
     markers: false,
+    invalidateOnRefresh: true,
   },
 });
 
@@ -165,6 +167,7 @@ let t2 = gsap.timeline({
     scrub: true,
     pin: true,
     markers: false,
+    invalidateOnRefresh: true,
   },
 });
 
@@ -476,6 +479,7 @@ t3 = gsap.timeline({
     pin: true,
     pinSpacing: true,
     markers: false,
+    invalidateOnRefresh: true,
   },
 });
 
@@ -669,6 +673,7 @@ let t4 = gsap.timeline({
     pin: true,
     pinSpacing: true,
     markers: false,
+    invalidateOnRefresh: true,
   },
 });
 
@@ -846,6 +851,7 @@ let t5 = gsap.timeline({
     pin: true,
     pinSpacing: true,
     markers: false,
+    invalidateOnRefresh: true,
   },
 });
 
@@ -1110,6 +1116,7 @@ let t6 = gsap.timeline({
     scrub: 0.5,
     pin: true,
     markers: false,
+    invalidateOnRefresh: true,
     onUpdate: () => {
       // If scene is expanded (arrow was clicked), keep subcompany elements hidden
       if (scene6IsExpanded) {
@@ -1349,6 +1356,7 @@ let t7 = gsap.timeline({
     pin: true,
     pinSpacing: true,
     markers: false,
+    invalidateOnRefresh: true,
   },
 });
 
