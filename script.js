@@ -159,6 +159,30 @@ let tl = gsap.timeline({
 
 
 
+// Skip scene1 animation and jump directly to where hero-text is fully visible,
+// but before the red circle starts moving down (last 3.5 duration units of tl).
+function goToScene1End() {
+  const st = tl.scrollTrigger;
+  if (!st) { window.scrollTo({ top: 1800, behavior: 'instant' }); return; }
+  const totalDur = tl.totalDuration();
+  // 3.5 = 1.5 (redCircle move) + 2 (redCircle hold) — the two tweens at the end of tl
+  const fraction = (totalDur - 3.5) / totalDur;
+  const scrollPos = st.start + fraction * (st.end - st.start);
+  window.scrollTo({ top: Math.max(0, scrollPos), behavior: 'instant' });
+}
+
+// DA logo click (fixed nav)
+document.querySelector('.fixed-nav a[href="#home"]')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  goToScene1End();
+});
+
+// "Home" menu item click
+document.querySelector('#expandedMenu a[href="#home"]')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  goToScene1End();
+});
+
 let t2 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene2",
@@ -2456,36 +2480,32 @@ const greyCircle4 = document.querySelector(".grey-circle-4");
 
 if (greyCircle1) {
   greyCircle1.addEventListener("click", () => {
-    const scene4 = document.querySelector(".scene4");
-    if (scene4) {
-      scene4.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (t4 && t4.scrollTrigger) {
+      window.scrollTo({ top: t4.scrollTrigger.end, behavior: 'instant' });
     }
   });
 }
 
 if (greyCircle2) {
   greyCircle2.addEventListener("click", () => {
-    const scene5 = document.querySelector(".scene5");
-    if (scene5) {
-      scene5.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (t5 && t5.scrollTrigger) {
+      window.scrollTo({ top: t5.scrollTrigger.end, behavior: 'instant' });
     }
   });
 }
 
 if (greyCircle3) {
   greyCircle3.addEventListener("click", () => {
-    const scene6 = document.querySelector(".scene6");
-    if (scene6) {
-      scene6.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (t6 && t6.scrollTrigger) {
+      window.scrollTo({ top: t6.scrollTrigger.end, behavior: 'instant' });
     }
   });
 }
 
 if (greyCircle4) {
   greyCircle4.addEventListener("click", () => {
-    const scene7 = document.querySelector(".scene7");
-    if (scene7) {
-      scene7.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (t7 && t7.scrollTrigger) {
+      window.scrollTo({ top: t7.scrollTrigger.end, behavior: 'instant' });
     }
   });
 }
@@ -2516,6 +2536,20 @@ if (homeLink) {
 }
 
 // END OF COMMENTED OUT CODE - SCENE 7
+
+// Handle deep-link from group-companies page: jump to end of the target scene's animation
+window.addEventListener('load', () => {
+  const sceneMap = {
+    '#goto-scene4': t4,
+    '#goto-scene5': t5,
+    '#goto-scene6': t6,
+    '#goto-scene7': t7,
+  };
+  const target = sceneMap[window.location.hash];
+  if (target && target.scrollTrigger) {
+    window.scrollTo({ top: target.scrollTrigger.end, behavior: 'instant' });
+  }
+});
 
 } // end gsap guard
 

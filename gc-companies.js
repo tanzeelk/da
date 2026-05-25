@@ -608,31 +608,16 @@ function initScene7() {
   if (logoLittleWings) logoLittleWings.addEventListener('click', (e) => { e.preventDefault(); if (isShowingLittleWings) updateScene7ToDefault(); else updateScene7ToLittleWings(); });
 }
 
-// ── Grey circle click — show panel + kill old + reinit GSAP ──
+// ── Grey circle click — navigate to index.html at the end of each scene's animation ──
 
-const initFns = { '1': initScene4, '2': initScene5, '3': initScene6, '4': initScene7 };
+const companySceneMap = { '1': 'goto-scene4', '2': 'goto-scene5', '3': 'goto-scene6', '4': 'goto-scene7' };
 
 document.querySelectorAll('.grey-circles-container .grey-circle[data-company]').forEach((circle) => {
   circle.addEventListener('click', function () {
     const id = this.getAttribute('data-company');
-
-    // Kill all scene timelines + their ScrollTriggers before switching
-    [['t4', t4], ['t5', t5], ['t6', t6], ['t7', t7]].forEach(([, t]) => {
-      if (t) { if (t.scrollTrigger) t.scrollTrigger.kill(); t.kill(); }
-    });
-    t4 = null; t5 = null; t6 = null; t7 = null;
-
-    document.querySelectorAll('.grey-circles-container .grey-circle').forEach(c => c.classList.remove('gc-active'));
-    document.querySelectorAll('.gc-company-panel').forEach(p => p.classList.remove('gc-panel-active'));
-
-    this.classList.add('gc-active');
-    const panel = document.querySelector('.gc-company-panel[data-company="' + id + '"]');
-    if (panel) {
-      panel.classList.add('gc-panel-active');
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        if (initFns[id]) initFns[id]();
-        ScrollTrigger.refresh();
-      }));
+    const hash = companySceneMap[id];
+    if (hash) {
+      window.location.href = 'index.html#' + hash;
     }
   });
 });
