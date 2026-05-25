@@ -532,11 +532,10 @@ expandTL.to(
       return targetCenterX - currentCenterX;
     },
     y: () => {
-      const imageRect = scene3Image.getBoundingClientRect();
-      const circleRect = scene3RedCircle.getBoundingClientRect();
-      const imageCenterY = imageRect.top + imageRect.height / 2;
-      const circleCenterY = circleRect.top + circleRect.height / 2;
-      return imageCenterY - circleCenterY;
+      const containerH = vh(330);
+      const circleH = scene3RedCircle.offsetHeight;
+      const circleOffsetTop = scene3RedCircle.offsetTop;
+      return (containerH / 2 - circleH / 2) - circleOffsetTop;
     },
     ease: "none",
     duration: 1,
@@ -545,11 +544,11 @@ expandTL.to(
 );
 
 // Timeline for background circles floating up - each with separate scroll trigger
-bgCircles.forEach((circle, i) => {
+bgCircles.forEach((circle) => {
   const shouldFloatAway = Math.random() < 0.5;
 
   if (shouldFloatAway) {
-    const yDistance = gsap.utils.random(vw(-1500), vw(-2500));
+    const yDistance = gsap.utils.random(vh(-1500), vh(-2500));
     const xDrift = gsap.utils.random(vw(-200), vw(200));
 
     gsap.to(circle, {
@@ -567,7 +566,7 @@ bgCircles.forEach((circle, i) => {
       },
     });
   } else {
-    const yDistance = gsap.utils.random(vw(-400), vw(-700));
+    const yDistance = gsap.utils.random(vh(-400), vh(-700));
     const xDrift = gsap.utils.random(vw(-100), vw(100));
 
     gsap.to(circle, {
@@ -602,20 +601,22 @@ t3.to(
 
 // -----------------------
 // Step 5: Fade + slide up 'Our Group' and 'Our Ventures' texts
+t3.addLabel("circlesStart", "<0.2");
+
 t3.fromTo(
   scene3GroupText,
-  () => ({ opacity: 0, y: vw(250) }),
+  () => ({ opacity: 0, y: vh(250) }),
   { opacity: 1, y: () => {
       const imageRect = scene3Image.getBoundingClientRect();
       const textRect = scene3GroupText.getBoundingClientRect();
       return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2);
     }, duration: 0.5, ease: "power3.out" },
-  "<0.3"
+  "circlesStart"
 );
 
 t3.fromTo(
   scene3VenturesText,
-  () => ({ opacity: 0, y: vw(250) }),
+  () => ({ opacity: 0, y: vh(250) }),
   { opacity: 1, y: () => {
       const imageRect = scene3Image.getBoundingClientRect();
       const textRect = scene3VenturesText.getBoundingClientRect();
@@ -638,8 +639,6 @@ expandTL.to(
 // Animate the 4 main grey circles from grey-circles-section
 const greyCircles = document.querySelectorAll(".grey-circle");
 
-// Label at group text start so all circles anchor to same point
-t3.addLabel("circlesStart", "<");
 greyCircles.forEach((circle, i) => {
   t3.fromTo(
     circle,
