@@ -162,6 +162,7 @@ let tl = gsap.timeline({
 // Skip scene1 animation and jump directly to where hero-text is fully visible,
 // but before the red circle starts moving down (last 3.5 duration units of tl).
 function goToScene1End() {
+  history.replaceState(null, '', window.location.pathname);
   const st = tl.scrollTrigger;
   if (!st) { window.scrollTo({ top: 1800, behavior: 'instant' }); return; }
   const totalDur = tl.totalDuration();
@@ -2540,10 +2541,10 @@ if (homeLink) {
 // Handle deep-link from group-companies page: jump to end of the target scene's animation
 window.addEventListener('load', () => {
   const sceneMap = {
-    '#goto-scene4': t4,
-    '#goto-scene5': t5,
-    '#goto-scene6': t6,
-    '#goto-scene7': t7,
+    '#durgesh-impex': t4,
+    '#da-infra': t5,
+    '#shree-shakti': t6,
+    '#dcci': t7,
   };
   const target = sceneMap[window.location.hash];
   if (target && target.scrollTrigger) {

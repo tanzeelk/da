@@ -610,7 +610,7 @@ function initScene7() {
 
 // ── Grey circle click — navigate to index.html at the end of each scene's animation ──
 
-const companySceneMap = { '1': 'goto-scene4', '2': 'goto-scene5', '3': 'goto-scene6', '4': 'goto-scene7' };
+const companySceneMap = { '1': 'durgesh-impex', '2': 'da-infra', '3': 'shree-shakti', '4': 'dcci' };
 
 document.querySelectorAll('.grey-circles-container .grey-circle[data-company]').forEach((circle) => {
   circle.addEventListener('click', function () {
