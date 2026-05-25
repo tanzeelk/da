@@ -67,9 +67,6 @@ if (typeof gsap !== 'undefined') {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       if (t3) { t3.kill(); }
-      ScrollTrigger.getAll().forEach(st => {
-        if (st.vars && st.vars.trigger === ".scene3") st.kill();
-      });
       initScene3();
       ScrollTrigger.refresh(true);
     }, 200);
@@ -473,12 +470,11 @@ function initScene3() {
 t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
-    start: "top+=170px top",
+    start: "top top",
     end: "+=1200",
-    scrub: 1,
+    scrub: 0.5,
     pin: true,
     pinSpacing: true,
-    anticipatePin: 1,
     markers: false,
   },
 });
@@ -505,9 +501,25 @@ expandTL.to(scene3Image, {
   width: () => window.innerWidth,
   height: () => vh(330),
   borderRadius: "9999px",
+  top: 0,
   ease: "none",
   duration: 1,
 });
+
+// Expand container to full width, slide under the logo bar
+expandTL.to(".scene3-circle-container", {
+  top: () => {
+    const logoEl = document.querySelector(".logo") || document.querySelector(".fixed-nav-logo");
+    const logoBottom = logoEl ? logoEl.getBoundingClientRect().bottom : vw(95);
+    return logoBottom + designH() * 0.10;
+  },
+  width: () => window.innerWidth,
+  height: () => vh(330),
+  left: 0,
+  transform: "none",
+  ease: "none",
+  duration: 1,
+}, 0);
 
 
 expandTL.to(
@@ -630,9 +642,9 @@ const greyCircles = document.querySelectorAll(".grey-circle");
 greyCircles.forEach((circle, index) => {
   t3.fromTo(
     circle,
-    { y: vw(200), opacity: 0 },
+    { y: vh(200), opacity: 0 },
     {
-      y: vw(-150),
+      y: vh(-350),
       opacity: 1,
       duration: 0.5,
       ease: "sine.out",
@@ -658,16 +670,7 @@ let t4 = gsap.timeline({
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
-    anticipatePin: 1,
     markers: false,
-    onLeave: () => {
-      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene5");
-      if (st) window.scrollTo({ top: st.start, behavior: "smooth" });
-    },
-    onLeaveBack: () => {
-      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene3");
-      if (st) window.scrollTo({ top: st.end, behavior: "smooth" });
-    },
   },
 });
 
@@ -845,14 +848,6 @@ let t5 = gsap.timeline({
     pin: true,
     pinSpacing: true,
     markers: false,
-    onLeave: () => {
-      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene6");
-      if (st) window.scrollTo({ top: st.start, behavior: "smooth" });
-    },
-    onLeaveBack: () => {
-      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene4");
-      if (st) window.scrollTo({ top: st.end, behavior: "smooth" });
-    },
   },
 });
 
@@ -1138,14 +1133,6 @@ let t6 = gsap.timeline({
         }
       }
     },
-    onLeave: () => {
-      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene7");
-      if (st) window.scrollTo({ top: st.start, behavior: "smooth" });
-    },
-    onLeaveBack: () => {
-      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene5");
-      if (st) window.scrollTo({ top: st.end, behavior: "smooth" });
-    },
   },
 });
 
@@ -1364,13 +1351,6 @@ let t7 = gsap.timeline({
     pin: true,
     pinSpacing: true,
     markers: false,
-    onLeave: (self) => {
-      window.scrollTo({ top: self.end, behavior: "smooth" });
-    },
-    onLeaveBack: () => {
-      const st = ScrollTrigger.getAll().find(s => s.vars && s.vars.trigger === ".scene6");
-      if (st) window.scrollTo({ top: st.end, behavior: "smooth" });
-    },
   },
 });
 

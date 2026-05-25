@@ -583,34 +583,28 @@ body {
 
 .scene3-group-text {
   position: absolute;
-  right: 22vw;
-  /* top: 28.82vw; */
-  /* transform: translateY(-50%); */
+  left: 20%;
   color: #ec1c24;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 4.86vw;
+  font-size: 4.4vw;
   opacity: 0;
   z-index: 60;
   pointer-events: none;
-  transition: transform 0.7s;
   white-space: nowrap;
   letter-spacing: -0.05em;
 }
 
 .scene3-ventures-text {
   position: absolute;
-  left: 2vw;
-  /* top: 28.82vw; */
-  /* transform: translateY(-50%); */
+  left: 44%;
   color: var(--color-blue2);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 4.86vw;
+  font-size: 4.4vw;
   opacity: 0;
   z-index: 60;
   pointer-events: none;
-  transition: transform 0.7s;
   white-space: nowrap;
   letter-spacing: -0.05em;
 }
