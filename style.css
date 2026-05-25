@@ -191,7 +191,7 @@ body {
 
 
 .scene3 {
-  min-height: 57vw;
+  min-height: min(57vw, 100vh);
   position: relative;
   margin-bottom: 0px;
   z-index: 10;
@@ -209,7 +209,7 @@ body {
   /* Add space at top */
   margin-top: 0px;
   /* Remove top margin for spacing after scene3 */
-  min-height: 62.5vw;
+  min-height: min(62.5vw, 100vh);
   /* Ensure enough height for scrolling */
 }
 
@@ -1016,7 +1016,7 @@ body {
 .scene5,
 .scene6,
 .scene7 {
-  height: 62.5vw;
+  height: min(62.5vw, 100vh);
 }
 
 .scene8,

@@ -1,7 +1,7 @@
 // Converts design px (at 1920px base) to current viewport px at runtime.
 // Use this for all GSAP x/y/width/height values so animations scale with viewport.
 function vw(px) { return (px / 1920) * window.innerWidth; }
-function vh(px) { return (px / 1080) * (window.innerWidth * 0.625); }
+function vh(px) { return (px / 1080) * Math.min(window.innerWidth * 0.625, window.innerHeight); }
 const designH = () => Math.min(window.innerWidth * 0.625, window.innerHeight);
 
 const heroText = document.querySelector(".hero-text");
@@ -499,7 +499,7 @@ let expandTL = gsap.timeline();
 
 expandTL.to(scene3Image, {
   width: () => window.innerWidth,
-  height: () => vh(330),
+  height: () => Math.max(vh(330), window.innerHeight * 0.40),
   borderRadius: "9999px",
   top: 0,
   ease: "none",
@@ -514,7 +514,7 @@ expandTL.to(".scene3-circle-container", {
     return logoBottom + designH() * 0.10;
   },
   width: () => window.innerWidth,
-  height: () => vh(330),
+  height: () => Math.max(vh(330), window.innerHeight * 0.40),
   left: 0,
   transform: "none",
   ease: "none",
@@ -532,7 +532,7 @@ expandTL.to(
       return targetCenterX - currentCenterX;
     },
     y: () => {
-      const containerH = vh(330);
+      const containerH = Math.max(vh(330), window.innerHeight * 0.40);
       const circleH = scene3RedCircle.offsetHeight;
       const circleOffsetTop = scene3RedCircle.offsetTop;
       return (containerH / 2 - circleH / 2) - circleOffsetTop;
@@ -687,7 +687,7 @@ const scene4RedText = document.querySelector(".scene4-red-text");
 
 // Set initial positions: red circle and image start below viewport
 const scene4CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
-gsap.set(scene4GreyCircle, { opacity: 0, y: scene4CenterY });
+gsap.set(scene4GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: () => designH() });
 gsap.set(scene4SmallRedCircle, { x: vw(-150) });
 gsap.set(scene4SmallRedCircleRight, { x: 0, y: vw(400) });
@@ -697,7 +697,7 @@ t4.to(
   scene4GreyCircle,
   {
     opacity: 1,
-    y: () => scene4CenterY() - window.innerWidth * 0.1625,
+    y: 0,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -871,7 +871,7 @@ const scene5CenterY = () => designH() * 0.6 - window.innerWidth * 0.18;
 gsap.set(scene5ImageCircle, { y: () => designH() });
 gsap.set(scene5NewText, { y: () => designH() });
 gsap.set(scene5RedCircle, { y: () => designH() });
-gsap.set(scene5GreyCircle, { opacity: 0, y: () => scene5CenterY() - window.innerWidth * 0.1625 });
+gsap.set(scene5GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 t5.to(
   [scene5ImageCircle, scene5NewText],
   {
@@ -992,7 +992,7 @@ t5.to(
   scene5GreyCircle,
   {
     opacity: 1,
-    y: () => scene5CenterY() - window.innerWidth * 0.1625,
+    y: 0,
     duration: 0.4,
     ease: "power2.out",
   },
@@ -1093,7 +1093,7 @@ gsap.set(scene6NewText, { y: () => designH() });
 gsap.set(scene6RedCircle, { y: () => designH() });
 gsap.set(scene6SmallRedCircle, { y: vw(-310) });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
-gsap.set(scene6GreyCircle, { opacity: 0, y: scene6CenterY });
+gsap.set(scene6GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 gsap.set(scene6GreyOutlineCircle, { opacity: 0 });
 
 // Set initial opacity for subcompany elements to hidden BEFORE timeline creation
@@ -1140,7 +1140,7 @@ let t6 = gsap.timeline({
 t6.to(
   scene6GreyCircle,
   {
-    y: () => scene6CenterY() - window.innerWidth * 0.1625,
+    y: 0,
     opacity: 1,
     duration: 0.4,
     ease: "power2.out",
@@ -1374,7 +1374,7 @@ gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 gsap.set(scene7ImageCircle, { y: () => designH() });
 gsap.set(scene7NewText, { y: () => designH() });
 gsap.set(scene7RedCircle, { y: () => designH() });
-gsap.set(scene7GreyCircle, { opacity: 0, y: () => scene7CenterY() - window.innerWidth * 0.1625 });
+gsap.set(scene7GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 t7.to(
   [scene7ImageCircle, scene7NewText],
   {
@@ -1389,7 +1389,7 @@ t7.to(
   scene7GreyCircle,
   {
     opacity: 1,
-    y: () => scene7CenterY() - window.innerWidth * 0.1625,
+    y: 0,
     duration: 0.4,
     ease: "power2.out",
   },
