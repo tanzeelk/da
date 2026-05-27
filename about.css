@@ -509,9 +509,11 @@
   object-position: top center;
 }
 
-.founder-circle-1 img{
-  /* transform: scale(1.8); */
-  transform-origin: center center;
+.founder-circle-1 {
+  background-image: url('./assets/Founder_Anil.png');
+  background-size: cover;
+  background-position: 30% top;
+  background-repeat: no-repeat;
 }
 
 .founder-circle-2 img{
@@ -529,6 +531,10 @@
   position: absolute;
   bottom: 4.167vw;
   left: 15.625vw;
+}
+
+.founder-name--anil {
+  bottom: 1vw;
 }
 
 /* ── Responsive — nav only (all components scale via vw) ── */

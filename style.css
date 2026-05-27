@@ -29,7 +29,7 @@ html, body {
   --font-base: 1.25vw;
   --font-hero: 4.5vw;
   --font-hero-scene2: 5vw;
-  --font-small: 0.9vw;
+  --font-small: 0.8vw;
   --circle-size: 37.5vw;
   --circle-size-scene2: 28.8vw;
 }
@@ -406,7 +406,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   margin-top: calc(var(--spacing-unit) * -1);
-  letter-spacing: -0.045em;
+  letter-spacing: -0.05em;
   z-index: 10;
 }
 
@@ -507,12 +507,12 @@ body {
 .founding-text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 1.5vw;
+  font-size: 1.2vw;
   color: white;
   opacity: 0;
   margin-bottom: 2.43vw;
   line-height: 1;
-  padding-left: 9.72vw;
+  margin-left: 7vw;
   text-align: left;
   max-width: 35vw;
   margin-top: 2.43vw;
@@ -529,7 +529,7 @@ body {
   z-index: 7;
   pointer-events: none;
   max-width: 35vw;
-  padding-left: 9.72vw;
+  margin-left: 7vw;
   letter-spacing: -0.05em;
 }
 
@@ -801,7 +801,7 @@ body {
 
 .scene4-red-text {
   position: absolute;
-  width: 22.43vw;
+  width: 80%;
   text-align: center;
   opacity: 0;
   top: 50%;
@@ -811,17 +811,17 @@ body {
 }
 
 .scene4-red-heading {
-  font-size: 1.05vw;
+  font-size: clamp(10px, 1vw, 20px);
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.66vw;
-  letter-spacing: 1px;
+  letter-spacing: -0.05em;
 }
 
 .scene4-red-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.92vw;
+  font-size: clamp(9px, 0.8vw, 18px);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1115,7 +1115,7 @@ body {
 
 .scene5-text {
   position: relative;
-  width: 19.79vw;
+  width: 80%;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
@@ -1289,11 +1289,11 @@ body {
 }
 
 .scene5-heading {
-  font-size: 1.05vw;
+  font-size: clamp(10px, 1vw, 20px);
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.66vw;
-  letter-spacing: 1px;
+  letter-spacing: -0.05em;
   white-space: normal;
   word-wrap: break-word;
   font-family: 'Montserrat', sans-serif;
@@ -1302,7 +1302,7 @@ body {
 .scene5-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.92vw;
+  font-size: clamp(9px, 0.8vw, 18px);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1556,7 +1556,7 @@ body {
 
 .scene6-red-text {
   position: absolute;
-  width: 25.07vw;
+  width: 80%;
   text-align: center;
   opacity: 0;
   font-family: 'Montserrat', sans-serif;
@@ -1576,18 +1576,18 @@ body {
 }
 
 .scene6-red-heading {
-  font-size: 1.05vw;
+  font-size: clamp(10px, 1vw, 20px);
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.66vw;
-  letter-spacing: 1px;
+  letter-spacing: -0.05em;
 }
 
 .scene6-red-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.92vw;
-  line-height: 1.4;
+  font-size: clamp(9px, 0.8vw, 18px);
+  line-height: 1.2;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -1930,7 +1930,7 @@ body {
 
 .scene7-text {
   position: relative;
-  width: 19.79vw;
+  width: 80%;
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
@@ -2120,11 +2120,11 @@ body {
 }
 
 .scene7-heading {
-  font-size: 1.14vw;
+  font-size: clamp(10px, 1vw, 20px);
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.66vw;
-  letter-spacing: 1px;
+  letter-spacing: -0.05em;
   white-space: normal;
   word-wrap: break-word;
   font-family: 'Montserrat', sans-serif;
@@ -2133,7 +2133,7 @@ body {
 .scene7-desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.76vw;
+  font-size: clamp(9px, 0.8vw, 18px);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -2387,7 +2387,7 @@ body {
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.69vw;
-  letter-spacing: 1px;
+  letter-spacing: -0.05em;
 }
 
 .scene8-desc {
@@ -2508,7 +2508,7 @@ body {
   font-size: 1.11vw;
   font-weight: 700;
   margin-bottom: 0.69vw;
-  letter-spacing: 1px;
+  letter-spacing: -0.05em;
 }
 
 .footer-full-line {
