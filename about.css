@@ -344,6 +344,7 @@
   background: #e5e6e7;
   padding: 6vw 0 4vw;
   width: 100%;
+  overflow: hidden;
 }
 
 .founders-heading {
@@ -366,9 +367,16 @@
   width: 100%;
 }
 
+.founders-row--1 {
+  height: 23vw;
+  overflow: visible;
+}
+
 /* Row 2 pulls up to overlap row 1's circle */
 .founders-row--2 {
   margin-top: 0;
+  height: 23vw;
+  overflow: visible;
 }
 
 /* ── Cells ── */
@@ -401,14 +409,15 @@
   align-items: flex-end;
   justify-content: flex-end;
   padding: 0 3.125vw 0 0;
+  position: relative;
 }
 
 .founder-name--durgesh {
-  position: relative;
+  position: absolute !important;
+  bottom: 4vw !important;
+  left: 21vw !important;
   z-index: 2;
-  margin-bottom: 4vw;
-  text-align: left;
-  margin-left: 5.8vw;
+  white-space: nowrap;
 }
 
 /* Durgesh bio — right cell of row 2 */
@@ -486,6 +495,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  position: relative;
+  z-index: 10;
+  background: #e5e6e7;
 }
 
 .founders-cell--bio-durgesh .founder-bio-wrap {
@@ -521,6 +533,7 @@
   transform-origin: center center;
 }
 
+
 /* ── Name label ── */
 .founder-name {
   font-family: 'Montserrat', sans-serif;
@@ -533,10 +546,19 @@
   left: 15.625vw;
 }
 
-.founder-name--anil {
-  bottom: 6vw;
-  left: 16.5vw
+.founder-circle-wrap {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
 }
+
+.founder-name--anil {
+  position: absolute !important;
+  bottom: 6vw;
+  left: 16.5vw;
+  white-space: nowrap;
+}
+
 
 /* ── Responsive — nav only (all components scale via vw) ── */
 @media (max-width: 1400px) {
@@ -655,7 +677,7 @@
 
   .about-circle-xs-botleft {
     width: 22vw;
-    height: 22vw;
+    height: 23vw;
     top: 35%;
     left: auto;
     right: -30%;
