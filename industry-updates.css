@@ -1,0 +1,151 @@
+/* ── Industry Updates page ── */
+
+.iu-page {
+  background: #e5e6e7;
+  color: #333;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.iu-main {
+  padding-top: 9vw;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Hero ── */
+.iu-hero {
+  position: relative;
+  width: 100%;
+  height: 22vw;
+  background: var(--color-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.iu-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+}
+
+.iu-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.iu-breadcrumb {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.97vw;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 1.2vw;
+}
+
+.iu-breadcrumb a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+}
+
+.iu-breadcrumb a:hover {
+  color: #fff;
+}
+
+.iu-breadcrumb .breadcrumb-sep {
+  margin: 0 0.5em;
+  opacity: 0.6;
+}
+
+.iu-hero-heading {
+  font-family: 'Gontserrat-Medium', sans-serif;
+  font-size: 3vw;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin: 0;
+}
+
+/* ── Body ── */
+.iu-body {
+  padding: 4vw 5vw 6vw;
+}
+
+/* ── Grid ── */
+.iu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vw;
+}
+
+/* ── Card ── */
+.iu-card {
+  background: #fff;
+  border-radius: 0.5vw;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.iu-card:hover {
+  transform: translateY(-0.3vw);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+}
+
+.iu-card-inner {
+  padding: 2vw 2vw 1.5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vw;
+  height: 100%;
+}
+
+.iu-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.04vw;
+  font-weight: 600;
+  color: #1d3d78;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+
+.iu-card-source {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.76vw;
+  font-weight: 500;
+  color: #999;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.iu-read-more {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.83vw;
+  font-weight: 600;
+  color: var(--color-red);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+  align-self: flex-start;
+}
+
+.iu-read-more:hover {
+  opacity: 0.7;
+}
+
+.iu-card-excerpt {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.83vw;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
