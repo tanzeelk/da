@@ -908,7 +908,7 @@ body {
 
 .scene5-new-text {
   position: absolute;
-  left: 35%;
+  left: 38%;
   top: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -1101,8 +1101,8 @@ body {
   width: 32.5vw;
   height: 32.5vw;
   border-radius: 50%;
-  background-image: url('./assets/image05.webp');
-  background-size: 110% 110%;
+  background-image: url('./assets/gallery/Shree Shakti Integrated Logistics Park/DA Group_06677_038.jpg');
+  background-size: 100% 100%;
   background-position: center;
   position: absolute;
   top: 19.95vw;
