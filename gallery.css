@@ -1,0 +1,275 @@
+/* ── Gallery page ── */
+
+.gallery-page {
+  background: #e5e6e7;
+  color: #333;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Gallery footer ── */
+
+.gallery-page-footer {
+  margin-top: 4vw;
+}
+
+/* ── Main ── */
+.gallery-main {
+  padding-top: 9vw;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Hero ── */
+.gallery-hero {
+  position: relative;
+  width: 100%;
+  height: 22vw;
+  background: var(--color-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gallery-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+}
+
+.gallery-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.gallery-breadcrumb {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.97vw;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 1.2vw;
+}
+
+.gallery-breadcrumb a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+}
+
+.gallery-breadcrumb a:hover {
+  color: #fff;
+}
+
+.breadcrumb-sep {
+  margin: 0 0.5em;
+  opacity: 0.6;
+}
+
+.gallery-hero-heading {
+  font-family: 'Gontserrat-Medium', sans-serif;
+  font-size: 6vw;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin: 0;
+}
+
+/* ── Gallery body ── */
+.gallery-body {
+  padding: 4vw 5vw 6vw;
+}
+
+/* ── Tabs ── */
+.gallery-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5vw 2.5vw;
+  justify-content: center;
+  margin-bottom: 3.5vw;
+  border: none;
+  background: none;
+}
+
+.gallery-tab {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1vw;
+  font-weight: 500;
+  color: #555;
+  padding: 0.6vw 0.2vw;
+  position: relative;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+
+.gallery-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-red);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.gallery-tab:hover {
+  color: #333;
+}
+
+.gallery-tab.active {
+  color: var(--color-red);
+  font-weight: 600;
+}
+
+.gallery-tab.active::after {
+  transform: scaleX(1);
+}
+
+/* ── Sub-tabs ── */
+.gallery-subtabs {
+  display: none;
+  justify-content: center;
+  gap: 2vw;
+  margin-top: -2vw;
+  margin-bottom: 2.5vw;
+}
+
+.gallery-subtabs.visible {
+  display: flex;
+}
+
+.gallery-subtab {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9vw;
+  font-weight: 500;
+  color: #777;
+  padding: 0.4vw 1.2vw;
+  border-radius: 2vw;
+  transition: background 0.2s, color 0.2s;
+}
+
+.gallery-subtab.active {
+  background: var(--color-red);
+  color: #fff;
+}
+
+.gallery-subtab:hover:not(.active) {
+  color: #333;
+}
+
+/* ── Grid ── */
+.gallery-grid {
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1vw;
+}
+
+.gallery-grid.active {
+  display: grid;
+}
+
+.gallery-item {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 0.3vw;
+  cursor: pointer;
+  background: #ccc;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* ── Lightbox ── */
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.gallery-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-img-wrap {
+  max-width: 85vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-img-wrap img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 0.3vw;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2.5vw;
+  line-height: 1;
+  z-index: 9001;
+  transition: color 0.2s;
+  padding: 0.5vw;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  color: var(--color-red);
+}
+
+.lightbox-close {
+  top: 1.5vw;
+  right: 2vw;
+  font-size: 3vw;
+}
+
+.lightbox-prev {
+  left: 2vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4vw;
+}
+
+.lightbox-next {
+  right: 2vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4vw;
+}
