@@ -379,6 +379,19 @@
   overflow: visible;
 }
 
+.founders-row--last .founders-cell--bio-durgesh {
+  position: relative;
+  overflow: visible;
+}
+
+.founders-row--last .founder-bio-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
 /* ── Cells ── */
 .founders-cell {
   display: flex;
@@ -410,6 +423,13 @@
   justify-content: flex-end;
   padding: 0 3.125vw 0 0;
   position: relative;
+  overflow: hidden;
+}
+
+.founders-cell--circle-durgesh .founder-circle-wrap {
+  position: absolute;
+  bottom: 0;
+  right: 3.125vw;
 }
 
 .founder-name--durgesh {
@@ -418,6 +438,10 @@
   left: 21vw !important;
   z-index: 2;
   white-space: nowrap;
+}
+
+.founder-name--kanica {
+  left: 19vw !important;
 }
 
 /* Durgesh bio — right cell of row 2 */
@@ -521,12 +545,7 @@
   object-position: top center;
 }
 
-.founder-circle-1 {
-  background-image: url('./assets/Founder_Anil.png');
-  background-size: cover;
-  background-position: 30% top;
-  background-repeat: no-repeat;
-}
+.founder-circle-1 {}
 
 .founder-circle-2 img{
   /* transform: scale(1.5); */
