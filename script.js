@@ -2648,6 +2648,7 @@ const greyCircle1 = document.querySelector(".grey-circle-1");
 const greyCircle2 = document.querySelector(".grey-circle-2");
 const greyCircle3 = document.querySelector(".grey-circle-3");
 const greyCircle4 = document.querySelector(".grey-circle-4");
+const greyCircle5 = document.querySelector(".grey-circle-5");
 
 if (greyCircle1) {
   greyCircle1.addEventListener("click", () => {
@@ -2677,6 +2678,14 @@ if (greyCircle4) {
   greyCircle4.addEventListener("click", () => {
     if (t7 && t7.scrollTrigger) {
       window.scrollTo({ top: t7.scrollTrigger.end, behavior: 'instant' });
+    }
+  });
+}
+
+if (greyCircle5) {
+  greyCircle5.addEventListener("click", () => {
+    if (t8 && t8.scrollTrigger) {
+      window.scrollTo({ top: t8.scrollTrigger.end, behavior: 'instant' });
     }
   });
 }
@@ -2720,6 +2729,7 @@ window.addEventListener('load', () => {
     '#da-infra': t5,
     '#shree-shakti': t6,
     '#dcci': t7,
+    '#vittam-bharat': t8,
   };
   const target = sceneMap[window.location.hash];
   if (target && target.scrollTrigger) {
