@@ -23,6 +23,7 @@ function setupReadMore(btnSelector, descSelector) {
 setupReadMore(".scene4-read-more", ".scene4-red-desc");
 setupReadMore(".scene5-main-read-more", ".scene5-main-desc");
 setupReadMore(".scene7-main-read-more", ".scene7-main-desc");
+setupReadMore(".scene8-read-more", ".scene8-red-desc");
 
 document.querySelectorAll(".read-more-btn").forEach((btn) => {
   const desc = btn.previousElementSibling;
@@ -1588,6 +1589,175 @@ t7.to(
   0.4
 );
 
+
+// ============================================
+// SCENE 8 Timeline - duplicate of scene 4
+// ============================================
+
+let t8 = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".scene8",
+    start: "top top",
+    end: "+=1200",
+    scrub: 0.5,
+    pin: true,
+    pinSpacing: true,
+    markers: false,
+    invalidateOnRefresh: true,
+  },
+});
+
+const scene8ImageCircle = document.querySelector(".scene8-image-circle");
+const scene8RedCircle = document.querySelector(".scene8-red-circle");
+const scene8GreyCircle = document.querySelector(".scene8-grey-circle");
+const scene8SmallRedCircle = document.querySelector(".scene8-small-red-circle");
+const scene8SmallRedCircleRight = document.querySelector(
+  ".scene8-small-red-circle-right"
+);
+const scene8Tagline = document.querySelector(".scene8-tagline");
+const scene8NewText = document.querySelector(".scene8-new-text");
+const scene8Group1 = document.querySelector(".scene8-group-1");
+const scene8Group2 = document.querySelector(".scene8-group-2");
+const scene8RedText = document.querySelector(".scene8-red-text");
+
+const scene8CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
+gsap.set(scene8GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
+gsap.set([scene8RedCircle, scene8ImageCircle, scene8NewText], { y: () => designH() });
+gsap.set(scene8SmallRedCircle, { x: vw(-150) });
+gsap.set(scene8SmallRedCircleRight, { x: 0, y: vw(400) });
+
+t8.to(
+  scene8GreyCircle,
+  {
+    opacity: 1,
+    y: 0,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0
+);
+
+t8.to(
+  [scene8ImageCircle, scene8NewText],
+  {
+    y: scene8CenterY,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0
+);
+t8.to(
+  scene8RedCircle,
+  {
+    y: scene8CenterY,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  "<"
+);
+
+t8.fromTo(
+  scene8SmallRedCircle,
+  {
+    opacity: 0,
+    y: 0,
+  },
+  {
+    opacity: 1,
+    y: vw(10),
+    duration: 0.3,
+    ease: "power2.out",
+  },
+  0
+);
+
+t8.to(
+  scene8SmallRedCircle,
+  {
+    x: vw(200),
+    opacity: 0,
+    duration: 0.5,
+    ease: "power1.inOut",
+  },
+  0.35
+);
+
+t8.fromTo(
+  scene8SmallRedCircleRight,
+  {
+    opacity: 0,
+    x: vw(500),
+  },
+  {
+    opacity: 1,
+    x: vw(-300),
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  0
+);
+
+gsap.set(scene8RedText, { xPercent: -50, yPercent: -50 });
+
+t8.fromTo(
+  scene8RedText,
+  { opacity: 0, y: vw(500) },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  0
+);
+
+t8.fromTo(
+  scene8Group1,
+  { opacity: 0, y: vw(300), x: vw(-75) },
+  { opacity: 1, y: vw(-20), duration: 0.5, ease: "power2.out" },
+  0
+);
+
+t8.fromTo(
+  scene8Group2,
+  { opacity: 0, y: vw(300), x: vw(-75) },
+  { opacity: 1, y: vw(-10), duration: 0.5, ease: "power2.out" },
+  0.1
+);
+
+t8.to(
+  scene8ImageCircle,
+  {
+    x: vw(-470),
+    duration: 0.3,
+    ease: "power2.out",
+  },
+  0.2
+);
+
+t8.to(
+  scene8Tagline,
+  {
+    opacity: 1,
+    y: vw(50),
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  0
+);
+
+const scene8SmallRedCircleLogo = document.querySelector(
+  ".scene8-small-red-circle-logo"
+);
+t8.to(
+  scene8SmallRedCircleLogo,
+  {
+    opacity: 1,
+    duration: 0.5,
+    ease: "power2.out",
+  },
+  0.55
+);
 
 function resetReadMore(container) {
   container.querySelectorAll(".desc-expanded").forEach(el => el.classList.remove("desc-expanded"));
