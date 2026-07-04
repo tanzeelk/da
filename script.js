@@ -2745,24 +2745,3 @@ if (scrollToTopBtn) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
-
-// Our Progress timeline: wheel/trackpad scrolls the track horizontally.
-// Page keeps scrolling vertically once the timeline hits its start/end.
-const tlWrap = document.querySelector(".timeline-scroll-wrap");
-if (tlWrap) {
-  tlWrap.addEventListener("wheel", (e) => {
-    // Prefer the dominant axis; trackpads report both deltaX and deltaY.
-    const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-    if (delta === 0) return;
-
-    const maxScroll = tlWrap.scrollWidth - tlWrap.clientWidth;
-    const atStart = tlWrap.scrollLeft <= 0;
-    const atEnd = tlWrap.scrollLeft >= maxScroll - 1;
-
-    // Let the page scroll vertically past the ends instead of trapping the wheel.
-    if ((delta < 0 && atStart) || (delta > 0 && atEnd)) return;
-
-    e.preventDefault();
-    tlWrap.scrollLeft += delta;
-  }, { passive: false });
-}
