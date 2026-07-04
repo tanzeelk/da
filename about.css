@@ -1026,6 +1026,12 @@
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge */
+}
+
+.timeline-scroll-wrap::-webkit-scrollbar {
+  display: none;                  /* Chrome/Safari */
 }
 
 .timeline-track {
