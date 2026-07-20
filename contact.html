@@ -149,7 +149,11 @@
         </div>
       </div>
 
-      <form class="contact-form" action="#" method="post">
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="post">
+        <input type="hidden" name="access_key" value="887b57dc-791b-4771-9455-0ad3db74a657" />
+        <input type="hidden" name="subject" value="New Contact Enquiry - DA Group Website" />
+        <input type="hidden" name="from_name" value="DA Group Contact Page" />
+        <input type="checkbox" name="botcheck" style="display:none" />
         <div class="contact-form-row">
           <input type="text" class="contact-input" placeholder="First name" name="first_name" />
           <input type="text" class="contact-input" placeholder="Last name" name="last_name" />
@@ -167,6 +171,7 @@
         <div class="contact-form-submit-row">
           <button type="submit" class="contact-submit-btn">SUBMIT</button>
         </div>
+        <p class="contact-form-result" aria-live="polite"></p>
       </form>
 
     </section>
@@ -249,6 +254,40 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Contact form AJAX submit (Web3Forms)
+    const contactForm   = document.querySelector('.contact-form');
+    const contactResult = document.querySelector('.contact-form-result');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = contactForm.querySelector('.contact-submit-btn');
+        contactResult.textContent = 'Sending...';
+        contactResult.style.color = '';
+        if (submitBtn) submitBtn.disabled = true;
+        try {
+          const res  = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: new FormData(contactForm)
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            contactResult.textContent = 'Thank you! Your message has been sent.';
+            contactResult.style.color = 'green';
+            contactForm.reset();
+          } else {
+            contactResult.textContent = data.message || 'Something went wrong. Please try again.';
+            contactResult.style.color = 'red';
+          }
+        } catch (err) {
+          contactResult.textContent = 'Network error. Please try again.';
+          contactResult.style.color = 'red';
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>

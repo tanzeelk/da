@@ -121,7 +121,11 @@
     <!-- ── Connect With Us form ── -->
     <section class="career-form-section" id="career-form">
       <h2 class="career-form-heading">CONNECT WITH US</h2>
-      <form class="career-form" action="mailto:contact@dagroupindia.com" method="post" enctype="multipart/form-data">
+      <form class="career-form" action="https://api.web3forms.com/submit" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="access_key" value="887b57dc-791b-4771-9455-0ad3db74a657" />
+        <input type="hidden" name="subject" value="New Career Application - DA Group Website" />
+        <input type="hidden" name="from_name" value="DA Group Careers Page" />
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
         <div class="career-form-grid">
           <div class="career-form-group">
             <label class="career-label">Name <span class="req">*</span></label>
@@ -151,6 +155,7 @@
           </div>
           <button type="submit" class="career-submit-btn">SUBMIT</button>
         </div>
+        <p class="career-form-result" aria-live="polite"></p>
       </form>
     </section>
 
@@ -163,6 +168,40 @@
     if (fileInput) {
       fileInput.addEventListener('change', () => {
         fileName.textContent = fileInput.files[0] ? fileInput.files[0].name : 'No file chosen';
+      });
+    }
+
+    // Career form AJAX submit (Web3Forms)
+    const careerForm   = document.querySelector('.career-form');
+    const careerResult = document.querySelector('.career-form-result');
+    if (careerForm) {
+      careerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = careerForm.querySelector('.career-submit-btn');
+        careerResult.textContent = 'Sending...';
+        careerResult.style.color = '';
+        if (submitBtn) submitBtn.disabled = true;
+        try {
+          const res  = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: new FormData(careerForm)
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            careerResult.textContent = 'Thank you! Your application has been submitted.';
+            careerResult.style.color = 'green';
+            careerForm.reset();
+            if (fileName) fileName.textContent = 'No file chosen';
+          } else {
+            careerResult.textContent = data.message || 'Something went wrong. Please try again.';
+            careerResult.style.color = 'red';
+          }
+        } catch (err) {
+          careerResult.textContent = 'Network error. Please try again.';
+          careerResult.style.color = 'red';
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
       });
     }
   </script>
