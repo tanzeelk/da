@@ -1,0 +1,133 @@
+.thank-you-main {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12vw 5vw 6vw;
+}
+
+.thank-you-card {
+  max-width: 38vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thank-you-icon {
+  width: 4.5vw;
+  height: 4.5vw;
+  border-radius: 50%;
+  background: #e9f5ee;
+  color: #1e7d47;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5vw;
+}
+
+.thank-you-icon svg {
+  width: 2.5vw;
+  height: 2.5vw;
+}
+
+.thank-you-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 2vw;
+  color: #1c2024;
+  margin: 0 0 1vw;
+  text-wrap: balance;
+}
+
+.thank-you-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1vw;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 2.2vw;
+  max-width: 32vw;
+}
+
+.thank-you-actions {
+  display: flex;
+  gap: 1vw;
+  margin-bottom: 2.5vw;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.thank-you-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.85vw;
+  padding: 0.9vw 1.8vw;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.thank-you-btn:hover {
+  opacity: 0.85;
+}
+
+.thank-you-btn-primary {
+  background: #e31d36;
+  color: #fff;
+}
+
+.thank-you-btn-secondary {
+  background: transparent;
+  color: #3F5881;
+  border: 1.5px solid #3F5881;
+}
+
+.thank-you-urgent {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8vw;
+  color: #777;
+  border-top: 1px solid #e2e0dd;
+  padding-top: 1.2vw;
+  width: 100%;
+}
+
+.thank-you-urgent p {
+  margin: 0.3vw 0;
+}
+
+.thank-you-urgent a {
+  color: #3F5881;
+  text-decoration: none;
+}
+
+.thank-you-urgent a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .thank-you-card {
+    max-width: 90vw;
+  }
+  .thank-you-icon {
+    width: 14vw;
+    height: 14vw;
+  }
+  .thank-you-icon svg {
+    width: 7vw;
+    height: 7vw;
+  }
+  .thank-you-heading {
+    font-size: 5.5vw;
+  }
+  .thank-you-text {
+    font-size: 3.6vw;
+    max-width: 90vw;
+  }
+  .thank-you-btn {
+    font-size: 3.2vw;
+    padding: 3vw 5vw;
+  }
+  .thank-you-urgent {
+    font-size: 3vw;
+  }
+}

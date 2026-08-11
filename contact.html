@@ -159,16 +159,16 @@
           <div class="contact-info-phones">
             <div class="contact-info-row">
               <img src="./assets/cell.png" alt="Phone" class="contact-info-icon" />
-              <span>079 40072419</span>
+              <a href="tel:+917940072419">079 40072419</a>
             </div>
             <div class="contact-info-row">
               <img src="./assets/cell.png" alt="Phone" class="contact-info-icon" />
-              <span>079 40072417</span>
+              <a href="tel:+917940072417">079 40072417</a>
             </div>
           </div>
           <div class="contact-info-row">
             <img src="./assets/email.png" alt="Email" class="contact-info-icon" />
-            <span>contact@dagroupindia.com</span>
+            <a href="mailto:contact@dagroupindia.com">contact@dagroupindia.com</a>
           </div>
         </div>
 
@@ -237,11 +237,11 @@
               </div>
               <div class="contact-group footer-spacing">
                 <img src="./assets/email.png" alt="Email" class="contact-icon-img" />
-                <p>contact@dagroupindia.com</p>
+                <p><a href="mailto:contact@dagroupindia.com" class="footer-contact-link">contact@dagroupindia.com</a></p>
               </div>
               <div class="contact-group">
                 <img src="./assets/cell.png" alt="Phone" class="contact-icon-img" />
-                <p>079 40072419</p>
+                <p><a href="tel:+917940072419" class="footer-contact-link">079 40072419</a></p>
               </div>
             </div>
           </div>
@@ -255,13 +255,13 @@
           </div>
           <div class="footer-column">
             <ul class="footer-links">
-              <li><a href="https://ssiambaji.com/" target="_blank">Shree Shakti School of Innovation</a></li>
-              <li><a href="https://sssk.ngo/" target="_blank">Shree Shakti Seva Kendra</a></li>
-              <li><a href="https://toyjoytales.com/" target="_blank">Toy Joy Tales</a></li>
-              <li><a href="https://littlewings.net/" target="_blank">Little Wings</a></li>
-              <li><a href="https://www.durgeshinfra.com/" target="_blank">Durgesh Infra</a></li>
-              <li><a href="https://ssccevents.com/" target="_blank">Shree Shakti Convention Centre</a></li>
-              <li><a href="https://www.durgeshimpex.in/" target="_blank">Durgesh Impex</a></li>
+              <li><a href="https://ssiambaji.com/" target="_blank" rel="noopener noreferrer">Shree Shakti School of Innovation</a></li>
+              <li><a href="https://sssk.ngo/" target="_blank" rel="noopener noreferrer">Shree Shakti Seva Kendra</a></li>
+              <li><a href="https://toyjoytales.com/" target="_blank" rel="noopener noreferrer">Toy Joy Tales</a></li>
+              <li><a href="https://littlewings.net/" target="_blank" rel="noopener noreferrer">Little Wings</a></li>
+              <li><a href="https://www.durgeshinfra.com/" target="_blank" rel="noopener noreferrer">Durgesh Infra</a></li>
+              <li><a href="https://ssccevents.com/" target="_blank" rel="noopener noreferrer">Shree Shakti Convention Centre</a></li>
+              <li><a href="https://www.durgeshimpex.in/" target="_blank" rel="noopener noreferrer">Durgesh Impex</a></li>
             </ul>
           </div>
           <div class="footer-column">
@@ -315,9 +315,11 @@
           const data = await res.json();
           if (res.ok && data.success) {
             lastContactSubmit = now;
-            contactResult.textContent = 'Thank you! Your message has been sent.';
+            contactResult.textContent = 'Thank you! Redirecting...';
             contactResult.style.color = 'green';
             contactForm.reset();
+            window.location.href = 'thank-you.html';
+            return;
           } else {
             contactResult.textContent = data.message || 'Something went wrong. Please try again.';
             contactResult.style.color = 'red';
