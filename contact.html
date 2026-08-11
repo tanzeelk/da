@@ -3,10 +3,42 @@
 
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Google tag (gtag.js) — GA4 -->
+  <!-- TODO: replace G-XXXXXXXXXX with the real GA4 Measurement ID from Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact DA Group — Get in Touch | DA Group India</title>
   <meta name="description" content="Get in touch with DA Group. Find our office address, phone numbers, email, and contact form for inquiries about our companies and services." />
   <link rel="canonical" href="https://dagroupindia.com/contact.html" />
+
+  <!-- Structured data: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://dagroupindia.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact Us",
+        "item": "https://dagroupindia.com/contact.html"
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="contact.css" />
 </head>
@@ -40,7 +72,7 @@
 
     <!-- ── Hero: full-width bridge image with heading ── -->
     <section class="contact-hero">
-      <img src="./assets/contact-us-banner.png" alt="" class="contact-hero-img" />
+      <img src="./assets/contact-us-banner.png" alt="Aerial view of Ahmedabad's Sabarmati Riverfront and pedestrian bridge" class="contact-hero-img" />
       <div class="contact-hero-overlay"></div>
       <h1 class="contact-hero-heading">Contact Us</h1>
     </section>
@@ -153,18 +185,18 @@
         <input type="hidden" name="from_name" value="DA Group Contact Page" />
         <input type="checkbox" name="botcheck" style="display:none" />
         <div class="contact-form-row">
-          <input type="text" class="contact-input" placeholder="First name" name="first_name" />
-          <input type="text" class="contact-input" placeholder="Last name" name="last_name" />
+          <input type="text" class="contact-input" placeholder="First name" name="first_name" required />
+          <input type="text" class="contact-input" placeholder="Last name" name="last_name" required />
         </div>
         <div class="contact-form-row">
-          <input type="email" class="contact-input contact-input--full" placeholder="Email address" name="email" />
+          <input type="email" class="contact-input contact-input--full" placeholder="Email address" name="email" required />
         </div>
         <div class="contact-form-row">
           <input type="text" class="contact-input" placeholder="Company name" name="company" />
           <input type="text" class="contact-input" placeholder="Position" name="position" />
         </div>
         <div class="contact-form-row">
-          <textarea class="contact-input contact-input--full contact-textarea" placeholder="Message" name="message"></textarea>
+          <textarea class="contact-input contact-input--full contact-textarea" placeholder="Message" name="message" required minlength="10"></textarea>
         </div>
         <div class="contact-form-submit-row">
           <button type="submit" class="contact-submit-btn">SUBMIT</button>
@@ -235,15 +267,16 @@
           <div class="footer-column">
             <form class="gf-newsletter">
                 <div class="gf-email-wrap">
-                  <input type="email" placeholder="Email address" class="gf-email-input" />
+                  <input type="email" placeholder="Email address" class="gf-email-input" name="email" required />
                   <button type="submit" class="gf-email-btn" aria-label="Subscribe">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                   </button>
                 </div>
                 <div class="gf-checkbox-wrap">
-                  <input type="checkbox" id="gf-terms" class="gf-checkbox" />
+                  <input type="checkbox" id="gf-terms" class="gf-checkbox" required />
                   <label for="gf-terms">I agree to all your terms and policies</label>
                 </div>
+              <p class="gf-newsletter-result" aria-live="polite"></p>
               </form>
           </div>
         </div>
@@ -256,9 +289,20 @@
     // Contact form AJAX submit (Web3Forms)
     const contactForm   = document.querySelector('.contact-form');
     const contactResult = document.querySelector('.contact-form-result');
+    const CONTACT_COOLDOWN_MS = 30000; // client-side throttle against rapid repeat submits
+    let lastContactSubmit = 0;
+
     if (contactForm) {
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        const now = Date.now();
+        if (now - lastContactSubmit < CONTACT_COOLDOWN_MS) {
+          contactResult.textContent = 'Please wait a moment before sending another message.';
+          contactResult.style.color = 'red';
+          return;
+        }
+
         const submitBtn = contactForm.querySelector('.contact-submit-btn');
         contactResult.textContent = 'Sending...';
         contactResult.style.color = '';
@@ -270,6 +314,7 @@
           });
           const data = await res.json();
           if (res.ok && data.success) {
+            lastContactSubmit = now;
             contactResult.textContent = 'Thank you! Your message has been sent.';
             contactResult.style.color = 'green';
             contactForm.reset();
@@ -278,7 +323,7 @@
             contactResult.style.color = 'red';
           }
         } catch (err) {
-          contactResult.textContent = 'Network error. Please try again.';
+          contactResult.textContent = 'Network error. Please check your connection and try again.';
           contactResult.style.color = 'red';
         } finally {
           if (submitBtn) submitBtn.disabled = false;

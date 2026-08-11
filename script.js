@@ -2745,3 +2745,58 @@ if (scrollToTopBtn) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
+
+// ── Footer newsletter subscription (Web3Forms) — present on every page ──
+document.querySelectorAll(".gf-newsletter").forEach((form) => {
+  const emailInput = form.querySelector(".gf-email-input");
+  const termsCheck  = form.querySelector(".gf-checkbox");
+  const result      = form.querySelector(".gf-newsletter-result");
+  const submitBtn   = form.querySelector(".gf-email-btn");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!result) return;
+
+    if (!emailInput.value || !emailInput.checkValidity()) {
+      result.textContent = "Please enter a valid email address.";
+      result.style.color = "red";
+      return;
+    }
+    if (termsCheck && !termsCheck.checked) {
+      result.textContent = "Please agree to the terms and policies.";
+      result.style.color = "red";
+      return;
+    }
+
+    result.textContent = "Subscribing...";
+    result.style.color = "";
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "887b57dc-791b-4771-9455-0ad3db74a657",
+          subject: "New Newsletter Subscription - DA Group Website",
+          from_name: "DA Group Newsletter",
+          email: emailInput.value,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        result.textContent = "Thanks for subscribing!";
+        result.style.color = "green";
+        form.reset();
+      } else {
+        result.textContent = data.message || "Something went wrong. Please try again.";
+        result.style.color = "red";
+      }
+    } catch (err) {
+      result.textContent = "Network error. Please try again.";
+      result.style.color = "red";
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+});

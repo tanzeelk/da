@@ -3,10 +3,42 @@
 
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Google tag (gtag.js) — GA4 -->
+  <!-- TODO: replace G-XXXXXXXXXX with the real GA4 Measurement ID from Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Careers at DA Group — Join Our Team | DA Group India</title>
   <meta name="description" content="Explore career opportunities at DA Group. Join a diversified Ahmedabad-based business group spanning textiles, infrastructure, hospitality, and more." />
   <link rel="canonical" href="https://dagroupindia.com/career.html" />
+
+  <!-- Structured data: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://dagroupindia.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Career",
+        "item": "https://dagroupindia.com/career.html"
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="career.css" />
 </head>
@@ -152,6 +184,7 @@
               <span class="career-file-btn">Choose a file</span>
               <span class="career-file-name">No file chosen</span>
             </label>
+            <p class="career-file-hint">PDF, DOC or DOCX — max 5&nbsp;MB.</p>
           </div>
           <button type="submit" class="career-submit-btn">SUBMIT</button>
         </div>
@@ -162,12 +195,34 @@
   </main>
 
   <script>
-    // File input label update
+    // File input label update + size/type validation
     const fileInput = document.querySelector('.career-file-input');
     const fileName  = document.querySelector('.career-file-name');
+    const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB — matches Web3Forms attachment limit
+    const ALLOWED_RESUME_EXT = ['.pdf', '.doc', '.docx'];
+
     if (fileInput) {
       fileInput.addEventListener('change', () => {
-        fileName.textContent = fileInput.files[0] ? fileInput.files[0].name : 'No file chosen';
+        const file = fileInput.files[0];
+        if (!file) {
+          fileName.textContent = 'No file chosen';
+          return;
+        }
+        const ext = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
+        if (!ALLOWED_RESUME_EXT.includes(ext)) {
+          fileName.textContent = 'Unsupported file type';
+          fileName.style.color = 'red';
+          fileInput.value = '';
+          return;
+        }
+        if (file.size > MAX_RESUME_BYTES) {
+          fileName.textContent = `File too large (${(file.size / (1024 * 1024)).toFixed(1)} MB) — max 5 MB`;
+          fileName.style.color = 'red';
+          fileInput.value = '';
+          return;
+        }
+        fileName.style.color = '';
+        fileName.textContent = file.name;
       });
     }
 
@@ -177,6 +232,20 @@
     if (careerForm) {
       careerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Guard: block submission if resume is missing or oversized
+        const resumeFile = fileInput ? fileInput.files[0] : null;
+        if (!resumeFile) {
+          careerResult.textContent = 'Please attach your resume (PDF, DOC or DOCX, max 5 MB).';
+          careerResult.style.color = 'red';
+          return;
+        }
+        if (resumeFile.size > MAX_RESUME_BYTES) {
+          careerResult.textContent = `Resume is too large (${(resumeFile.size / (1024 * 1024)).toFixed(1)} MB). Please upload a file under 5 MB.`;
+          careerResult.style.color = 'red';
+          return;
+        }
+
         const submitBtn = careerForm.querySelector('.career-submit-btn');
         careerResult.textContent = 'Sending...';
         careerResult.style.color = '';
@@ -192,12 +261,15 @@
             careerResult.style.color = 'green';
             careerForm.reset();
             if (fileName) fileName.textContent = 'No file chosen';
+          } else if (res.status === 413 || /too large|too long/i.test(data.message || '')) {
+            careerResult.textContent = 'Your resume file is too large for our system. Please upload a file under 5 MB and try again.';
+            careerResult.style.color = 'red';
           } else {
             careerResult.textContent = data.message || 'Something went wrong. Please try again.';
             careerResult.style.color = 'red';
           }
         } catch (err) {
-          careerResult.textContent = 'Network error. Please try again.';
+          careerResult.textContent = 'Network error. Please check your connection and try again.';
           careerResult.style.color = 'red';
         } finally {
           if (submitBtn) submitBtn.disabled = false;
@@ -264,15 +336,16 @@
           <div class="footer-column">
             <form class="gf-newsletter">
                 <div class="gf-email-wrap">
-                  <input type="email" placeholder="Email address" class="gf-email-input" />
+                  <input type="email" placeholder="Email address" class="gf-email-input" name="email" required />
                   <button type="submit" class="gf-email-btn" aria-label="Subscribe">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                   </button>
                 </div>
                 <div class="gf-checkbox-wrap">
-                  <input type="checkbox" id="gf-terms" class="gf-checkbox" />
+                  <input type="checkbox" id="gf-terms" class="gf-checkbox" required />
                   <label for="gf-terms">I agree to all your terms and policies</label>
                 </div>
+              <p class="gf-newsletter-result" aria-live="polite"></p>
               </form>
           </div>
         </div>

@@ -3,10 +3,42 @@
 
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Google tag (gtag.js) — GA4 -->
+  <!-- TODO: replace G-XXXXXXXXXX with the real GA4 Measurement ID from Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Group Companies — DA Group India | Textiles & More</title>
   <meta name="description" content="Explore DA Group's family of companies, including Durgesh Impex, Shree Shakti Convention Centre, Shree Shakti Seva Kendra, and more across diverse industries." />
   <link rel="canonical" href="https://dagroupindia.com/group-companies.html" />
+
+  <!-- Structured data: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://dagroupindia.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Group Companies",
+        "item": "https://dagroupindia.com/group-companies.html"
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="group-companies.css" />
 </head>
@@ -40,7 +72,7 @@
 
     <!-- Hero -->
     <section class="gc-hero">
-      <img src="./assets/group-companies-hero.webp" alt="" class="gc-hero-img" />
+      <img src="./assets/group-companies-hero.webp" alt="DA Group team members walking together outside the company campus" class="gc-hero-img" />
       <div class="gc-hero-center">
         <h1 class="gc-hero-heading">Group Companies</h1>
       </div>
@@ -432,15 +464,16 @@
           <div class="footer-column">
             <form class="gf-newsletter">
                 <div class="gf-email-wrap">
-                  <input type="email" placeholder="Email address" class="gf-email-input" />
+                  <input type="email" placeholder="Email address" class="gf-email-input" name="email" required />
                   <button type="submit" class="gf-email-btn" aria-label="Subscribe">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                   </button>
                 </div>
                 <div class="gf-checkbox-wrap">
-                  <input type="checkbox" id="gf-terms" class="gf-checkbox" />
+                  <input type="checkbox" id="gf-terms" class="gf-checkbox" required />
                   <label for="gf-terms">I agree to all your terms and policies</label>
                 </div>
+              <p class="gf-newsletter-result" aria-live="polite"></p>
               </form>
           </div>
         </div>

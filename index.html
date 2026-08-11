@@ -3,11 +3,60 @@
 
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Google tag (gtag.js) — GA4 -->
+  <!-- TODO: replace G-XXXXXXXXXX with the real GA4 Measurement ID from Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DA Group — Diversified Business Group | Ahmedabad, India</title>
   <meta name="description" content="DA Group is a diversified Ahmedabad-based business group spanning textiles, infrastructure, hospitality, logistics, and community initiatives across India." />
   <link rel="canonical" href="https://dagroupindia.com/" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Structured data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DA Group",
+    "url": "https://dagroupindia.com/",
+    "logo": "https://dagroupindia.com/assets/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ambica House, B1, 3rd Floor, Safal Profitaire, Corporate Road, Opp. AUDA Garden, Prahaladnagar",
+      "addressLocality": "Ahmedabad",
+      "postalCode": "380015",
+      "addressCountry": "IN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-79-40072419",
+      "contactType": "customer service",
+      "email": "contact@dagroupindia.com"
+    },
+    "sameAs": [
+      "https://www.facebook.com/dagroupindia/",
+      "https://www.linkedin.com/company/da-group-india/",
+      "https://www.instagram.com/dagroupindia/"
+    ]
+  }
+  </script>
+
+  <!-- Structured data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "DA Group",
+    "url": "https://dagroupindia.com/"
+  }
+  </script>
 
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -586,15 +635,16 @@
           <div class="footer-column">
             <form class="gf-newsletter">
                 <div class="gf-email-wrap">
-                  <input type="email" placeholder="Email address" class="gf-email-input" />
+                  <input type="email" placeholder="Email address" class="gf-email-input" name="email" required />
                   <button type="submit" class="gf-email-btn" aria-label="Subscribe">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                   </button>
                 </div>
                 <div class="gf-checkbox-wrap">
-                  <input type="checkbox" id="gf-terms" class="gf-checkbox" />
+                  <input type="checkbox" id="gf-terms" class="gf-checkbox" required />
                   <label for="gf-terms">I agree to all your terms and policies</label>
                 </div>
+              <p class="gf-newsletter-result" aria-live="polite"></p>
               </form>
           </div>
         </div>

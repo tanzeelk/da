@@ -400,6 +400,13 @@
   color: rgba(255,255,255,0.8);
 }
 
+.career-file-hint {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(8px, 0.65vw, 10.5px);
+  color: rgba(255,255,255,0.6);
+  margin: 6px 0 0;
+}
+
 .career-submit-btn {
   background: #fff;
   color: #e31d36;
