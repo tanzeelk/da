@@ -9,7 +9,7 @@
 
 /* ── Main ── */
 .contact-main {
-  padding-top: 9vw;
+  padding-top: var(--nav-and-breadcrumb-height);
   display: flex;
   flex-direction: column;
 }
@@ -38,14 +38,6 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 100%);
-}
-
-.contact-hero-breadcrumb {
-  position: absolute;
-  top: 1.5vw;
-  left: 2.5vw;
-  z-index: 2;
-  margin: 0;
 }
 
 .contact-hero-heading {

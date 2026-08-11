@@ -78,7 +78,7 @@
 }
 
 .gc-main {
-  padding-top: 6vw;
+  padding-top: var(--nav-and-breadcrumb-height);
   display: flex;
   flex-direction: column;
 }
@@ -98,14 +98,6 @@
   object-fit: cover;
   object-position: center 70%;
   display: block;
-}
-
-.gc-hero-breadcrumb {
-  position: absolute;
-  top: 1.5vw;
-  left: 2.5vw;
-  z-index: 2;
-  margin: 0;
 }
 
 .gc-hero-center {

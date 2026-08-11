@@ -32,6 +32,12 @@ html, body {
   --font-small: 0.8vw;
   --circle-size: 37.5vw;
   --circle-size-scene2: 28.8vw;
+  /* Measured height of .fixed-nav: padding(0.69*2) + logo(3.82) + gap(0.69) + menu-icon(1.39) */
+  --nav-height: 7.28vw;
+  /* Height of the fixed .page-breadcrumb bar: padding(0.65*2) + ~1 line of 0.85vw text at 1.2 line-height */
+  --breadcrumb-height: 2.32vw;
+  /* Combined offset content should clear when a page uses .page-breadcrumb */
+  --nav-and-breadcrumb-height: calc(var(--nav-height) + var(--breadcrumb-height));
 }
 
 body {
@@ -2635,46 +2641,44 @@ body {
   text-decoration: underline;
 }
 
-/* Shared breadcrumb trail — used on pages without their own hero-overlay breadcrumb style */
+/* Shared breadcrumb trail — fixed directly under the nav, same width/background, text centered */
 .page-breadcrumb {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  z-index: 900;
+  width: 100%;
+  margin: 0;
+  padding: 0.65vw 2.78vw;
+  background: #e5e6e7;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  text-align: center;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.85vw;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin: 0 0 1vw;
+  color: #77797b;
+  box-sizing: border-box;
 }
 
 .page-breadcrumb a {
-  color: rgba(255,255,255,0.85);
+  color: #77797b;
   text-decoration: none;
 }
 
 .page-breadcrumb a:hover {
-  color: #fff;
+  color: var(--color-red);
 }
 
 .page-breadcrumb .breadcrumb-sep {
   margin: 0 0.5em;
-  color: rgba(255,255,255,0.5);
-}
-
-/* Light-background variant, for pages without a dark image hero behind the crumb */
-.page-breadcrumb--light {
-  color: #77797b;
-}
-
-.page-breadcrumb--light a {
-  color: #77797b;
-}
-
-.page-breadcrumb--light a:hover {
-  color: var(--color-red);
-}
-
-.page-breadcrumb--light .breadcrumb-sep {
   color: #b5b5b5;
 }
+
+/* Deprecated modifier kept as a no-op alias so existing markup doesn't break */
+.page-breadcrumb--light {}
 
 .contact-group {
   display: flex;

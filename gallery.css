@@ -15,7 +15,7 @@
 
 /* ── Main ── */
 .gallery-main {
-  padding-top: 9vw;
+  padding-top: var(--nav-and-breadcrumb-height);
   display: flex;
   flex-direction: column;
 }
@@ -45,28 +45,6 @@
   text-align: center;
 }
 
-.gallery-breadcrumb {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.97vw;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 1.2vw;
-}
-
-.gallery-breadcrumb a {
-  color: rgba(255,255,255,0.8);
-  text-decoration: none;
-}
-
-.gallery-breadcrumb a:hover {
-  color: #fff;
-}
-
-.breadcrumb-sep {
-  margin: 0 0.5em;
-  opacity: 0.6;
-}
 
 .gallery-hero-heading {
   font-family: 'Gontserrat-Medium', sans-serif;
