@@ -2641,13 +2641,10 @@ body {
   text-decoration: underline;
 }
 
-/* Shared breadcrumb trail — fixed directly under the nav, same width/background, text centered */
+/* Shared breadcrumb trail — sits in normal flow right below the nav's clearance, scrolls with the page */
 .page-breadcrumb {
-  position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  right: 0;
-  z-index: 900;
+  position: relative;
+  z-index: 5;
   width: 100%;
   margin: 0;
   padding: 0.65vw 2.78vw;
