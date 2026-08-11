@@ -100,6 +100,14 @@
   display: block;
 }
 
+.gc-hero-breadcrumb {
+  position: absolute;
+  top: 1.5vw;
+  left: 2.5vw;
+  z-index: 2;
+  margin: 0;
+}
+
 .gc-hero-center {
   position: absolute;
   top: 0;

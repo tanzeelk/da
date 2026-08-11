@@ -87,6 +87,14 @@
   overflow: hidden;
 }
 
+.career-hero-breadcrumb {
+  position: absolute;
+  top: 2vw;
+  left: 4vw;
+  z-index: 12;
+  margin: 0;
+}
+
 /* Decorative grey outline circle — left side below centre */
 .career-outline-circle {
   position: absolute;

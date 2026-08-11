@@ -2635,6 +2635,47 @@ body {
   text-decoration: underline;
 }
 
+/* Shared breadcrumb trail — used on pages without their own hero-overlay breadcrumb style */
+.page-breadcrumb {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85vw;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 1vw;
+}
+
+.page-breadcrumb a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+}
+
+.page-breadcrumb a:hover {
+  color: #fff;
+}
+
+.page-breadcrumb .breadcrumb-sep {
+  margin: 0 0.5em;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Light-background variant, for pages without a dark image hero behind the crumb */
+.page-breadcrumb--light {
+  color: #77797b;
+}
+
+.page-breadcrumb--light a {
+  color: #77797b;
+}
+
+.page-breadcrumb--light a:hover {
+  color: var(--color-red);
+}
+
+.page-breadcrumb--light .breadcrumb-sep {
+  color: #b5b5b5;
+}
+
 .contact-group {
   display: flex;
   align-items: flex-start;

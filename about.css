@@ -563,6 +563,30 @@
   position: absolute;
   bottom: 4.167vw;
   left: 15.625vw;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42vw;
+  white-space: nowrap;
+}
+
+.founder-linkedin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.founder-linkedin:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.founder-linkedin img {
+  width: 1.04vw;
+  height: 1.04vw;
+  object-fit: contain;
 }
 
 .founder-circle-wrap {
