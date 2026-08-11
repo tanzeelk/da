@@ -76,7 +76,7 @@
 /* ── Page body offset for fixed header ── */
 .about-main {
   position: relative;
-  padding-top: var(--nav-and-breadcrumb-height);
+  padding-top: var(--nav-height);
   display: flex;
   flex-direction: column;
 }

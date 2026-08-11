@@ -78,7 +78,7 @@
 }
 
 .gc-main {
-  padding-top: var(--nav-and-breadcrumb-height);
+  padding-top: var(--nav-height);
   display: flex;
   flex-direction: column;
 }
