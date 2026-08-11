@@ -34,10 +34,6 @@ html, body {
   --circle-size-scene2: 28.8vw;
   /* Measured height of .fixed-nav: padding(0.69*2) + logo(3.82) + gap(0.69) + menu-icon(1.39) */
   --nav-height: 7.28vw;
-  /* Height of the fixed .page-breadcrumb bar: padding(0.65*2) + ~1 line of 0.85vw text at 1.2 line-height */
-  --breadcrumb-height: 2.32vw;
-  /* Combined offset content should clear when a page uses .page-breadcrumb */
-  --nav-and-breadcrumb-height: calc(var(--nav-height) + var(--breadcrumb-height));
 }
 
 body {
@@ -2647,12 +2643,11 @@ body {
   z-index: 5;
   width: 100%;
   margin: 0;
-  padding: 0.65vw 2.78vw;
+  padding: 1.1vw 2.78vw;
   background: #e5e6e7;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.85vw;
+  font-size: 1vw;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
