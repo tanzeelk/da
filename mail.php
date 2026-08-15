@@ -11,15 +11,26 @@
  * Both career.html and contact.html POST here with a hidden "form_type"
  * field ("career" or "contact") so one script can serve both.
  *
- * ── SETUP (do this before deploying) ──────────────────────────────────
- * 1. In Hostinger hPanel → Emails, create/confirm the mailbox this sends
- *    FROM (e.g. noreply@dagroupindia.com) and note its password.
- * 2. Fill in SMTP_USERNAME and SMTP_PASSWORD below. Never commit real
- *    credentials to a public repo — on a private repo this is acceptable,
- *    but consider moving them to a .env file loaded outside web root if
- *    the repo is ever made public.
- * 3. SMTP_HOST/SMTP_PORT below match Hostinger's standard mail server;
- *    confirm in hPanel → Emails → Connect Devices if they differ.
+ * ── SETUP (do this before deploying) — sending via contact@dagroupindia.com ──
+ * contact@dagroupindia.com's MX records point to Google, so this is Google
+ * Workspace mail — same SMTP rules as consumer Gmail apply.
+ * 1. SMTP auth does NOT accept the account's normal login password — it
+ *    requires a 16-character App Password:
+ *      a. The account must have 2-Step Verification turned on
+ *         (myaccount.google.com/security). On Workspace, an admin may
+ *         need to enable this org-wide first if it's not already on.
+ *      b. Then generate one at myaccount.google.com/apppasswords
+ *         (choose "Mail" as the app). Copy the 16-character code shown.
+ *      c. If App Passwords don't appear as an option, a Workspace admin
+ *         has likely disabled them via policy — ask them to allow it,
+ *         or use an OAuth2-based send method instead (more setup).
+ * 2. Put that App Password (not the account password) in SMTP_PASSWORD
+ *    below.
+ * 3. Google's SMTP relay caps at ~500 emails/day per account (2000/day
+ *    on some Workspace plans) — fine for a contact/career form.
+ * 4. Never commit the real App Password to a public repo — on a private
+ *    repo this is acceptable, but consider moving it to a .env file
+ *    loaded outside the web root if the repo is ever made public.
  * ─────────────────────────────────────────────────────────────────────
  */
 
@@ -32,16 +43,16 @@ use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 header('Content-Type: application/json');
 
-// ── Config — fill in real values before deploy ──────────────────────────
-const SMTP_HOST     = 'smtp.hostinger.com';
-const SMTP_PORT     = 465; // 465 = SSL, 587 = STARTTLS — confirm in hPanel
-const SMTP_USERNAME = 'noreply@dagroupindia.com'; // TODO: confirm/create this mailbox in hPanel
-const SMTP_PASSWORD = 'REPLACE_WITH_REAL_MAILBOX_PASSWORD';           // TODO
-const MAIL_FROM     = 'noreply@dagroupindia.com';                     // TODO
+// ── Config — contact@dagroupindia.com is Google Workspace mail (MX -> Google) ──
+const SMTP_HOST     = 'smtp.gmail.com';
+const SMTP_PORT     = 465; // 465 = SSL (recommended) or 587 = STARTTLS — either works with Gmail/Workspace
+const SMTP_USERNAME = 'contact@dagroupindia.com';
+const SMTP_PASSWORD = 'REPLACE_WITH_16_CHAR_APP_PASSWORD';            // TODO — from myaccount.google.com/apppasswords, NOT the account password
+const MAIL_FROM     = 'contact@dagroupindia.com';
 const MAIL_FROM_NAME = 'DA Group Website';
 
-const CONTACT_TO = 'contact@dagroupindia.com'; // where "Get in touch" submissions land
-const CAREER_TO  = 'contact@dagroupindia.com'; // TODO: point to actual HR inbox if different
+const CONTACT_TO = 'contact@dagroupindia.com'; // one inbox handles both contact and career submissions
+const CAREER_TO  = 'contact@dagroupindia.com';
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB — matches client-side check in career.html
 const ALLOWED_RESUME_TYPES = [
