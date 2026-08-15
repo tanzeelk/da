@@ -158,10 +158,8 @@
     <!-- ── Connect With Us form ── -->
     <section class="career-form-section" id="career-form">
       <h2 class="career-form-heading">CONNECT WITH US</h2>
-      <form class="career-form" action="https://api.web3forms.com/submit" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="access_key" value="887b57dc-791b-4771-9455-0ad3db74a657" />
-        <input type="hidden" name="subject" value="New Career Application - DA Group Website" />
-        <input type="hidden" name="from_name" value="DA Group Careers Page" />
+      <form class="career-form" action="mail.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="form_type" value="career" />
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
         <div class="career-form-grid">
           <div class="career-form-group">
@@ -256,7 +254,7 @@
         careerResult.style.color = '';
         if (submitBtn) submitBtn.disabled = true;
         try {
-          const res  = await fetch('https://api.web3forms.com/submit', {
+          const res  = await fetch('mail.php', {
             method: 'POST',
             body: new FormData(careerForm)
           });

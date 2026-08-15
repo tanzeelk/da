@@ -185,10 +185,8 @@
         </div>
       </div>
 
-      <form class="contact-form" action="https://api.web3forms.com/submit" method="post">
-        <input type="hidden" name="access_key" value="887b57dc-791b-4771-9455-0ad3db74a657" />
-        <input type="hidden" name="subject" value="New Contact Enquiry - DA Group Website" />
-        <input type="hidden" name="from_name" value="DA Group Contact Page" />
+      <form class="contact-form" action="mail.php" method="post">
+        <input type="hidden" name="form_type" value="contact" />
         <input type="checkbox" name="botcheck" style="display:none" />
         <div class="contact-form-row">
           <input type="text" class="contact-input" placeholder="First name" name="first_name" required />
@@ -314,7 +312,7 @@
         contactResult.style.color = '';
         if (submitBtn) submitBtn.disabled = true;
         try {
-          const res  = await fetch('https://api.web3forms.com/submit', {
+          const res  = await fetch('mail.php', {
             method: 'POST',
             body: new FormData(contactForm)
           });

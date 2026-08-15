@@ -46,6 +46,13 @@ RewriteRule ^india-to-organize-worlds-largest-virtual-fair-for-textiles/?$      
 RewriteRule ^affordable-rental-housing-complexes-included-in-list-of-infrastructure-sub-sectors/?$ /da-updates.html [L,R=301]
 
 # -----------------------------------------------------------
-# 4) Custom 404 (optional — uncomment once a 404.html page exists)
+# 4) Block direct web access to the vendored PHPMailer library
+#    (mail.php still requires() these server-side just fine —
+#    this only stops someone browsing to lib/PHPMailer/*.php directly)
+# -----------------------------------------------------------
+RewriteRule ^lib/ - [F,L]
+
+# -----------------------------------------------------------
+# 5) Custom 404 (optional — uncomment once a 404.html page exists)
 # -----------------------------------------------------------
 # ErrorDocument 404 /404.html
