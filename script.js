@@ -2157,7 +2157,7 @@ if (scene6Arrow1) {
     // Change grey circle logo to NSSK.png
     const greyLogoNSK = document.querySelector(".scene6-grey-logo");
     if (greyLogoNSK) {
-      greyLogoNSK.src = "./assets/NSSK.png";
+      greyLogoNSK.src = "./assets/NSSK.webp";
       greyLogoNSK.alt = "NSSK Logo";
     }
     
@@ -2313,7 +2313,7 @@ if (scene6Arrow2) {
     // Change grey circle logo to SSSOI.png
     const greyLogoSSSIOI = document.querySelector(".scene6-grey-logo");
     if (greyLogoSSSIOI) {
-      greyLogoSSSIOI.src = "./assets/SSSOI.png";
+      greyLogoSSSIOI.src = "./assets/SSSOI.webp";
       greyLogoSSSIOI.alt = "SSSOI Logo";
     }
     

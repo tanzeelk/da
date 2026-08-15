@@ -1054,7 +1054,7 @@ body {
   width: 32.5vw;
   height: 32.5vw;
   border-radius: 50%;
-  background-image: url('./assets/image0008.png');
+  background-image: url('./assets/image0008.webp');
   background-size: 110% 110%;
   background-position: center;
   position: absolute;
@@ -1299,7 +1299,7 @@ body {
   width: 32.5vw;
   height: 32.5vw;
   border-radius: 50%;
-  background-image: url('./assets/image005.png');
+  background-image: url('./assets/image005.webp');
   background-size: 100% 100%;
   background-position: center;
   position: absolute;
@@ -2508,7 +2508,7 @@ body {
 
 /* Scene 8 image */
 .scene8-image-circle {
-  background-image: url('./assets/image0008.png');
+  background-image: url('./assets/image0008.webp');
 }
 
 .pre-footer-top-btn {
