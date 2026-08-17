@@ -2918,6 +2918,14 @@ body {
     left: 50% !important;
     right: auto !important;
     top: 50% !important;
+    /* Scenes 5 & 7's image-circle uses translate(0,-50%) on desktop
+       (positioned by left edge, not center) while every other circle
+       here uses translate(-50%,-50%) (true center). Force the centered
+       version everywhere so left:50% means the same thing for all of
+       them — otherwise scene5/7's image circle sits with its LEFT EDGE
+       at 50% instead of its center, shifting it visibly off to the
+       right of the red circle instead of overlapping it. */
+    transform: translate(-50%, -50%) !important;
   }
 
   .scene4-grey-circle,
@@ -2934,14 +2942,14 @@ body {
   .scene6-new-text,
   .scene7-new-text,
   .scene8-new-text {
-    position: absolute;
-    left: 50%;
-    right: auto;
-    top: calc(50% - 26vw);
-    transform: translate(-50%, -50%);
-    width: 90vw;
-    text-align: center;
-    font-size: 5vw;
+    position: absolute !important;
+    left: 50% !important;
+    right: auto !important;
+    top: calc(50% - 26vw) !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw !important;
+    text-align: center !important;
+    font-size: 5vw !important;
   }
 
   /* Purely decorative accent circles — no text/logo, currently float
