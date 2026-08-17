@@ -80,12 +80,6 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .fixed-nav-menu {
-    display: none;
-  }
-}
-
 /* Expanded Menu */
 .expanded-menu {
   position: fixed;
@@ -2792,4 +2786,176 @@ body {
   object-fit: contain;
   pointer-events: none;
 } */
+
+/* ==========================================================
+   Mobile overrides — kept at the END of the file on purpose.
+   CSS resolves ties in specificity by source order, and every
+   selector below has the same specificity as its desktop
+   counterpart earlier in this file. Placed earlier, these lost
+   every tie to rules defined later (e.g. .scene5-desc at line
+   ~1577 silently overrode an earlier @media block's font-size).
+   Keep new mobile rules appended here, not mixed in near the
+   desktop rule they override.
+   ========================================================== */
+@media (max-width: 768px) {
+  /* Hamburger stays as the toggle on mobile (tap to open/close), same as
+     desktop — it was just rendering at ~6.5px (1.39vw) and effectively
+     invisible/untappable. Give it a fixed, usable mobile size instead.
+     The menu itself stays closed by default and opens via the existing
+     JS toggle (.active / .visible classes) — untouched here. */
+  .fixed-nav-menu {
+    display: block;
+    height: 22px;
+    width: 22px;
+  }
+
+  /* The expanded menu's own children (items, close X, social icons) were
+     still sized in vw and shrank to near-invisible at real phone widths
+     even once opened — fix their sizing for when the menu IS open. */
+  #expandedMenu {
+    flex-direction: column;
+    align-items: center;
+    padding: 8vw 4vw 4vw;
+    gap: 4vw;
+  }
+
+  .menu-close {
+    font-size: 24px;
+    flex-basis: auto;
+  }
+
+  #expandedMenu .menu-social {
+    gap: 4vw;
+  }
+
+  #expandedMenu .menu-social .social-icon img {
+    height: 20px;
+    width: auto;
+  }
+
+  #expandedMenu .menu-center {
+    flex-direction: column !important;
+    gap: 4vw !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  #expandedMenu .menu-item {
+    font-size: 16px;
+  }
+
+  /* Scene4-8 red-circle heading/description text: floors at 6px/5px on
+     mobile so it fits inside the ~127px circle without crowding it.
+     .desc-expanded is included explicitly — clicking "read more" adds
+     that class alongside .scene*-desc rather than replacing it, but its
+     own rule only touches display/line-clamp/overflow, so without this
+     the text would keep its shrunk size correctly... except the ORIGINAL
+     bug was this whole block losing the specificity tie to the later
+     desktop rule, which made expanded text render at full desktop size.
+     Fixed now by living at true end-of-file; .desc-expanded gets the
+     same sizing explicitly so expanded text still fits the circle. */
+  .scene4-red-heading,
+  .scene5-heading,
+  .scene6-red-heading,
+  .scene7-heading,
+  .scene8-red-heading {
+    font-size: 4.2px;
+    margin-bottom: 2px;
+  }
+
+  .scene4-red-desc,
+  .scene5-desc,
+  .scene6-red-desc,
+  .scene7-desc,
+  .scene8-red-desc,
+  .desc-expanded {
+    font-size: 3.5px;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+
+  .scene4-red-desc,
+  .scene5-desc,
+  .scene6-red-desc,
+  .scene7-desc,
+  .scene8-red-desc {
+    -webkit-line-clamp: 2;
+  }
+
+  /* Read-more icon buttons were scaling to ~6.5px on mobile (1.67vw) —
+     too small to tap or read. Give them a fixed, usable mobile size. */
+  .read-more-icon {
+    height: 14px;
+  }
+
+  /* Scenes 4-8: on desktop these are wide horizontal compositions —
+     heading off to one side, photo + red-text circle + small grey logo
+     badge overlapping on the other, plus a couple of purely decorative
+     small circles further out. Every position is a left/right/top
+     percentage or vw offset tuned for a wide viewport, so on mobile it
+     doesn't reflow — it just renders the same wide layout compressed
+     into a narrow screen, pushing the circle group off-center/off-edge.
+     Recenter everything around left:50% and stack the heading above the
+     circle group instead. Desktop is untouched (media query only). */
+  .scene4-new-text,
+  .scene5-new-text,
+  .scene6-new-text,
+  .scene7-new-text,
+  .scene8-new-text {
+    position: absolute;
+    left: 50%;
+    right: auto;
+    top: 15%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    text-align: center;
+    font-size: 5vw;
+  }
+
+  /* Image + red-text circles centered on both axes — top:50% pairs with
+     each circle's existing transform:translate(-50%,-50%) to put their
+     exact center at the panel's exact center, same as the panel's own
+     justify-content/align-items:center already does for normal-flow
+     content. This is what makes "vertically centered like desktop"
+     actually true regardless of viewport height. */
+  .scene4-image-circle,
+  .scene4-red-circle,
+  .scene5-image-circle,
+  .scene5-red-circle,
+  .scene6-image-circle,
+  .scene6-red-circle,
+  .scene7-image-circle,
+  .scene7-red-circle,
+  .scene8-image-circle,
+  .scene8-red-circle {
+    left: 50% !important;
+    right: auto !important;
+    top: 55% !important;
+  }
+
+  .scene4-grey-circle,
+  .scene5-grey-circle,
+  .scene6-grey-circle,
+  .scene7-grey-circle,
+  .scene8-grey-circle {
+    left: 50% !important;
+    top: 30% !important;
+  }
+
+  /* Purely decorative accent circles — no text/logo, currently float
+     off the right edge on mobile. Hidden rather than repositioned. */
+  .scene4-small-red-circle,
+  .scene4-small-red-circle-right,
+  .scene5-small-red-circle,
+  .scene6-small-red-circle,
+  .scene6-small-red-circle-1,
+  .scene6-small-red-circle-2,
+  .scene6-small-red-circle-3,
+  .scene6-small-red-circle-right,
+  .scene7-small-red-circle,
+  .scene8-small-red-circle,
+  .scene8-small-red-circle-right {
+    display: none !important;
+  }
+}
 
