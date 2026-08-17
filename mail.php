@@ -1,15 +1,17 @@
 <?php
 /**
- * Shared form-to-email relay for DA Group's contact and career forms.
+ * Shared form-to-email relay for every form on the DA Group site: contact,
+ * career applications, and the footer newsletter signup.
  *
- * Replaces the third-party Web3Forms submission target. Uses PHPMailer over
- * authenticated SMTP so mail actually lands (vs. PHP's bare mail(), which
- * commonly gets spam-filtered) and gives full control over the resume
- * attachment size limit, which was the root cause of the career form's old
- * "Request Too Long" error on Web3Forms.
+ * Replaces the third-party Web3Forms submission target everywhere it was
+ * used. Uses PHPMailer over authenticated SMTP so mail actually lands (vs.
+ * PHP's bare mail(), which commonly gets spam-filtered) and gives full
+ * control over the resume attachment size limit, which was the root cause
+ * of the career form's old "Request Too Long" error on Web3Forms.
  *
- * Both career.html and contact.html POST here with a hidden "form_type"
- * field ("career" or "contact") so one script can serve both.
+ * career.html, contact.html, and the newsletter form in every page's footer
+ * (handled in script.js) all POST here with a hidden "form_type" field
+ * ("career", "contact", or "newsletter") so one script serves all three.
  *
  * ── SETUP (do this before deploying) — sending via contact@dagroupindia.com ──
  * contact@dagroupindia.com's MX records point to Google, so this is Google
@@ -51,8 +53,9 @@ const SMTP_PASSWORD = 'REPLACE_WITH_16_CHAR_APP_PASSWORD';            // TODO �
 const MAIL_FROM     = 'contact@dagroupindia.com';
 const MAIL_FROM_NAME = 'DA Group Website';
 
-const CONTACT_TO = 'contact@dagroupindia.com'; // one inbox handles both contact and career submissions
-const CAREER_TO  = 'contact@dagroupindia.com';
+const CONTACT_TO    = 'contact@dagroupindia.com'; // one inbox handles all three form types
+const CAREER_TO     = 'contact@dagroupindia.com';
+const NEWSLETTER_TO = 'contact@dagroupindia.com';
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB — matches client-side check in career.html
 const ALLOWED_RESUME_TYPES = [
@@ -72,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(false, 'Invalid request method.');
 }
 
-// Honeypot — both forms already carry this hidden field; a filled value means a bot
+// Honeypot — all three forms carry this hidden field; a filled value means a bot
 if (!empty($_POST['botcheck'])) {
     // Return success so bots don't learn the honeypot failed, but send nothing
     respond(true, 'Thank you.');
@@ -166,6 +169,26 @@ try {
             "Company: " . ($company !== '' ? $company : '—') . "\n" .
             "Position: " . ($position !== '' ? $position : '—') . "\n\n" .
             "Message:\n{$message}\n";
+
+    } elseif ($formType === 'newsletter') {
+        $email = trim($_POST['email'] ?? '');
+
+        if ($email === '') {
+            respond(false, 'Please enter your email address.');
+        }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            respond(false, 'Please enter a valid email address.');
+        }
+
+        // Newsletter signups notify the team rather than being auto-added to a
+        // mailing list — there's no mailing list provider wired up yet. Someone
+        // adds the address manually. Revisit if signup volume grows.
+        $mail->addAddress(NEWSLETTER_TO);
+        $mail->addReplyTo($email, $email);
+        $mail->Subject = 'New Newsletter Subscription - DA Group Website';
+        $mail->Body =
+            "New newsletter subscription from the DA Group website footer.\n\n" .
+            "Email: {$email}\n";
 
     } else {
         respond(false, 'Unknown form type.');

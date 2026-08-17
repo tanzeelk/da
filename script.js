@@ -2746,7 +2746,7 @@ if (scrollToTopBtn) {
   });
 }
 
-// ── Footer newsletter subscription (Web3Forms) — present on every page ──
+// ── Footer newsletter subscription (mail.php) — present on every page ──
 document.querySelectorAll(".gf-newsletter").forEach((form) => {
   const emailInput = form.querySelector(".gf-email-input");
   const termsCheck  = form.querySelector(".gf-checkbox");
@@ -2773,15 +2773,9 @@ document.querySelectorAll(".gf-newsletter").forEach((form) => {
     if (submitBtn) submitBtn.disabled = true;
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("mail.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: "887b57dc-791b-4771-9455-0ad3db74a657",
-          subject: "New Newsletter Subscription - DA Group Website",
-          from_name: "DA Group Newsletter",
-          email: emailInput.value,
-        }),
+        body: new FormData(form),
       });
       const data = await res.json();
       if (res.ok && data.success) {
