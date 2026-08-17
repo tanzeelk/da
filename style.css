@@ -2928,10 +2928,10 @@ body {
        heading sits to the left of this circle pair (same relationship
        as desktop) — centering the pair alone leaves the whole
        heading+circles composition looking left-heavy with empty space
-       on the right. 65% balances the heading's width on the left
+       on the right. 60% balances the heading's width on the left
        against the circle pair on the right so the combined block reads
        as centered. */
-    left: 65% !important;
+    left: 60% !important;
     right: auto !important;
     top: 50% !important;
   }
@@ -2953,7 +2953,7 @@ body {
   .scene6-grey-circle,
   .scene7-grey-circle,
   .scene8-grey-circle {
-    left: 65% !important;
+    left: 60% !important;
     top: calc(50% - 10vw) !important;
   }
 
