@@ -2937,20 +2937,9 @@ body {
     top: calc(50% - 16vw) !important;
   }
 
-  .scene4-new-text,
-  .scene5-new-text,
-  .scene6-new-text,
-  .scene7-new-text,
-  .scene8-new-text {
-    position: absolute !important;
-    left: 50% !important;
-    right: auto !important;
-    top: calc(50% - 26vw) !important;
-    transform: translate(-50%, -50%) !important;
-    width: 90vw !important;
-    text-align: center !important;
-    font-size: 5vw !important;
-  }
+  /* Heading left as-is (no override) — its desktop rule already scales
+     in vw and keeps the same left-of-circle position/alignment at any
+     width, which is what "should look like desktop" means here. */
 
   /* Purely decorative accent circles — no text/logo, currently float
      off the right edge on mobile. Hidden rather than repositioned. */
