@@ -2905,6 +2905,15 @@ body {
      (offset up by one circle-radius, ~16vw); the heading sits above
      the badge. This centers the whole composition as one block instead
      of each piece being placed independently. */
+  /* left/top get !important since nothing else touches those on these
+     elements. transform does NOT get !important — GSAP scroll-in
+     animations (circles sliding in from off-screen) write their own
+     inline transform (translateY/X) on these same elements, and an
+     !important stylesheet transform permanently wins over that inline
+     style, freezing the circles and killing the scroll animation
+     entirely. Non-important here lets GSAP's inline transform apply
+     normally once the animation is running; it only sets the resting
+     transform for scenes 5/7 (see below) before GSAP takes over. */
   .scene4-image-circle,
   .scene4-red-circle,
   .scene5-image-circle,
@@ -2918,14 +2927,18 @@ body {
     left: 50% !important;
     right: auto !important;
     top: 50% !important;
-    /* Scenes 5 & 7's image-circle uses translate(0,-50%) on desktop
-       (positioned by left edge, not center) while every other circle
-       here uses translate(-50%,-50%) (true center). Force the centered
-       version everywhere so left:50% means the same thing for all of
-       them — otherwise scene5/7's image circle sits with its LEFT EDGE
-       at 50% instead of its center, shifting it visibly off to the
-       right of the red circle instead of overlapping it. */
-    transform: translate(-50%, -50%) !important;
+  }
+
+  /* Scenes 5 & 7's image-circle/red-circle use translate(0,-50%) on
+     desktop (left-edge anchored) while 4/6/8 use translate(-50%,-50%)
+     (true center). Match them to true-center so left:50% means the
+     same thing everywhere — but without !important, so GSAP's own
+     inline transform during scroll still wins once animation starts. */
+  .scene5-image-circle,
+  .scene5-red-circle,
+  .scene7-image-circle,
+  .scene7-red-circle {
+    transform: translate(-50%, -50%);
   }
 
   .scene4-grey-circle,
