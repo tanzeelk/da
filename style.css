@@ -2897,27 +2897,14 @@ body {
      into a narrow screen, pushing the circle group off-center/off-edge.
      Recenter everything around left:50% and stack the heading above the
      circle group instead. Desktop is untouched (media query only). */
-  .scene4-new-text,
-  .scene5-new-text,
-  .scene6-new-text,
-  .scene7-new-text,
-  .scene8-new-text {
-    position: absolute;
-    left: 50%;
-    right: auto;
-    top: 15%;
-    transform: translate(-50%, -50%);
-    width: 90vw;
-    text-align: center;
-    font-size: 5vw;
-  }
-
-  /* Image + red-text circles centered on both axes — top:50% pairs with
-     each circle's existing transform:translate(-50%,-50%) to put their
-     exact center at the panel's exact center, same as the panel's own
-     justify-content/align-items:center already does for normal-flow
-     content. This is what makes "vertically centered like desktop"
-     actually true regardless of viewport height. */
+  /* Anchor everything to the panel's true vertical center (top:50%) and
+     stack outward from there in vw units — same unit the circles
+     already scale in, so the offsets stay proportional to circle size
+     instead of being independent percentage guesses. Circle center
+     sits exactly at 50%; the grey logo badge overlaps its top edge
+     (offset up by one circle-radius, ~16vw); the heading sits above
+     the badge. This centers the whole composition as one block instead
+     of each piece being placed independently. */
   .scene4-image-circle,
   .scene4-red-circle,
   .scene5-image-circle,
@@ -2930,7 +2917,7 @@ body {
   .scene8-red-circle {
     left: 50% !important;
     right: auto !important;
-    top: 55% !important;
+    top: 50% !important;
   }
 
   .scene4-grey-circle,
@@ -2939,7 +2926,22 @@ body {
   .scene7-grey-circle,
   .scene8-grey-circle {
     left: 50% !important;
-    top: 30% !important;
+    top: calc(50% - 16vw) !important;
+  }
+
+  .scene4-new-text,
+  .scene5-new-text,
+  .scene6-new-text,
+  .scene7-new-text,
+  .scene8-new-text {
+    position: absolute;
+    left: 50%;
+    right: auto;
+    top: calc(50% - 26vw);
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    text-align: center;
+    font-size: 5vw;
   }
 
   /* Purely decorative accent circles — no text/logo, currently float
