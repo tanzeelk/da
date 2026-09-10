@@ -845,6 +845,11 @@
     width: 100%;
   }
 
+  .founders-row--1,
+  .founders-row--2 {
+    height: auto;
+  }
+
   .founders-row--2 {
     margin-top: 10vw;
   }
@@ -860,11 +865,16 @@
     padding: 0;
     margin: 0;
     order: 1;
+    overflow: visible;
+  }
+
+  .founders-cell--circle-durgesh .founder-circle-wrap {
+    position: static;
   }
 
   .founders-cell--bio-anil,
   .founders-cell--bio-durgesh {
-    padding: 4vw 5vw 0;
+    padding: 1.5vw 5vw 0;
     margin: 0;
     order: 2;
     width: 100%;
@@ -887,22 +897,22 @@
     text-align: center;
   }
 
-  .founder-name {
+  .founder-name,
+  .founder-name--anil,
+  .founder-name--durgesh,
+  .founder-name--kanica {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
     font-size: 4vw;
-    position: relative;
-    bottom: auto;
-    left: auto;
-    right: auto;
     text-align: center;
     margin-top: 2vw;
-    display: block;
+    display: flex;
+    justify-content: center;
   }
 
   .founder-name--durgesh {
-    font-size: 4vw;
-    position: relative;
-    bottom: auto;
-    left: auto;
     margin: 2vw 0 0;
     text-align: center;
     order: 2;
@@ -911,6 +921,17 @@
 
   .founders-cell--circle-durgesh .founder-circle {
     order: 1;
+  }
+
+  /* Undo desktop absolute-overlap trick for last row's bio on mobile */
+  .founders-row--last .founders-cell--bio-durgesh {
+    position: static;
+    overflow: visible;
+  }
+
+  .founders-row--last .founder-bio-wrap {
+    position: static;
+    z-index: auto;
   }
 
   .founder-bio-wrap {
