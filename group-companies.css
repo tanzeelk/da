@@ -364,4 +364,8 @@
     width: 22vw;
   }
 
+  .gc-page .grey-circle:nth-child(5) .circle-logo {
+    width: 32vw;
+  }
+
 }
