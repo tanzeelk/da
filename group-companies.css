@@ -223,6 +223,12 @@
     padding-top: 0;
   }
 
+  /* ── Breadcrumb ── */
+  .gc-page .page-breadcrumb {
+    font-size: 2.8vw;
+    padding: 3vw 4vw;
+  }
+
   /* ── Footer mobile ── */
   .gc-page .footer {
     padding: 6vw 5vw 8vw;
@@ -312,10 +318,12 @@
 
   .gc-page .footer .menu-social .social-icon img { height: 5vw; width: auto; }
 
-  .gc-page .newsletter-form { width: 100%; max-width: 100%; padding: 3vw; }
-  .gc-page .newsletter-input { font-size: 3vw; padding: 2vw 0; }
-  .gc-page .newsletter-checkbox label { font-size: 2.8vw; }
-  .gc-page .checkbox-input { width: 3.5vw; height: 3.5vw; }
+  .gc-page .gf-newsletter { width: 100%; max-width: 100%; gap: 3vw; }
+  .gc-page .gf-email-wrap { padding: 1.5vw 2.5vw; }
+  .gc-page .gf-email-input { font-size: 3vw; }
+  .gc-page .gf-email-btn svg { width: 4.5vw !important; height: 4.5vw !important; }
+  .gc-page .gf-checkbox-wrap { gap: 2.5vw; font-size: 2.8vw; }
+  .gc-page .gf-checkbox { width: 4vw; height: 4vw; }
 
   .gc-hero {
     height: 50vw;

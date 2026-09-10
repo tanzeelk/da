@@ -681,6 +681,12 @@
     padding-top: 0;
   }
 
+  /* ── Breadcrumb ── */
+  .about-page .page-breadcrumb {
+    font-size: 2.8vw;
+    padding: 3vw 4vw;
+  }
+
   /* ── About content — stack vertically ── */
   .about-content {
     flex-direction: column;
@@ -1042,10 +1048,12 @@
 
   .about-page .footer .menu-social .social-icon img { height: 5vw; width: auto; }
 
-  .about-page .newsletter-form { width: 100%; max-width: 100%; padding: 3vw; }
-  .about-page .newsletter-input { font-size: 3vw; padding: 2vw 0; }
-  .about-page .newsletter-checkbox label { font-size: 2.8vw; }
-  .about-page .checkbox-input { width: 3.5vw; height: 3.5vw; }
+  .about-page .gf-newsletter { width: 100%; max-width: 100%; gap: 3vw; }
+  .about-page .gf-email-wrap { padding: 1.5vw 2.5vw; }
+  .about-page .gf-email-input { font-size: 3vw; }
+  .about-page .gf-email-btn svg { width: 4.5vw !important; height: 4.5vw !important; }
+  .about-page .gf-checkbox-wrap { gap: 2.5vw; font-size: 2.8vw; }
+  .about-page .gf-checkbox { width: 4vw; height: 4vw; }
 }
 
 /* ── Our Progress Timeline ── */

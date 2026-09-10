@@ -361,6 +361,12 @@
     padding-top: 0;
   }
 
+  /* ── Breadcrumb ── */
+  .contact-page .page-breadcrumb {
+    font-size: 2.8vw;
+    padding: 3vw 4vw;
+  }
+
   /* ── Hero ── */
   .contact-hero {
     height: 45vw;
@@ -640,23 +646,32 @@
     width: auto;
   }
 
-  .contact-page .newsletter-form {
+  .contact-page .gf-newsletter {
     width: 100%;
     max-width: 100%;
-    padding: 3vw;
+    gap: 3vw;
   }
 
-  .contact-page .newsletter-input {
+  .contact-page .gf-email-wrap {
+    padding: 1.5vw 2.5vw;
+  }
+
+  .contact-page .gf-email-input {
     font-size: 3vw;
-    padding: 2vw 0;
   }
 
-  .contact-page .newsletter-checkbox label {
+  .contact-page .gf-email-btn svg {
+    width: 4.5vw !important;
+    height: 4.5vw !important;
+  }
+
+  .contact-page .gf-checkbox-wrap {
+    gap: 2.5vw;
     font-size: 2.8vw;
   }
 
-  .contact-page .checkbox-input {
-    width: 3.5vw;
-    height: 3.5vw;
+  .contact-page .gf-checkbox {
+    width: 4vw;
+    height: 4vw;
   }
 }

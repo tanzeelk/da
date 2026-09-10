@@ -490,6 +490,12 @@
     width: auto;
   }
 
+  /* ── Breadcrumb ── */
+  .career-page .page-breadcrumb {
+    font-size: 2.8vw;
+    padding: 3vw 4vw;
+  }
+
   /* Nav links: centered, stacked */
   .career-page .menu-center {
     order: 2;
@@ -789,24 +795,33 @@
   }
 
   /* Newsletter */
-  .career-page .newsletter-form {
+  .career-page .gf-newsletter {
     width: 100%;
     max-width: 100%;
-    padding: 3vw;
+    gap: 3vw;
   }
 
-  .career-page .newsletter-input {
+  .career-page .gf-email-wrap {
+    padding: 1.5vw 2.5vw;
+  }
+
+  .career-page .gf-email-input {
     font-size: 3vw;
-    padding: 2vw 0;
   }
 
-  .career-page .newsletter-checkbox label {
+  .career-page .gf-email-btn svg {
+    width: 4.5vw !important;
+    height: 4.5vw !important;
+  }
+
+  .career-page .gf-checkbox-wrap {
+    gap: 2.5vw;
     font-size: 2.8vw;
   }
 
-  .career-page .checkbox-input {
-    width: 3.5vw;
-    height: 3.5vw;
+  .career-page .gf-checkbox {
+    width: 4vw;
+    height: 4vw;
   }
 }
 
