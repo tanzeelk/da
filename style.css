@@ -2798,6 +2798,18 @@ body {
    desktop rule they override.
    ========================================================== */
 @media (max-width: 768px) {
+  /* Measured .fixed-nav height at real phone widths (logo + hamburger +
+     padding no longer scale down to the same proportions as the 7.28vw
+     desktop measurement) — pages offsetting content with var(--nav-height)
+     need this or their first section renders clipped under the fixed nav. */
+  :root {
+    --nav-height: 87px;
+  }
+
+  .fixed-nav-logo {
+    height: 42px;
+  }
+
   /* Hamburger stays as the toggle on mobile (tap to open/close), same as
      desktop — it was just rendering at ~6.5px (1.39vw) and effectively
      invisible/untappable. Give it a fixed, usable mobile size instead.
@@ -2805,8 +2817,8 @@ body {
      JS toggle (.active / .visible classes) — untouched here. */
   .fixed-nav-menu {
     display: block;
-    height: 22px;
-    width: 22px;
+    height: 38px;
+    width: 38px;
   }
 
   /* The expanded menu's own children (items, close X, social icons) were

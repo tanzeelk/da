@@ -614,72 +614,7 @@
 
 @media (max-width: 768px) {
 
-  /* ── Nav ── */
-  .about-page #fixedNav {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 3vw 4vw;
-    background: #e5e6e7;
-    z-index: 1000;
-  }
-
-  .about-page #fixedNav .fixed-nav-logo {
-    height: 14vw;
-    width: auto;
-    display: block;
-  }
-
-  .about-page #fixedNav .fixed-nav-menu {
-    display: none;
-  }
-
-  .about-page #expandedMenu {
-    position: relative !important;
-    transform: none !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 4vw 4vw;
-    gap: 0;
-    min-height: unset;
-    top: 0;
-  }
-
-  .about-page .menu-close {
-    display: none;
-  }
-
-  .about-page #expandedMenu .menu-social {
-    order: 1;
-    align-self: flex-end;
-    gap: 2vw;
-    margin-bottom: 2vw;
-  }
-
-  .about-page #expandedMenu .menu-social .social-icon img {
-    height: 3vw;
-    width: auto;
-  }
-
-  .about-page #expandedMenu .menu-center {
-    order: 2;
-    flex-direction: column !important;
-    gap: 0.3vw !important;
-    align-items: center;
-    width: 100%;
-  }
-
-  .about-page #expandedMenu .menu-item {
-    font-size: 2.5vw;
-  }
-
-  /* ── Main ── */
-  .about-main {
-    padding-top: 0;
-  }
+  /* ── Nav ── nav/hamburger toggle handled by style.css base mobile rules ── */
 
   /* ── Breadcrumb ── */
   .about-page .page-breadcrumb {

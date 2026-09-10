@@ -129,72 +129,7 @@
 
 @media (max-width: 768px) {
 
-  /* ── Nav ── */
-  .iu-page #fixedNav {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 3vw 4vw;
-    background: #e5e6e7;
-    z-index: 1000;
-  }
-
-  .iu-page #fixedNav .fixed-nav-logo {
-    height: 14vw;
-    width: auto;
-    display: block;
-  }
-
-  .iu-page #fixedNav .fixed-nav-menu {
-    display: none;
-  }
-
-  .iu-page #expandedMenu {
-    position: relative !important;
-    transform: none !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 4vw 4vw;
-    gap: 0;
-    min-height: unset;
-    top: 0;
-  }
-
-  .iu-page .menu-close {
-    display: none;
-  }
-
-  .iu-page .menu-social {
-    order: 1;
-    align-self: flex-end;
-    gap: 2vw;
-    margin-bottom: 2vw;
-  }
-
-  .iu-page .menu-social .social-icon img {
-    height: 3vw;
-    width: auto;
-  }
-
-  .iu-page .menu-center {
-    order: 2;
-    flex-direction: column !important;
-    gap: 0.3vw !important;
-    align-items: center;
-    width: 100%;
-  }
-
-  .iu-page .menu-item {
-    font-size: 2.5vw;
-  }
-
-  /* ── Main ── */
-  .iu-main {
-    padding-top: 0;
-  }
+  /* ── Nav ── nav/hamburger toggle handled by style.css base mobile rules ── */
 
   /* ── Breadcrumb ── */
   .iu-page .page-breadcrumb {
