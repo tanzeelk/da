@@ -1,25 +1,21 @@
-// Homepage scenes live on a 16:10 "stage" (see .stage in style.css). On
-// desktop/landscape the stage is the largest 16:10 box that fits the window;
-// on phones/portrait tablets and other pages it is the full viewport width.
-// Keep this media query in sync with the .stage rules in style.css.
-const stageMQ = window.matchMedia("(min-width: 769px) and (orientation: landscape), (min-width: 1025px)");
-const stageActive = () => document.body.classList.contains("home") && stageMQ.matches;
+// Homepage scenes live on a 16:10 "stage" (see .stage in style.css): the
+// largest 16:10 box that fits the window, at every screen size, so phones get
+// the desktop composition and animations scaled down. Other pages use the
+// plain viewport width.
+const stageActive = () => document.body.classList.contains("home");
 const stageW = () =>
   stageActive() ? Math.min(window.innerWidth, window.innerHeight / 0.625) : window.innerWidth;
-// Height scenes fill: the stage on desktop, the viewport on phones/portrait tablets.
-const sceneH = () => (stageActive() ? designH() : window.innerHeight);
+// Height scenes fill: the 16:10 stage height.
+const sceneH = () => designH();
 
 // Converts px measured at the 1440px-wide design baseline to a CSS px string
 // on the current stage (for hand-tuned top/left values in tweens).
 const bpx = (px) => (stageActive() ? `${(px / 1440) * stageW()}px` : `${px}px`);
 
-// Left edge of the stage in the viewport, for position:fixed scene elements.
-const stageLeft = () => (window.innerWidth - stageW()) / 2;
-
-// Pinned-scene scroll distances were tuned at the 1440x900 baseline; on the
-// desktop stage they grow with stage height so every scene takes the same
-// share of a screen's scrolling at any size. Phones keep the tuned values.
-const scrollLen = (px) => (stageActive() ? (px * designH()) / 900 : px);
+// Pinned-scene scroll distances were tuned on a 900px-tall window; scale them
+// with the window height so each scene takes the same share of a screen's
+// scrolling on any device (unchanged at 1440x900).
+const scrollLen = (px) => (stageActive() ? (px * window.innerHeight) / 900 : px);
 
 // Converts design px (at 1920px base) to current stage px at runtime.
 // Use this for all GSAP x/y/width/height values so animations scale with the stage.
@@ -115,6 +111,7 @@ if (typeof gsap !== 'undefined') {
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
   });
+
   // Web fonts can change text heights after the load refresh.
   if (document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());
 
@@ -138,15 +135,6 @@ if (typeof gsap !== 'undefined') {
     });
   }
 
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      if (t3) { t3.kill(); }
-      initScene3();
-      ScrollTrigger.refresh(true);
-    }, 200);
-  });
 }
 
 // Fixed Navigation Bar - Show from Scene 1 onwards till the end
@@ -159,7 +147,7 @@ let isMenuOpen = false;
 if (typeof gsap !== 'undefined') {
   ScrollTrigger.create({
     trigger: ".scene1",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     endTrigger: "body",
     end: "bottom bottom",
     markers: false,
@@ -224,7 +212,7 @@ if (typeof gsap !== 'undefined') {
 let tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene1",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     end: () => "+=" + scrollLen(1800), // extended to include red circle moving down
     scrub: true,
     pin: true,
@@ -263,7 +251,7 @@ document.querySelector('#expandedMenu a[href="#home"]')?.addEventListener('click
 let t2 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene2",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     end: () => "+=" + scrollLen(500), // reduced for faster image reveal
     scrub: true,
     pin: true,
@@ -574,7 +562,7 @@ function initScene3() {
 t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
@@ -616,7 +604,10 @@ expandTL.to(".scene3-circle-container", {
   top: () => {
     const logoEl = document.querySelector(".logo") || document.querySelector(".fixed-nav-logo");
     const logoBottom = logoEl ? logoEl.getBoundingClientRect().bottom : vw(95);
-    return logoBottom + designH() * 0.10;
+    // Letterboxed (e.g. phones): the nav sits above the stage, so use where the
+    // desktop nav bottom falls on the stage instead (4.51% of its width).
+    const navBottom = window.innerHeight > designH() + 1 ? stageW() * 0.0451 : logoBottom;
+    return navBottom + designH() * 0.10;
   },
   width: () => stageW(),
   height: () => Math.max(vh(330), sceneH() * 0.40),
@@ -761,6 +752,29 @@ greyCircles.forEach((circle, i) => {
 }
 initScene3();
 
+// Rebuild scene 3 when the window width changes (its banner sizes are read
+// once). Height-only resizes, like a phone's address bar collapsing, only
+// need the refresh ScrollTrigger already does.
+let resizeTimer;
+let lastResizeWidth = window.innerWidth;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (window.innerWidth === lastResizeWidth) return;
+    lastResizeWidth = window.innerWidth;
+    if (t3) {
+      if (t3.scrollTrigger) t3.scrollTrigger.kill();
+      t3.kill();
+    }
+    // initScene3 also creates the floating-circle triggers; drop the old ones
+    ScrollTrigger.getAll()
+      .filter((st) => st.trigger && st.trigger.classList.contains("grey-circles-section"))
+      .forEach((st) => { if (st.animation) st.animation.kill(); st.kill(); });
+    initScene3();
+    ScrollTrigger.refresh(true);
+  }, 200);
+});
+
 // ============================================
 // SCENE 4 Timeline - Red circle and image rise up, then image slides left
 // ============================================
@@ -768,7 +782,7 @@ initScene3();
 let t4 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene4",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
@@ -946,7 +960,7 @@ t4.to(
 let t5 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene5",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     end: () => "+=" + scrollLen(900),
     scrub: 0.5,
     pin: true,
@@ -970,7 +984,7 @@ const scene5GreyOutlineCircle = document.querySelector(
 );
 
 gsap.set(scene5SmallRedCircle, { y: vw(-800), x: vw(-550) });
-gsap.set(scene5TopLeftCircle, { left: stageLeft() + vw(400) + "px" });
+gsap.set(scene5TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 const scene5CenterY = () => designH() * 0.6 - stageW() * 0.18;
 
@@ -1001,10 +1015,10 @@ t5.to(
 // Top left circle slides in from left (0-0.25)
 t5.fromTo(
   scene5TopLeftCircle,
-  { left: stageLeft() + vw(400) + "px", opacity: 0 },
+  { left: vw(400) + "px", opacity: 0 },
   {
     opacity: 1,
-    left: stageLeft() + vw(180) + "px",
+    left: vw(180) + "px",
     duration: 1,
     ease: "power2.out",
     onComplete: () => {
@@ -1212,7 +1226,7 @@ gsap.set(scene6RightArrows, { opacity: 0 });
 let t6 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene6",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
@@ -1451,7 +1465,7 @@ t6.to(
 let t7 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene7",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     end: () => "+=" + scrollLen(800),
     scrub: 0.5,
     pin: true,
@@ -1672,7 +1686,7 @@ t7.to(
 let t8 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene8",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
@@ -2791,6 +2805,21 @@ if (homeLink) {
 }
 
 // END OF COMMENTED OUT CODE - SCENE 7
+
+// Edge bands above/below a letterboxed stage stand in for the desktop window's
+// top and bottom edges; drop them once the last scene is done so the footer
+// scrolls in normally.
+const stageMasks = document.querySelectorAll(".stage-mask");
+if (stageMasks.length && t8.scrollTrigger) {
+  ScrollTrigger.create({
+    start: () => t8.scrollTrigger.end,
+    end: "max",
+    // The page bottom is this trigger's end, so use enter/leave-back rather
+    // than isActive (which turns false exactly at the end).
+    onEnter: () => stageMasks.forEach((m) => m.classList.add("is-off")),
+    onLeaveBack: () => stageMasks.forEach((m) => m.classList.remove("is-off")),
+  });
+}
 
 // Handle deep-link from group-companies page: jump to end of the target scene's animation
 window.addEventListener('load', () => {

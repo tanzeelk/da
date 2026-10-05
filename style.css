@@ -18,12 +18,11 @@ html, body {
 }
 
 /* Homepage scene "stage": every scene is designed on a 1440x900 (16:10)
-   canvas. --u is 1/100 of the stage width. Elsewhere --u is plain 1vw and
-   .stage boxes are display:contents, so non-home pages and the mobile /
-   portrait-tablet layouts are unchanged. On desktop/landscape the homepage
-   stage fits the window in both directions (min(1vw, 1.6vh)) and is centered
-   in its panel, so each scene keeps the full-screen composition at any
-   window size or aspect ratio. Keep in sync with stageW() in script.js. */
+   canvas. --u is 1/100 of the stage width. On the homepage the stage fits the
+   window in both directions (min(1vw, 1.6vh)) and is centered in its panel at
+   every screen size, so phones get the desktop composition scaled down.
+   Elsewhere --u is plain 1vw and .stage is display:contents.
+   Keep in sync with stageW() in script.js. */
 :root {
   --u: 1vw;
 }
@@ -32,42 +31,74 @@ html, body {
   display: contents;
 }
 
-@media (min-width: 769px) and (orientation: landscape), (min-width: 1025px) {
-  body.home {
-    --u: min(1vw, 1.6vh);
-    /* Re-declared so they resolve against the stage --u, not :root's 1vw */
-    --spacing-unit: calc(1.39 * var(--u));
-    --font-base: calc(1.25 * var(--u));
-    --font-hero: calc(4.5 * var(--u));
-    --font-hero-scene2: calc(5 * var(--u));
-    --font-small: calc(0.8 * var(--u));
-    --circle-size: calc(37.5 * var(--u));
-    --circle-size-scene2: calc(28.8 * var(--u));
-  }
+body.home {
+  --u: min(1vw, 1.6vh);
+  /* Re-declared so they resolve against the stage --u, not :root's 1vw */
+  --spacing-unit: calc(1.39 * var(--u));
+  --font-base: calc(1.25 * var(--u));
+  --font-hero: calc(4.5 * var(--u));
+  --font-hero-scene2: calc(5 * var(--u));
+  --font-small: calc(0.8 * var(--u));
+  --circle-size: calc(37.5 * var(--u));
+  --circle-size-scene2: calc(28.8 * var(--u));
+}
 
-  /* position:fixed is viewport-relative, so add the stage's top offset */
-  body.home .scene5-top-left-circle {
-    top: calc((100vh - 62.5 * var(--u)) / 2 + 11.22 * var(--u));
-  }
+/* Scene 5's decorations are position:fixed elsewhere; on the homepage they
+   live in the stage like scene 7's, so they scale and pin with it. */
+body.home :is(.scene5-top-left-circle, .scene5-grey-outline-circle, .scene5-descending-red-circle) {
+  position: absolute;
+}
 
-  /* Every pinned scene fills the viewport so its stage can be centered
-     (at 16:10 these heights were already equal to 100vh). */
-  body.home .panel {
-    padding: 0;
-    height: 100vh;
-  }
+/* Every scene panel is exactly the stage's height and pins at the window's
+   center, so scenes hand over edge to edge as on desktop (at 16:10 this is
+   100vh, pinned at the top). The space above scene 1 lets the page start
+   at the beginning of scene 1 on letterboxed screens. */
+body.home .panel {
+  padding: 0;
+  height: calc(62.5 * var(--u));
+}
 
-  body.home .stage {
-    position: relative;
-    flex: 1 1 auto;
-    min-height: 0;
-    width: calc(100 * var(--u));
-    max-height: calc(62.5 * var(--u));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+body.home .scene1 {
+  margin-top: calc((100vh - 62.5 * var(--u)) / 2);
+}
+
+/* On letterboxed screens (phones, tall windows) these cover the area above
+   and below the stage, like a desktop window's edges hide off-canvas scene
+   content. Zero height when the window is already 16:10 or wider. Above the
+   scenes, below the nav (1000) and menu overlay (999). */
+body.home .stage-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: calc((100vh - 62.5 * var(--u)) / 2);
+  background: #e5e6e7;
+  z-index: 990;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+body.home .stage-mask-top {
+  top: 0;
+}
+
+body.home .stage-mask-bottom {
+  bottom: 0;
+}
+
+body.home .stage-mask.is-off {
+  opacity: 0;
+}
+
+body.home .stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: calc(100 * var(--u));
+  max-height: calc(62.5 * var(--u));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -2930,37 +2961,40 @@ body {
      desktop rule, which made expanded text render at full desktop size.
      Fixed now by living at true end-of-file; .desc-expanded gets the
      same sizing explicitly so expanded text still fits the circle. */
-  .scene4-red-heading,
-  .scene5-heading,
-  .scene6-red-heading,
-  .scene7-heading,
-  .scene8-red-heading {
+  /* The rules below patch the scene elements for the group-companies page
+     on phones. The homepage uses its scaled 16:10 stage at every size
+     instead, so they are excluded there. */
+  body:not(.home) .scene4-red-heading,
+  body:not(.home) .scene5-heading,
+  body:not(.home) .scene6-red-heading,
+  body:not(.home) .scene7-heading,
+  body:not(.home) .scene8-red-heading {
     font-size: 4.2px;
     margin-bottom: 2px;
   }
 
-  .scene4-red-desc,
-  .scene5-desc,
-  .scene6-red-desc,
-  .scene7-desc,
-  .scene8-red-desc,
-  .desc-expanded {
+  body:not(.home) .scene4-red-desc,
+  body:not(.home) .scene5-desc,
+  body:not(.home) .scene6-red-desc,
+  body:not(.home) .scene7-desc,
+  body:not(.home) .scene8-red-desc,
+  body:not(.home) .desc-expanded {
     font-size: 3.5px;
     line-height: 1.2;
     margin-bottom: 2px;
   }
 
-  .scene4-red-desc,
-  .scene5-desc,
-  .scene6-red-desc,
-  .scene7-desc,
-  .scene8-red-desc {
+  body:not(.home) .scene4-red-desc,
+  body:not(.home) .scene5-desc,
+  body:not(.home) .scene6-red-desc,
+  body:not(.home) .scene7-desc,
+  body:not(.home) .scene8-red-desc {
     -webkit-line-clamp: 2;
   }
 
   /* Read-more icon buttons were scaling to ~6.5px on mobile (1.67vw) —
      too small to tap or read. Give them a fixed, usable mobile size. */
-  .read-more-icon {
+  body:not(.home) .read-more-icon {
     height: 14px;
   }
 
@@ -2994,20 +3028,20 @@ body {
      (right: calc(50% + Xvw), text-align:left). Shift the pair right of
      true center so the combined heading+circles block reads centered
      instead of left-heavy. */
-  .scene4-image-circle,
-  .scene4-red-circle,
-  .scene6-image-circle,
-  .scene6-red-circle,
-  .scene8-image-circle,
-  .scene8-red-circle {
+  body:not(.home) .scene4-image-circle,
+  body:not(.home) .scene4-red-circle,
+  body:not(.home) .scene6-image-circle,
+  body:not(.home) .scene6-red-circle,
+  body:not(.home) .scene8-image-circle,
+  body:not(.home) .scene8-red-circle {
     left: 62% !important;
     right: auto !important;
     top: 50% !important;
   }
 
-  .scene4-grey-circle,
-  .scene6-grey-circle,
-  .scene8-grey-circle {
+  body:not(.home) .scene4-grey-circle,
+  body:not(.home) .scene6-grey-circle,
+  body:not(.home) .scene8-grey-circle {
     left: 62% !important;
     top: 50% !important;
   }
@@ -3015,10 +3049,10 @@ body {
   /* Scenes 5, 7: mirrored — heading sits RIGHT of the circle pair on
      desktop (left: 38%/45%, text-align:right). Shift the pair LEFT of
      true center (100 - 62 = 38%) to balance the same way, mirrored. */
-  .scene5-image-circle,
-  .scene5-red-circle,
-  .scene7-image-circle,
-  .scene7-red-circle {
+  body:not(.home) .scene5-image-circle,
+  body:not(.home) .scene5-red-circle,
+  body:not(.home) .scene7-image-circle,
+  body:not(.home) .scene7-red-circle {
     left: 38% !important;
     right: auto !important;
     top: 50% !important;
@@ -3030,35 +3064,35 @@ body {
     transform: translate(-50%, -50%);
   }
 
-  .scene5-grey-circle,
-  .scene7-grey-circle {
+  body:not(.home) .scene5-grey-circle,
+  body:not(.home) .scene7-grey-circle {
     left: 38% !important;
     top: 50% !important;
   }
 
   /* Heading kept at its desktop position/alignment — just nudged down
      a bit from the top edge. */
-  .scene4-new-text,
-  .scene5-new-text,
-  .scene6-new-text,
-  .scene7-new-text,
-  .scene8-new-text {
+  body:not(.home) .scene4-new-text,
+  body:not(.home) .scene5-new-text,
+  body:not(.home) .scene6-new-text,
+  body:not(.home) .scene7-new-text,
+  body:not(.home) .scene8-new-text {
     top: 10vw !important;
   }
 
   /* Purely decorative accent circles — no text/logo, currently float
      off the right edge on mobile. Hidden rather than repositioned. */
-  .scene4-small-red-circle,
-  .scene4-small-red-circle-right,
-  .scene5-small-red-circle,
-  .scene6-small-red-circle,
-  .scene6-small-red-circle-1,
-  .scene6-small-red-circle-2,
-  .scene6-small-red-circle-3,
-  .scene6-small-red-circle-right,
-  .scene7-small-red-circle,
-  .scene8-small-red-circle,
-  .scene8-small-red-circle-right {
+  body:not(.home) .scene4-small-red-circle,
+  body:not(.home) .scene4-small-red-circle-right,
+  body:not(.home) .scene5-small-red-circle,
+  body:not(.home) .scene6-small-red-circle,
+  body:not(.home) .scene6-small-red-circle-1,
+  body:not(.home) .scene6-small-red-circle-2,
+  body:not(.home) .scene6-small-red-circle-3,
+  body:not(.home) .scene6-small-red-circle-right,
+  body:not(.home) .scene7-small-red-circle,
+  body:not(.home) .scene8-small-red-circle,
+  body:not(.home) .scene8-small-red-circle-right {
     display: none !important;
   }
 }
