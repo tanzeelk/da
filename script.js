@@ -345,9 +345,9 @@ circle.appendChild(circleCenter);
 gsap.set(".circle-front", { opacity: 0 });
 
 const circleBaseSize = stageW() * 0.03123;
-// Scene 3 banner height: a strip on desktop; on phones a little deeper so the
-// two-line headline and the caption circle fit side by side inside it.
-const bannerH = () => (onPhone() ? window.innerWidth * 0.56 : Math.max(vh(330), sceneH() * 0.40));
+// Scene 3 banner height: a strip on desktop; taller on phones so the photo,
+// the stacked headline and the caption circle all fit inside it.
+const bannerH = () => (onPhone() ? window.innerHeight * 0.56 : Math.max(vh(330), sceneH() * 0.40));
 
 // Hero photo circle diameter: 70% of the stage height on desktop, near full
 // width on phones (where 70% of the 16:10 height would be tiny).
@@ -635,9 +635,9 @@ expandTL.to(scene3Image, {
 // circle) and grows to a readable size as the banner opens, staying centered.
 if (onPhone()) {
   expandTL.to(scene3RedCircle, {
-    width: () => window.innerWidth * 0.36,
-    height: () => window.innerWidth * 0.36,
-    left: () => window.innerWidth * (0.5 - 0.18),
+    width: () => window.innerWidth * 0.44,
+    height: () => window.innerWidth * 0.44,
+    left: () => window.innerWidth * (0.5 - 0.22),
     ease: "none",
     duration: 1,
   }, 0);
@@ -668,8 +668,8 @@ expandTL.to(
   {
     x: () => {
       const circleHalfW = scene3RedCircle.offsetWidth / 2;
-      // Phones: right side of the banner, beside the two-line headline (as on desktop)
-      const targetCenterX = onPhone() ? stageW() * 0.79 : stageW() * 0.95 - circleHalfW;
+      // Phones: below the stacked headline instead of at the banner's right edge
+      const targetCenterX = onPhone() ? stageW() * 0.7 : stageW() * 0.95 - circleHalfW;
       const currentCenterX = stageW() * 0.5;
       return targetCenterX - currentCenterX;
     },
@@ -677,7 +677,8 @@ expandTL.to(
       const containerH = bannerH();
       const circleH = scene3RedCircle.offsetHeight;
       const circleOffsetTop = scene3RedCircle.offsetTop;
-      return (containerH / 2 - circleH / 2) - circleOffsetTop;
+      const phoneDrop = onPhone() ? containerH * 0.24 : 0; // lower right, inside the banner
+      return (containerH / 2 - circleH / 2) - circleOffsetTop + phoneDrop;
     },
     ease: "none",
     duration: 1,
@@ -751,7 +752,7 @@ t3.fromTo(
   { opacity: 1, y: () => {
       const imageRect = scene3Image.getBoundingClientRect();
       const textRect = scene3GroupText.getBoundingClientRect();
-      const stack = onPhone() ? -textRect.height * 0.55 : 0; // phones: two lines
+      const stack = onPhone() ? -textRect.height * 0.55 - imageRect.height * 0.2 : 0; // phones: two lines, upper part of banner
       return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2) + stack;
     }, duration: 0.5, ease: "power3.out" },
   "circlesStart"
@@ -763,7 +764,7 @@ t3.fromTo(
   { opacity: 1, y: () => {
       const imageRect = scene3Image.getBoundingClientRect();
       const textRect = scene3VenturesText.getBoundingClientRect();
-      const stack = onPhone() ? +textRect.height * 0.55 : 0; // phones: two lines
+      const stack = onPhone() ? +textRect.height * 0.55 - imageRect.height * 0.2 : 0; // phones: two lines, upper part of banner
       return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2) + stack;
     }, duration: 0.5, ease: "power3.out" },
   "<0.3"
@@ -783,25 +784,12 @@ expandTL.to(
 // Animate the 4 main grey circles from grey-circles-section
 const greyCircles = document.querySelectorAll(".grey-circle");
 
-// Phones: the banner is sized by width but the logo row's rise was tuned in
-// height units, so place the row from the banner's final position instead
-// (just under it, as on desktop) at the end of scene 3.
-function phoneLogoRowY(circle) {
-  const st = t3 && t3.scrollTrigger;
-  if (!st) return vh(-350);
-  const logoEl = document.querySelector(".logo") || document.querySelector(".fixed-nav-logo");
-  const navBottom = logoEl ? logoEl.getBoundingClientRect().bottom : vw(95);
-  const bannerBottom = navBottom + designH() * 0.10 + bannerH();
-  const docTop = circle.getBoundingClientRect().top + window.scrollY - gsap.getProperty(circle, "y");
-  return bannerBottom + window.innerWidth * 0.05 - (docTop - st.end);
-}
-
 greyCircles.forEach((circle, i) => {
   t3.fromTo(
     circle,
     { y: vh(200), opacity: 0 },
     {
-      y: () => (onPhone() ? phoneLogoRowY(circle) : vh(-350)),
+      y: vh(-350),
       opacity: 1,
       duration: 0.5,
       ease: "sine.out",
