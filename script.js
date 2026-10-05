@@ -6,6 +6,10 @@ const stageMQ = window.matchMedia("(min-width: 769px) and (orientation: landscap
 const stageActive = () => document.body.classList.contains("home") && stageMQ.matches;
 const stageW = () =>
   stageActive() ? Math.min(window.innerWidth, window.innerHeight / 0.625) : window.innerWidth;
+// Phones/portrait tablets use a stacked scene layout positioned by the mobile
+// CSS block; scene tweens skip their desktop x/y offsets there.
+const onPhone = () => document.body.classList.contains("home") && !stageMQ.matches;
+
 // Height scenes fill: the stage on desktop, the viewport on phones/portrait tablets.
 const sceneH = () => (stageActive() ? designH() : window.innerHeight);
 
@@ -94,6 +98,13 @@ if (typeof gsap !== 'undefined') {
     "translate(0px, -50%)": { xPercent: 0, yPercent: -50 },
     "translateX(-50%)": { xPercent: -50, yPercent: 0 },
   };
+  // Phone stacked layout centers every scene 4-8 circle with translate(-50%, -50%)
+  if (onPhone()) {
+    const phoneCircles = [4, 5, 6, 7, 8].flatMap((n) =>
+      ["red-circle", "image-circle", "grey-circle"].map((c) => `.scene${n}-${c}`));
+    gsap.set(phoneCircles.join(","), { xPercent: -50, yPercent: -50, x: 0, y: 0 });
+  }
+
   for (const sheet of stageActive() ? document.styleSheets : []) {
     let rules;
     try { rules = sheet.cssRules; } catch (e) { continue; } // cross-origin (fonts)
@@ -333,7 +344,10 @@ circle.appendChild(circleCenter);
 gsap.set(".circle-front", { opacity: 0 });
 
 const circleBaseSize = stageW() * 0.03123;
-const circleMaxScale = (designH() * 0.7) / circleBaseSize;
+// Hero photo circle diameter: 70% of the stage height on desktop, near full
+// width on phones (where 70% of the 16:10 height would be tiny).
+const heroD = () => (onPhone() ? Math.min(window.innerWidth * 0.86, window.innerHeight * 0.48) : designH() * 0.7);
+const circleMaxScale = heroD() / circleBaseSize;
 const circleFinalPx = circleBaseSize * circleMaxScale;
 gsap.set(redCircleOverlay, { width: circleFinalPx, height: circleFinalPx });
 const circleMidScale = circleMaxScale / 3;
@@ -485,19 +499,19 @@ const journeyText = document.querySelector(".journey-text");
 tl.fromTo(
   journeyText,
   { opacity: 0, y: vw(300) },
-  { opacity: 1, y: vw(190), duration: 2, ease: "power2.inOut" },
+  { opacity: 1, y: onPhone() ? 0 : vw(190), duration: 2, ease: "power2.inOut" },
   "<"
 );
 
 tl.to(redCircleOverlay, {
-  y: designH() * 0.55,
+  y: heroD() * 0.786,
   duration: 1.5,
   ease: "none"
 });
 
 // Keep red circle visible to bridge Scene 1 and Scene 2
 tl.to(redCircleOverlay, {
-  y: designH() * 0.55,
+  y: heroD() * 0.786,
   duration: 2,
   opacity: 1,
   ease: "none"
@@ -508,7 +522,8 @@ tl.to(redCircleOverlay, {
 const circleBackScene2Top = document.querySelector(".scene2 .circle-back.top");
 const circleBackScene2 = document.querySelector(".scene2 .circle-back.back");
 const heroTextScene2 = document.querySelector(".scene2 .hero-text-scene2");
-gsap.set([circleBackScene2Top, circleBackScene2], { scale: 10 });
+// Scene 2 circles continue scene 1's photo circle at the same size
+gsap.set([circleBackScene2Top, circleBackScene2], { scale: onPhone() ? heroD() / circleBaseSize : 10 });
 // Add a background inside the center circle
 const circleBackScene2Bg = document.createElement("div");
 circleBackScene2Bg.classList.add("circle-back-scene2-bg");
@@ -528,7 +543,7 @@ t2.fromTo(
 t2.to(
   circleBackScene2Top,
   {
-    y: designH() * 0.82,
+    y: onPhone() ? heroD() : designH() * 0.82,
     duration: 2.5,
     ease: "power2.inOut",
   },
@@ -547,14 +562,14 @@ t2.fromTo(
 t2.fromTo(
   foundingText,
   { opacity: 0, y: vw(300) },
-  { opacity: 1, y: vw(190), duration: 1, ease: "power2.out" }
+  { opacity: 1, y: onPhone() ? -heroD() * 0.08 : vw(190), duration: 1, ease: "power2.out" }
 );
 
 // Growth text appears slightly after founding text
 t2.fromTo(
   growthText,
   { opacity: 0, y: vw(300) },
-  { opacity: 1, y: vw(170), duration: 1.5, ease: "power2.out" },
+  { opacity: 1, y: onPhone() ? -heroD() * 0.08 : vw(170), duration: 1.5, ease: "power2.out" },
   "<0.5"
 );
 
@@ -632,7 +647,8 @@ expandTL.to(
   {
     x: () => {
       const circleHalfW = scene3RedCircle.offsetWidth / 2;
-      const targetCenterX = stageW() * 0.95 - circleHalfW;
+      // Phones: below the stacked headline instead of at the banner's right edge
+      const targetCenterX = onPhone() ? stageW() * 0.7 : stageW() * 0.95 - circleHalfW;
       const currentCenterX = stageW() * 0.5;
       return targetCenterX - currentCenterX;
     },
@@ -640,7 +656,8 @@ expandTL.to(
       const containerH = Math.max(vh(330), sceneH() * 0.40);
       const circleH = scene3RedCircle.offsetHeight;
       const circleOffsetTop = scene3RedCircle.offsetTop;
-      return (containerH / 2 - circleH / 2) - circleOffsetTop;
+      const phoneDrop = onPhone() ? containerH * 0.42 : 0; // overlap the banner's bottom edge
+      return (containerH / 2 - circleH / 2) - circleOffsetTop + phoneDrop;
     },
     ease: "none",
     duration: 1,
@@ -714,7 +731,8 @@ t3.fromTo(
   { opacity: 1, y: () => {
       const imageRect = scene3Image.getBoundingClientRect();
       const textRect = scene3GroupText.getBoundingClientRect();
-      return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2);
+      const stack = onPhone() ? -textRect.height * 0.55 : 0; // phones: two lines
+      return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2) + stack;
     }, duration: 0.5, ease: "power3.out" },
   "circlesStart"
 );
@@ -725,7 +743,8 @@ t3.fromTo(
   { opacity: 1, y: () => {
       const imageRect = scene3Image.getBoundingClientRect();
       const textRect = scene3VenturesText.getBoundingClientRect();
-      return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2);
+      const stack = onPhone() ? +textRect.height * 0.55 : 0; // phones: two lines
+      return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2) + stack;
     }, duration: 0.5, ease: "power3.out" },
   "<0.3"
 );
@@ -792,7 +811,7 @@ const scene4Group2 = document.querySelector(".scene4-group-2");
 const scene4RedText = document.querySelector(".scene4-red-text");
 
 // Set initial positions: red circle and image start below viewport
-const scene4CenterY = () => designH() * 0.60 - stageW() * 0.18;
+const scene4CenterY = () => (onPhone() ? 0 : designH() * 0.6 - stageW() * 0.18);
 gsap.set(scene4GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: () => designH() });
 gsap.set(scene4SmallRedCircle, { x: vw(-150) });
@@ -908,7 +927,7 @@ t4.fromTo(
 t4.to(
   scene4ImageCircle,
   {
-    x: vw(-470),
+    x: () => (onPhone() ? 0 : vw(-470)),
     duration: 0.3,
     ease: "power2.out",
   },
@@ -972,7 +991,7 @@ const scene5GreyOutlineCircle = document.querySelector(
 gsap.set(scene5SmallRedCircle, { y: vw(-800), x: vw(-550) });
 gsap.set(scene5TopLeftCircle, { left: stageLeft() + vw(400) + "px" });
 gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
-const scene5CenterY = () => designH() * 0.6 - stageW() * 0.18;
+const scene5CenterY = () => (onPhone() ? 0 : designH() * 0.6 - stageW() * 0.18);
 
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene5ImageCircle, { y: () => designH() });
@@ -1077,7 +1096,7 @@ t5.fromTo(
 t5.to(
   [scene5ImageCircle, scene5NewText],
   {
-    x: vw(470),
+    x: () => (onPhone() ? 0 : vw(470)),
     duration: 0.3,
     ease: "power2.out",
   },
@@ -1194,7 +1213,7 @@ const scene6RightArrows = document.querySelector(".scene6-right-arrows");
 const scene6NewText = document.querySelector(".scene6-new-text");
 
 // Set initial positions: red circle and image start below viewport
-const scene6CenterY = () => designH() * 0.60 - stageW() * 0.18;
+const scene6CenterY = () => (onPhone() ? 0 : designH() * 0.6 - stageW() * 0.18);
 gsap.set(scene6ImageCircle, { y: () => designH() });
 gsap.set(scene6NewText, { y: () => designH() });
 gsap.set(scene6RedCircle, { y: () => designH() });
@@ -1418,7 +1437,7 @@ t6.to(
 t6.to(
   scene6ImageCircle,
   {
-    x: vw(-470),
+    x: () => (onPhone() ? 0 : vw(-470)),
     duration: 0.3,
     ease: "power2.out",
   },
@@ -1464,7 +1483,7 @@ let t7 = gsap.timeline({
 const scene7ImageCircle = document.querySelector(".scene7-image-circle");
 const scene7RedCircle = document.querySelector(".scene7-red-circle");
 const scene7GreyCircle = document.querySelector(".scene7-grey-circle");
-const scene7CenterY = () => designH() * 0.60 - stageW() * 0.18;
+const scene7CenterY = () => (onPhone() ? 0 : designH() * 0.6 - stageW() * 0.18);
 const scene7Text = document.querySelector(".scene7-text");
 const scene7NewText = document.querySelector(".scene7-new-text");
 const scene7Group1 = document.querySelector(".scene7-group-1");
@@ -1606,7 +1625,7 @@ t7.fromTo(
 t7.to(
   [scene7ImageCircle, scene7NewText],
   {
-    x: vw(470),
+    x: () => (onPhone() ? 0 : vw(470)),
     duration: 0.5,
     ease: "power2.out",
   },
@@ -1695,7 +1714,7 @@ const scene8Group1 = document.querySelector(".scene8-group-1");
 const scene8Group2 = document.querySelector(".scene8-group-2");
 const scene8RedText = document.querySelector(".scene8-red-text");
 
-const scene8CenterY = () => designH() * 0.60 - stageW() * 0.18;
+const scene8CenterY = () => (onPhone() ? 0 : designH() * 0.6 - stageW() * 0.18);
 gsap.set(scene8GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 gsap.set([scene8RedCircle, scene8ImageCircle, scene8NewText], { y: () => designH() });
 gsap.set(scene8SmallRedCircle, { x: vw(-150) });
@@ -1803,7 +1822,7 @@ t8.fromTo(
 t8.to(
   scene8ImageCircle,
   {
-    x: vw(-470),
+    x: () => (onPhone() ? 0 : vw(-470)),
     duration: 0.3,
     ease: "power2.out",
   },
