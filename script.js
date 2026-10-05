@@ -1,6 +1,24 @@
-// Converts design px (at 1920px base) to current viewport px at runtime.
-// Use this for all GSAP x/y/width/height values so animations scale with viewport.
-function vw(px) { return (px / 1920) * window.innerWidth; }
+// Homepage scenes live on a 16:10 "stage" (see .stage in style.css). On
+// desktop/landscape the stage is the largest 16:10 box that fits the window;
+// on phones/portrait tablets and other pages it is the full viewport width.
+// Keep this media query in sync with the .stage rules in style.css.
+const stageMQ = window.matchMedia("(min-width: 769px) and (orientation: landscape), (min-width: 1025px)");
+const stageActive = () => document.body.classList.contains("home") && stageMQ.matches;
+const stageW = () =>
+  stageActive() ? Math.min(window.innerWidth, window.innerHeight / 0.625) : window.innerWidth;
+// Height scenes fill: the stage on desktop, the viewport on phones/portrait tablets.
+const sceneH = () => (stageActive() ? designH() : window.innerHeight);
+
+// Converts px measured at the 1440px-wide design baseline to a CSS px string
+// on the current stage (for hand-tuned top/left values in tweens).
+const bpx = (px) => (stageActive() ? `${(px / 1440) * stageW()}px` : `${px}px`);
+
+// Left edge of the stage in the viewport, for position:fixed scene elements.
+const stageLeft = () => (window.innerWidth - stageW()) / 2;
+
+// Converts design px (at 1920px base) to current stage px at runtime.
+// Use this for all GSAP x/y/width/height values so animations scale with the stage.
+function vw(px) { return (px / 1920) * stageW(); }
 function vh(px) { return (px / 1080) * Math.min(window.innerWidth * 0.625, window.innerHeight); }
 const designH = () => Math.min(window.innerWidth * 0.625, window.innerHeight);
 
@@ -257,7 +275,7 @@ circle.appendChild(circleCenter);
 
 gsap.set(".circle-front", { opacity: 0 });
 
-const circleBaseSize = window.innerWidth * 0.03123;
+const circleBaseSize = stageW() * 0.03123;
 const circleMaxScale = (designH() * 0.7) / circleBaseSize;
 const circleFinalPx = circleBaseSize * circleMaxScale;
 gsap.set(redCircleOverlay, { width: circleFinalPx, height: circleFinalPx });
@@ -528,8 +546,8 @@ t3.fromTo(
 let expandTL = gsap.timeline();
 
 expandTL.to(scene3Image, {
-  width: () => window.innerWidth,
-  height: () => Math.max(vh(330), window.innerHeight * 0.40),
+  width: () => stageW(),
+  height: () => Math.max(vh(330), sceneH() * 0.40),
   borderRadius: "9999px",
   top: 0,
   ease: "none",
@@ -543,8 +561,8 @@ expandTL.to(".scene3-circle-container", {
     const logoBottom = logoEl ? logoEl.getBoundingClientRect().bottom : vw(95);
     return logoBottom + designH() * 0.10;
   },
-  width: () => window.innerWidth,
-  height: () => Math.max(vh(330), window.innerHeight * 0.40),
+  width: () => stageW(),
+  height: () => Math.max(vh(330), sceneH() * 0.40),
   left: 0,
   transform: "none",
   ease: "none",
@@ -557,12 +575,12 @@ expandTL.to(
   {
     x: () => {
       const circleHalfW = scene3RedCircle.offsetWidth / 2;
-      const targetCenterX = window.innerWidth * 0.95 - circleHalfW;
-      const currentCenterX = window.innerWidth * 0.5;
+      const targetCenterX = stageW() * 0.95 - circleHalfW;
+      const currentCenterX = stageW() * 0.5;
       return targetCenterX - currentCenterX;
     },
     y: () => {
-      const containerH = Math.max(vh(330), window.innerHeight * 0.40);
+      const containerH = Math.max(vh(330), sceneH() * 0.40);
       const circleH = scene3RedCircle.offsetHeight;
       const circleOffsetTop = scene3RedCircle.offsetTop;
       return (containerH / 2 - circleH / 2) - circleOffsetTop;
@@ -717,7 +735,7 @@ const scene4Group2 = document.querySelector(".scene4-group-2");
 const scene4RedText = document.querySelector(".scene4-red-text");
 
 // Set initial positions: red circle and image start below viewport
-const scene4CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
+const scene4CenterY = () => designH() * 0.60 - stageW() * 0.18;
 gsap.set(scene4GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: () => designH() });
 gsap.set(scene4SmallRedCircle, { x: vw(-150) });
@@ -895,9 +913,9 @@ const scene5GreyOutlineCircle = document.querySelector(
 );
 
 gsap.set(scene5SmallRedCircle, { y: vw(-800), x: vw(-550) });
-gsap.set(scene5TopLeftCircle, { left: vw(400) + "px" });
+gsap.set(scene5TopLeftCircle, { left: stageLeft() + vw(400) + "px" });
 gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
-const scene5CenterY = () => designH() * 0.6 - window.innerWidth * 0.18;
+const scene5CenterY = () => designH() * 0.6 - stageW() * 0.18;
 
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene5ImageCircle, { y: () => designH() });
@@ -926,10 +944,10 @@ t5.to(
 // Top left circle slides in from left (0-0.25)
 t5.fromTo(
   scene5TopLeftCircle,
-  { left: vw(400) + "px", opacity: 0 },
+  { left: stageLeft() + vw(400) + "px", opacity: 0 },
   {
     opacity: 1,
-    left: vw(180) + "px",
+    left: stageLeft() + vw(180) + "px",
     duration: 1,
     ease: "power2.out",
     onComplete: () => {
@@ -1119,7 +1137,7 @@ const scene6RightArrows = document.querySelector(".scene6-right-arrows");
 const scene6NewText = document.querySelector(".scene6-new-text");
 
 // Set initial positions: red circle and image start below viewport
-const scene6CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
+const scene6CenterY = () => designH() * 0.60 - stageW() * 0.18;
 gsap.set(scene6ImageCircle, { y: () => designH() });
 gsap.set(scene6NewText, { y: () => designH() });
 gsap.set(scene6RedCircle, { y: () => designH() });
@@ -1321,7 +1339,7 @@ t6.to(
   scene6GreyOutlineCircle,
   {
     opacity: 0.7,
-    top: "calc(50% - 785px)",
+    top: () => `calc(50% - ${bpx(785)})`,
     duration: 1.2,
     ease: "power2.out",
   },
@@ -1389,7 +1407,7 @@ let t7 = gsap.timeline({
 const scene7ImageCircle = document.querySelector(".scene7-image-circle");
 const scene7RedCircle = document.querySelector(".scene7-red-circle");
 const scene7GreyCircle = document.querySelector(".scene7-grey-circle");
-const scene7CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
+const scene7CenterY = () => designH() * 0.60 - stageW() * 0.18;
 const scene7Text = document.querySelector(".scene7-text");
 const scene7NewText = document.querySelector(".scene7-new-text");
 const scene7Group1 = document.querySelector(".scene7-group-1");
@@ -1620,7 +1638,7 @@ const scene8Group1 = document.querySelector(".scene8-group-1");
 const scene8Group2 = document.querySelector(".scene8-group-2");
 const scene8RedText = document.querySelector(".scene8-red-text");
 
-const scene8CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
+const scene8CenterY = () => designH() * 0.60 - stageW() * 0.18;
 gsap.set(scene8GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 gsap.set([scene8RedCircle, scene8ImageCircle, scene8NewText], { y: () => designH() });
 gsap.set(scene8SmallRedCircle, { x: vw(-150) });
@@ -1829,8 +1847,8 @@ function updateScene5ToConvention() {
   const greyOutlineCircle = document.querySelector(".scene5-grey-outline-circle");
   if (greyOutlineCircle) {
     gsap.to(greyOutlineCircle, { 
-      left: "calc(100% - 200px)", 
-      top: "-100px",
+      left: `calc(100% - ${bpx(200)})`, 
+      top: bpx(-100),
       duration: 1.2, 
       ease: "power2.inOut" 
     });
@@ -1842,7 +1860,7 @@ function updateScene5ToConvention() {
     gsap.set(descendingRedCircle, { right: "5%", left: "auto" });
     gsap.to(descendingRedCircle, {
       opacity: 1,
-      top: "-50px",
+      top: bpx(-50),
       duration: 1.4,
       ease: "power2.inOut"
     });
@@ -1894,7 +1912,7 @@ function updateScene5ToDefault() {
     if (isShowingConvention) {
       // Coming from convention - move down and fade
       gsap.to(greyOutlineCircle, {
-        top: "250px",
+        top: bpx(250),
         duration: 0.8,
         ease: "power2.inOut"
       });
@@ -1906,8 +1924,8 @@ function updateScene5ToDefault() {
         ease: "power2.inOut",
         onComplete: () => {
           gsap.set(greyOutlineCircle, {
-            left: "calc(80% - 100px)",
-            top: "-100px"
+            left: `calc(80% - ${bpx(100)})`,
+            top: bpx(-100)
           });
           gsap.to(greyOutlineCircle, {
             opacity: 1,
@@ -1923,10 +1941,10 @@ function updateScene5ToDefault() {
   if (isShowingConvention) {
     const smallRedCircle = document.querySelector(".scene5-small-red-circle");
     if (smallRedCircle) {
-      gsap.set(smallRedCircle, { opacity: 0, top: "-500px" });
+      gsap.set(smallRedCircle, { opacity: 0, top: bpx(-500) });
       gsap.to(smallRedCircle, {
         opacity: 1,
-        top: "0px",
+        top: bpx(0),
         duration: 1.0,
         ease: "power2.inOut"
       });
@@ -1937,7 +1955,7 @@ function updateScene5ToDefault() {
     if (descendingRedCircle) {
       gsap.to(descendingRedCircle, {
         opacity: 0,
-        top: "-500px",
+        top: bpx(-500),
         duration: 1.0,
         ease: "power2.inOut"
       });
@@ -1951,7 +1969,7 @@ function updateScene5ToDefault() {
     if (smallRedCircle) {
       gsap.to(smallRedCircle, {
         opacity: 0,
-        top: "-500px",
+        top: bpx(-500),
         duration: 1.0,
         ease: "power2.inOut"
       });
@@ -1960,10 +1978,10 @@ function updateScene5ToDefault() {
     // Right red circle (descending one) comes down
     const descendingRedCircle = document.querySelector(".scene5-descending-red-circle");
     if (descendingRedCircle) {
-      gsap.set(descendingRedCircle, { right: "5%", left: "auto", opacity: 0, top: "-500px" });
+      gsap.set(descendingRedCircle, { right: "5%", left: "auto", opacity: 0, top: bpx(-500) });
       gsap.to(descendingRedCircle, {
         opacity: 1,
-        top: "-300px",
+        top: bpx(-300),
         duration: 1.4,
         ease: "power2.inOut"
       });
@@ -2019,12 +2037,12 @@ function updateScene5ToSSILP() {
       onComplete: () => {
         gsap.set(greyOutlineCircle, { 
           left: "5%", 
-          top: "-500px",
+          top: bpx(-500),
           opacity: 0
         });
         gsap.to(greyOutlineCircle, { 
           opacity: 1,
-          top: "-300px",
+          top: bpx(-300),
           duration: 0.6, 
           ease: "power2.out"
         });
