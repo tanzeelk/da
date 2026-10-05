@@ -53,6 +53,6 @@ RewriteRule ^affordable-rental-housing-complexes-included-in-list-of-infrastruct
 RewriteRule ^lib/ - [F,L]
 
 # -----------------------------------------------------------
-# 5) Custom 404 (optional — uncomment once a 404.html page exists)
+# 5) Custom 404
 # -----------------------------------------------------------
-# ErrorDocument 404 /404.html
+ErrorDocument 404 /404.html

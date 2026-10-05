@@ -2773,7 +2773,7 @@ document.querySelectorAll(".gf-newsletter").forEach((form) => {
     if (submitBtn) submitBtn.disabled = true;
 
     try {
-      const res = await fetch("mail.php", {
+      const res = await fetch("/mail.php", {
         method: "POST",
         body: new FormData(form),
       });
