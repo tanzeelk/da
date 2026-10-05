@@ -10,6 +10,13 @@ html, body {
   overflow-x: hidden;
 }
 
+/* <img> width/height attributes only reserve aspect ratio (prevents layout
+   shift); zero specificity so every existing CSS size rule still wins. */
+:where(img) {
+  width: auto;
+  height: auto;
+}
+
 
 @font-face {
   font-family: 'Gontserrat-Medium';
