@@ -16,6 +16,11 @@ const bpx = (px) => (stageActive() ? `${(px / 1440) * stageW()}px` : `${px}px`);
 // Left edge of the stage in the viewport, for position:fixed scene elements.
 const stageLeft = () => (window.innerWidth - stageW()) / 2;
 
+// Pinned-scene scroll distances were tuned at the 1440x900 baseline; on the
+// desktop stage they grow with stage height so every scene takes the same
+// share of a screen's scrolling at any size. Phones keep the tuned values.
+const scrollLen = (px) => (stageActive() ? (px * designH()) / 900 : px);
+
 // Converts design px (at 1920px base) to current stage px at runtime.
 // Use this for all GSAP x/y/width/height values so animations scale with the stage.
 function vw(px) { return (px / 1920) * stageW(); }
@@ -110,6 +115,28 @@ if (typeof gsap !== 'undefined') {
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
   });
+  // Web fonts can change text heights after the load refresh.
+  if (document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());
+
+  // The last pinned scene only finishes if the page can scroll past its end.
+  // Where the content after it is shorter than that (phones, tall windows),
+  // grow a spacer so the scene always completes just before the page bottom.
+  const sceneEndSpacer = document.querySelector(".scene-end-spacer");
+  if (sceneEndSpacer) {
+    let spacerPasses = 0;
+    ScrollTrigger.addEventListener("refreshInit", () => { spacerPasses = 0; });
+    ScrollTrigger.addEventListener("refresh", () => {
+      const pins = ScrollTrigger.getAll().filter((st) => st.vars.pin);
+      if (!pins.length || spacerPasses++ > 2) return;
+      const lastEnd = Math.max(...pins.map((st) => st.end));
+      const current = sceneEndSpacer.offsetHeight;
+      const next = Math.max(0, Math.ceil(current + lastEnd + 40 - ScrollTrigger.maxScroll(window)));
+      if (Math.abs(next - current) > 1) {
+        sceneEndSpacer.style.height = next + "px";
+        setTimeout(() => ScrollTrigger.refresh(), 0);
+      }
+    });
+  }
 
   let resizeTimer;
   window.addEventListener('resize', () => {
@@ -198,7 +225,7 @@ let tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene1",
     start: "top top",
-    end: "+=1800", // extended to include red circle moving down
+    end: () => "+=" + scrollLen(1800), // extended to include red circle moving down
     scrub: true,
     pin: true,
     markers: false,
@@ -213,7 +240,7 @@ let tl = gsap.timeline({
 function goToScene1End() {
   // history.replaceState(null, '', window.location.pathname);
   const st = tl.scrollTrigger;
-  if (!st) { window.scrollTo({ top: 1800, behavior: 'instant' }); return; }
+  if (!st) { window.scrollTo({ top: scrollLen(1800), behavior: 'instant' }); return; }
   const totalDur = tl.totalDuration();
   // 3.5 = 1.5 (redCircle move) + 2 (redCircle hold) — the two tweens at the end of tl
   const fraction = (totalDur - 3.5) / totalDur;
@@ -237,7 +264,7 @@ let t2 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene2",
     start: "top top",
-    end: "+=500", // reduced for faster image reveal
+    end: () => "+=" + scrollLen(500), // reduced for faster image reveal
     scrub: true,
     pin: true,
     markers: false,
@@ -548,7 +575,7 @@ t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
     start: "top top",
-    end: "+=1200",
+    end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
@@ -742,7 +769,7 @@ let t4 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene4",
     start: "top top",
-    end: "+=1200",
+    end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
@@ -920,7 +947,7 @@ let t5 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene5",
     start: "top top",
-    end: "+=900",
+    end: () => "+=" + scrollLen(900),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
@@ -1186,7 +1213,7 @@ let t6 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene6",
     start: "top top",
-    end: "+=1200",
+    end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
     markers: false,
@@ -1425,7 +1452,7 @@ let t7 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene7",
     start: "top top",
-    end: "+=800",
+    end: () => "+=" + scrollLen(800),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
@@ -1646,7 +1673,7 @@ let t8 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene8",
     start: "top top",
-    end: "+=1200",
+    end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
