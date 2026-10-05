@@ -127,7 +127,7 @@
   flex: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
 
   /* ── Nav ── nav/hamburger toggle handled by style.css base mobile rules ── */
 

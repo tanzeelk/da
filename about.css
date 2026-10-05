@@ -612,7 +612,7 @@
   .about-content { padding: 6vw 4.167vw; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
 
   /* ── Nav ── nav/hamburger toggle handled by style.css base mobile rules ── */
 
@@ -1144,7 +1144,7 @@
   white-space: nowrap;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
   .progress-heading {
     font-size: 6vw;
     margin-bottom: 6vw;

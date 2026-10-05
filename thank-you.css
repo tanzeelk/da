@@ -104,7 +104,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
   .thank-you-card {
     max-width: 90vw;
   }

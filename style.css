@@ -2804,7 +2804,7 @@ body {
    Keep new mobile rules appended here, not mixed in near the
    desktop rule they override.
    ========================================================== */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
   /* Measured .fixed-nav height at real phone widths (logo + hamburger +
      padding no longer scale down to the same proportions as the 7.28vw
      desktop measurement) — pages offsetting content with var(--nav-height)
