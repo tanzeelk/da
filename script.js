@@ -10,8 +10,9 @@ const stageW = () =>
 // CSS block; scene tweens skip their desktop x/y offsets there.
 const onPhone = () => document.body.classList.contains("home") && !stageMQ.matches;
 
-// Height scenes fill: the stage on desktop, the viewport on phones/portrait tablets.
-const sceneH = () => (stageActive() ? designH() : window.innerHeight);
+// Height scenes fill: the full screen on homepage phones/portrait tablets,
+// otherwise the 16:10 design height (the stage on desktop).
+const sceneH = () => (onPhone() ? window.innerHeight : designH());
 
 // Converts px measured at the 1440px-wide design baseline to a CSS px string
 // on the current stage (for hand-tuned top/left values in tweens).
@@ -28,7 +29,7 @@ const scrollLen = (px) => (stageActive() ? (px * designH()) / 900 : px);
 // Converts design px (at 1920px base) to current stage px at runtime.
 // Use this for all GSAP x/y/width/height values so animations scale with the stage.
 function vw(px) { return (px / 1920) * stageW(); }
-function vh(px) { return (px / 1080) * Math.min(window.innerWidth * 0.625, window.innerHeight); }
+function vh(px) { return (px / 1080) * sceneH(); }
 const designH = () => Math.min(window.innerWidth * 0.625, window.innerHeight);
 
 const heroText = document.querySelector(".hero-text");
@@ -344,6 +345,10 @@ circle.appendChild(circleCenter);
 gsap.set(".circle-front", { opacity: 0 });
 
 const circleBaseSize = stageW() * 0.03123;
+// Scene 3 banner height: a strip on desktop; taller on phones so the photo,
+// the stacked headline and the caption circle all fit inside it.
+const bannerH = () => (onPhone() ? window.innerHeight * 0.56 : Math.max(vh(330), sceneH() * 0.40));
+
 // Hero photo circle diameter: 70% of the stage height on desktop, near full
 // width on phones (where 70% of the 16:10 height would be tiny).
 const heroD = () => (onPhone() ? Math.min(window.innerWidth * 0.86, window.innerHeight * 0.48) : designH() * 0.7);
@@ -619,22 +624,38 @@ let expandTL = gsap.timeline();
 
 expandTL.to(scene3Image, {
   width: () => stageW(),
-  height: () => Math.max(vh(330), sceneH() * 0.40),
+  height: () => bannerH(),
   borderRadius: "9999px",
   top: 0,
   ease: "none",
   duration: 1,
 });
 
+// Phones: the caption circle starts at the desktop proportion (inside the photo
+// circle) and grows to a readable size as the banner opens, staying centered.
+if (onPhone()) {
+  expandTL.to(scene3RedCircle, {
+    width: () => window.innerWidth * 0.44,
+    height: () => window.innerWidth * 0.44,
+    left: () => window.innerWidth * (0.5 - 0.22),
+    ease: "none",
+    duration: 1,
+  }, 0);
+}
+
 // Expand container to full width, slide under the logo bar
 expandTL.to(".scene3-circle-container", {
   top: () => {
     const logoEl = document.querySelector(".logo") || document.querySelector(".fixed-nav-logo");
     const logoBottom = logoEl ? logoEl.getBoundingClientRect().bottom : vw(95);
-    return logoBottom + designH() * 0.10;
+    // Phones: scene 3 sits in a vertically centered 16:10 box (style.css), so
+    // convert the viewport position into that box's coordinates.
+    const box = onPhone() ? document.querySelector(".scene3 > .stage") : null;
+    const boxTop = box ? box.offsetTop : 0;
+    return logoBottom - boxTop + designH() * 0.10;
   },
   width: () => stageW(),
-  height: () => Math.max(vh(330), sceneH() * 0.40),
+  height: () => bannerH(),
   left: 0,
   transform: "none",
   ease: "none",
@@ -653,10 +674,10 @@ expandTL.to(
       return targetCenterX - currentCenterX;
     },
     y: () => {
-      const containerH = Math.max(vh(330), sceneH() * 0.40);
+      const containerH = bannerH();
       const circleH = scene3RedCircle.offsetHeight;
       const circleOffsetTop = scene3RedCircle.offsetTop;
-      const phoneDrop = onPhone() ? containerH * 0.42 : 0; // overlap the banner's bottom edge
+      const phoneDrop = onPhone() ? containerH * 0.24 : 0; // lower right, inside the banner
       return (containerH / 2 - circleH / 2) - circleOffsetTop + phoneDrop;
     },
     ease: "none",
@@ -731,7 +752,7 @@ t3.fromTo(
   { opacity: 1, y: () => {
       const imageRect = scene3Image.getBoundingClientRect();
       const textRect = scene3GroupText.getBoundingClientRect();
-      const stack = onPhone() ? -textRect.height * 0.55 : 0; // phones: two lines
+      const stack = onPhone() ? -textRect.height * 0.55 - imageRect.height * 0.2 : 0; // phones: two lines, upper part of banner
       return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2) + stack;
     }, duration: 0.5, ease: "power3.out" },
   "circlesStart"
@@ -743,7 +764,7 @@ t3.fromTo(
   { opacity: 1, y: () => {
       const imageRect = scene3Image.getBoundingClientRect();
       const textRect = scene3VenturesText.getBoundingClientRect();
-      const stack = onPhone() ? +textRect.height * 0.55 : 0; // phones: two lines
+      const stack = onPhone() ? +textRect.height * 0.55 - imageRect.height * 0.2 : 0; // phones: two lines, upper part of banner
       return (imageRect.top + imageRect.height / 2) - (textRect.top + textRect.height / 2) + stack;
     }, duration: 0.5, ease: "power3.out" },
   "<0.3"
@@ -813,7 +834,7 @@ const scene4RedText = document.querySelector(".scene4-red-text");
 // Set initial positions: red circle and image start below viewport
 const scene4CenterY = () => (onPhone() ? 0 : designH() * 0.6 - stageW() * 0.18);
 gsap.set(scene4GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
-gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: () => designH() });
+gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: () => sceneH() });
 gsap.set(scene4SmallRedCircle, { x: vw(-150) });
 gsap.set(scene4SmallRedCircleRight, { x: 0, y: vw(400) });
 
@@ -994,9 +1015,9 @@ gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 const scene5CenterY = () => (onPhone() ? 0 : designH() * 0.6 - stageW() * 0.18);
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene5ImageCircle, { y: () => designH() });
-gsap.set(scene5NewText, { y: () => designH() });
-gsap.set(scene5RedCircle, { y: () => designH() });
+gsap.set(scene5ImageCircle, { y: () => sceneH() });
+gsap.set(scene5NewText, { y: () => sceneH() });
+gsap.set(scene5RedCircle, { y: () => sceneH() });
 gsap.set(scene5GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 t5.to(
   [scene5ImageCircle, scene5NewText],
@@ -1214,9 +1235,9 @@ const scene6NewText = document.querySelector(".scene6-new-text");
 
 // Set initial positions: red circle and image start below viewport
 const scene6CenterY = () => (onPhone() ? 0 : designH() * 0.6 - stageW() * 0.18);
-gsap.set(scene6ImageCircle, { y: () => designH() });
-gsap.set(scene6NewText, { y: () => designH() });
-gsap.set(scene6RedCircle, { y: () => designH() });
+gsap.set(scene6ImageCircle, { y: () => sceneH() });
+gsap.set(scene6NewText, { y: () => sceneH() });
+gsap.set(scene6RedCircle, { y: () => sceneH() });
 gsap.set(scene6SmallRedCircle, { y: vw(-310) });
 gsap.set(scene6SmallRedCircleRight, { x: 0 });
 gsap.set(scene6GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
@@ -1499,9 +1520,9 @@ gsap.set(scene7TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene7GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
 
 // Set initial positions: red circle and image start below viewport
-gsap.set(scene7ImageCircle, { y: () => designH() });
-gsap.set(scene7NewText, { y: () => designH() });
-gsap.set(scene7RedCircle, { y: () => designH() });
+gsap.set(scene7ImageCircle, { y: () => sceneH() });
+gsap.set(scene7NewText, { y: () => sceneH() });
+gsap.set(scene7RedCircle, { y: () => sceneH() });
 gsap.set(scene7GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 t7.to(
   [scene7ImageCircle, scene7NewText],
@@ -1716,7 +1737,7 @@ const scene8RedText = document.querySelector(".scene8-red-text");
 
 const scene8CenterY = () => (onPhone() ? 0 : designH() * 0.6 - stageW() * 0.18);
 gsap.set(scene8GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
-gsap.set([scene8RedCircle, scene8ImageCircle, scene8NewText], { y: () => designH() });
+gsap.set([scene8RedCircle, scene8ImageCircle, scene8NewText], { y: () => sceneH() });
 gsap.set(scene8SmallRedCircle, { x: vw(-150) });
 gsap.set(scene8SmallRedCircleRight, { x: 0, y: vw(400) });
 
