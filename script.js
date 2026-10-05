@@ -77,6 +77,36 @@ function dockOverlayToCircle(targetEl, overlayEl) {
 if (typeof gsap !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 
+  // Scene elements are centered in CSS with translate(-50%...). When GSAP first
+  // tweens x/y it re-reads that offset from the computed px matrix and only
+  // recognises it as -50% when the px value rounds to exactly half the size,
+  // which fails at some resolutions (e.g. grey circles at 1280x800, image
+  // circles at 2560x1440). Hand the offset to GSAP as xPercent/yPercent up
+  // front so it never has to guess.
+  const percentTranslate = {
+    "translate(-50%, -50%)": { xPercent: -50, yPercent: -50 },
+    "translate(-50%, 0px)": { xPercent: -50, yPercent: 0 },
+    "translate(0px, -50%)": { xPercent: 0, yPercent: -50 },
+    "translateX(-50%)": { xPercent: -50, yPercent: 0 },
+  };
+  for (const sheet of stageActive() ? document.styleSheets : []) {
+    let rules;
+    try { rules = sheet.cssRules; } catch (e) { continue; } // cross-origin (fonts)
+    for (const rule of rules) {
+      const offset = rule.style && percentTranslate[rule.style.transform];
+      if (!offset || rule.style.getPropertyPriority("transform")) continue;
+      const selector = rule.selectorText.split(",").map((s) => `.stage ${s.trim()}`).join(",");
+      document.querySelectorAll(selector).forEach((el) => {
+        // Only when that offset is what currently applies (a media rule may override it)
+        const m = new DOMMatrix(getComputedStyle(el).transform);
+        const near = (px, pct, size) => Math.abs(px - (pct / 100) * size) < 1.5;
+        if (m.a === 1 && m.d === 1 && near(m.e, offset.xPercent, el.offsetWidth) && near(m.f, offset.yPercent, el.offsetHeight)) {
+          gsap.set(el, { ...offset, x: 0, y: 0 });
+        }
+      });
+    }
+  }
+
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
   });
