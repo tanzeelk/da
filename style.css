@@ -3210,30 +3210,10 @@ body {
     left: 8vw;
   }
 
-  /* Scene 3 keeps the desktop composition: a 16:10 box centered in a
-     full-screen panel (the banner then expands from it). */
-  body.home .scene3 {
-    height: 100vh;
-    height: 100svh;
-  }
-
-  body.home .scene3 > .stage {
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: calc(50% - 31.25vw);
-    height: 62.5vw;
-  }
-
-  /* Caption's desktop line breaks split oddly at phone width; let it wrap */
-  body.home .scene3-red-circle-text br {
-    display: none;
-  }
-
-  /* Narrow banner crop: keep the people in the photo in view, as on desktop */
-  body.home .scene3-image {
-    background-position: 22% center;
+  body.home .scene3-red-circle {
+    width: 46vw !important;
+    height: 46vw !important;
+    left: calc(50% - 23vw);
   }
 
   /* Text over the photo circles: keep it legible on bright areas */
