@@ -32,6 +32,9 @@ html, body {
 }
 
 body.home {
+  /* Keep phones from enlarging the scaled-down scene text on their own */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   --u: min(1vw, 1.6vh);
   /* Re-declared so they resolve against the stage --u, not :root's 1vw */
   --spacing-unit: calc(1.39 * var(--u));
@@ -89,7 +92,27 @@ body.home .stage-mask.is-off {
   opacity: 0;
 }
 
+/* "Scroll to continue" hint: 1px tracking at 1440, scaled with the stage */
+body.home .scroll-text {
+  letter-spacing: calc(0.0694 * var(--u));
+}
+
+/* Red-circle company text scales with the stage like the rest of the
+   scene (no small-screen floor), keeping the large-screen caps. */
+body.home :is(.scene4-red-heading, .scene5-heading, .scene6-red-heading, .scene7-heading, .scene8-red-heading) {
+  font-size: min(calc(1 * var(--u)), 20px);
+}
+
+body.home :is(.scene4-red-desc, .scene5-desc, .scene6-red-desc, .scene7-desc, .scene8-red-desc) {
+  font-size: min(calc(0.8 * var(--u)), 18px);
+  margin-bottom: calc(0.69 * var(--u));
+}
+
 body.home .stage {
+  /* Base text size for scene content that inherits it: 16px at 1440x900,
+     scaled with the stage (keeps line boxes around the read-more buttons
+     proportional on phones). */
+  font-size: calc(1.1111 * var(--u));
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
