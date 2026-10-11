@@ -1,6 +1,25 @@
-// Converts design px (at 1920px base) to current viewport px at runtime.
-// Use this for all GSAP x/y/width/height values so animations scale with viewport.
-function vw(px) { return (px / 1920) * window.innerWidth; }
+// Homepage scenes live on a 16:10 "stage" (see .stage in style.css): the
+// largest 16:10 box that fits the window, at every screen size, so phones get
+// the desktop composition and animations scaled down. Other pages use the
+// plain viewport width.
+const stageActive = () => document.body.classList.contains("home");
+const stageW = () =>
+  stageActive() ? Math.min(window.innerWidth, window.innerHeight / 0.625) : window.innerWidth;
+// Height scenes fill: the 16:10 stage height.
+const sceneH = () => designH();
+
+// Converts px measured at the 1440px-wide design baseline to a CSS px string
+// on the current stage (for hand-tuned top/left values in tweens).
+const bpx = (px) => (stageActive() ? `${(px / 1440) * stageW()}px` : `${px}px`);
+
+// Pinned-scene scroll distances were tuned on a 900px-tall window; scale them
+// with the window height so each scene takes the same share of a screen's
+// scrolling on any device (unchanged at 1440x900).
+const scrollLen = (px) => (stageActive() ? (px * window.innerHeight) / 900 : px);
+
+// Converts design px (at 1920px base) to current stage px at runtime.
+// Use this for all GSAP x/y/width/height values so animations scale with the stage.
+function vw(px) { return (px / 1920) * stageW(); }
 function vh(px) { return (px / 1080) * Math.min(window.innerWidth * 0.625, window.innerHeight); }
 const designH = () => Math.min(window.innerWidth * 0.625, window.innerHeight);
 
@@ -59,19 +78,63 @@ function dockOverlayToCircle(targetEl, overlayEl) {
 if (typeof gsap !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 
+  // Scene elements are centered in CSS with translate(-50%...). When GSAP first
+  // tweens x/y it re-reads that offset from the computed px matrix and only
+  // recognises it as -50% when the px value rounds to exactly half the size,
+  // which fails at some resolutions (e.g. grey circles at 1280x800, image
+  // circles at 2560x1440). Hand the offset to GSAP as xPercent/yPercent up
+  // front so it never has to guess.
+  const percentTranslate = {
+    "translate(-50%, -50%)": { xPercent: -50, yPercent: -50 },
+    "translate(-50%, 0px)": { xPercent: -50, yPercent: 0 },
+    "translate(0px, -50%)": { xPercent: 0, yPercent: -50 },
+    "translateX(-50%)": { xPercent: -50, yPercent: 0 },
+  };
+  for (const sheet of stageActive() ? document.styleSheets : []) {
+    let rules;
+    try { rules = sheet.cssRules; } catch (e) { continue; } // cross-origin (fonts)
+    for (const rule of rules) {
+      const offset = rule.style && percentTranslate[rule.style.transform];
+      if (!offset || rule.style.getPropertyPriority("transform")) continue;
+      const selector = rule.selectorText.split(",").map((s) => `.stage ${s.trim()}`).join(",");
+      document.querySelectorAll(selector).forEach((el) => {
+        // Only when that offset is what currently applies (a media rule may override it)
+        const m = new DOMMatrix(getComputedStyle(el).transform);
+        const near = (px, pct, size) => Math.abs(px - (pct / 100) * size) < 1.5;
+        if (m.a === 1 && m.d === 1 && near(m.e, offset.xPercent, el.offsetWidth) && near(m.f, offset.yPercent, el.offsetHeight)) {
+          gsap.set(el, { ...offset, x: 0, y: 0 });
+        }
+      });
+    }
+  }
+
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
   });
 
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      if (t3) { t3.kill(); }
-      initScene3();
-      ScrollTrigger.refresh(true);
-    }, 200);
-  });
+  // Web fonts can change text heights after the load refresh.
+  if (document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());
+
+  // The last pinned scene only finishes if the page can scroll past its end.
+  // Where the content after it is shorter than that (phones, tall windows),
+  // grow a spacer so the scene always completes just before the page bottom.
+  const sceneEndSpacer = document.querySelector(".scene-end-spacer");
+  if (sceneEndSpacer) {
+    let spacerPasses = 0;
+    ScrollTrigger.addEventListener("refreshInit", () => { spacerPasses = 0; });
+    ScrollTrigger.addEventListener("refresh", () => {
+      const pins = ScrollTrigger.getAll().filter((st) => st.vars.pin);
+      if (!pins.length || spacerPasses++ > 2) return;
+      const lastEnd = Math.max(...pins.map((st) => st.end));
+      const current = sceneEndSpacer.offsetHeight;
+      const next = Math.max(0, Math.ceil(current + lastEnd + 40 - ScrollTrigger.maxScroll(window)));
+      if (Math.abs(next - current) > 1) {
+        sceneEndSpacer.style.height = next + "px";
+        setTimeout(() => ScrollTrigger.refresh(), 0);
+      }
+    });
+  }
+
 }
 
 // Fixed Navigation Bar - Show from Scene 1 onwards till the end
@@ -84,7 +147,7 @@ let isMenuOpen = false;
 if (typeof gsap !== 'undefined') {
   ScrollTrigger.create({
     trigger: ".scene1",
-    start: "top top",
+    start: "center center", // = top top when the panel fills the window
     endTrigger: "body",
     end: "bottom bottom",
     markers: false,
@@ -149,8 +212,8 @@ if (typeof gsap !== 'undefined') {
 let tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene1",
-    start: "top top",
-    end: "+=1800", // extended to include red circle moving down
+    start: "center center", // = top top when the panel fills the window
+    end: () => "+=" + scrollLen(1800), // extended to include red circle moving down
     scrub: true,
     pin: true,
     markers: false,
@@ -165,7 +228,7 @@ let tl = gsap.timeline({
 function goToScene1End() {
   // history.replaceState(null, '', window.location.pathname);
   const st = tl.scrollTrigger;
-  if (!st) { window.scrollTo({ top: 1800, behavior: 'instant' }); return; }
+  if (!st) { window.scrollTo({ top: scrollLen(1800), behavior: 'instant' }); return; }
   const totalDur = tl.totalDuration();
   // 3.5 = 1.5 (redCircle move) + 2 (redCircle hold) — the two tweens at the end of tl
   const fraction = (totalDur - 3.5) / totalDur;
@@ -188,8 +251,8 @@ document.querySelector('#expandedMenu a[href="#home"]')?.addEventListener('click
 let t2 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene2",
-    start: "top top",
-    end: "+=500", // reduced for faster image reveal
+    start: "center center", // = top top when the panel fills the window
+    end: () => "+=" + scrollLen(500), // reduced for faster image reveal
     scrub: true,
     pin: true,
     markers: false,
@@ -257,7 +320,7 @@ circle.appendChild(circleCenter);
 
 gsap.set(".circle-front", { opacity: 0 });
 
-const circleBaseSize = window.innerWidth * 0.03123;
+const circleBaseSize = stageW() * 0.03123;
 const circleMaxScale = (designH() * 0.7) / circleBaseSize;
 const circleFinalPx = circleBaseSize * circleMaxScale;
 gsap.set(redCircleOverlay, { width: circleFinalPx, height: circleFinalPx });
@@ -499,8 +562,8 @@ function initScene3() {
 t3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene3",
-    start: "top top",
-    end: "+=1200",
+    start: "center center", // = top top when the panel fills the window
+    end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
@@ -528,8 +591,8 @@ t3.fromTo(
 let expandTL = gsap.timeline();
 
 expandTL.to(scene3Image, {
-  width: () => window.innerWidth,
-  height: () => Math.max(vh(330), window.innerHeight * 0.40),
+  width: () => stageW(),
+  height: () => Math.max(vh(330), sceneH() * 0.40),
   borderRadius: "9999px",
   top: 0,
   ease: "none",
@@ -541,10 +604,13 @@ expandTL.to(".scene3-circle-container", {
   top: () => {
     const logoEl = document.querySelector(".logo") || document.querySelector(".fixed-nav-logo");
     const logoBottom = logoEl ? logoEl.getBoundingClientRect().bottom : vw(95);
-    return logoBottom + designH() * 0.10;
+    // Letterboxed (e.g. phones): the nav sits above the stage, so use where the
+    // desktop nav bottom falls on the stage instead (4.51% of its width).
+    const navBottom = window.innerHeight > designH() + 1 ? stageW() * 0.0451 : logoBottom;
+    return navBottom + designH() * 0.10;
   },
-  width: () => window.innerWidth,
-  height: () => Math.max(vh(330), window.innerHeight * 0.40),
+  width: () => stageW(),
+  height: () => Math.max(vh(330), sceneH() * 0.40),
   left: 0,
   transform: "none",
   ease: "none",
@@ -557,12 +623,12 @@ expandTL.to(
   {
     x: () => {
       const circleHalfW = scene3RedCircle.offsetWidth / 2;
-      const targetCenterX = window.innerWidth * 0.95 - circleHalfW;
-      const currentCenterX = window.innerWidth * 0.5;
+      const targetCenterX = stageW() * 0.95 - circleHalfW;
+      const currentCenterX = stageW() * 0.5;
       return targetCenterX - currentCenterX;
     },
     y: () => {
-      const containerH = Math.max(vh(330), window.innerHeight * 0.40);
+      const containerH = Math.max(vh(330), sceneH() * 0.40);
       const circleH = scene3RedCircle.offsetHeight;
       const circleOffsetTop = scene3RedCircle.offsetTop;
       return (containerH / 2 - circleH / 2) - circleOffsetTop;
@@ -686,6 +752,29 @@ greyCircles.forEach((circle, i) => {
 }
 initScene3();
 
+// Rebuild scene 3 when the window width changes (its banner sizes are read
+// once). Height-only resizes, like a phone's address bar collapsing, only
+// need the refresh ScrollTrigger already does.
+let resizeTimer;
+let lastResizeWidth = window.innerWidth;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (window.innerWidth === lastResizeWidth) return;
+    lastResizeWidth = window.innerWidth;
+    if (t3) {
+      if (t3.scrollTrigger) t3.scrollTrigger.kill();
+      t3.kill();
+    }
+    // initScene3 also creates the floating-circle triggers; drop the old ones
+    ScrollTrigger.getAll()
+      .filter((st) => st.trigger && st.trigger.classList.contains("grey-circles-section"))
+      .forEach((st) => { if (st.animation) st.animation.kill(); st.kill(); });
+    initScene3();
+    ScrollTrigger.refresh(true);
+  }, 200);
+});
+
 // ============================================
 // SCENE 4 Timeline - Red circle and image rise up, then image slides left
 // ============================================
@@ -693,8 +782,8 @@ initScene3();
 let t4 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene4",
-    start: "top top",
-    end: "+=1200",
+    start: "center center", // = top top when the panel fills the window
+    end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
@@ -717,7 +806,7 @@ const scene4Group2 = document.querySelector(".scene4-group-2");
 const scene4RedText = document.querySelector(".scene4-red-text");
 
 // Set initial positions: red circle and image start below viewport
-const scene4CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
+const scene4CenterY = () => designH() * 0.60 - stageW() * 0.18;
 gsap.set(scene4GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 gsap.set([scene4RedCircle, scene4ImageCircle, scene4NewText], { y: () => designH() });
 gsap.set(scene4SmallRedCircle, { x: vw(-150) });
@@ -871,8 +960,8 @@ t4.to(
 let t5 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene5",
-    start: "top top",
-    end: "+=900",
+    start: "center center", // = top top when the panel fills the window
+    end: () => "+=" + scrollLen(900),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
@@ -897,7 +986,7 @@ const scene5GreyOutlineCircle = document.querySelector(
 gsap.set(scene5SmallRedCircle, { y: vw(-800), x: vw(-550) });
 gsap.set(scene5TopLeftCircle, { left: vw(400) + "px" });
 gsap.set(scene5GreyOutlineCircle, { top: vw(-100) + "px", opacity: 0 });
-const scene5CenterY = () => designH() * 0.6 - window.innerWidth * 0.18;
+const scene5CenterY = () => designH() * 0.6 - stageW() * 0.18;
 
 // Set initial positions: red circle and image start below viewport
 gsap.set(scene5ImageCircle, { y: () => designH() });
@@ -1119,7 +1208,7 @@ const scene6RightArrows = document.querySelector(".scene6-right-arrows");
 const scene6NewText = document.querySelector(".scene6-new-text");
 
 // Set initial positions: red circle and image start below viewport
-const scene6CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
+const scene6CenterY = () => designH() * 0.60 - stageW() * 0.18;
 gsap.set(scene6ImageCircle, { y: () => designH() });
 gsap.set(scene6NewText, { y: () => designH() });
 gsap.set(scene6RedCircle, { y: () => designH() });
@@ -1137,8 +1226,8 @@ gsap.set(scene6RightArrows, { opacity: 0 });
 let t6 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene6",
-    start: "top top",
-    end: "+=1200",
+    start: "center center", // = top top when the panel fills the window
+    end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
     markers: false,
@@ -1321,7 +1410,7 @@ t6.to(
   scene6GreyOutlineCircle,
   {
     opacity: 0.7,
-    top: "calc(50% - 785px)",
+    top: () => `calc(50% - ${bpx(785)})`,
     duration: 1.2,
     ease: "power2.out",
   },
@@ -1376,8 +1465,8 @@ t6.to(
 let t7 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene7",
-    start: "top top",
-    end: "+=800",
+    start: "center center", // = top top when the panel fills the window
+    end: () => "+=" + scrollLen(800),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
@@ -1389,7 +1478,7 @@ let t7 = gsap.timeline({
 const scene7ImageCircle = document.querySelector(".scene7-image-circle");
 const scene7RedCircle = document.querySelector(".scene7-red-circle");
 const scene7GreyCircle = document.querySelector(".scene7-grey-circle");
-const scene7CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
+const scene7CenterY = () => designH() * 0.60 - stageW() * 0.18;
 const scene7Text = document.querySelector(".scene7-text");
 const scene7NewText = document.querySelector(".scene7-new-text");
 const scene7Group1 = document.querySelector(".scene7-group-1");
@@ -1597,8 +1686,8 @@ t7.to(
 let t8 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene8",
-    start: "top top",
-    end: "+=1200",
+    start: "center center", // = top top when the panel fills the window
+    end: () => "+=" + scrollLen(1200),
     scrub: 0.5,
     pin: true,
     pinSpacing: true,
@@ -1620,7 +1709,7 @@ const scene8Group1 = document.querySelector(".scene8-group-1");
 const scene8Group2 = document.querySelector(".scene8-group-2");
 const scene8RedText = document.querySelector(".scene8-red-text");
 
-const scene8CenterY = () => designH() * 0.60 - window.innerWidth * 0.18;
+const scene8CenterY = () => designH() * 0.60 - stageW() * 0.18;
 gsap.set(scene8GreyCircle, { opacity: 0, y: () => designH() * 0.3 });
 gsap.set([scene8RedCircle, scene8ImageCircle, scene8NewText], { y: () => designH() });
 gsap.set(scene8SmallRedCircle, { x: vw(-150) });
@@ -1829,8 +1918,8 @@ function updateScene5ToConvention() {
   const greyOutlineCircle = document.querySelector(".scene5-grey-outline-circle");
   if (greyOutlineCircle) {
     gsap.to(greyOutlineCircle, { 
-      left: "calc(100% - 200px)", 
-      top: "-100px",
+      left: `calc(100% - ${bpx(200)})`, 
+      top: bpx(-100),
       duration: 1.2, 
       ease: "power2.inOut" 
     });
@@ -1842,7 +1931,7 @@ function updateScene5ToConvention() {
     gsap.set(descendingRedCircle, { right: "5%", left: "auto" });
     gsap.to(descendingRedCircle, {
       opacity: 1,
-      top: "-50px",
+      top: bpx(-50),
       duration: 1.4,
       ease: "power2.inOut"
     });
@@ -1894,7 +1983,7 @@ function updateScene5ToDefault() {
     if (isShowingConvention) {
       // Coming from convention - move down and fade
       gsap.to(greyOutlineCircle, {
-        top: "250px",
+        top: bpx(250),
         duration: 0.8,
         ease: "power2.inOut"
       });
@@ -1906,8 +1995,8 @@ function updateScene5ToDefault() {
         ease: "power2.inOut",
         onComplete: () => {
           gsap.set(greyOutlineCircle, {
-            left: "calc(80% - 100px)",
-            top: "-100px"
+            left: `calc(80% - ${bpx(100)})`,
+            top: bpx(-100)
           });
           gsap.to(greyOutlineCircle, {
             opacity: 1,
@@ -1923,10 +2012,10 @@ function updateScene5ToDefault() {
   if (isShowingConvention) {
     const smallRedCircle = document.querySelector(".scene5-small-red-circle");
     if (smallRedCircle) {
-      gsap.set(smallRedCircle, { opacity: 0, top: "-500px" });
+      gsap.set(smallRedCircle, { opacity: 0, top: bpx(-500) });
       gsap.to(smallRedCircle, {
         opacity: 1,
-        top: "0px",
+        top: bpx(0),
         duration: 1.0,
         ease: "power2.inOut"
       });
@@ -1937,7 +2026,7 @@ function updateScene5ToDefault() {
     if (descendingRedCircle) {
       gsap.to(descendingRedCircle, {
         opacity: 0,
-        top: "-500px",
+        top: bpx(-500),
         duration: 1.0,
         ease: "power2.inOut"
       });
@@ -1951,7 +2040,7 @@ function updateScene5ToDefault() {
     if (smallRedCircle) {
       gsap.to(smallRedCircle, {
         opacity: 0,
-        top: "-500px",
+        top: bpx(-500),
         duration: 1.0,
         ease: "power2.inOut"
       });
@@ -1960,10 +2049,10 @@ function updateScene5ToDefault() {
     // Right red circle (descending one) comes down
     const descendingRedCircle = document.querySelector(".scene5-descending-red-circle");
     if (descendingRedCircle) {
-      gsap.set(descendingRedCircle, { right: "5%", left: "auto", opacity: 0, top: "-500px" });
+      gsap.set(descendingRedCircle, { right: "5%", left: "auto", opacity: 0, top: bpx(-500) });
       gsap.to(descendingRedCircle, {
         opacity: 1,
-        top: "-300px",
+        top: bpx(-300),
         duration: 1.4,
         ease: "power2.inOut"
       });
@@ -2019,12 +2108,12 @@ function updateScene5ToSSILP() {
       onComplete: () => {
         gsap.set(greyOutlineCircle, { 
           left: "5%", 
-          top: "-500px",
+          top: bpx(-500),
           opacity: 0
         });
         gsap.to(greyOutlineCircle, { 
           opacity: 1,
-          top: "-300px",
+          top: bpx(-300),
           duration: 0.6, 
           ease: "power2.out"
         });
@@ -2716,6 +2805,21 @@ if (homeLink) {
 }
 
 // END OF COMMENTED OUT CODE - SCENE 7
+
+// Edge bands above/below a letterboxed stage stand in for the desktop window's
+// top and bottom edges; drop them once the last scene is done so the footer
+// scrolls in normally.
+const stageMasks = document.querySelectorAll(".stage-mask");
+if (stageMasks.length && t8.scrollTrigger) {
+  ScrollTrigger.create({
+    start: () => t8.scrollTrigger.end,
+    end: "max",
+    // The page bottom is this trigger's end, so use enter/leave-back rather
+    // than isActive (which turns false exactly at the end).
+    onEnter: () => stageMasks.forEach((m) => m.classList.add("is-off")),
+    onLeaveBack: () => stageMasks.forEach((m) => m.classList.remove("is-off")),
+  });
+}
 
 // Handle deep-link from group-companies page: jump to end of the target scene's animation
 window.addEventListener('load', () => {
