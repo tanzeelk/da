@@ -66,10 +66,13 @@
   <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32.png" />
   <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
+<!-- Main image: start downloading before the CSS is parsed -->
+<link rel="preload" as="image" href="./assets/group-companies-hero.webp" imagesrcset="./assets/group-companies-hero-480.webp 480w, ./assets/group-companies-hero-768.webp 768w, ./assets/group-companies-hero-1280.webp 1280w, ./assets/group-companies-hero.webp 1920w" imagesizes="100vw" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@1,400;1,500&amp;display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="home-scenes.css" />
   <link rel="stylesheet" href="group-companies.css" />
 </head>
 
