@@ -76,7 +76,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 1vw;
   font-weight: 500;
   color: #555;
@@ -128,7 +128,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.9vw;
   font-weight: 500;
   color: #777;
@@ -399,7 +399,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 3vw;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   }
 
   .gallery-page .footer-title { font-size: 3.5vw; margin-bottom: 2vw; }

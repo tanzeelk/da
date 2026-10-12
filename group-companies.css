@@ -114,7 +114,7 @@
 }
 
 .gc-hero-heading {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: 4vw;
   color: #e31d36;
@@ -232,7 +232,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 3vw;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   }
 
   .gc-page .footer-title { font-size: 3.5vw; margin-bottom: 2vw; }

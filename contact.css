@@ -85,7 +85,7 @@
 }
 
 .branch h3.branch-city {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: 0.845vw;
   color: #e31d36;
@@ -96,7 +96,7 @@
 }
 
 .branch p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.83vw;
   font-weight: 400;
   color: #555;
@@ -174,7 +174,7 @@
   display: flex;
   align-items: center;
   gap: 0.6vw;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.8vw;
   color: #555;
 }
@@ -238,7 +238,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 0.9vw 1vw;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.8vw;
   color: #333;
   outline: none;
@@ -272,7 +272,7 @@
 .contact-submit-btn {
   background: #e31d36;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: 0.85vw;
   letter-spacing: 0.08em;
@@ -521,7 +521,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 3vw;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   }
 
   .contact-page .footer-content-row .footer-column:nth-child(2) {

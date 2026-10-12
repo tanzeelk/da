@@ -1,3 +1,14 @@
+/* Arial scaled to Montserrat's metrics: text takes the same space before and
+   after the web font loads, so swapping fonts no longer shifts the layout. */
+@font-face {
+  font-family: 'Montserrat Fallback';
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 113.39%;
+  ascent-override: 84.95%;
+  descent-override: 22.03%;
+  line-gap-override: 0%;
+}
+
 
 * {
   margin: 0;
@@ -150,7 +161,7 @@ body.home .stage {
 }
 
 body {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   background: #e5e6e7;
   color: white;
 }
@@ -247,7 +258,7 @@ body {
 }
 
 .menu-item {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.97vw;
   font-weight: 500;
   color: #77797b;
@@ -467,7 +478,7 @@ body {
   opacity: 0;
   z-index: 10;
   color: var(--color-red);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   letter-spacing: -0.045em;
 }
@@ -480,7 +491,7 @@ body {
   padding-left: calc(var(--spacing-unit) * 9);
   padding-right: calc(var(--spacing-unit) * 0.5);
   opacity: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   margin-top: calc(var(--spacing-unit) * -1);
   letter-spacing: -0.045em;
@@ -499,7 +510,7 @@ body {
   opacity: 0;
   z-index: 10;
   color: var(--color-red);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   letter-spacing: -0.045em;
 }
@@ -512,7 +523,7 @@ body {
   margin-left: calc(var(--spacing-unit) * 15);
   padding-right: 0;
   opacity: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   margin-top: calc(var(--spacing-unit) * -1);
   letter-spacing: -0.05em;
@@ -614,7 +625,7 @@ body {
 }
 
 .founding-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: calc(1.2 * var(--u));
   color: white;
@@ -628,7 +639,7 @@ body {
 }
 
 .growth-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 500;
   font-size: var(--font-small);
   line-height: 1.2;
@@ -693,7 +704,7 @@ body {
   position: absolute;
   left: 20%;
   color: #ec1c24;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: calc(4.4 * var(--u));
   opacity: 0;
@@ -707,7 +718,7 @@ body {
   position: absolute;
   left: 44%;
   color: var(--color-blue2);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: calc(4.4 * var(--u));
   opacity: 0;
@@ -725,7 +736,7 @@ body {
   width: 85%;
   text-align: center;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 400;
   font-size: calc(0.85 * var(--u));
   line-height: 1.5;
@@ -919,7 +930,7 @@ body {
   opacity: 0;
   top: 50%;
   left: 50%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   pointer-events: auto;
 }
 
@@ -932,7 +943,7 @@ body {
 }
 
 .scene4-red-desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 500;
   font-size: clamp(9px, calc(0.8 * var(--u)), 18px);
   line-height: 1.4;
@@ -993,7 +1004,7 @@ body {
   right: calc(50% + calc(6.58 * var(--u)));
   top: calc(3.47 * var(--u));
   width: calc(26.6 * var(--u));
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: calc(3.3 * var(--u));
   line-height: 1;
@@ -1023,7 +1034,7 @@ body {
   position: absolute;
   left: 38%;
   top: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: calc(3.63 * var(--u));
   line-height: 1.1;
@@ -1045,7 +1056,7 @@ body {
   position: absolute;
   left: 45%;
   top: 5%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: calc(3.63 * var(--u));
   line-height: 1.1;
@@ -1068,7 +1079,7 @@ body {
   right: calc(50% + calc(10 * var(--u)));
   top: 3%;
   width: calc(32 * var(--u));
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: calc(3.3 * var(--u));
   line-height: 1;
@@ -1226,7 +1237,7 @@ body {
   opacity: 0;
   top: 50%;
   left: 50%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   pointer-events: auto;
 }
 
@@ -1239,7 +1250,7 @@ body {
 }
 
 .scene8-red-desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 500;
   font-size: clamp(9px, calc(0.8 * var(--u)), 18px);
   line-height: 1.4;
@@ -1272,7 +1283,7 @@ body {
   right: calc(50% + calc(6.58 * var(--u)));
   top: calc(3.47 * var(--u));
   width: calc(26.6 * var(--u));
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: calc(3.3 * var(--u));
   line-height: 1;
@@ -1424,7 +1435,7 @@ body {
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   pointer-events: auto;
   margin-top: calc(-2.97 * var(--u));
   z-index: 10;
@@ -1601,11 +1612,11 @@ body {
   letter-spacing: -0.05em;
   white-space: normal;
   word-wrap: break-word;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
 }
 
 .scene5-desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 500;
   font-size: clamp(9px, calc(0.8 * var(--u)), 18px);
   line-height: 1.4;
@@ -1864,7 +1875,7 @@ body {
   width: 80%;
   text-align: center;
   opacity: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   pointer-events: none;
   top: calc(6.59 * var(--u));
   left: 50%;
@@ -1889,7 +1900,7 @@ body {
 }
 
 .scene6-red-desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 500;
   font-size: clamp(9px, calc(0.8 * var(--u)), 18px);
   line-height: 1.2;
@@ -1933,7 +1944,7 @@ body {
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   pointer-events: none;
 }
 
@@ -2239,7 +2250,7 @@ body {
   text-align: center;
   opacity: 0;
   transform: translateY(60px);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   pointer-events: auto;
   margin-top: calc(-2.97 * var(--u));
   z-index: 10;
@@ -2432,11 +2443,11 @@ body {
   letter-spacing: -0.05em;
   white-space: normal;
   word-wrap: break-word;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
 }
 
 .scene7-desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 500;
   font-size: clamp(9px, calc(0.8 * var(--u)), 18px);
   line-height: 1.4;
@@ -2659,7 +2670,7 @@ body {
   background-color: #e5e6e7;
   padding: 0px 2.78vw 5vw;
   color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
 }
 
 .footer-container {
@@ -2757,7 +2768,7 @@ body {
   padding: 1.1vw 2.78vw;
   background: #e5e6e7;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 1vw;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -2855,7 +2866,7 @@ body {
   border: none;
   outline: none;
   color: #333;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.9vw;
 }
 

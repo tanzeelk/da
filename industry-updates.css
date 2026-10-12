@@ -83,7 +83,7 @@
 }
 
 .iu-card-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 1.04vw;
   font-weight: 600;
   color: #1d3d78;
@@ -93,7 +93,7 @@
 }
 
 .iu-card-source {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.76vw;
   font-weight: 500;
   color: #999;
@@ -103,7 +103,7 @@
 }
 
 .iu-read-more {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.83vw;
   font-weight: 600;
   color: var(--color-red);
@@ -118,7 +118,7 @@
 }
 
 .iu-card-excerpt {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.83vw;
   font-weight: 400;
   color: #555;
@@ -249,7 +249,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 3vw;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   }
 
   .iu-page .footer-title { font-size: 3.5vw; margin-bottom: 2vw; }

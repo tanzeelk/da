@@ -32,7 +32,7 @@
 }
 
 .thank-you-heading {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: 2vw;
   color: #1c2024;
@@ -41,7 +41,7 @@
 }
 
 .thank-you-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 1vw;
   line-height: 1.6;
   color: #555;
@@ -58,7 +58,7 @@
 }
 
 .thank-you-btn {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 600;
   font-size: 0.85vw;
   padding: 0.9vw 1.8vw;
@@ -83,7 +83,7 @@
 }
 
 .thank-you-urgent {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.8vw;
   color: #777;
   border-top: 1px solid #e2e0dd;
