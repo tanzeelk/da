@@ -397,13 +397,13 @@
 .career-file-name {
   font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: clamp(9px, 0.75vw, 12px);
-  color: rgba(255,255,255,0.8);
+  color: #fff;
 }
 
 .career-file-hint {
   font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: clamp(8px, 0.65vw, 10.5px);
-  color: rgba(255,255,255,0.6);
+  color: #fff;
   margin: 6px 0 0;
 }
 

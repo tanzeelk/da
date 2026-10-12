@@ -360,7 +360,7 @@
   </main>
 
   <!-- Lightbox -->
-  <div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+  <div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true" inert>
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
     <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous">&#8249;</button>
     <button class="lightbox-next" id="lightboxNext" aria-label="Next">&#8250;</button>
@@ -376,10 +376,10 @@
       </div>
       <div class="footer-columns-wrapper">
         <div class="footer-titles-row">
-          <div class="footer-column"><h3 class="footer-title">CONTACT</h3></div>
-          <div class="footer-column"><h3 class="footer-title">QUICK LINKS</h3></div>
-          <div class="footer-column"><h3 class="footer-title">GROUP COMPANIES</h3></div>
-          <div class="footer-column"><h3 class="footer-title">NEWSLETTER</h3></div>
+          <div class="footer-column"><h2 class="footer-title">CONTACT</h2></div>
+          <div class="footer-column"><h2 class="footer-title">QUICK LINKS</h2></div>
+          <div class="footer-column"><h2 class="footer-title">GROUP COMPANIES</h2></div>
+          <div class="footer-column"><h2 class="footer-title">NEWSLETTER</h2></div>
         </div>
         <img loading="lazy" width="1493" height="1" src="./assets/line-white.png" alt="" class="footer-full-line" />
         <div class="footer-content-row">
@@ -511,12 +511,14 @@
       lightboxImg.alt = img.alt;
       lightbox.classList.add('active');
       lightbox.setAttribute('aria-hidden', 'false');
+      lightbox.inert = false;
       document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox() {
       lightbox.classList.remove('active');
       lightbox.setAttribute('aria-hidden', 'true');
+      lightbox.inert = true;
       document.body.style.overflow = '';
     }
 

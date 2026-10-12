@@ -85,7 +85,7 @@
 .thank-you-urgent {
   font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.8vw;
-  color: #777;
+  color: var(--color-grey-text);
   border-top: 1px solid #e2e0dd;
   padding-top: 1.2vw;
   width: 100%;

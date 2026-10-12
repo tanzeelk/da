@@ -148,7 +148,7 @@
               <th>Positions</th>
               <th>Experience</th>
               <th>Brief Job Profile</th>
-              <th></th>
+              <th><span class="visually-hidden">Apply</span></th>
             </tr>
           </thead>
           <tbody>
@@ -193,27 +193,27 @@
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
         <div class="career-form-grid">
           <div class="career-form-group">
-            <label class="career-label">Name <span class="req">*</span></label>
-            <input type="text" class="career-input" name="name" required />
+            <label class="career-label" for="career-name">Name <span class="req">*</span></label>
+            <input type="text" class="career-input" name="name" id="career-name" required />
           </div>
           <div class="career-form-group">
-            <label class="career-label">Email <span class="req">*</span></label>
-            <input type="email" class="career-input" name="email" required />
+            <label class="career-label" for="career-email">Email <span class="req">*</span></label>
+            <input type="email" class="career-input" name="email" id="career-email" required />
           </div>
           <div class="career-form-group">
-            <label class="career-label">Telephone <span class="req">*</span></label>
-            <input type="tel" class="career-input" name="telephone" required />
+            <label class="career-label" for="career-telephone">Telephone <span class="req">*</span></label>
+            <input type="tel" class="career-input" name="telephone" id="career-telephone" required />
           </div>
           <div class="career-form-group">
-            <label class="career-label">Position <span class="req">*</span></label>
-            <input type="text" class="career-input" name="position" required />
+            <label class="career-label" for="career-position">Position <span class="req">*</span></label>
+            <input type="text" class="career-input" name="position" id="career-position" required />
           </div>
         </div>
         <div class="career-form-bottom">
           <div class="career-form-group career-resume-group">
-            <label class="career-label">Resume Upload <span class="req">*</span></label>
+            <label class="career-label" for="career-resume">Resume Upload <span class="req">*</span></label>
             <label class="career-file-label">
-              <input type="file" name="resume" accept=".pdf,.doc,.docx" required class="career-file-input" />
+              <input type="file" id="career-resume" name="resume" accept=".pdf,.doc,.docx" required class="career-file-input" />
               <span class="career-file-btn">Choose a file</span>
               <span class="career-file-name">No file chosen</span>
             </label>
@@ -317,10 +317,10 @@
       </div>
       <div class="footer-columns-wrapper">
         <div class="footer-titles-row">
-          <div class="footer-column"><h3 class="footer-title">CONTACT</h3></div>
-          <div class="footer-column"><h3 class="footer-title">QUICK LINKS</h3></div>
-          <div class="footer-column"><h3 class="footer-title">GROUP COMPANIES</h3></div>
-          <div class="footer-column"><h3 class="footer-title">NEWSLETTER</h3></div>
+          <div class="footer-column"><h2 class="footer-title">CONTACT</h2></div>
+          <div class="footer-column"><h2 class="footer-title">QUICK LINKS</h2></div>
+          <div class="footer-column"><h2 class="footer-title">GROUP COMPANIES</h2></div>
+          <div class="footer-column"><h2 class="footer-title">NEWSLETTER</h2></div>
         </div>
         <img loading="lazy" width="1493" height="1" src="./assets/line-white.png" alt="" class="footer-full-line" />
         <div class="footer-content-row">

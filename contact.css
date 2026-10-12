@@ -84,11 +84,11 @@
   gap: 2.5vw 4vw;
 }
 
-.branch h3.branch-city {
+.branch .branch-city {
   font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-weight: 700;
   font-size: 0.845vw;
-  color: #e31d36;
+  color: var(--color-red-text);
   letter-spacing: 0.04em;
   margin-bottom: 0.6vw;
   padding-bottom: 0.6vw;
@@ -335,7 +335,7 @@
     width: 100%;
   }
 
-  .branch h3.branch-city {
+  .branch .branch-city {
     font-size: 3vw;
     margin-bottom: 1.5vw;
     padding-bottom: 1.5vw;

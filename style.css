@@ -145,6 +145,9 @@ body.home .stage {
 :root {
   /* Color constants */
   --color-red: #e31d36;
+  /* Brand red darkened just enough for small text on the grey page (4.5:1) */
+  --color-red-text: #ca1930;
+  --color-grey-text: #656668;
   --color-blue: #3F5881;
   --color-blue2: #315e87;
 
@@ -341,7 +344,7 @@ body {
   font-size: calc(1.11 * var(--u));
   letter-spacing: 1px;
   pointer-events: none;
-  color: #9c9fa1;
+  color: var(--color-grey-text);
   opacity: 1;
   transition: opacity 0.3s ease-out;
 }
@@ -2725,7 +2728,7 @@ body {
 }
 
 .footer-title {
-  color: var(--color-red);
+  color: var(--color-red-text);
   font-size: 1.11vw;
   font-weight: 700;
   margin-bottom: 0.69vw;
@@ -2773,13 +2776,15 @@ body {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #77797b;
+  color: var(--color-grey-text);
   box-sizing: border-box;
 }
 
 .page-breadcrumb a {
-  color: #77797b;
-  text-decoration: none;
+  color: var(--color-grey-text);
+  /* Underline so the link stands apart from the surrounding crumb text */
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .page-breadcrumb a:hover {
@@ -2788,7 +2793,7 @@ body {
 
 .page-breadcrumb .breadcrumb-sep {
   margin: 0 0.5em;
-  color: #b5b5b5;
+  color: var(--color-grey-text);
 }
 
 /* Deprecated modifier kept as a no-op alias so existing markup doesn't break */
@@ -2883,6 +2888,9 @@ body {
   align-items: center;
   padding: 0;
   transition: opacity 0.2s;
+  /* Comfortable tap target (WCAG 2.2: at least 24 x 24px) */
+  min-width: 24px;
+  min-height: 24px;
 }
 
 .gf-email-btn:hover {
@@ -2926,6 +2934,103 @@ body {
    desktop rule they override.
    ========================================================== */
 @media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
+  /* Homepage footer on phones: same layout as the inner pages' footer
+     (the homepage scenes stay a scaled desktop view; the footer does not) */
+  body.home .footer {
+    padding: 6vw 5vw 8vw;
+  }
+
+  body.home .footer-container {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  body.home .footer-logo {
+    width: auto;
+    margin-right: 0;
+    margin-bottom: 5vw;
+  }
+
+  body.home .footer-logo-img {
+    width: 22vw;
+    height: auto;
+  }
+
+  body.home .footer-columns-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  body.home .footer-titles-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+  }
+
+  body.home .footer-titles-row .footer-column:nth-child(1),
+  body.home .footer-titles-row .footer-column:nth-child(4) {
+    display: none;
+  }
+
+  body.home .footer-titles-row .footer-column:nth-child(2) { grid-column: 1; }
+  body.home .footer-titles-row .footer-column:nth-child(3) { grid-column: 2; }
+
+  body.home .footer-full-line { margin: 3vw 0; }
+
+  body.home .footer-content-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+    row-gap: 5vw;
+  }
+
+  body.home .footer-content-row .footer-column {
+    width: auto;
+    min-width: unset;
+  }
+
+  body.home .footer-content-row .footer-column:nth-child(1) { grid-column: 1; grid-row: 2; }
+  body.home .footer-content-row .footer-column:nth-child(2) { grid-column: 1; grid-row: 1; }
+  body.home .footer-content-row .footer-column:nth-child(3) { grid-column: 2; grid-row: 1 / 3; }
+  body.home .footer-content-row .footer-column:nth-child(4) { grid-column: 1 / -1; grid-row: 3; }
+
+  body.home .footer-content-row .footer-column:nth-child(1)::before {
+    content: 'CONTACT';
+    display: block;
+    color: #e31d36;
+    font-size: 3.5vw;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 3vw;
+    font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
+  }
+
+  body.home .footer-title { font-size: 3.5vw; margin-bottom: 2vw; }
+  body.home .footer-links a { font-size: 2.8vw; }
+  body.home .footer-links li { margin-bottom: 1.8vw; }
+  body.home .footer-contact p { font-size: 2.8vw; line-height: 1.5; }
+  body.home .contact-icon-img { width: 4vw; height: 4vw; }
+  body.home .contact-group { gap: 2vw; margin-bottom: 3vw; }
+
+  body.home .footer .menu-social {
+    gap: 3vw;
+    margin-top: 3vw;
+    justify-content: flex-start;
+    position: static;
+    align-self: auto;
+    margin-bottom: 0;
+  }
+
+  body.home .footer .menu-social .social-icon img { height: 5vw; width: auto; }
+
+  body.home .gf-newsletter { width: 100%; max-width: 100%; gap: 3vw; }
+  body.home .gf-email-wrap { padding: 1.5vw 2.5vw; }
+  body.home .gf-email-input { font-size: 3vw; }
+  body.home .gf-email-btn svg { width: 4.5vw !important; height: 4.5vw !important; }
+  body.home .gf-checkbox-wrap { gap: 2.5vw; font-size: 2.8vw; }
+  body.home .gf-checkbox { width: 4vw; height: 4vw; }
+
   /* Measured .fixed-nav height at real phone widths (logo + hamburger +
      padding no longer scale down to the same proportions as the 7.28vw
      desktop measurement) — pages offsetting content with var(--nav-height)
@@ -3130,3 +3235,16 @@ body {
   }
 }
 
+
+/* Text for screen readers only */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

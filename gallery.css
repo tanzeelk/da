@@ -103,7 +103,7 @@
 }
 
 .gallery-tab.active {
-  color: var(--color-red);
+  color: var(--color-red-text);
   font-weight: 600;
 }
 
@@ -131,7 +131,7 @@
   font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   font-size: 0.9vw;
   font-weight: 500;
-  color: #777;
+  color: var(--color-grey-text);
   padding: 0.4vw 1.2vw;
   border-radius: 2vw;
   transition: background 0.2s, color 0.2s;
