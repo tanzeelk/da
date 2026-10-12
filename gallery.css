@@ -48,7 +48,7 @@
 
 .gallery-hero-heading {
   font-family: 'Gontserrat-Medium', sans-serif;
-  font-size: 3vw;
+  font-size: max(12px, 3vw);
   font-weight: 700;
   color: #fff;
   letter-spacing: 0.04em;
@@ -77,7 +77,7 @@
   border: none;
   cursor: pointer;
   font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
-  font-size: 1vw;
+  font-size: max(12px, 1vw);
   font-weight: 500;
   color: #555;
   padding: 0.6vw 0.2vw;
@@ -129,7 +129,7 @@
   border: none;
   cursor: pointer;
   font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
-  font-size: 0.9vw;
+  font-size: max(12px, 0.9vw);
   font-weight: 500;
   color: var(--color-grey-text);
   padding: 0.4vw 1.2vw;
@@ -219,7 +219,7 @@
   border: none;
   color: #fff;
   cursor: pointer;
-  font-size: 2.5vw;
+  font-size: max(12px, 2.5vw);
   line-height: 1;
   z-index: 9001;
   transition: color 0.2s;
@@ -235,21 +235,21 @@
 .lightbox-close {
   top: 1.5vw;
   right: 2vw;
-  font-size: 3vw;
+  font-size: max(12px, 3vw);
 }
 
 .lightbox-prev {
   left: 2vw;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 4vw;
+  font-size: max(12px, 4vw);
 }
 
 .lightbox-next {
   right: 2vw;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 4vw;
+  font-size: max(12px, 4vw);
 }
 
 @media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
@@ -258,7 +258,7 @@
 
   /* ── Breadcrumb ── */
   .gallery-page .page-breadcrumb {
-    font-size: 2.8vw;
+    font-size: max(12px, 2.8vw);
     padding: 3vw 4vw;
   }
 
@@ -268,7 +268,7 @@
   }
 
   .gallery-hero-heading {
-    font-size: 6vw;
+    font-size: max(12px, 6vw);
   }
 
   /* ── Gallery body ── */
@@ -283,7 +283,7 @@
   }
 
   .gallery-tab {
-    font-size: 3vw;
+    font-size: max(12px, 3vw);
     padding: 1vw 0.2vw;
   }
 
@@ -296,7 +296,7 @@
   }
 
   .gallery-subtab {
-    font-size: 2.8vw;
+    font-size: max(12px, 2.8vw);
     padding: 1.2vw 3.5vw;
   }
 
@@ -318,17 +318,17 @@
   .lightbox-close {
     top: 4vw;
     right: 4vw;
-    font-size: 7vw;
+    font-size: max(12px, 7vw);
   }
 
   .lightbox-prev {
     left: 3vw;
-    font-size: 9vw;
+    font-size: max(12px, 9vw);
   }
 
   .lightbox-next {
     right: 3vw;
-    font-size: 9vw;
+    font-size: max(12px, 9vw);
   }
 
   /* ── Footer mobile ── */
@@ -395,17 +395,17 @@
     content: 'CONTACT';
     display: block;
     color: #e31d36;
-    font-size: 3.5vw;
+    font-size: max(12px, 3.5vw);
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 3vw;
     font-family: 'Montserrat', 'Montserrat Fallback', sans-serif;
   }
 
-  .gallery-page .footer-title { font-size: 3.5vw; margin-bottom: 2vw; }
-  .gallery-page .footer-links a { font-size: 2.8vw; }
+  .gallery-page .footer-title { font-size: max(12px, 3.5vw); margin-bottom: 2vw; }
+  .gallery-page .footer-links a { font-size: max(12px, 2.8vw); }
   .gallery-page .footer-links li { margin-bottom: 1.8vw; }
-  .gallery-page .footer-contact p { font-size: 2.8vw; line-height: 1.5; }
+  .gallery-page .footer-contact p { font-size: max(12px, 2.8vw); line-height: 1.5; }
   .gallery-page .contact-icon-img { width: 4vw; height: 4vw; }
   .gallery-page .contact-group { gap: 2vw; margin-bottom: 3vw; }
 
@@ -422,9 +422,9 @@
 
   .gallery-page .gf-newsletter { width: 100%; max-width: 100%; gap: 3vw; }
   .gallery-page .gf-email-wrap { padding: 1.5vw 2.5vw; }
-  .gallery-page .gf-email-input { font-size: 3vw; }
+  .gallery-page .gf-email-input { font-size: max(12px, 3vw); }
   .gallery-page .gf-email-btn svg { width: 4.5vw !important; height: 4.5vw !important; }
-  .gallery-page .gf-checkbox-wrap { gap: 2.5vw; font-size: 2.8vw; }
+  .gallery-page .gf-checkbox-wrap { gap: 2.5vw; font-size: max(12px, 2.8vw); }
   .gallery-page .gf-checkbox { width: 4vw; height: 4vw; }
 
 }
