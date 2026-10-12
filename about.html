@@ -66,6 +66,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32.png" />
   <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
+<!-- Main image: start downloading before the CSS is parsed -->
+<link rel="preload" as="image" href="./assets/about-us-circle-image.webp" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@1,400;1,500&amp;display=swap" />
@@ -135,7 +137,7 @@
       <!-- Large circle + overlapping small circles all inside about-images -->
       <div class="about-images">
         <div class="about-circle-main">
-          <img width="700" height="467" src="./assets/about-us-circle-image.webp" alt="DA Group team" />
+          <img width="700" height="467" src="./assets/about-us-circle-image.webp" alt="DA Group team" fetchpriority="high" />
         </div>
         <div class="about-circle-sm-topleft">
           <img width="700" height="467" src="./assets/about-us-bot-left.webp" alt="Farmer harvesting cotton in a field, representing DA Group's textile roots" />

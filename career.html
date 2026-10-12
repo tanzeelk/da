@@ -66,6 +66,9 @@
   <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32.png" />
   <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
+<!-- Main image: start downloading before the CSS is parsed -->
+<link rel="preload" as="image" href="./assets/circle.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="./assets/career1.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@1,400;1,500&amp;display=swap" />
@@ -125,7 +128,7 @@
 
       <!-- Person photo circle -->
       <div class="career-photo-circle">
-        <img width="1000" height="1000" src="./assets/career1.webp" alt="Career at DA Group" />
+        <img width="1000" height="1000" src="./assets/career1.webp" alt="Career at DA Group" fetchpriority="high" />
       </div>
 
       <!-- Tagline top-right -->
