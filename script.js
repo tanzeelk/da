@@ -2327,7 +2327,7 @@ if (scene6BackArrowBtn) {
     // Restore original grey circle logo
     const greyLogoRestore = document.querySelector(".scene6-grey-logo");
     if (greyLogoRestore) {
-      greyLogoRestore.src = "./assets/SHREESHAKTIMAIN-logo.png";
+      greyLogoRestore.src = "./assets/SHREESHAKTIMAIN-logo.webp";
       greyLogoRestore.alt = "Shree Shakti Logo";
     }
     

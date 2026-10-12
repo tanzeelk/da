@@ -806,7 +806,7 @@ body {
   width: calc(12.5 * var(--u));
   height: calc(12.5 * var(--u));
   border-radius: 50%;
-  background-image: url('./assets/CircleGrey.png');
+  background-image: url('./assets/CircleGrey.webp');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -901,7 +901,7 @@ body {
   width: calc(10.69 * var(--u));
   height: calc(10.69 * var(--u));
   border-radius: 50%;
-  background-image: url('./assets/CircleGrey.png');
+  background-image: url('./assets/CircleGrey.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -1208,7 +1208,7 @@ body {
   width: calc(10.69 * var(--u));
   height: calc(10.69 * var(--u));
   border-radius: 50%;
-  background-image: url('./assets/CircleGrey.png');
+  background-image: url('./assets/CircleGrey.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -1390,7 +1390,7 @@ body {
   width: calc(10.69 * var(--u));
   height: calc(10.69 * var(--u));
   border-radius: 50%;
-  background-image: url('./assets/CircleGrey.png');
+  background-image: url('./assets/CircleGrey.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -1915,7 +1915,7 @@ body {
   width: calc(10.69 * var(--u));
   height: calc(10.69 * var(--u));
   border-radius: 50%;
-  background-image: url('./assets/CircleGrey.png');
+  background-image: url('./assets/CircleGrey.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -2209,7 +2209,7 @@ body {
   width: calc(10.69 * var(--u));
   height: calc(10.69 * var(--u));
   border-radius: 50%;
-  background-image: url('./assets/CircleGrey.png');
+  background-image: url('./assets/CircleGrey.webp');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -2578,7 +2578,7 @@ body {
   transform: translate(-50%, -50%);
   width: calc(6.94 * var(--u));
   height: calc(6.94 * var(--u));
-  background: url('./assets/logo-LITTLEWINGS.png') no-repeat center;
+  background: url('./assets/logo-LITTLEWINGS.webp') no-repeat center;
   background-size: contain;
   z-index: 10;
   opacity: 1;

@@ -302,7 +302,7 @@ function initScene6() {
   if (s6desc) s6desc.innerHTML = 'Shree Shakti Seva Kendra, Ambaji has emerged as a transformative force, helping women claim fundamental right to dignity and autonomy in the tribal and underprivileged communities. Collaboration and compassion have helped women work towards their empowerment, fostering lasting change.';
   if (scene6ImageCircle) scene6ImageCircle.style.backgroundImage = "url('./assets/image06.webp')";
   const scene6GreyLogo = document.querySelector('.scene6-grey-logo');
-  if (scene6GreyLogo) { scene6GreyLogo.src = './assets/SHREESHAKTIMAIN-logo.png'; scene6GreyLogo.alt = 'Shree Shakti Logo'; }
+  if (scene6GreyLogo) { scene6GreyLogo.src = './assets/SHREESHAKTIMAIN-logo.webp'; scene6GreyLogo.alt = 'Shree Shakti Logo'; }
   if (scene6RedText) scene6RedText.classList.remove('showing-nsk');
   const rg1 = document.querySelector('.scene6-group-1 .text-red');
   const rg2 = document.querySelector('.scene6-group-2 .text-blue');
@@ -417,7 +417,7 @@ function initScene6() {
     if (scene6RightArrows) gsap.to(scene6RightArrows, { opacity: 1, duration: 0.3, pointerEvents: 'auto' });
     if (scene6BackArrowBtn) gsap.to(scene6BackArrowBtn, { opacity: 0, duration: 0.3 });
     const gl = document.querySelector('.scene6-grey-logo');
-    if (gl) { gl.src = './assets/SHREESHAKTIMAIN-logo.png'; gl.alt = 'Shree Shakti Logo'; }
+    if (gl) { gl.src = './assets/SHREESHAKTIMAIN-logo.webp'; gl.alt = 'Shree Shakti Logo'; }
     const rt = document.querySelector('.scene6-red-text');
     if (rt) rt.classList.remove('showing-nsk');
     isShowingNSK = false;
